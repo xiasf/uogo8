@@ -1,0 +1,64 @@
+<div class="headbar">
+	<div class="position"><span>家居</span><span>></span><span>文章管理</span><span>></span><span>评论列表</span></div>
+	<div class="operating">
+		<!-- <a href="javascript:;" onclick="event_link('{url:/jiaju/show_img_cat_edit}')"><button class="operating_btn" type="button"><span class="addition">添加效果图分类</span></button></a> -->
+		<a href="javascript:void(0)" onclick="selectAll('id[]');"><button class="operating_btn" type="button"><span class="sel_all">全选</span></button></a>
+		<a href="javascript:void(0)" onclick="delModel();"><button class="operating_btn" type="button"><span class="delete">批量删除</span></button></a>
+	</div>
+	<div class="field">
+		<table class="list_table">
+			<col width="40px" />
+			<col width="180px" />
+			<col width="180px" />
+			<col width="180px" />
+			<col width="280px" />
+			<col />
+			<thead>
+				<tr>
+					<th>选择</th>
+					<th>用户</th>
+					<th>内容</th>
+					<th>文章</th>
+					<th>时间</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
+<div class="content">
+	<form method='post' action='{url:/jiaju/article_comment_del}'>
+		<table class="list_table">
+			<col width="40px" />
+			<col width="180px" />
+			<col width="180px" />
+			<col width="180px" />
+			<col width="280px" />
+			<col />
+			<tbody>
+				{query:name=jiaju_article_comment}
+				<tr>
+					<td><input type='checkbox' name='id[]' value='{$item['id']}' /></td>
+					<td>{$item['user_id']}</td>
+					<td>{$item['contents']}</td>
+					<td>
+						{query:name=jiaju_article where=id eq $item[article_id] item=$article}
+							<a target="_blank" href="{url:v_deco/yezhu/id/$article['id']}">{$article['title']}</a>
+						{/query}
+					</td>
+					<td>{$item['comment_time']}</td>
+					<td>
+						<a href='{url:/jiaju/show_img_cat_edit/id/$item[id]}'>
+							<img class="operator" src="{skin:images/admin/icon_edit.gif}" alt="修改" title="修改" />
+						</a>
+
+						<a href='javascript:void(0)' onclick="delModel({link:'{url:/jiaju/article_comment_del/id/$item[id]}'});">
+							<img class="operator" src="{skin:images/admin/icon_del.gif}" alt="删除" title="删除" />
+						</a>
+					</td>
+				</tr>
+				{/query}
+			</tbody>
+		</table>
+	</form>
+</div>

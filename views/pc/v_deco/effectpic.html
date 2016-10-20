@@ -1,0 +1,149 @@
+{set:
+$this->config['title'] = "效果图 - ";
+}
+<div class="container ">
+  <div class="xgt_select_type container">
+    <h1 class="xgt_meitu_nav">
+      <ul>
+        <li class="has_arrow"> <a href="#">装修效果图</a> <span class="nav_arrow_right"></span> </li>
+        <li class="has_arrow"><a href="#">家居美图</a></li>
+        <li class="nav_type_select">
+        	{set:
+		        $space = IFilter::act(IReq::get('space'),'int');
+				$local = IFilter::act(IReq::get('local'),'int');
+				$style = IFilter::act(IReq::get('style'),'int');
+			}
+
+			{if:$space}
+			{set:$space_name = array('其它','客厅', '卧室', '餐厅', '厨房', '卫生间', '阳台', '书房', '玄关', '儿童房', '衣帽间', '花园')}
+	        	<a href="{$this->searchUrl('space', '')}">
+	              	<h6>{$space_name[$space]}</h6>
+	              	<span class="nav_close"></span>
+	            </a>
+             {/if}
+
+             {if:$local}
+	             {set:$local_name = array('其它','背景墙', '吊顶', '隔断', '窗帘', '飘窗', '榻榻米', '橱柜', '博古架', '阁楼', '隐形门', '吧台', '酒柜', '鞋柜', '衣柜', '窗户', '相片墙', '楼梯')}
+	        	<a href="{$this->searchUrl('local', '')}">
+	              	<h6>{$local_name[$local]}</h6>
+	              	<span class="nav_close"></span>
+	            </a>
+             {/if}
+
+            {if:$style}
+	            {set:$style_name = array('其它','简约', '现代', '中式', '欧式', '美式', '田园', '新古典', '混搭', '地中海', '东南亚', '日式', '宜家', '北欧', '简欧', '窗户', '相片墙', '楼梯')}
+	        	<a href="{$this->searchUrl('style', '')}">
+	              	<h6>{$style_name[$style]}</h6>
+	              	<span class="nav_close"></span>
+	            </a>
+             {/if}
+
+
+        </li>
+      </ul>
+      <a href="#" target="_blank" class="xgt_meitu_nav_link">公装效果图</a> </h1>
+    <dl class="xgt_st_dl ">
+      <dt> 空间 </dt>
+      <dd> <a id="space_1" href="{$this->searchUrl('space', 1)}">客厅</a> <a id="space_2" href="{$this->searchUrl('space', 2)}">卧室</a> <a id="space_3" href="{$this->searchUrl('space', 3)}">餐厅</a> <a id="space_4" href="{$this->searchUrl('space', 4)}">厨房</a> <a id="space_5" href="{$this->searchUrl('space', 5)}">卫生间</a> <a id="space_6" href="{$this->searchUrl('space', 6)}">阳台</a> <a id="space_7" href="{$this->searchUrl('space', 7)}">书房</a> <a id="space_8" href="{$this->searchUrl('space', 8)}">玄关</a> <a id="space_9" href="{$this->searchUrl('space', 9)}">儿童房</a> <a id="space_1'" href="{$this->searchUrl('space', 10)}">衣帽间</a> <a id="space_1'" href="{$this->searchUrl('space', 11)}">花园</a> </dd>
+    </dl>
+    <dl class="xgt_st_dl">
+      <dt> 局部 </dt>
+      <dd> <a id="local_1" href="{$this->searchUrl('local', 1)}">背景墙</a> <a id="local_2" href="{$this->searchUrl('local', 2)}">吊顶</a> <a id="local_3" href="{$this->searchUrl('local', 3)}">隔断</a> <a id="local_4" href="{$this->searchUrl('local', 4)}">窗帘</a> <a id="local_5" href="{$this->searchUrl('local', 5)}">飘窗</a> <a id="local_6" href="{$this->searchUrl('local', 6)}">榻榻米</a> <a id="local_7" href="{$this->searchUrl('local', 7)}">橱柜</a> <a id="local_8" href="{$this->searchUrl('local', 8)}">博古架</a> <a id="local_9" href="{$this->searchUrl('local', 9)}">阁楼</a> <a id="local_10" href="{$this->searchUrl('local', 10)}">隐形门</a> <a id="local_11" href="{$this->searchUrl('local', 11)}">吧台</a> <a id="local_12" href="{$this->searchUrl('local', 12)}">酒柜</a> <a id="local_13" href="{$this->searchUrl('local', 13)}">鞋柜</a> <a id="local_14" href="{$this->searchUrl('local', 14)}">衣柜</a> <a id="local_15" href="{$this->searchUrl('local', 15)}">窗户</a> <a id="local_16" href="{$this->searchUrl('local', 16)}">相片墙</a> <a id="local_17" href="{$this->searchUrl('local', 17)}">楼梯</a> </dd>
+      
+    </dl>
+    <dl class="xgt_st_dl ">
+      <dt> 风格 </dt>
+      <dd> <a id="style_1" href="{$this->searchUrl('style', 1)}" rel="nofollow">简约</a> <a id="style_2" href="{$this->searchUrl('style', 2)}" rel="nofollow">现代</a> <a id="style_3" href="{$this->searchUrl('style', 3)}" rel="nofollow">中式</a> <a id="style_4" href="{$this->searchUrl('style', 4)}" rel="nofollow">欧式</a> <a id="style_5" href="{$this->searchUrl('style', 5)}" rel="nofollow">美式</a> <a id="style_6" href="{$this->searchUrl('style', 6)}" rel="nofollow">田园</a> <a id="style_7" href="{$this->searchUrl('style', 7)}" rel="nofollow">新古典</a> <a id="style_8" href="{$this->searchUrl('style', 8)}" rel="nofollow">混搭</a> <a id="style_9" href="{$this->searchUrl('style', 9)}" rel="nofollow">地中海</a> <a id="style_10" href="{$this->searchUrl('style', 10)}" rel="nofollow">东南亚</a> <a id="style_11" href="{$this->searchUrl('style', 11)}" rel="nofollow">日式</a> <a id="style_12" href="{$this->searchUrl('style', 12)}" rel="nofollow">宜家</a> <a id="style_13" href="{$this->searchUrl('style', 13)}" rel="nofollow">北欧</a> <a id="style_14" href="{$this->searchUrl('style', 14)}" rel="nofollow">简欧</a></dd>
+    </dl>
+  </div>
+  <div class="xgt_st_nh container">
+  	<a rel="nofollow" href="#" class="clickstream_tag xgt_meitu_new on" data-ptag="1_2_3_214">最新</a> 
+  	<a rel="nofollow" href="#" class="clickstream_tag xgt_meitu_hot " data-ptag="1_2_3_215">最热</a> 
+  </div>
+  <div class="xgt_meitu_pinterest">
+    <div id="waterfall"></div>
+  </div>
+  <link rel="stylesheet" href="../skin/effectpic/decorate_gallery_list.css">
+</div>
+<script src="skin/js/waterfall.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+
+jQuery(function($){
+	var page = 0;
+	$('#waterfall').waterfall({
+		// 自定义跨域请求
+		ajaxFunc: function(success, error){
+			$.ajax({
+				type: 'GET',
+				url: '{url:v_deco/effectpic_json?$_SERVER["QUERY_STRING"]}',
+				cache: false,
+				data: {'page': ++page},
+				dataType:'json',
+				timeout: 60000,
+				success: success,
+				error: function(){alert('没有了')}
+			});
+		},
+		createHtml: function(data){
+			return '<div class="wf_item_inner">' +
+					  '<a href="#'+ data.id +'" class="thumb">' +
+						'<img class="thumb_img"  src="{url:}'+ data.img_list.split(",")[0] +'" />' +
+					  '</a>' +
+					  '<p class="title">'+ data.name +'</p>' +
+				  '</div>';
+		},
+		colWidth: 290,			// 列宽
+		marginLeft: 15,			// 每列的左间宽
+		marginTop: 15,			// 每列的上间宽
+	});
+
+//	$(".xgt_meitu_pinterest").on("click",".thumb",function(){
+//		//$(this).find("img").attr("src")
+//		var a_class=$(this).attr('class')
+//	   $(this).imgbox({});
+//	})
+	
+	
+	
+
+//
+//$(document).ready(function() {
+//			$(".thumb").imgbox({
+//				 'zoomOpacity'	: true,
+//				'alignment'		: 'center'
+//			});
+//		});
+
+
+
+
+
+//
+
+
+	{set:$space = IFilter::act(IReq::get('space'),'int');}
+	{if:$space}
+	$('#space_{$space}').css('color','#f25618');
+	{/if}
+
+	{set:$local = IFilter::act(IReq::get('local'),'int');}
+	{if:$local}
+	$('#local_{$local}').css('color','#f25618');
+	{/if}
+
+	{set:$style = IFilter::act(IReq::get('style'),'int');}
+	{if:$style}
+	$('#style_{$style}').css('color','#f25618');
+	{/if}
+});
+</script>
+<div id="imgbox">
+		<span id="img_close"></span>
+		<img />
+		<p></p>
+<div id="imgback"></div>
+</div>
+<script src="../skin/effectpic/js/imgbox.js" type="text/javascript"></script>
+
+

@@ -1,0 +1,128 @@
+<style>
+.payment label{display:block;float:left;width:40%;border:solid 1px #eee;margin-right:10px;padding:10px}
+.payment h1{display:block;font-size:1.8em}
+</style>
+<div class="rsContentWrapper">
+<div class="alertBox alertBoxGo" {if:empty($this->promotion)}style="display:none"{/if}>
+  <p class="alertBoxContent"> <strong class="f14">恭喜，您的订单已经满足了以下优惠活动！</strong><br/>
+    {foreach:items = $this->promotion}
+    {$item['plan']}，{$item['info']}
+    {/foreach} </p>
+</div>
+<form action='{url:/simple/cart3}' method='post' name='order_form'>
+
+<input type='hidden' name='delivery_id' value='3' />
+<input type='hidden' name='accept_time' value='任意' />
+
+  <input type='hidden' name='timeKey' value='{echo:time()}' />
+  <input type='hidden' name='direct_gid' value='{$this->gid}' />
+  <input type='hidden' name='direct_type' value='{$this->type}' />
+  <input type='hidden' name='direct_num' value='{$this->num}' />
+  <input type='hidden' name='direct_promo' value='{$this->promo}' />
+  <input type='hidden' name='direct_active_id' value='{$this->active_id}' />
+  <!--支付方式 开始-->
+  <div class="wrap_box" id='paymentBox'>
+  <h3> <span class="orange">支付方式</span></h3>
+  <div class="payment">
+  {set:$paymentList=Api::run('getPaymentList')}
+  {foreach:items = $paymentList}
+  {set:$paymentPrice = CountSum::getGoodsPaymentPrice($item['id'],$this->sum);}
+  <label>
+  <h1>{$item['name']}</h1>
+  手续费：￥{$paymentPrice}<br>
+  {if:$this->user}
+    {set:$user_id = $this->user['user_id']}
+    {set:$user = Api::run('getMemberInfo',$user_id)}
+    {if:$item['id'] == 1}
+    余额：<strong class="red">{$user['balance']}元</strong> {/if}
+   {/if} 
+  <br>
+  <input class="radio" name="payment" alt="{$paymentPrice}" title="{$item['name']}" type="radio" value="{$item['id']}" />
+  </label>
+  {/foreach}
+  <div class="clear"></div>
+  </div>
+  </div>
+  <!--支付方式 结束--> 
+  <!--地址管理 开始-->
+  <div class="wrap_box">
+    <h3> <span class="orange">收货人信息</span></h3>
+    
+    <!--收货表单信息 开始-->
+    <div class="prompt_4" id='address_often'> 
+         <ul class="addr_lisd">
+          {foreach:items=$this->addressList}
+          <li>
+            <label>
+              <input class="radio" name="radio_address" type="radio" value="{$item['id']}" onclick='addressSelected({echo:JSON::encode($item)});' />
+              {$item['accept_name']}({$item['mobile']})&nbsp;&nbsp;&nbsp;&nbsp;{$item['address']}</label>
+          </li>
+          {/foreach}
+        </ul>
+       
+      <!--收货地址项模板--> 
+    </div>
+    <div class="box" id='address_form'>
+      <div class="formFieldWrapper"> <em>姓名：</em>
+        <input type="text" class="loginBameField" name="accept_name" alt="收件人姓名不能为空" />
+      </div>
+      <div class="formFieldWrapper"> <em>联系电话：</em>
+        <input type="text" class="loginNameField" name="mobile" alt="格式不正确" />
+      </div>
+      <div class="formFieldWrapper"> <em>所在地区：</em>
+        <input id="city-picker" class="loginLocaField" readonly type="text" value="" name="addregion" data-toggle="city-picker">
+      </div> 
+      <div class="formFieldWrapper"> <em>详细地址：</em>
+        <input type="text" class="loginLocaField" name="address" alt="格式不正确" />
+      </div>
+    </div>
+    <!--收货表单信息 结束--> 
+    
+  </div>
+  <!--地址管理 结束-->
+  
+  </div>
+  
+  <!--订单留言 开始-->
+  <div class="wrap_box">
+    <h3><span class="orange">订单附言</span></h3>
+    <div id='address_often'>
+      <textarea name="message" class="normal" id="messageShowBox"></textarea>
+    </div>
+  </div>
+  <div class="wrap_box">
+    <h3><span class="orange">商品清单</span></h3>
+    <div class="cart_list"> {foreach:items = $this->goodsList}
+      <div class="prsd_pic">
+        <div class="cart_box_pic" id="deliveryFeeBox_{$item['goods_id']}_{$item['product_id']}_{$item['count']}">
+          <p> <em><img src="{webroot:}{echo:Thumb::get($item['img'],80,80)}" width="80px" height="80px" alt="{$item['name']}" title="{$item['name']}" /></em> <a href="{url:/site/products/id/$item[goods_id]}">{$item['name']}<b>￥{$item['sell_price']} x {$item['count']}</b></a> </p>
+        </div>
+        <dl class="sxcb">
+          <span> <u>小计：<b class="red2">￥<b class="red2" id="goods_sum_{$item['id']}">{$item['sum']}</b></b></u> </span>
+        </dl>
+      </div>
+      {/foreach} </div>
+  </div>
+  <div class="proReduce"> 运费总计：<b id='delivery_fee_show'>0</b> </div>
+  <div class="final_sum"> <b class="f14">应付总额：<span class="red2">￥<b id='final_sum'>{$this->final_sum}</b></span>元</b> </div>
+  <div class="BottomFieldWrapper">
+    <input type="submit" value="提交订单" class="loginButton">
+  </div>
+</form>
+</div>
+<link href="../skin/js/citypicker/city.picker.css" rel="stylesheet">
+
+<script src="skin/js/citypicker/city.picker.data.js"></script> 
+<script src="skin/js/citypicker/city.picker.min.js"></script> 
+
+<script>
+
+function addressSelected(data){
+	$("input[name='accept_name']").val(data.accept_name);
+	$("input[name='mobile']").val(data.mobile);
+	$("input[name='address']").val(data.address);
+	$("input[name='addregion']").val(data.addregion || "湖北省/黄冈市/黄州区");
+}
+
+
+</script>

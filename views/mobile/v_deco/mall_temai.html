@@ -1,0 +1,16 @@
+<section class="m_activity g_wrap"> {foreach:items=Api::run('getadmanageid',array('#position_id#','23'),10) item=$temai}
+  {set:$countNumItems[] = $item['id'];}
+  <div class="item bgfff"> <a class="img" href="{$temai['link']}"> <img src="{webroot:$temai['content']}" style="    width: 100%;"> <span> {$temai['name']} </span> </a>
+    <div class="info"> <em class="icn_sale_txt"> 3折起 </em> <span> {$temai['description']} </span> <b class="days" time="3508632"> <i class="u_ico1 ico"> </i> 剩 40 天 
+      
+      <!-- {set:$free_time=strtotime($temai['end_time'])-ITime::getNow();}
+	      	<div class="infobar clearfix">
+	            <div class="time-banner">
+	          		<div class="ju-clock">团购倒计时: <span class="hour" id="cd_hour_{$temai['id']}">{echo:floor($free_time/3600);}</span>小时<span class="min" id="cd_minute_{$temai['id']}">{echo:floor( ($free_time%3600)/60 );}</span>分<span id="cd_second_{$temai['id']}" class="sec">{echo:$free_time%60}</span>秒</div>
+	        	</div>
+	        </div> --> 
+      
+      </b> </div>
+  </div>
+  {/foreach} </section>
+<link rel="stylesheet" href="../skin/mall/page_1.css">

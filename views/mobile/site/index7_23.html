@@ -1,0 +1,505 @@
+<style>
+.m_activity { }
+.m_activity .item { -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 60px rgba(0, 0, 0, 0.1) inset; -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 60px rgba(0, 0, 0, 0.1) inset; -o-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 60px rgba(0, 0, 0, 0.1) inset; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 60px rgba(0, 0, 0, 0.1) inset; margin-bottom: 10px }
+.m_activity .img { display: block; margin-bottom: 5px; }
+.m_activity a { position: relative; }
+.m_activity a span { position: absolute; left: 0px; right: 0px; bottom: 0px; background-color: rgba(0,0,0,.3); line-height: 26px; color: #fff }
+.sngo{display:block;padding:20px 0;text-align: center;border-top:dotted 1px #eee;background-color:#f9f9f9}
+nav ul.main-enter li{width:25%;}
+</style>
+<!--导航菜单-->
+<nav>
+  <ul class="main-enter  clearfix">
+    <li>
+		<a class="click-point" href="{url:v_deco/malls}">
+		<span class="icon-pptm-enter"></span>
+		<h2>家居商城</h2>
+		</a>
+    </li>
+    <li>
+		<a class="click-point" href="{url:v_deco/seckill}">
+		<span class="icon-pptm-enter"></span>
+		<h2>专场</h2>
+		</a>
+    </li>
+    <li class="cheke">
+    <a class="click-point" href="{url:task/task_list}">
+    <span class="icon-pptm-enter"></span>
+    <h2>任务</h2>
+    </a>
+    </li>
+    <li>
+		<a class="click-point" href="{url:task/goods_list}">
+		<span class="icon-pptm-enter"></span>
+		<h2>积分商城</h2>
+		</a>
+    </li>
+
+
+
+
+
+    <!-- <li> <a class="click-point"  href="{url:v_deco/company}"> <span class="icon-zxgx-enter"></span>
+      <h2>装修</h2>
+      </a> </li>
+    <li> <a class="click-point" href="{url:v_deco/gonglve}"> <span class="icon-zxgl-enter"></span>
+      <h2>攻略</h2>
+      </a> </li>
+    <li> <a class="click-point" href="{url:v_deco/xiaoguotu}"> <span class="icon-zxtuku-enter"></span>
+      <h2>图库</h2>
+      </a> </li>
+      <li> <a class="click-point" href="{url:v_deco/tenders_list}"> <span class="icon-zxtuku-enter"></span>
+      <h2>招标</h2>
+      </a> </li> -->
+    <!--    <li> <a class="click-point"  href="#"> <span class="icon-hxsj-enter"><em>免费</em></span>
+      <h2>户型设计</h2>
+      </a> </li>
+    <li> <a class="click-point"  href="{url:v_deco/zxbj}"> <span class="icon-zxbj-enter"><em>免费</em></span>
+      <h2>装修报价</h2>
+      </a> </li>
+-->
+  </ul>
+</nav>
+<div class="swiper-container swiper-container-horizontal" id="swiper-container">
+  <div class="swiper-wrapper"> {foreach:items=Api::run('getadmanageid',array('#position_id#',24),30) item=$second}
+    <figure class="swiper-slide swiper-slide-prev"> <a href="{$second['link']}"> <img width="100%" height="auto" src="{url:$second['content']}" > </a> </figure>
+    {/foreach} </div>
+  <div class="swiper-pagination"></div>
+</div>
+
+
+<!--熊戬专区-->
+<section id="seckillWarp" class="m_buyLimit bgfff">
+    <div class="u_tit u_tits">
+      <ul class="u_tit_ul">
+        <li  class="cheke"> <a class="u_tit_ul_a" href="{url:site/special/commend_id/12}">
+          <h2>9.9包邮</h2>
+          </a> </li>
+        <li> <a class="u_tit_ul_a" href="{url:site/special/commend_id/13}">
+          <h2>20元专区</h2>
+          </a> </li>
+          <li> <a class="u_tit_ul_a" href="{url:site/special/commend_id/11}">
+          <h2>最新折扣</h2>
+          </a> </li>
+          <li> <a class="u_tit_ul_a" href="{url:site/special/commend_id/14}">
+          <h2>明日预告</h2>
+          </a> </li>
+      </ul>
+        <!-- <time class="seckillTime" data-date="{echo:ITime::getTime('2016-06-29 10:00:00')}" data-endate="{echo:ITime::getTime('2016-06-30 18:00:00')}"></time> -->
+    </div>
+    <div class="list">
+        {query:name=commend_goods as co join=left join goods as go on co.goods_id eq go.id where=co.commend_id eq 12 and go.is_del eq 0 AND go.id is not null page=$page fields=go.img,go.sell_price,go.name,go.id,go.market_price order=sort asc,id desc}
+        <a href="{url:/site/products/id/$item['id']}" class="buy-link-a">
+            <img src="{url:/pic/thumb/img/$item[img]/w/303/h/303}" alt="正在加载">
+            <h3>{$item['name']}</h3>
+            <p>￥{$item['sell_price']}</p>
+            <!-- <del>原价：{$item['market_price']}</del> -->
+        </a>
+        {/query}
+    </div>
+    <a class="sngo" href="{url:v_deco/seckill}">进入特卖会场</a>
+</section>
+
+
+
+<!--限时抢购区--> 
+<section id="seckillWarp" class="m_buyLimit bgfff">
+  <div class="u_tit">
+    <h3>淘黄州自营特卖场</h3>
+    <time class="seckillTime" data-date="{echo:ITime::getTime('2016-07-20 10:00:00')}" data-endate="{echo:ITime::getTime('2016-07-21 18:00:00')}"></time>
+    <!--<a class="trailer" href="/mall/seckill">下期预告<span class="arr"></span></a> --></div>
+  <div class="list"> 
+            {foreach:items=Api::run('getPromotionList',20)}
+            {set:$free_time = ITime::getDiffSec($item['start_time'])}
+            {set:$countNumsItem[] = $item['p_id'];$tmpGoodsId=$item['goods_id'];$tmpPId=$item['p_id'];}
+            <a href="{url:/site/products_time/id/$tmpGoodsId/active_id/$tmpPId}" class="buy-link-img"> <img src="{url:/pic/thumb/img/$item[img]/w/303/h/303}" alt="正在加载">
+    <p>￥{$item['award_value']}</p>
+    <del>原价：{$item['sell_price']}</del> 
+  </a>
+
+            {/foreach}
+
+  {foreach:items=Api::run('getCommendRecommended')}
+            <a href="{url:/site/products/id/$item['id']}" class="buy-link-img"> <img src="{url:/pic/thumb/img/$item[img]/w/303/h/303}" alt="正在加载">
+    <p>￥{$item['sell_price']}</p>
+    <del>原价：{$item['market_price']}</del> 
+  </a>
+              {/foreach}
+
+   </div>
+   <a class="sngo" href="{url:v_deco/seckill}">进入自营特卖会场</a>
+</section>
+
+
+<!--限时抢购区--> 
+<section id="seckillWarp" class="m_buyLimit bgfff">
+  <div class="u_tit">
+    <h3>淘黄州本地特卖场</h3>
+    <!-- <time class="seckillTime" data-date="{echo:ITime::getTime('2016-07-13 10:00:00')}" data-endate="{echo:ITime::getTime('2016-07-14 18:00:00')}"></time> -->
+    <!--<a class="trailer" href="/mall/seckill">下期预告<span class="arr"></span></a> --></div>
+  <div class="list"> 
+            {foreach:items=Api::run('getPromotionList2',20)}
+            {set:$free_time = ITime::getDiffSec($item['start_time'])}
+            {set:$countNumsItem[] = $item['p_id'];$tmpGoodsId=$item['goods_id'];$tmpPId=$item['p_id'];}
+            <a href="{url:/site/products_time/id/$tmpGoodsId/active_id/$tmpPId}" class="buy-link-img"> <img src="{url:/pic/thumb/img/$item[img]/w/303/h/303}" alt="正在加载">
+    <p>￥{$item['award_value']}</p>
+    <del>原价：{$item['sell_price']}</del> 
+  </a>
+
+            {/foreach}
+
+
+  {foreach:items=Api::run('getCommendRecommended2')}
+            <a href="{url:/site/products/id/$item['id']}" class="buy-link-img"> <img src="{url:/pic/thumb/img/$item[img]/w/303/h/303}" alt="正在加载">
+    <p>￥{$item['sell_price']}</p>
+    <del>原价：{$item['market_price']}</del> 
+  </a>
+              {/foreach}
+
+
+   </div>
+   <a class="sngo" href="{url:v_deco/seckill2}">进入本地特卖会场</a>
+</section>
+
+
+
+<!--头条-->
+<section class="top-sct top-sct-zxhq">
+  <header class="top-toutiao"> {query:name=jiaju_article where=FIND_IN_SET(1, commend) order=sort asc, id desc limit=1} <a href="{url:v_deco/yezhu/id/$item['id']}" >
+    <h3>{$item['title']}</h3>
+    <small>{$item['description']}</small></a> {/query} </header>
+  <div class="swiper-container swiper-container-horizontal" id="swiper-container2">
+    <div class="swiper-wrapper"> {query:name=jiaju_article where=FIND_IN_SET(2, commend) order=sort asc, id desc limit=3}
+      <div class="swiper-slide toutiaoitem"> <a href="{url:v_deco/yezhu/id/$item['id']}" style="background-image:url({webroot:$item['img']})" > </a> <span>{$item['title']}</span></div>
+      {/query} </div>
+    <!-- <div class="swiper-pagination"></div> --> 
+  </div>
+</section>
+
+
+
+<!-- 最新资讯 -->
+<section class="top-sct top-sct-zxhq ">
+  <header class="sct-hd sct-hd-zxhq ">
+    <h1>最新资讯<span class="sct-hd-mfsj-info"><a href="{url:v_deco/article_list/cid/12}">进入资讯频道</a></span></h1>
+  </header>
+  <div class="sct-bd sct-bd-pd">
+    <div class="situation-box"> {query:name=jiaju_article where=category_id eq 12 and commend eq 0 order=sort asc, id desc limit=5}
+      <div class="situation-box-item"> <a class="click-point" href="{url:v_deco/yezhu/id/$item['id']}" style="background-image:url({url:/pic/thumb/img/$item['img']/w/85/h/85})"></a>
+        <div> <a href="{url:v_deco/yezhu/id/$item['id']}">
+          <h3>{$item['title']}</h3>
+          <p>
+            <time>{set:echo ITime::getDateTime('Y-m-d', ITime::getTime($item['create_time']));}</time>
+            <span class="comment"><strong> {query:name=jiaju_article_comment fields=count(id) as n where=article_id eq $item[id] item=$n}
+            {$n['n']}
+            {/query} </strong><i class="icon icon-comment"></i></span> </p>
+          </a> </div>
+      </div>
+      {/query} </div>
+  </div>
+</section>
+
+<!--穿插广告-->
+<section class="m_activity g_wrap"> {foreach:items=Api::run('getadmanage',array('#id#','105')) item=$temai}
+  {set:$countNumItems[] = $item['id'];}
+  <div class="item bgfff"> <a class="img" href="{$temai['link']}"> <img src="{webroot:$temai['content']}" style="width: 100%;"> <!-- <span> {$temai['name']} </span> --> </a> </div>
+  {/foreach} </section>
+<!--黄冈房事-->
+<!-- <div class="top-sct top-sct-zxzzd">
+  <header class="sct-hd sct-hd-zxzzd ">
+    <h1>黄冈房事<span class="sct-hd-mfsj-info"><a href="{url:v_deco/article_bbs/cid/11}">进入房事论坛</a></span></h1>
+  </header>
+  <div class="sct-bd sct-zxzzd">  -->
+    <!--    <div class="zxzzd-search-wrap">
+      <div class="search-ipt">
+        <input type="text" name="searchwords" value="怎么装修省钱？" onfocus="searchFocus()" onblur="searchBlur()" class="search-box" onkeydown="toSearch(this)" style="color: rgb(204, 204, 204);">
+        <span class="icon-search click-point" data-point="2_1_2_5" onclick="search()"></span>
+        <input type="hidden" id="search_url" value="/ask/search.php/keyword/keyword_val">
+      </div>
+      <div class="search-keys">
+        <label>热搜词：</label>
+        <ul class="search-keys-list">
+          <a href="#">
+          <li>客厅装修</li>
+          </a> <a href="#">
+          <li>装修预算</li>
+          </a> <a href="#">
+          <li>装修合同</li>
+          </a>
+        </ul>
+      </div>
+    </div>-->
+    <!-- <ul class="zxzzd-qa-list">
+      {query:name=jiaju_article where=category_id eq 11 and commend eq 3 order=sort asc, id desc limit=4}
+      <li> <a href="{url:v_deco/yezhu/id/$item['id']}"> 
+        <img src="{url:pic/thumb/img/$item['img']/w/320/h/240}" width="100%" height="auto">
+        <center style="background-image:url({webroot:$item['img']})"></center>
+        <h1>{$item['title']}</h1>
+        <span> {query:name=jiaju_article_comment where=article_id eq $item[id] fields=count(id) as n}{set:$comment = $item['n']}{/query}
+        {$comment} 跟帖</span></a> </li>
+      {/query}
+    </ul>
+  </div>
+</div> -->
+
+<!--穿插广告-->
+<section class="m_activity g_wrap"> {foreach:items=Api::run('getadmanage',array('#id#','109')) item=$temai}
+  {set:$countNumItems[] = $item['id'];}
+  <div class="item bgfff"> <a class="img" href="{$temai['link']}"> <img src="{webroot:$temai['content']}" style="width: 100%;"> <!-- <span> {$temai['name']} </span> --> </a> </div>
+  {/foreach} </section>
+<!--装修早知道-->
+<!-- <div class="top-sct top-sct-zxzzd">
+  <header class="sct-hd sct-hd-zxzzd "> 
+    <h1>装修早知道</h1>
+  </header>
+  <div class="sct-bd sct-bd-pd sct-zxzzd">
+    <div class="zxzzd-items">
+      <div class="zxzzd-item"> <a class="click-point" data-point="2_1_2_1" href="{url:v_deco/zxlc}">
+        <h3>装修流程</h3>
+        <p>让菜鸟变专家</p>
+        <img alt="装修流程" src="skin/index/wap/zxzzd-show01.png" style="display: block;"> </a> </div>
+      <div class="zxzzd-item"> <a class="click-point" data-point="2_1_2_2" href="{url:v_deco/article_list/cid/8}">
+        <h3>装修风水</h3>
+        <p>和霉运说拜拜</p>
+        <img alt="装修风水" src="skin/index/wap/zxzzd-show02.png" style="display: block;"> </a> </div>
+      <div class="zxzzd-item"> <a class="click-point" data-point="2_1_2_3" href="{url:v_deco/article_list/cid/7}">
+        <h3>选材手册</h3>
+        <p>家居建材知识库</p>
+        <img alt="选材手册" src="skin/index/wap/zxzzd-show03.png" style="display: block;"> </a> </div>
+      <div class="zxzzd-item"> <a class="click-point" data-point="2_1_2_4" href="{url:v_deco/article_list/cid/10}">
+        <h3>家居百科</h3>
+        <p>让求知更简单</p>
+        <img alt="家居百科" src="skin/index/wap/zxzzd-show04.png" style="display: block;"> </a> </div>
+    </div> -->
+    <!-- zxzzd-items end --> 
+  <!-- </div>
+</div> -->
+<!--穿插广告-->
+<section class="m_activity g_wrap"> {foreach:items=Api::run('getadmanage',array('#id#','112')) item=$temai}
+  {set:$countNumItems[] = $item['id'];}
+  <div class="item bgfff"> <a class="img" href="{$temai['link']}"> <img src="{webroot:$temai['content']}" style="width: 100%;"> <!-- <span> {$temai['name']} </span> --> </a> </div>
+  {/foreach} </section>
+
+<!--<div class="top-sct sct-ads"><a href="#"><img src="skin/index/wapads/1.jpg"></a></div>
+--><!--商家
+{foreach:items=Api::run('getadmanageid',array('#position_id#','23'),10) item=$temai}
+  {set:$countNumItems[] = $item['id'];}
+<section class="top-sct sct-ads"> <a class="img" href="{$temai['link']}"> <img src="{webroot:$temai['content']}"></a> </section>
+{/foreach} --> 
+<!--<div class="top-sct sct-hd-jcs">
+  <header class="sct-hd">
+    <h1>家居特价场<span class="sct-hd-mfsj-info"> <a href="{url:v_deco/mall}">更多</a></span></h1>
+  </header>
+  <ul>
+    {foreach:items=Api::run('getadmanageid',array('#position_id#',16),5) item=$second}
+    <li> <a href="{$second['link']}"> <img src="{url:$second['content']}" /> </a> </li>
+    {/foreach}
+  </ul>
+</div>--> 
+
+<!--装修公司-->
+<div class="top-sct sct-hd-zxgs hide">
+  <header class="sct-hd">
+    <h1>装修公司<span class="sct-hd-mfsj-info"> <a href="{url:v_deco/company}">更多</a></span></h1>
+  </header>
+  <ul>
+    {query:name=jiaju_company where=status eq 1 limit=4}
+    <li><a href="{url:v_deco/company_info/id/$item[id]}"><img src="{webroot:$item['logo']}" /></a></li>
+    {/query}
+  </ul>
+</div>
+<!--穿插广告-->
+<section class="m_activity g_wrap"> {foreach:items=Api::run('getadmanage',array('#id#','111')) item=$temai}
+  {set:$countNumItems[] = $item['id'];}
+  <div class="item bgfff"> <a class="img" href="{$temai['link']}"> <img src="{webroot:$temai['content']}" style="width: 100%;"> <!-- <span> {$temai['name']} </span> --> </a> </div>
+  {/foreach} </section>
+
+<!--帮您找装修-->
+<div class="top-sct top-sct-mfsj hide">
+  <header class="sct-hd sct-hd-mfsj ">
+    <h1>免费设计/报价</h1>
+  </header>
+  <div class="sct-bd">
+    <form class="mfsj-from" id="zb_form">
+      <input class="row mfsj-name" name="name" type="text" placeholder="您的称呼">
+      <input class="row mfsj-tel" id="mobile" name="mobile" type="tel" placeholder="手机号码">
+      <div class="row mfsj-area-row">
+        <input class="mfsj-area" name="oarea" type="tel" placeholder="房屋面积">
+        <span>㎡</span></div>
+      <div class="row add-downs">
+        <select class="mfsj-cost needsclick" name="zxys">
+          <option value="">装修预算</option>
+          <option value="3-5万" >3-5万</option>
+          <option value="5-8万">5-8万</option>
+          <option value="8-12万">8-12万</option>
+          <option value="12-18万">12-18万</option>
+          <option value="18-25万">18-25万</option>
+          <option value="25-30万">25-30万</option>
+          <option value="30万以上">30万以上</option>
+        </select>
+      </div>
+      <button class="row mfsj-submit" type="button" onClick="return checkform(this)">预约免费设计</button>
+      <div class="mfsj-info"><i class="icon-info"></i>
+        <div>我们承诺：淘黄州提供该项<em>免费服务，绝不产生任何费用</em>，为了您的利益以及我们的口碑，您的隐私将被严格保密。</div>
+      </div>
+    </form>
+  </div>
+</div>
+<!--穿插广告-->
+<section class="m_activity g_wrap"> {foreach:items=Api::run('getadmanage',array('#id#','106')) item=$temai}
+  {set:$countNumItems[] = $item['id'];}
+  <div class="item bgfff"> <a class="img" href="{$temai['link']}"> <img src="{webroot:$temai['content']}" style="width: 100%;"> <!-- <span> {$temai['name']} </span> --> </a> </div>
+  {/foreach} </section>
+<!--装修效果图-->
+<div class="top-sct top-sct-xgt hide">
+  <header class="sct-hd sct-hd-zxxg ">
+    <h1>装修效果图</h1>
+    <ul class="swip-nav-hd xgt-swip-nav-hd">
+      <li class="active"><span>空间</span></li>
+      <li class=""><span>局部</span></li>
+      <li class=""><span>风格</span></li>
+    </ul>
+  </header>
+  <div class="top-sct top-sct-xgt" id="leftTabBox2">
+    <div class="hd"> </div>
+    <div class="sct-bd sct-bd-xgt sct-bd-pd swipe bd">
+      <div class="swiper-container2">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <ul class="xgt-list clearfix">
+              {set:$space_name = array('其它', '客厅', '卧室', '餐厅', '厨房', '卫生间', '阳台')}
+              {query:name=jiaju_show_img group=space_type limit=4 item=$space}
+              {set:$space['img'] = current(explode(',', $space['img_list']));}
+              <li> <a class="page-container"  href="{url:v_deco/effectpic/space_style/$space['id']}">
+                <div class="page-wrap" style="background-image:url({url:$space[img]})">
+                  <footer>
+                    <p>{$space_name[$space['space_type']]}</p>
+                  </footer>
+                </div>
+                </a> </li>
+              {/query}
+            </ul>
+            <div class="sct-footer sct-footer-xgt"> <a href="{url:v_deco/effectpic}">更多空间<span class="icon-more"></span></a> </div>
+          </div>
+          <div class="swiper-slide">
+            <ul class="xgt-list clearfix">
+              {set:$local_name = array('其它', '背景墙', '吊顶', '隔断', '窗帘', '飘窗', '榻榻米')}
+              {query:name=jiaju_show_img group=local_type limit=4 item=$local}
+              {set:$local['img'] = current(explode(',', $local['img_list']));}
+              <li> <a class="page-container" href="{url:v_deco/effectpic/local_style/$local['id']}">
+                <div class="page-wrap" style="background-image:url({url:$local[img]})">
+                  <footer>
+                    <p>{$local_name[$local['space_type']]}</p>
+                  </footer>
+                </div>
+                </a> </li>
+              {/query}
+            </ul>
+            <div class="sct-footer sct-footer-xgt"> <a href="{url:v_deco/effectpic/$this->searchUrl('style', $style[id])}">更多局部<span class="icon-more"></span></a> </div>
+          </div>
+          <div class="swiper-slide">
+            <ul class="xgt-list clearfix">
+              {set:$style_name = array('其它', '简约', '现代', '中式', '欧式', '美式', '田园')}
+              {query:name=jiaju_show_img group=style_type limit=4 item=$style}
+              {set:$style['img'] = current(explode(',', $style['img_list']));}
+              <li> <a class="page-container" href="{url:v_deco/effectpic/style_type/$style[id]}">
+                <div class="page-wrap" style="background-image:url({url:$style[img]})">
+                  <footer>
+                    <p>{$style_name[$style['space_type']]}</p>
+                  </footer>
+                </div>
+                </a> </li>
+              {/query}
+            </ul>
+            <div class="sct-footer sct-footer-xgt"> <a href="{url:v_deco/effectpic}">更多风格<span class="icon-more"></span></a> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<!--穿插广告-->
+<section class="m_activity g_wrap"> {foreach:items=Api::run('getadmanage',array('#id#','107')) item=$temai}
+  {set:$countNumItems[] = $item['id'];}
+  <div class="item bgfff"> <a class="img" href="{$temai['link']}"> <img src="{webroot:$temai['content']}" style="width: 100%;"> <!-- <span> {$temai['name']} </span> --> </a> </div>
+  {/foreach} </section>
+<!--淘黄州找宝
+<div class="top-sct top-sct-zxhq ">
+  <header class="sct-hd sct-hd-zxhq decorationTitle ">
+    <h1>淘黄州找宝【原创】</h1>
+  </header>
+  <div class="sct-bd sct-bd-pd">
+    <div class="situation-box"> {query:name=jiaju_article where=category_id eq 11 order=id desc limit=3}
+      <div class="situation-box-item"> <a class="click-point" href="{url:v_deco/yezhu/id/$item['id']}"> <img src="{url:/pic/thumb/img/$item['img']/w/80/h/80}" style="display: inline;"> <span>{$item['title']}</span> </a>
+        <div> <a href="{url:v_deco/yezhu/id/$item['id']}">
+          <h3>{$item['title']}</h3>
+          <p>{$item['description']}</p>
+          </a> </div>
+      </div>
+      {/query} </div>
+  </div>
+</div>--> 
+<!--穿插广告-->
+<section class="m_activity g_wrap"> {foreach:items=Api::run('getadmanage',array('#id#','110')) item=$temai}
+  {set:$countNumItems[] = $item['id'];}
+  <div class="item bgfff"> <a class="img" href="{$temai['link']}"> <img src="{webroot:$temai['content']}" style="width: 100%;"> <!-- <span> {$temai['name']} </span> --> </a> </div>
+  {/foreach} </section>
+<link rel="stylesheet" type="text/css" href="skin/js/swiper/swiper.min.css">
+<link rel="stylesheet" type="text/css" href="skin/index/index.css">
+<script type="text/javascript" src="skin/js/swiper/swiper.min.js"></script> 
+<script type="text/javascript">
+
+
+$(function(){
+
+
+
+	var swiper = new Swiper('#swiper-container',{pagination: '.swiper-pagination',paginationClickable: true,autoplay:3000 });
+	var swiper = new Swiper('#swiper-container2',{pagination: '',paginationClickable: true,autoplay:3000 });
+	var mySwiper = new Swiper('.swiper-container2', {pagination:'.swip-nav-hd',paginationClickable: true,
+														paginationType : 'custom',
+														paginationCustomRender: function (swiper, current, total) {
+															if(!swiper.animating)$(".swip-nav-hd li").removeClass('active').eq(current-1).addClass('active'); 
+															//return false;
+														} 
+	})
+	$('.seckillTime').downCount();
+});
+
+function checkform(button){
+	if(!$('input[name="name"]').val().trim()){
+		alert('请填写您的真实姓名');return;
+	}
+	if(!$('input[name="mobile"]').val().trim()){
+		alert('请填写您的真实手机号码');return;
+	}
+	if(!$('input[name="oarea"]').val().trim()){
+		alert('请填写您的真实房屋面积');return;
+	}
+	if(!$('select[name="zxys"]').val().trim()){
+		alert('请填写您的装修预算');return;
+	}
+  $(button).html('提交中……');
+  $.ajax({
+      type: "POST",
+      dataType: "json",
+      url: "{url:v_deco/zb_post}",
+      data: $('#zb_form').serialize(),
+      success: function (result) {
+          if (result.status == 1) {
+            alert(result.info);
+            window.location.reload();
+          } else {
+            alert(result.info);
+            window.location.reload();
+          }
+      },
+      error: function(result) {
+          alert("error:"+result.responseText);
+       }
+  });
+
+	return true	
+}
+</script>

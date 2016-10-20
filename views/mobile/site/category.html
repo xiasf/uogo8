@@ -1,0 +1,68 @@
+<section class="g_wrap f_clear f_ofh">
+  <ul class="m_catelist" id="j_catelist">
+  {foreach:items=Api::run('getCategoryListTop') item=$cat}
+    <li data-i="{$key}">{$cat['name']}</li>
+    {/foreach}
+  </ul>
+  <div id="j_catecont"> {foreach:items=Api::run('getCategoryListTop') item=$first}
+    <div class="m_catecont" style="display: none;">
+      <div class="cont f_clear">
+        <h4>{$first['name']}</h4>
+        {foreach:items=Api::run('getCategoryByParentid',array('#parent_id#',$first['id']))  item=$second} <a href="#">{$second['name']}</a> {/foreach} </div>
+    </div>
+    {/foreach} </div>
+</section>
+<link rel="stylesheet" href="../skin/mall/page_1.css">
+
+<script type='text/javascript' src='skin/js/lazyFade/lazyFade.min.js'></script> 
+<script>
+    $(function() {
+        
+        // 初始化
+        ul = $(".m_catelist li:eq(0)");
+        div = $("#j_catecont div:eq(0)");
+        ul.addClass('cur');
+        div.show();
+
+        // 批量绑定事件
+        $(".m_catelist li").each(function(){
+            $(this).click(function(){
+                ul.removeClass('cur');
+                ul = $(this);
+                ul.addClass('cur');
+                var i = ul.attr('data-i');
+
+                div.hide();
+                div = $($(".m_catecont")[i]);
+                div.show();
+
+                $(".m_catecont:visible .cont a").lazyFade({
+                    everse: false,
+                    duration: 250,
+                    delay: 50,
+                    opacity: {
+                        start: 0.01,
+                        end: 1
+                        }
+                });
+            });
+        });
+
+
+
+    });
+</script> 
+
+<!--<div class="middle_all bg_color">
+    {query:name=category where=parent_id eq 0 order=sort asc item=$trb}
+    {set:$parentid=$trb['id'];}
+	{set:$tmpon++;}
+	<dl>
+		<em class="l{$tmpon}"></em>
+		<dt><a href="{url:/site/pro_list/cat/$trb[id]}" title="{$trb['name']}">{$trb['name']}</a></dt>
+        {query:name=category where=parent_id eq $parentid order=sort asc item=$xx}
+        <dd><a href="{url:/site/pro_list/cat/$xx[id]}" title="{$xx['name']}">{$xx['name']}</a></dd>
+        {/query}
+	</dl>
+    {/query}
+</div> -->

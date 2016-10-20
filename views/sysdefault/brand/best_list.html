@@ -1,0 +1,50 @@
+<div class="headbar">
+	<div class="position"><span>商品</span><span>></span><span>标签管理</span><span>></span><span>标签列表</span></div>
+	<div class="operating">
+		<a href="javascript:;"><button class="operating_btn" type="button" onclick="window.location='{url:/brand/best_edit}'"><span class="addition">添加标签</span></button></a>
+	</div>
+	<div class="field">
+		<table class="list_table">
+			<col width="50px" />
+			<col width="200px" />
+			<col width="100px" />
+			<col />
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>名称</th>
+					<th>标题</th>
+					<th>作用域</th>
+					<th>排序</th>
+					<th>是否置顶</th>
+					<th>是否显示</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
+
+<div class="content">
+	<table id="list_table" class="list_table">
+		<col width="50px" />
+		<col width="200px" />
+		<col width="100px" />
+		<col />
+		<tbody>
+
+			{query: name=commend_goods_category order=is_top desc,sort asc,id desc}
+			<tr>
+				<td>{$item['id']}</td>
+				<td>{$item['name']}</td>
+				<td>{$item['title']}</td>
+				<td>{if:$item[type]=='1'}商家可用{/if}{if:$item[type]=='2'}商家不可用{/if}{if:$item[type]=='3'}只用于{/if}</td>
+				<td>{$item['sort']}</td>
+				<td>{if:$item['is_top'] == 1}<span class="orange">是</span>{else:}否{/if}</td>
+				<td>{if:$item['is_lock'] == 0}<span class="orange">是</span>{else:}否{/if}</td>
+				<td><a href="{url:/brand/best_edit/bid/$item[id]}"><img class="operator" src="{skin:images/admin/icon_edit.gif}" alt="修改" /></a><a href="javascript:void(0)" onclick="delModel({link:'{url:/brand/best_del/bid/$item[id]}'})"><img class="operator" src="{skin:images/admin/icon_del.gif}" alt="删除" /></a></td>
+			</tr>
+			{/query}
+		</tbody>
+	</table>
+</div>

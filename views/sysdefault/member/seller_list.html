@@ -1,0 +1,181 @@
+{set:
+$search = IFilter::act(IReq::get('search'),'strict');
+$conditon = Util::search($search);
+$where = $conditon ? " and ".$conditon : "";
+
+$search2 = IFilter::act(IReq::get('search2'),'strict');
+$conditon = Util::search($search2);
+$where .= $conditon ? " and ".$conditon : "";
+}
+<div class="headbar">
+  <div class="position"> <span>会员</span><span>></span><span>商户管理</span><span>></span><span>商户列表</span> </div>
+  <div class="operating">
+
+    <a href="javascript:void(0);">
+    <button class="operating_btn" type="button" onclick="window.location='{url:/member/seller_edit}'"><span class="addition">添加商户</span></button>
+    </a> <a href="javascript:void(0);" onclick="selectAll('id[]')">
+    <button class="operating_btn" type="button"><span class="sel_all">全选</span></button>
+    </a> <a href="javascript:void(0);" onclick="delModel({form:'seller_list',msg:'确定要删除所选中的商户吗？<br />删除的商户可以从回收站找回。'})">
+    <button class="operating_btn" type="button"><span class="delete">批量删除</span></button>
+    </a> <a href="javascript:void(0);">
+    <button class="operating_btn" type="button" onclick="window.location='{url:/member/seller_recycle_list}'"><span class="recycle">回收站</span></button>
+    </a> </div>
+        <div class="searchbar">
+      <form name="searchseller" action="{url:/}" method="get">
+        <input type='hidden' name='controller' value='member' />
+        <input type='hidden' name='action' value='seller_list' />
+        <input type='hidden' name='search2[like]' value='user_type' />
+        <select class="auto" name="search2[likeValue]">
+          <option value="0">商家</option>
+          <option value="1">装修公司</option>
+        </select>
+        <select class="auto" name="search[like]">
+          <option value="seller_name">登录名</option>
+          <option value="true_name">真实名称</option>
+          <option value="phone">电话</option>
+          <option value="mobile">手机</option>
+          <option value="email">Email</option>
+        </select>
+        <input class="small" name="search[likeValue]" type="text" value="" />
+        <button class="btn" type="submit"><span class="sch">搜 索</span></button>
+      </form>
+    </div>
+  <div class="field">
+    <table class="list_table">
+      <colgroup>
+      <col width="30px" />
+      <col width="260px" />
+      <col width="260px" />
+       <col width="160px" />
+      <col width="80px"/>
+      <col width="150px"/>
+      <col />
+      </colgroup>
+      <thead>
+        <tr>
+          <th class="center"><input id="selid" type="checkbox" value="" onClick="selectAll('id[]',this)" /></th>
+          <th>登录名</th>
+          <th>电话</th>
+          <th>账号类型</th>
+          <th>VIP</th>
+          <th>店铺数</th>
+          <th>状态</th>
+          <th>注册日期</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+</div>
+<form action="{url:/member/seller_del}" method="post" name="seller_list" onsubmit="return checkboxCheck('id[]','尚未选中任何记录！')">
+  <div class="content">
+    <table class="list_table">
+      <colgroup>
+      <col width="30px" />
+      <col width="260px" />
+      <col width="260px" />
+      <col width="160px" />
+      <col width="80px"/>
+      <col width="150px"/>
+      <col />
+      </colgroup>
+      <tbody>
+      
+      {set:$page=(isset($_GET['page'])&&(intval($_GET['page'])>0))?intval($_GET['page']):1;}
+      {query:name=seller_user where=is_del eq 0 $where order=id desc page=$page pagesize=20}
+      <tr>
+
+        <td class="t_c"><input name="id[]" type="checkbox" value="{$item['id']}" /></td>
+
+        <td><a href="{url:/member/seller_edit/id/$item[id]}" title="编辑-{$item['seller_name']}">{$item['seller_name']}</a></td>
+
+        <td title="{$item['mobile']}">{$item['mobile']}</td>
+        <td>{echo:$item['user_type'] == 0 ? '商户':'装修公司'}</td>
+        <td>{echo:$item['is_vip'] == 0 ? '否':'是'}</td>
+
+        <td>0</td>
+
+        <td><select onchange="changeStatus({$item['id']},this)">
+            <option value="0" {if:$item['is_lock'] == 0}selected="selected"{/if}>正常</option>
+            <option value="1" {if:$item['is_lock'] == 1}selected="selected"{/if}>锁定</option>
+          </select></td>
+
+        <td title="{$item['create_time']}">{$item['create_time']}</td>
+
+        <td><a href="{url:/member/seller_edit/id/$item[id]}"><img class="operator" src="{skin:images/admin/icon_edit.gif}" alt="修改" /></a> <a href="javascript:void(0)" onclick="delModel({link:'{url:/member/seller_del/id/$item[id]}'})"><img class="operator" src="{skin:images/admin/icon_del.gif}" alt="删除" /></a></td>
+      </tr>
+      {/query}
+        </tbody>
+      
+    </table>
+  </div>
+  {$query->getPageBar()}
+</form>
+<script language="javascript">
+//预加载
+$(function(){
+	var searchData = {echo:JSON::encode($search)};
+	for(var index in searchData)
+	{
+		$('[name="search['+index+']"]').val(searchData[index]);
+	}
+
+  var searchData = {echo:JSON::encode($search2)};
+  for(var index in searchData)
+  {
+    $('[name="search2['+index+']"]').val(searchData[index]);
+  }
+});
+
+//修改排序
+function changeSort(id,obj)
+{ 
+var selectedValue = obj.value;
+$.getJSON(
+     "{url:/member/ajax_sort}",
+   {"id":id,"sort":selectedValue},
+     function(content) {
+     if(content.result == 'succeed'){} else {alert("排序失败")}
+  }
+  )
+}
+
+//商户状态修改
+function changeStatus(sid,obj)
+{
+	var lockVal = obj.value;
+	$.getJSON("{url:/member/ajax_seller_lock}",{"id":sid,"lock":lockVal});
+}
+
+// 设置是否显示
+function setvis(id, obj) {
+  var rd = Math.random();
+    $.getJSON('{url:/member/seller_vis}',{id:id,rd:rd},function(content){
+      if(content.isError ==  false)
+      {
+        if(content.is_vis == 1)
+        {
+          obj.innerHTML = '是';
+          $(obj).removeClass('blue');
+          $(obj).addClass('red2');
+        }
+        else
+        {
+          obj.innerHTML = '否';
+          $(obj).removeClass('red2');
+          $(obj).addClass('blue');
+        }
+      }
+      else
+      {
+        alert(content.message);
+      }
+    });
+}
+
+//商品点击搜索
+function submitSearchGo(value){
+  window.location.href = '{url:/}?controller=goods&action=goods_list&'+ value;
+   
+}
+</script> 

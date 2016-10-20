@@ -1,0 +1,90 @@
+{set:$seller_id = $this->seller['seller_id']}
+{set:$shop_id=IFilter::act(IReq::get('shop_id'),'int')}
+<div class="wrapper wrapper-content animated bounceInRight">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-content">
+          <h2>说明：</h2>
+          <p> 商城支持的物流方式进行配置，自定义运费价格 </p>
+          <div class="alert alert-warning"> 注意：第一次使用时。必须配置物流方式。否则商品将无法购买</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>物流配送</h5>
+        </div>
+        <div class="ibox-content">
+
+          <div class="row m-b-sm m-t-sm">
+        <div class="col-md-5">
+            <select class="form-control input-s-sm inline" name="shop_id" id="shop_id">
+              {query:name=seller where=seller_user_id eq $seller_id items=$shop}
+              <option value="{$item[id]}">{$item['shopname']}{if:$item[is_vis]==1}-店铺已关闭{/if}</option>
+              {/query}
+            </select>
+            </div>
+          </div>
+
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>配送方式</th>
+                <th>物流保价</th>
+                <th>货到付款</th>
+                <th>所属店铺</th>
+                <th>是否配置</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody>
+            
+            <!-- {set:$seller_id = $this->seller['seller_id']} -->
+            {set:$page= (isset($_GET['page'])&&(intval($_GET['page'])>0))?intval($_GET['page']):1}
+            {query:name=delivery page=$page order=sort  where=is_delete eq 0 and status eq 1 id=$deliveryDB}
+            <!-- 默认取第一个店铺哦！！！！！！ -->
+            {set:if(!$shop_id) $shop_id = $shop[0]['id']}
+            {query:name=delivery_extend where=seller_id eq $shop_id and delivery_id eq $item[id] item=$deliveryExtend items=$data}{/query}
+            <tr>
+              <td>{$item['name']}</td>
+              <td>{if:$item['is_save_price']==1}是{else:}否{/if}</td>
+              <td>{if:$item['type']==1}是{else:}否{/if}</td>
+              <td>
+              {if:$data}
+              {query:name=seller where=id eq $deliveryExtend[seller_id] item=$seller}
+                {$seller['shopname']}
+              {/query}
+              {else:}
+              <span class="label label-danger">该店铺还没配置啊</span>
+              {/if}
+              </td>
+              <td>{if:$data}<span class="label label-primary">已配置</span>{else:}<span class="label label-danger">未配置</span>{/if}</td>
+              <td><a href="{url:/seller/delivery_edit/id/$item[id]/shop/$shop_id}" class="btn btn-white btn-sm"><i class="fa fa-edit"></i>&nbsp;配置</a></td>
+            </tr>
+            {/query}
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="7">{$deliveryDB->getPageBar()}</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+$(document).ready(function(e) {
+  $("#shop_id").change(function(){
+    window.document.location.href='{url:seller/delivery}?shop_id='+this.value;
+});
+
+{if:$shop_id=IFilter::act(IReq::get('shop_id'),'int')}
+  $("#shop_id").val({$shop_id});
+{/if}
+});
+</script>

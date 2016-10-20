@@ -1,0 +1,5 @@
+$num:320;
+@while $num < 750 {
+  @media (min-width:$num+px) { html { font-size: (5%/6)*$num; } }
+  $num:$num+1;
+}

@@ -1,0 +1,356 @@
+<link rel="stylesheet" href="../skin/company_info/findcompany.css">
+<div class="topbannerFrame">
+  <figure>
+    <div class="find-company-topbanner"> <img src="http://img.to8to.com/wap/v2/company/com_background_9.jpg">
+      <div class="find-company-logo">
+        <figure><img src="{webroot:$this->company['logo']}" alt="{$this->company['name']}"></figure>
+      </div>
+      <h1>{$this->company['name']}</h1>
+      <p>已有<span>0</span>人咨询</p>
+    </div>
+  </figure>
+</div>
+<nav>
+  <ul class="find-company-nav clearfix">
+    <li><a href="{url:v_deco/company_info/id/$this->company['id']}" class="">首页</a></li>
+    <li><a class="click-point" data-point="2_5_2_1" href="{url:v_deco/company_designer_works/id/$this->company['id']}">设计方案</a></li>
+    <li><a class="click-point" data-point="2_5_3_1" href="{url:v_deco/company_designer/id/$this->company['id']}">设计团队</a></li>
+    <li><a class="click-point active" data-point="2_5_4_1" href="{url:v_deco/company_comments/id/$this->company['id']}">业主评论</a></li>
+  </ul>
+</nav>
+
+<section>
+    <div class="zxc-main">
+
+        <ul class="zxc-evalue-tab clearfix">
+            <li class="active"><a href="#"><span>0</span><span>全部</span></a></li>
+            <li class=""><a href="#"><span>0</span><span>好评</span></a></li>
+            <li class=""><a href="#"><span>0</span><span>中评</span></a></li>
+            <li class=""><a href="#"><span>0</span><span>差评</span></a></li>
+        </ul>
+<!--         <div class="zxc-evalue-content">
+                            <div class="zxc-ec-item clearfix">
+                    <div class="zxc-ec-show">
+                        <img src="http://img.to8to.com/headphoto/15.gif" alt="Sharon徐皓莹">
+                    </div>
+                    <div class="zxc-section">
+                        <div class="zxc-ec-top">
+                            <h3 class="zxc-ec-title">Sharon徐皓莹</h3>
+                            <span class="zxc-ec-time">4小时前</span>
+                        </div>
+                        <div class="zxc-ec-level">
+                            <span>
+                                施工                            </span>
+                            <i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star "></i><i class="zxc-icon-star "></i>                            <span>服务</span>
+                            <i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star "></i><i class="zxc-icon-star "></i>                        </div>
+                        <p class="zxc-ec-info">无功无过<span class="zxc-label">水电</span></p>
+                                                                        </div>
+                </div>
+                            <div class="zxc-ec-item clearfix">
+                    <div class="zxc-ec-show">
+                        <img src="http://img.to8to.com/headphoto/13.gif" alt="夜深沉_2709">
+                    </div>
+                    <div class="zxc-section">
+                        <div class="zxc-ec-top">
+                            <h3 class="zxc-ec-title">夜深沉_2709</h3>
+                            <span class="zxc-ec-time">21小时前</span>
+                        </div>
+                        <div class="zxc-ec-level">
+                            <span>
+                                设计                            </span>
+                            <i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star "></i>                            <span>服务</span>
+                            <i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i>                        </div>
+                        <p class="zxc-ec-info"><span class="zxc-label">设计</span></p>
+                                                                        </div>
+                </div>
+                            <div class="zxc-ec-item clearfix">
+                    <div class="zxc-ec-show">
+                        <img src="http://img.to8to.com/headphoto/17.gif" alt="arieszy88">
+                    </div>
+                    <div class="zxc-section">
+                        <div class="zxc-ec-top">
+                            <h3 class="zxc-ec-title">arieszy88</h3>
+                            <span class="zxc-ec-time">1天前</span>
+                        </div>
+                        <div class="zxc-ec-level">
+                            <span>
+                                施工                            </span>
+                            <i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i>                            <span>服务</span>
+                            <i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i>                        </div>
+                        <p class="zxc-ec-info"><span class="zxc-label">水电</span></p>
+                                                                        </div>
+                </div>
+                            <div class="zxc-ec-item clearfix">
+                    <div class="zxc-ec-show">
+                        <img src="http://img.to8to.com/headphoto/17.gif" alt="arieszy88">
+                    </div>
+                    <div class="zxc-section">
+                        <div class="zxc-ec-top">
+                            <h3 class="zxc-ec-title">arieszy88</h3>
+                            <span class="zxc-ec-time">1天前</span>
+                        </div>
+                        <div class="zxc-ec-level">
+                            <span>
+                                设计                            </span>
+                            <i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i>                            <span>服务</span>
+                            <i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i>                        </div>
+                        <p class="zxc-ec-info"><span class="zxc-label">设计</span></p>
+                                                                        </div>
+                </div>
+                            <div class="zxc-ec-item clearfix">
+                    <div class="zxc-ec-show">
+                        <img src="http://pic.to8to.com/user/29/headphoto_5906029.jpg?1456643337" alt="田益锋">
+                    </div>
+                    <div class="zxc-section">
+                        <div class="zxc-ec-top">
+                            <h3 class="zxc-ec-title">田益锋</h3>
+                            <span class="zxc-ec-time">1天前</span>
+                        </div>
+                        <div class="zxc-ec-level">
+                            <span>
+                                施工                            </span>
+                            <i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i>                            <span>服务</span>
+                            <i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i>                        </div>
+                        <p class="zxc-ec-info">土巴兔胡监理很负责，东北人很直爽，指出相关电线管路和水管管路交叉点要采用保护套<span class="zxc-label">水电</span></p>
+                                                                                <br>
+                            <div class="zxc-ec-inner">
+
+                                                                                                                                                <div class="zxc-ec-top">
+                                            <h3 class="zxc-ec-title">上海舟源装饰工程有限公司:</h3>
+                                        </div>
+                                        <p class="zxc-ec-info">田先生，您好！非常感谢对我们水电这块的五星好评，相关电线管路和水管管路交叉点要采用保护套师傅们会注重起来。后期工地有任何问题的话随时电话跟我们联系，我们会及时跟工程部反映帮您解决！望大家合作愉快！</p>
+                                                                                                </div>
+                                            </div>
+                </div>
+                            <div class="zxc-ec-item clearfix">
+                    <div class="zxc-ec-show">
+                        <img src="http://img.to8to.com/headphoto/5.gif" alt="洪霞_2464">
+                    </div>
+                    <div class="zxc-section">
+                        <div class="zxc-ec-top">
+                            <h3 class="zxc-ec-title">洪霞_2464</h3>
+                            <span class="zxc-ec-time">1天前</span>
+                        </div>
+                        <div class="zxc-ec-level">
+                            <span>
+                                设计                            </span>
+                            <i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i>                            <span>服务</span>
+                            <i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i>                        </div>
+                        <p class="zxc-ec-info"><span class="zxc-label">设计</span></p>
+                                                                        </div>
+                </div>
+                            <div class="zxc-ec-item clearfix">
+                    <div class="zxc-ec-show">
+                        <img src="http://img.to8to.com/headphoto/5.gif" alt="grant_1328">
+                    </div>
+                    <div class="zxc-section">
+                        <div class="zxc-ec-top">
+                            <h3 class="zxc-ec-title">grant_1328</h3>
+                            <span class="zxc-ec-time">2天前</span>
+                        </div>
+                        <div class="zxc-ec-level">
+                            <span>
+                                设计                            </span>
+                            <i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star "></i>                            <span>服务</span>
+                            <i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i>                        </div>
+                        <p class="zxc-ec-info"><span class="zxc-label">设计</span></p>
+                                                                        </div>
+                </div>
+                            <div class="zxc-ec-item clearfix">
+                    <div class="zxc-ec-show">
+                        <img src="http://img.to8to.com/headphoto/3.gif" alt="宝贝_9849">
+                    </div>
+                    <div class="zxc-section">
+                        <div class="zxc-ec-top">
+                            <h3 class="zxc-ec-title">宝贝_9849</h3>
+                            <span class="zxc-ec-time">2天前</span>
+                        </div>
+                        <div class="zxc-ec-level">
+                            <span>
+                                设计                            </span>
+                            <i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star "></i>                            <span>服务</span>
+                            <i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star "></i>                        </div>
+                        <p class="zxc-ec-info"><span class="zxc-label">设计</span></p>
+                                                                        </div>
+                </div>
+                            <div class="zxc-ec-item clearfix">
+                    <div class="zxc-ec-show">
+                        <img src="http://img.to8to.com/headphoto/13.gif" alt="New_1520">
+                    </div>
+                    <div class="zxc-section">
+                        <div class="zxc-ec-top">
+                            <h3 class="zxc-ec-title">New_1520</h3>
+                            <span class="zxc-ec-time">3天前</span>
+                        </div>
+                        <div class="zxc-ec-level">
+                            <span>
+                                施工                            </span>
+                            <i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i>                            <span>服务</span>
+                            <i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star "></i>                        </div>
+                        <p class="zxc-ec-info">还行吧，希望后续3年维修能做到位，
+装修这行本来就很多矛盾要处理<span class="zxc-label">已竣工</span></p>
+                                                                                <br>
+                            <div class="zxc-ec-inner">
+
+                                                                                                                                                <div class="zxc-ec-top">
+                                            <h3 class="zxc-ec-title">上海舟源装饰工程有限公司:</h3>
+                                        </div>
+                                        <p class="zxc-ec-info">王小姐，您好！公司隐蔽工程保修十年，饰面工程保修三年，工地已经竣工，舟源公司所有员工祝您入住新房愉快，事事顺心！公司在以后的施工中会更加完善，让业主满意！</p>
+                                                                                                </div>
+                                            </div>
+                </div>
+                            <div class="zxc-ec-item clearfix">
+                    <div class="zxc-ec-show">
+                        <img src="http://img.to8to.com/headphoto/13.gif" alt="New_1520">
+                    </div>
+                    <div class="zxc-section">
+                        <div class="zxc-ec-top">
+                            <h3 class="zxc-ec-title">New_1520</h3>
+                            <span class="zxc-ec-time">3天前</span>
+                        </div>
+                        <div class="zxc-ec-level">
+                            <span>
+                                施工                            </span>
+                            <i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i>                            <span>服务</span>
+                            <i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i>                        </div>
+                        <p class="zxc-ec-info">还行吧，希望后续3年维修能做到位，
+装修这行本来就很多矛盾要处理<span class="zxc-label">水电</span></p>
+                                                                        </div>
+                </div>
+                            <div class="zxc-ec-item clearfix">
+                    <div class="zxc-ec-show">
+                        <img src="http://img.to8to.com/headphoto/13.gif" alt="New_1520">
+                    </div>
+                    <div class="zxc-section">
+                        <div class="zxc-ec-top">
+                            <h3 class="zxc-ec-title">New_1520</h3>
+                            <span class="zxc-ec-time">3天前</span>
+                        </div>
+                        <div class="zxc-ec-level">
+                            <span>
+                                施工                            </span>
+                            <i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star "></i><i class="zxc-icon-star "></i>                            <span>服务</span>
+                            <i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star "></i>                        </div>
+                        <p class="zxc-ec-info">还行吧，希望后续3年维修能做到位，
+装修这行本来就很多矛盾要处理<span class="zxc-label">油漆</span></p>
+                                                                        </div>
+                </div>
+                            <div class="zxc-ec-item clearfix">
+                    <div class="zxc-ec-show">
+                        <img src="http://img.to8to.com/headphoto/13.gif" alt="New_1520">
+                    </div>
+                    <div class="zxc-section">
+                        <div class="zxc-ec-top">
+                            <h3 class="zxc-ec-title">New_1520</h3>
+                            <span class="zxc-ec-time">3天前</span>
+                        </div>
+                        <div class="zxc-ec-level">
+                            <span>
+                                施工                            </span>
+                            <i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star "></i>                            <span>服务</span>
+                            <i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star "></i>                        </div>
+                        <p class="zxc-ec-info">还行吧，希望后续3年维修能做到位，
+装修这行本来就很多矛盾要处理<span class="zxc-label">泥木</span></p>
+                                                                        </div>
+                </div>
+                            <div class="zxc-ec-item clearfix">
+                    <div class="zxc-ec-show">
+                        <img src="http://img.to8to.com/headphoto/12.gif" alt="季庆萍">
+                    </div>
+                    <div class="zxc-section">
+                        <div class="zxc-ec-top">
+                            <h3 class="zxc-ec-title">季庆萍</h3>
+                            <span class="zxc-ec-time">3天前</span>
+                        </div>
+                        <div class="zxc-ec-level">
+                            <span>
+                                施工                            </span>
+                            <i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star "></i>                            <span>服务</span>
+                            <i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i>                        </div>
+                        <p class="zxc-ec-info">水电工人不错，项目经理一般，不太把装修的事情放在心上<span class="zxc-label">水电</span></p>
+                                                                        </div>
+                </div>
+                            <div class="zxc-ec-item clearfix">
+                    <div class="zxc-ec-show">
+                        <img src="http://img.to8to.com/headphoto/5.gif" alt="应宸杰">
+                    </div>
+                    <div class="zxc-section">
+                        <div class="zxc-ec-top">
+                            <h3 class="zxc-ec-title">应宸杰</h3>
+                            <span class="zxc-ec-time">3天前</span>
+                        </div>
+                        <div class="zxc-ec-level">
+                            <span>
+                                施工                            </span>
+                            <i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i>                            <span>服务</span>
+                            <i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i>                        </div>
+                        <p class="zxc-ec-info"><span class="zxc-label">水电</span></p>
+                                                                        </div>
+                </div>
+                            <div class="zxc-ec-item clearfix">
+                    <div class="zxc-ec-show">
+                        <img src="http://img.to8to.com/headphoto/2.gif" alt="蕾_7485">
+                    </div>
+                    <div class="zxc-section">
+                        <div class="zxc-ec-top">
+                            <h3 class="zxc-ec-title">蕾_7485</h3>
+                            <span class="zxc-ec-time">5天前</span>
+                        </div>
+                        <div class="zxc-ec-level">
+                            <span>
+                                设计                            </span>
+                            <i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star "></i>                            <span>服务</span>
+                            <i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star active"></i><i class="zxc-icon-star "></i><i class="zxc-icon-star "></i>                        </div>
+                        <p class="zxc-ec-info"><span class="zxc-label">设计</span></p>
+                                                                        </div>
+                </div>
+                    </div> -->
+<!--                     <div class="pageCount">
+                                    <a href="javascript:" class="disableBtn">上一页</a>
+                    
+                <label for="pageCounts" name="pageDown">
+                    <select id="pageCounts" class="needsclick">
+                                                    <option value="1" selected="">1/25</option>
+                                                            <option value="2">2/25</option>
+                                                            <option value="3">3/25</option>
+                                                            <option value="4">4/25</option>
+                                                            <option value="5">5/25</option>
+                                                            <option value="6">6/25</option>
+                                                            <option value="7">7/25</option>
+                                                            <option value="8">8/25</option>
+                                                            <option value="9">9/25</option>
+                                                            <option value="10">10/25</option>
+                                                            <option value="11">11/25</option>
+                                                            <option value="12">12/25</option>
+                                                            <option value="13">13/25</option>
+                                                            <option value="14">14/25</option>
+                                                            <option value="15">15/25</option>
+                                                            <option value="16">16/25</option>
+                                                            <option value="17">17/25</option>
+                                                            <option value="18">18/25</option>
+                                                            <option value="19">19/25</option>
+                                                            <option value="20">20/25</option>
+                                                            <option value="21">21/25</option>
+                                                            <option value="22">22/25</option>
+                                                            <option value="23">23/25</option>
+                                                            <option value="24">24/25</option>
+                                                            <option value="25">25/25</option>
+                                                    </select>
+                </label>
+                                    <a href="#&amp;page=2">下一页</a>
+                            </div> -->
+                    <script type="text/javascript">
+            $(function () {
+                $("#pageCounts").change(function () {
+                    var getpage = $("#pageCounts").find("option:selected").val();
+                    if (getpage == 1) {
+                        window.location.href = "#";
+                    } else {
+                        window.location.href = "#" + getpage;
+                    }
+                })
+            })
+
+
+        </script> 
+</div></section>

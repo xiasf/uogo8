@@ -1,0 +1,205 @@
+<style>
+.bg { background-color: #f9953d }
+.bgwrap { margin-top: -16.5%; position: relative; }
+.bgwrap2 { background-color: #ffc796; padding: 10px;margin:0 10px; }
+.bgwrap3 {}
+.bgwrap3>img { width: 100%; height: auto;margin:0 }
+.bgwrap4 { background-color: #e68630; padding:5px 10px}
+table { width: 100%;margin:10px auto;box-shadow: 0px 3px 3px rgba(89,53,20,0.1);}
+table td { width: 50%; height: 120px; }
+table td.l { background-repeat: no-repeat; background-position: center center;background-size:110% auto;position: relative; }
+table td.l p{opacity: .7;}
+table td.l p span {
+    position: absolute;
+    display: inline-block;
+    left: -13px; 
+/*    box-shadow: 0px 0px 10px rgba(0,0,0,0.9), inset 0px 5px 30px rgba(255,255,255,0.9);
+*/    text-align: center;
+    text-transform: uppercase;
+    top: 11px;
+    background: #ff011d;
+    width: 60px;
+	font-size:10px;
+	padding-top:1px;
+	color:#fff;
+	transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+} 
+table td.l p:before {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: -20px;
+    left: 24px;
+    z-index: 2;
+    border: 10px solid;
+    border-color: transparent transparent #e68630 transparent;
+}
+
+table td.l p:after {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 24px;
+    z-index: 2; 
+    left: -20px;
+    border: 10px solid;
+    border-color: transparent #e68630  transparent transparent;
+}
+table td.r { background-color: #fff9d5;}
+a.btn { text-align: center; display: block; margin-top: 20px; height: 50px; color: #fff; }
+.sm{color:#fff;padding:30px 10px;text-align:center;line-height:25px;}
+.rbtn{background-color:#f6dd4f;padding:8px 5px;text-align:right}
+.rbtn b{display:inline-block;background-color:#F00;color:#fff;padding:2px 10px;margin-right:10px}
+.rbtn em{color:#F00;font-size:.8em}
+.rname{overflow:hidden;padding:5px;height:45px;line-height:19px;}
+.rname em{display:block;margin-top:3px;color:#c4c1ae;font-size:.9em;}
+.rmoney{padding:0 5px;height:40px;margin-top:7px;}
+.rmoney em,.rmoney del{display:block;padding:2px 0;}
+.rmoney del{font-size:.7em;color:#6a675e;}
+.rmoney em.thz{ color: #F00; font-weight: bold; }
+.rmoney em.thz big{font-size:1.2em}
+</style>
+<a name="top"></a>
+<section class="g_wrap bg"> <img src="skin/temai/header.jpg" width="100%" height="auto">
+  <div class="bgwrap">
+    <div class="bgwrap2">
+    <!--loop-->
+      <div class="bgwrap3"><img src="skin/temai/meijule.jpg">
+        <div class="bgwrap4"> {query:name=goods where=is_del eq 0 and id in (14767,14766,14765)}
+          <table>
+            <tbody>
+              <tr>
+                <td class="l" style="background-image:url({url:/pic/thumb/img/$item[img]/w/150/h/150})"><p><span>美居乐</span></p></td>
+                <td class="r"><a href="{url:/site/products/id/$item[id]}"><div class="rname">{$item[name]}</div>
+                <div class="rmoney"><del>市场价：￥{$item['market_price']}</del><em class="thz">淘黄州：<big>￥{$item['sell_price']}</big></em></div>
+                <div class="rbtn"><b>立即抢购</b><em>>>></em></div></a></td>
+              </tr>
+            </tbody>
+          </table>
+          {/query} </div>
+      </div>
+    <!--loop end-->
+    <!--loop-->
+      <div class="bgwrap3"><img src="skin/temai/icc.jpg">
+        <div class="bgwrap4"> {query:name=goods where=is_del eq 0 and id in (14756,14755,14752)}
+          <table>
+            <tbody>
+              <tr>
+                <td class="l" style="background-image:url({url:/pic/thumb/img/$item[img]/w/150/h/150})"><p><span>icc</span></p></td>
+                <td class="r"><a href="{url:/site/products/id/$item[id]}"><div class="rname">{$item[name]}</div>
+                <div class="rmoney"><del>市场价：￥{$item['market_price']}</del><em class="thz">淘黄州：<big>￥{$item['sell_price']}</big></em></div>
+                <div class="rbtn"><b>立即抢购</b><em>>>></em></div></a></td>
+              </tr>
+            </tbody>
+          </table>
+          {/query} </div>
+      </div>
+    <!--loop end-->
+    <!--loop-->
+      <div class="bgwrap3"><img src="skin/temai/dabao.jpg">
+        <div class="bgwrap4"> {query:name=goods where=is_del eq 0 and id in (14785,14781,14637)}
+          <table>
+            <tbody>
+              <tr>
+                <td class="l" style="background-image:url({url:/pic/thumb/img/$item[img]/w/150/h/150})"><p><span>大宝漆</span></p></td>
+                <td class="r"><a href="{url:/site/products/id/$item[id]}"><div class="rname">{$item[name]}</div>
+                <div class="rmoney"><del>市场价：￥{$item['market_price']}</del><em class="thz">淘黄州：<big>￥{$item['sell_price']}</big></em></div>
+                <div class="rbtn"><b>立即抢购</b><em>>>></em></div></a></td>
+              </tr>
+            </tbody>
+          </table>
+          {/query} </div>
+      </div>
+    <!--loop end-->
+    <!--loop-->
+      <div class="bgwrap3"><img src="skin/temai/jianpai.jpg">
+        <div class="bgwrap4"> {query:name=goods where=is_del eq 0 and id in (14655,14660,14661)}
+          <table>
+            <tbody>
+              <tr>
+                <td class="l" style="background-image:url({url:/pic/thumb/img/$item[img]/w/150/h/150})"><p><span>箭牌</span></p></td>
+                <td class="r"><a href="{url:/site/products/id/$item[id]}"><div class="rname">{$item[name]}</div>
+                <div class="rmoney"><del>市场价：￥{$item['market_price']}</del><em class="thz">淘黄州：<big>￥{$item['sell_price']}</big></em></div>
+                <div class="rbtn"><b>立即抢购</b><em>>>></em></div></a></td>
+              </tr>
+            </tbody>
+          </table>
+          {/query} </div>
+      </div>
+    <!--loop end-->
+    <!--loop-->
+      <div class="bgwrap3"><img src="skin/temai/jiukes.jpg">
+        <div class="bgwrap4"> {query:name=goods where=is_del eq 0 and id in (14789,14788,14787)}
+          <table>
+            <tbody>
+              <tr>
+                <td class="l" style="background-image:url({url:/pic/thumb/img/$item[img]/w/150/h/150})"><p><span>九棵松</span></p></td>
+                <td class="r"><a href="{url:/site/products/id/$item[id]}"><div class="rname">{$item[name]}</div>
+                <div class="rmoney"><del>市场价：￥{$item['market_price']}</del><em class="thz">淘黄州：<big>￥{$item['sell_price']}</big></em></div>
+                <div class="rbtn"><b>立即抢购</b><em>>>></em></div></a></td>
+              </tr>
+            </tbody>
+          </table>
+          {/query} </div>
+      </div>
+    <!--loop end-->
+    <!--loop-->
+      <div class="bgwrap3"><img src="skin/temai/meida.jpg">
+        <div class="bgwrap4"> {query:name=goods where=is_del eq 0 and id in (14768,14708,14709)}
+          <table>
+            <tbody>
+              <tr>
+                <td class="l" style="background-image:url({url:/pic/thumb/img/$item[img]/w/150/h/150})"><p><span>美大</span></p></td>
+                <td class="r"><a href="{url:/site/products/id/$item[id]}"><div class="rname">{$item[name]}</div>
+                <div class="rmoney"><del>市场价：￥{$item['market_price']}</del><em class="thz">淘黄州：<big>￥{$item['sell_price']}</big></em></div>
+                <div class="rbtn"><b>立即抢购</b><em>>>></em></div></a></td>
+              </tr>
+            </tbody>
+          </table>
+          {/query} </div>
+      </div>
+    <!--loop end-->
+    <!--loop-->
+      <div class="bgwrap3"><img src="skin/temai/smt.jpg">
+        <div class="bgwrap4"> {query:name=goods where=is_del eq 0 and id in (14772,14770,14769)}
+          <table>
+            <tbody>
+              <tr>
+                <td class="l" style="background-image:url({url:/pic/thumb/img/$item[img]/w/150/h/150})"><p><span>萨米特</span></p></td>
+                <td class="r"><a href="{url:/site/products/id/$item[id]}"><div class="rname">{$item[name]}</div>
+                <div class="rmoney"><del>市场价：￥{$item['market_price']}</del><em class="thz">淘黄州：<big>￥{$item['sell_price']}</big></em></div>
+                <div class="rbtn"><b>立即抢购</b><em>>>></em></div></a></td>
+              </tr>
+            </tbody>
+          </table>
+          {/query} </div>
+      </div>
+    <!--loop end-->
+    <!--loop-->
+      <div class="bgwrap3"><img src="skin/temai/ywyu.jpg">
+        <div class="bgwrap4"> {query:name=goods where=is_del eq 0 and id in (14780,14776,14773)}
+          <table>
+            <tbody>
+              <tr>
+                <td class="l" style="background-image:url({url:/pic/thumb/img/$item[img]/w/150/h/150})"><p><span>鹰卫浴</span></p></td>
+                <td class="r"><a href="{url:/site/products/id/$item[id]}"><div class="rname">{$item[name]}</div>
+                <div class="rmoney"><del>市场价：￥{$item['market_price']}</del><em class="thz">淘黄州：<big>￥{$item['sell_price']}</big></em></div>
+                <div class="rbtn"><b>立即抢购</b><em>>>></em></div></a></td>
+              </tr>
+            </tbody>
+          </table>
+          {/query} </div>
+      </div>
+    <!--loop end-->
+
+    </div>
+  </div>
+  <div class="sm">
+  淘黄州定期特卖活动，优惠不断，惊喜不断！<br>
+  本活动商家排名不分先后</div>
+  <a class="btn" href="#top">返回顶部</a>
+  </div>
+</section>

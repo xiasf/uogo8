@@ -1,0 +1,255 @@
+@import "compass/reset", "_sass-config","fun-min";
+// 设置导航条
+body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,
+form,fieldset,legend,button,input,textarea,th,td,section,p,span,font,div{margin:0;padding:0;font-family:"Microsoft yahei";color:#333;}
+a{
+	text-decoration: none;
+}
+// 置顶导航
+.header_top_nav {
+    color: #999;
+    height: 35px;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #eee;
+    width: 100%;
+    list-style-type:none;
+    font-size: 12px;
+}
+
+.header_top_right {
+    float: right;
+}
+.header_top_right,.header_top_left{
+    li{
+        line-height: 35px;
+        float: left;
+        border-bottom: 1px solid #f9f9f9;
+    }
+}
+.header_top_center{
+    width: 1000px;
+    margin: 0 auto;
+    height: 35px;
+    li{
+        a{
+            padding: 0 10px;
+            color: #999;
+            display: block;
+            &:hover{
+                color: #f36f27;
+            }
+        }
+    }
+}
+.header_top_center .htr_line {
+    overflow: hidden;
+    width: 1px;
+    height: 12px;
+    margin-top: 11px;
+    background-color: #eee;
+    display: block;
+    float: left;
+}
+.imyeah{
+    position: relative;
+}
+.header_top_right .imyeah{
+    &:hover{
+        border-bottom-color: #fff;
+        background-color: #fff;
+    }
+}
+
+.header_top_right .imyeah{
+    ul{
+        position: absolute;
+        top: 35px;
+        left: -1px;
+        z-index: 1000;
+        background-color: #fff;
+        overflow: hidden;
+        border: 1px solid #eee;
+        border-top: 0;
+        display: none;
+        padding: 5px;
+    }
+}
+.imyeah:hover .title_ul{
+    display: block;
+}
+.title_ul{
+    display: none;
+}
+
+
+
+// 导航条
+.main_nav{
+	background: $nav_bg_color;
+	height: $nav_height;
+	width: $nav_width;
+	font-size: $nav_font_size;
+	font-weight: $nav_font_weight;
+	color: $nav_font_color;
+}
+.head_inner,.main_inner{
+	width: $max_main_wid;
+	margin: 0 auto;
+}
+.header_logo{
+    clear: both;
+    position: relative;
+    z-index: 10;
+    height: $header_logo_height;
+    background-color: $nav_font_color;
+}
+.header_logo_dop{
+	float: left;
+    max-width: logo_max_width;
+    overflow: hidden;
+}
+.header_icon_v{
+    float: right;
+    margin-right: 9px;
+    height: $header_logo_height;
+    line-height: $header_logo_height;
+    a{
+    	img{
+	    	height:$logo_r_icon_width;
+    	    display: -webkit-inline-box;
+	    }
+    }
+}
+.main_nav_link{
+	li{
+		float: left;
+		&:hover{
+			background: $hover_nav_bg_color;
+		}
+	}
+}
+.main_nav_atag{
+    display: block;
+    height: $nav_height;
+    line-height: $nav_height;
+    color: $nav_font_color;
+    font-size: $nav_font_size;
+    padding: 0 14px;
+    text-align: center;
+    white-space: nowrap;
+}
+.nav_cheke{
+	background: $cheke_nav_bg_color;
+}
+.clear{
+	clear: both;
+}
+// 网页底部
+.footer{
+    display: block;
+    clear: both;
+    overflow: hidden;
+    border-top: $footer_box_top_border;
+    background-color: $footer_box_gb_color;
+    a{
+        color: $footer_box_a_color;
+        text-decoration: none;
+    }
+// 网页底部外链列表
+    .footer_infor_link {
+        background-color: $nav_bg_color;
+        line-height: $footer_infor_link;
+        color: white;
+        font-size: $footer_infor_font_size;
+        text-align: center;
+        a{
+             margin-left: 2px;
+            margin-right: 2px;
+            color: #fff;
+        }
+    }
+}
+
+.footer_inner {
+    width: $footer_inner;
+    margin: 0 auto;
+    overflow: hidden;
+}
+// 网页底部icon
+.footer_th{
+    overflow: hidden;
+    li{
+        float: left;
+        &:last-child{
+                i{
+                    margin-right: 0;
+                }
+            }
+        i{
+            display: block;
+            margin: 30px 66px 0 10px;
+            width: 67px;
+            height: 96px;
+            font-size: 0;
+            text-indent: -100%;
+        }
+    }
+}
+// 网页底部icon定位
+$bg_num:10;
+@for $i from 1 to 8{
+    .footer_icon#{$i}{
+        background: url('http://shop.vipstatic.com/img/common/footer_vip_iconsv_0704.png?032a5d1b');
+        background-position: -$bg_num+px -9px;
+        @if $i==1{$bg_num:0}
+        $bg_num:$bg_num+147;
+    }
+}
+// 网页底部无序列表
+.footer_list {
+    zoom: 1;
+    margin: 37px 0 25px;
+    line-height: 20px;
+    dl{
+        float: left;
+        width: 145px;
+        height: 146px;
+        padding-left: 16px;
+        border-right: 1px solid #e0e0e0;
+    }
+    dt{
+         margin-bottom: 4px;
+        color: #4d4d4d;
+    }
+    dd{
+        @include css3(transition,transform ease-out .2s);
+        a{
+            font-size: 12px;
+        }
+    }
+    .tc {
+        padding-left: 0;
+        width: 136px;
+        text-align: center;
+    }
+}
+// 网页底部无序列表二维码
+.footer_list dl.last {
+    border-right: 0;
+    display: block;
+    padding: 0;
+}
+.last dd,.last dt{
+ font-size: 14px;
+}
+// 网页底部版权信息
+.footer_infor_txt {
+    color: #999;
+    margin: 14px 0;
+    line-height: 19px;
+    text-align: center;
+    font-size: 12px;
+}
+.lazy{
+    margin: 0 auto;
+}

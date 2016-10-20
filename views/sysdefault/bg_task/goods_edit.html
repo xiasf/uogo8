@@ -1,0 +1,95 @@
+{js:baidueditor}
+
+
+<div class="headbar">
+	<div class="position"><span>任务</span><span>></span><span>积分商城</span><span>></span><span>{if:isset($id)}编辑{else:}添加{/if}商品</span></div>
+</div>
+<div class="content_box">
+	<div class="content form_content">
+		<form action="{url:/bg_task/goods_edit_act}" method="post" enctype='multipart/form-data'>
+			<input name="id" value="{$id}" type="hidden" />
+			<table class="form_table" cellpadding="0" cellspacing="0">
+				<col width="150px" />
+				<col />
+				<tr>
+					<th>名称：</th>
+					<td>
+						<input class="small" name="name" type="text" value="{$name}" alt="" />
+					</td>
+				</tr>
+
+				<tr>
+					<th>img</th>
+					<td>
+						<input type="file" name="img" class="middle w-300">
+						{if:isset($img) && $img}
+						<br />
+						<br />
+						<p>
+							<a target="_blank" href="{webroot:$img}">
+								<img src='{webroot:$img}' style='width:100px;height: 100100pxpx;border:1px solid #ccc' />
+							</a>
+						</p>
+						{/if}
+					</td>
+				</tr>
+
+				<tr>
+					<th>描述：</th>
+					<td>
+						<textarea name="describe" class="textarea" style="width:600px;height:150px;">{$describe}</textarea>
+					</td>
+				</tr>
+
+				<tr>
+					<th>短描述：</th>
+					<td>
+						<textarea name="smalldescription" class="textarea" style="width:600px;height:150px;">{$smalldescription}</textarea>
+					</td>
+				</tr>
+
+				<tr>
+					<th>库存：</th>
+					<td>
+						<input class="small" name="inventory" type="text" value="{$inventory}" alt="" />
+					</td>
+				</tr>
+
+				<tr>
+					<th>所需积分：</th>
+					<td>
+						<input class="small" name="integral" type="text" value="{$integral}" alt="" />
+					</td>
+				</tr>
+
+				<tr>
+					<th>排序：</th>
+					<td>
+						<input class="small" name="sort" type="text" value="{$sort}" alt="" />
+					</td>
+				</tr>
+
+				<tr><th>类型：</th><td><label class="attr"><input type="radio" name="type" value="0" {if:$type==0}checked="checked"{/if}>实物</label><label class="attr"><input type="radio" name="type" value="1" {if:$type==1}checked="checked"{/if}>虚拟</label></td></tr>
+
+				<tr><th>状态：</th><td><label class="attr"><input type="radio" name="is_lock" value="0" {if:$is_lock==0}checked="checked"{/if}>显示</label><label class="attr"><input type="radio" name="is_lock" value="1" {if:$is_lock==1}checked="checked"{/if}>不显示</label></td></tr>
+
+
+				<tr>
+					<th>限制兑换次数：</th>
+					<td>
+						<input class="small" name="limit_num" type="text" value="{$limit_num}" alt="" />
+						<label>0为不限制</label>
+					</td>
+				</tr>
+
+				<tr>
+					<td></td><td><button class="submit" type="submit"><span>确 定</span></button></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</div>
+
+<script type='text/javascript'>
+
+</script>

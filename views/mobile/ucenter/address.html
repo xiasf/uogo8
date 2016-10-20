@@ -1,0 +1,58 @@
+{foreach:items=$this->address}
+<section class="m_address2 g_wrap">
+  <div class="op"> <a href="javascript:;" onclick='modiy({echo:JSON::encode($item)})'>修改</a> <a href="javascript:;" onclick="delModel({link:'{url:/ucenter/address_del/id/$item[id]}'});">删除</a> <a href="javascript:void(0)">设为默认</a></div>
+  <div class="info"> <span><i class="u_ico1 ico1"></i>{$item['accept_name']}</span> <span><i class="u_ico1 ico2"></i>{$item['mobile']}</span></div>
+  <div>{$item['addregion']}</div>
+  <div>{$item['address']}</div>
+</section>
+{/foreach} 
+<!--{if:$item['default']==1}
+            <input type='button' class="btnx" onclick="window.location.href='{url:/ucenter/address_default/id/$item[id]/default/0}'" value="取消默认" />
+            {else:}
+            <input type='button' class="btnx" onclick="window.location.href='{url:/ucenter/address_default/id/$item[id]/default/1}'" value="设为默认" />
+            {/if}-->
+<section class="m_mode hide">
+  <form action='{url:/ucenter/address_edit}' method='post' name='form'>
+    <ul>
+      <input name='id' type='hidden' value='' />
+      <li> <em>收货人:</em>
+        <input type="text" name="accept_name"  alt='收货人不能为空' />
+      </li>
+      <li> <em>所在地区:</em>
+        <input type="text" name="addregion" id="city-picker" alt='街道地区不能为空' style="min-width:320px" />
+      </li>
+      <li> <em>详细街道:</em>
+        <input type="text" name="address" alt='街道地区不能为空' />
+      </li>
+      <li> <em>联系电话:</em>
+        <input type="text" name="mobile" alt='手机号码格式不正确' />
+      </li>
+      <!--      <li> <em>设为默认:</em>
+        <input name='default' type='checkbox' value='1'>
+      </li>
+-->
+      <li>
+        <input type="submit" value="保存地址" class="invoice-save-button">
+        <input type="button" class="btn" onClick="$('.m_mode').addClass('hide')" value="取消">
+      </li>
+    </ul>
+  </form>
+</section>
+<script type="text/javascript">
+function modiy(data){
+	$("input[name='accept_name']").val(data.accept_name);
+	$("input[name='mobile']").val(data.mobile);
+	$("input[name='id']").val(data.id);
+	$("input[name='address']").val(data.address);
+	$("#city-picker").citypicker("destroy");
+	$("input[name='addregion']").val(data.addregion || "湖北省/黄冈市/黄州区");
+	$("#city-picker").citypicker();
+
+	$('.m_mode').removeClass('hide')
+}
+</script>
+<link rel="stylesheet" href="../skin/mall/page_1.css">
+<link rel="stylesheet" href="../skin/user/css/pptm.css">
+<link href="../skin/js/citypicker/city.picker.css" rel="stylesheet">
+<script src="skin/js/citypicker/city.picker.data.js"></script> 
+<script src="skin/js/citypicker/city.picker.min.js"></script> 

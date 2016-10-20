@@ -1,0 +1,49 @@
+<div class="headbar">
+	<div class="position"><span>商品</span><span>></span><span>服务管理</span><span>></span><span>服务列表</span></div>
+	<div class="operating">
+		<a href="javascript:;"><button class="operating_btn" type="button" onclick="window.location='{url:/goods/svcpro_edit}'"><span class="addition">添加服务</span></button></a>
+	</div>
+	<div class="field">
+		<table class="list_table">
+			<col width="50px" />
+			<col width="200px" />
+			<col width="100px" />
+			<col width="100px" />
+			<col width="100px" />
+			<col />
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>名称</th>
+					<th>可用性</th>
+					<th>类型</th>
+					<th>操作</th>
+					<th>介绍</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
+
+<div class="content">
+	<table id="list_table" class="list_table">
+		<col width="50px" />
+		<col width="200px" />
+		<col width="100px" />
+		<col width="100px" />
+		<col width="100px" />
+		<col />
+		<tbody>
+			{query:name=goods_svcpro_cate order=id asc}
+			<tr>
+				<td>{$item['id']}</td>
+				<td>{$item['name']}</td>
+				<td>{if:$item[isopen]=='0'}已启用{else:}不可用{/if}</td>
+				<td>{if:$item[type]=='1'}服务{else:}&nbsp;&nbsp;&nbsp;&nbsp;承诺{/if}</td>
+				<td><a href="{url:/goods/svcpro_edit/id/$item[id]}"><img class="operator" src="{skin:images/admin/icon_edit.gif}" alt="修改" /></a><a href="javascript:void(0)" onclick="delModel({link:'{url:/goods/svcpro_del/id/$item[id]}'})"><img class="operator" src="{skin:images/admin/icon_del.gif}" alt="删除" /></a></td>
+				<td>{$item['desc']}</td>
+			</tr>
+			{/query}
+		</tbody>
+	</table>
+</div>

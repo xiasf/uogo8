@@ -1,0 +1,201 @@
+<div class="wrapper wrapper-content animated bounceInRight">
+<div class="row">
+  <div class="col-sm-12">
+    <div class="ibox float-e-margins">
+      <div class="ibox-title">
+        <h5>商品分类管理</h5>
+      </div>
+      <div class="ibox-content">
+        <div class="row m-b-sm m-t-sm">
+          <div class="col-sm-12">
+            <div class="alert alert-warning"><strong>提示：</strong>
+              <ol>
+                <li>新添加的分类在列表的最后，拖动可排序</li>
+                <li>改变顺序和新建分类需点击保存才能生效，删除立即生效</li>
+                <li>上下拖动可改变排序，左右拖动可改变级别，拖动后必须点击保存才能生效</li>
+              </ol>
+            </div>
+          </div>
+          <div class="row">
+            <div id="nestable-menu">
+              <div class="col-sm-4">
+                <select class="form-control inline" id="shop">
+                {query:name=seller where=seller_user_id eq $this->seller['seller_id']}
+                  <option value="{$item[id]}">{$item['shopname']} - {if:$item[is_vis]==1}店铺已关闭{/if}</option>
+                {/query}
+                </select>
+              </div>
+            <div class="col-md-3">
+              <div class="input-group">
+                <input type="text" placeholder="请输入分类名称" class="form-control" name="catName">
+                <span class="input-group-btn">
+                <button type="button" class="btn btn-primary" onClick="add()"><i class="fa fa-plus"></i>&nbsp;添加分类</button>
+                </span> </div>
+            </div>
+               <button type="button" class="btn btn-danger" onClick="save()" disabled id="btnsave">保存分类设置</button>&nbsp;&nbsp;
+             <button type="button" data-action="expand-all" class="btn btn-white">展开所有</button>
+              &nbsp;&nbsp;
+              <button type="button" data-action="collapse-all" class="btn btn-white">收起所有</button>
+              
+            </div>
+          </div>
+          <div class="dd" id="nestable">
+            <div class="alert alert-success">请在上方选择店铺,如果没有请先添加一个店铺</div>
+          </div>
+          <textarea id="allcat" class="form-control" name="allcat" style="display:none"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="js/plugins/nestable/jquery.nestable.js"></script> 
+<script type="text/javascript">
+var updateOutput = function(e) {
+		var list = e.length ? e : $(e.target),
+			output = list.data("output");
+		if (window.JSON) {
+			output.val(window.JSON.stringify(list.nestable("serialize")))
+		} else {
+			output.val("浏览器不支持")
+		}
+};
+var topOL = $("<ol class='dd-list'></ol>");
+function catListdisplay(catList) {
+	//var catList = {$this->data_json};
+	showall(catList,topOL);
+	$("#nestable").empty().append(topOL).nestable({group: 1,maxDepth:2}).on("change", updateOutput);
+	updateOutput($("#nestable").data("output", $("#allcat")));
+};
+var ddOL = function(menu,ol){
+		var li = $("<li class='dd-item' data-id='"+menu.id+"' data-name='"+menu.name+"'></li>").appendTo(ol);
+		$("<div class='dd-handle text-danger'><i class='fa fa-arrows'></i>&nbsp;拖动&nbsp;&nbsp;&nbsp;&nbsp;<span class='dd-name'>"+menu.name+"</span></div><div class='dd-btn'><a href='javascript:void();' onClick='itemValue(this)' class='btn btn-primary btn-sm'>修改</a>&nbsp;&nbsp;<a href='javascript:void();' onClick='itemDel(this)' class='btn btn-default btn-sm'>删除</a><div>").appendTo(li);
+		return li;
+};
+function catListGetjson(shopid){
+	if(!$.isNumeric(shopid))return;
+	topOL.empty();
+	$.getJSON('{url:seller/seller_cat_shop_getjson}',{id:shopid},function(data,status){
+		if(data.length==0){
+			$("#btnsave").attr("disabled",true);
+			$("#nestable").append('<div class="alert alert-danger">该店铺并无分类。请添加新的分类,然后保存即可</div>');return;
+		};
+		catListdisplay(data);
+		$("#btnsave").removeAttr('disabled');
+	})
+}
+$(document).ready(function(e) {
+	catListGetjson($("#shop option:selected").val());
+    $("#shop").change(function(){
+		catListGetjson($(this).val())
+	})	
+});
+			
+function showall(menu_list, parent) {
+	for (var menu in menu_list) {
+		var li = ddOL(menu_list[menu],parent);
+		if(menu_list[menu].children!=undefined){
+			var olparent = $("<ol class='dd-list'></ol>").appendTo(li);
+			showall(menu_list[menu].children,olparent);
+		}
+	}
+};
+
+function add(){
+	var catName = $("input[name='catName']").val();
+	if(catName.length>0){
+		ddOL({name:catName,id:0},topOL);updateOutput($("#nestable").data("output", $("#allcat")));
+		window.tips("添加分类成功，新增加的分类在下面，拖动排序即可");$("#btnsave").removeAttr('disabled');
+	}
+}
+function save(){
+	var data_base = $("[name='allcat']").val();
+	var data_shop = $("#shop option:selected").val();
+	if(!$.isNumeric(data_shop))return;
+	$.post('{url:seller/seller_cat_edit}',{str:data_base,shopid:data_shop},
+	function(data, textStatus){
+		//alert(data);
+		window.tips("分类保存成功");
+	});
+
+}
+function itemDel(_t){
+	var id = $(_t).parent().parent().data("id");
+	if(id==0){
+			$(_t).parent().parent().remove();
+			updateOutput($("#nestable").data("output", $("#allcat")));
+			return false;		
+	};
+	window.confirm("你确定要删除分类吗？<br>注意，该操作不可还原，并且该分类下的商品将自动被删除",function(){
+		$.getJSON("{url:seller/seller_cat_del}",{"id":id},function(content, a) {
+			window.tips("删除分类成功");
+			$(_t).parent().parent().remove();
+			updateOutput($("#nestable").data("output", $("#allcat")));
+		});	
+	});
+}
+function itemValue(_t){
+	var txt = $(_t).parent().parent().data("name");
+	top.layer.prompt({
+    title: txt + ' - 输入新分类名称，并确认',value: txt,
+    formType: 0 //prompt风格，支持0-2
+	}, function(text,index){
+		//$(_t).parent().parent().data("name",text);
+		
+		//alert($(_t).parent().parent().data("name"));
+		$(_t).parent().parent().find(".dd-name:first").html(text);
+		$(_t).parent().parent().data("name",text);
+		updateOutput($("#nestable").data("output", $("#allcat")));
+		top.layer.close(index);
+	});
+}
+$("#nestable-menu").on("click", function(e) {
+ 		var target = $(e.target),
+ 			action = target.data("action");
+ 		if (action === "expand-all") {
+ 			$(".dd").nestable("expandAll")
+ 		}
+ 		if (action === "collapse-all") {
+ 			$(".dd").nestable("collapseAll")
+ 		}
+})
+/*
+function category_ajax_del(id) {
+	var t = art.dialog({
+				icon: 'question',
+				lock: true,
+				title: '提示',
+			    content: '确定要删除吗？',
+			    id: 'EF893L',
+			    ok: function () {
+			    	var a = this;
+			    	this.content('正在删除……');
+			    	$.getJSON("/seller/category_ajax_del",  {"id":id},
+					    function(content, a) {
+							 if(content.result == 'succeed'){
+							 	// a.content("删除成功！");
+							 	window.location.reload();
+							 } else {
+							 	// a.content("删除失败！")
+							 	alert('删除失败！');
+							 }
+						});
+			    	return false;
+			    },
+			    cancel: true
+			});
+}
+
+	//修改排序
+function changeSort(gid,obj)
+{	
+var selectedValue = obj.value;
+$.getJSON(
+     "/seller/category_ajax_sort",
+	 {"id":gid,"sort":selectedValue},
+     function(content) {
+		 if(content.result == 'succeed'){} else {alert("排序失败")}
+	}
+	)
+}*/
+
+</script>

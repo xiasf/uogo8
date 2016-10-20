@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="../skin/yezhu/css/zxgl-new.min.css">
+<link rel="stylesheet" href="../skin/yezhu/css/zxask-v4.css">
+<section class="zx-list-wrap xcsc-list-wrap">
+<section class="zx_notebook zx_notebook2">
+        <ul class="xzx_select_book">
+        	{foreach:items=$this->article_list}
+                            <li>
+                    <a href="{url:v_deco/yezhu/id/$item['id']}" class="clearfix">
+                        <figure><img src="{url:/pic/thumb/img/$item['img']/w/80/h/80}" class="lazy" alt="{$item['title']}" style="display: inline;"></figure>
+                        <div>
+                            <h2>{$item['title']}</h2>
+                            <p>{$item['description']}</p>
+                            <p style="padding: 10px;text-align: right;">
+    <em style="    margin-right: 15px;">浏览：{$item['visit']}</em>
+<em style="    margin-right: 15px;">赞：{$item['praise']}</em>
+    <em>回复：
+{query:name=jiaju_article_comment where=article_id eq $item[id] fields=count(id) as n id=$p}{$item['n']}{/query}</em>
+     </p>
+                        </div>
+                    </a>
+                </li>
+                {/foreach}
+                    </ul>
+                    {$this->getPageBar}
+    </section>
+</section>

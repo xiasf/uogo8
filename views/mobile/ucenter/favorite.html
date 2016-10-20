@@ -1,0 +1,83 @@
+{set:$favoriteObj = null;$favoriteList = $this->get_favorite($favoriteObj)}
+{js:dialog}
+<script type='text/javascript' src='{theme:javascript/common.js}'></script>
+<section class="g_wrap">
+    <section name="itemList" class="m_firm">
+        <div class="box pr">
+            {if:$favoriteList}
+                {foreach:items=$favoriteList}
+                {set:$tmp=$item['data']['id'];$tmpIMG=$item['data']['img'];}
+            <div name="item" class="cartCont noboder" skuid="71010" data-subtotal="1137.00" style="left: 0px;">
+            
+                <div class="sc_info">
+                    <div class="sc_box"><a href="{url:/site/products/id/$tmp}"><img class="sc_img" src="{webroot:$tmpIMG}"></a></div>
+                    <div class="sc_box_bottom">
+                        <p><a href="{url:/site/products/id/$tmp}">{$item['data']['name']}</a></p>
+                        
+                        <div class="sc_box_a">
+                        	<span class="sc_box_span">￥<em name="price">{$item['data']['market_price']}</em></span>
+                            <a href="javascript:void(0);" onclick="delModel({link:'{url:/ucenter/favorite_del/id/$item[id]}',msg:'是否取消收藏？'});">取消收藏</a>
+                        </div>
+                    </div>
+                    <!--<i class="u_ico1 ico1"></i>-->
+                </div>
+            </div>
+            {/foreach}
+        </div>
+        
+
+        {$favoriteObj->getPageBar()}
+            
+            {else:}
+            <div class="no_products"><p>当前暂无收藏数据</p></div>
+            {/if}
+            
+            </section>
+
+</section>
+<link rel="stylesheet" href="../skin/user/css/pptm.css">
+<link rel="stylesheet" href="../skin/mall/page_1.css">
+
+<!-- <div class="pageContentWrapper">
+    
+    <div class="recharge">
+        <div class="sc_list">
+            <ul>
+                {if:$favoriteList}
+                {foreach:items=$favoriteList}
+                {set:$tmp=$item['data']['id'];$tmpIMG=$item['data']['img'];}
+            <li>
+            
+            <span><a href="{url:/site/products/id/$tmp}"><img src="{webroot:$tmpIMG}" /></a></span>
+            <p>{$item['data']['name']}</p>
+            <div class="xgsc">
+            <a href="javascript:void(0);" onclick="delModel({link:'{url:/ucenter/favorite_del/id/$item[id]}',msg:'是否取消收藏？'});">取消收藏</a>
+            </div>
+            
+            </li>
+            {/foreach}
+            
+            {$favoriteObj->getPageBar()}
+            
+            {else:}
+            <div class="no_products"><p>当前暂无收藏数据</p></div>
+            {/if}
+            </ul>
+        </div>
+    </div>
+	
+</div> -->
+
+<script type="text/javascript">
+//修改备注信息
+function edit_summary(idVal){
+	var summary = $("#summary_val_"+idVal).val();
+	if($.trim(summary)){
+		$.getJSON('{url:/ucenter/edit_summary}',{id:idVal,summary:summary},function(content){
+			if(content.isError == true){
+				alert(content.message);
+			}
+		});
+	}
+}
+</script>

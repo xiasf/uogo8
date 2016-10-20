@@ -1,0 +1,66 @@
+{set:$seller_id = $this->seller['seller_id']}
+{set:$siteConfig = new Config("site_config")}
+<div class="wrapper wrapper-content animated bounceInRight">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-content">
+          <h2>说明：</h2>
+          <p> 淘黄州给您的商品货款结算账单展示 </p>
+          <button class="btn btn-danger dim" type="button" onclick="window.location.href='{url:/seller/bill_edit}';"><i class="fa fa-heart"></i>&nbsp;&nbsp;货款提现</button>
+          <button class="btn btn-primary dim" type="button" onclick="window.location.href='{url:/seller/bill_list}';"><i class="fa fa-money"></i>&nbsp;&nbsp;提现状态</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>货款结算单列表</h5>
+        </div>
+        <div class="ibox-content">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>订单的结算起止</th>
+                <th>申请时间</th>
+                <th>结算状态</th>
+                <th>结算时间</th>
+                <th>管理员回复</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody>
+            
+            {set:$page= (isset($_GET['page'])&&(intval($_GET['page'])>0))?intval($_GET['page']):1;}
+            {query: name=bill where=seller_id eq $seller_id page=$page}
+            <tr>
+              <td>{$item['start_time']} ~ {$item['end_time']}</td>
+              <td>{$item['apply_time']}</td>
+              <td> {if:$item['is_pay'] == 1}
+                <span class='label label-primary'>已结算</span>
+                {else:}
+               <span class='label label-danger'>未结算</span>
+                {/if} </td>
+
+                
+              <td>{$item['pay_time']}</td>
+              <td>{$item['pay_content']}</td>
+              <td>
+              <a href="{url:/seller/bill_edit/id/$item[id]}" class="btn btn-white btn-xs"><i class="fa fa-edit"></i>&nbsp;修改</a>&nbsp;&nbsp; 
+              {if:$item['is_pay'] == 0}<a href="javascript:delModel({link:'{url:/seller/bill_del/id/$item[id]}'})"  class="btn btn-white btn-xs"><i class="fa fa-times-circle"></i>&nbsp;删除</a>{/if}
+               </td>
+            </tr>
+            {/query}
+              </tbody>
+            
+            <tfoot>
+              <tr>
+                <td colspan="7">{$query->getPageBar()}</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

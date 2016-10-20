@@ -1,0 +1,58 @@
+<link rel="stylesheet" href="../skin/ask/css/zxask-v2.min.css">
+
+<section class="zxask-detail-wrap">
+    <div class="zxask-search-wrap">
+    <p>已有<em>&nbsp;2071437</em>&nbsp;位业主得到满意答案</p>
+
+    <form action="javascript:void();">
+        <div class="input-append">
+            <input id="askSearchKey" type="search" placeholder="输入您的装修问题">
+            <i class="icon-clear"></i>
+            <span id="askSearchBtn" class="add-on" data-url="/ask/search.php?act=2&amp;keyword=">搜索答案</span>
+        </div>
+    </form>
+</div>
+
+
+    <div class="zxask-detail-inner-wrap">
+        <div class="zxask-detail-box zxask-question-content">
+            <i class="icon-zxask-question"></i>
+            <h2 class="zxask-detail-title">{$this->ask['title']}</h2>
+            
+            <p>{$this->ask['contents']}</p>
+
+            <div style="height: 15px;" class="zxask-detail-link clearfix">
+                <time>{$this->ask['time']}</time>
+<!--                 <a href="http://m.to8to.com/ask">问答</a>&gt;
+                <a href="/ask/more-h4i5">
+                    家居产品</a>&gt;
+                <a href="/ask/more-h4s4i5">
+                    家用电器</a> -->
+            </div>
+        </div>
+
+        
+        
+        <!--      <figure class="zx-ad-wrap">
+                <a href="http://m.to8to.com/yezhu/zxbj.php?from=144#point=2_9_3_1"><img src="http://img.to8to.com/wap/v2/zxxq-ad.jpg" width="580" height="120"></a>
+             </figure>-->
+        <a class="zxzs-set" dataptag="2_1_1_2" href="#" style="display: block;padding: 0 15px;" rel="nofollow"><img style="vertical-align:middle;text-align:center;" src="http://img.to8to.com/wap/zxbj.jpg"></a>
+                    <div class="zxask-answer-box">
+                        <h3 class="zxask-answer-title">答案</h3>
+                            {foreach:items=$this->ask_}
+                            <div>
+                                <pre class="zxask-answer-info">{$item['contents']}</pre>
+                                <p class="zxask-answer-meta"><span>热心网友</span><time>{$item['time']}</time></p>
+                            </div>
+                            {/foreach}
+
+                    </div>
+
+        <section class="zx-wtg-wrap"> <i class="zx-wtg-logo"></i>
+    <h2>关注淘黄州微信，领装修大礼包</h2>
+    <p>打开微信，关注微信号：<em>itaohz</em></p>
+  </section>
+
+        
+            </div>
+</section>

@@ -1,0 +1,36 @@
+<div class="ht_right">
+	<div class="order">
+		<div class="uc_title m_10">
+			<label class="current"><span>全部优惠券</span></label>
+		</div>
+		<table class="list_table m_10" cellpadding="0" cellspacing="0" width="100%">
+			<colgroup>
+			<col width="200px">
+			<col width="140px">
+			<col width="240px">
+			<col>
+			</colgroup>
+			<thead><tr class=""><th>编号</th><th>面值</th><th>有效时间</th><th>状况</th></tr></thead>
+			{set:$user_id = $this->user['user_id']}
+			{set:$member_info = Api::run('getMemberInfo',$user_id)}
+			{if:$member_info['prop']!=''}
+			{set:$ids=trim($member_info['prop'],',')}
+			{/if}
+			{if:isset($ids) && $ids!=''}
+			<tbody>
+			{set:$page=(isset($_GET['page'])&&(intval($_GET['page'])>0))?intval($_GET['page']):1;}
+			{set:$queryPropList = Api::run('getPropList',$ids)}
+			{foreach:items = $queryPropList->find()}
+				<tr>
+					<td>{$item['card_name']}</td><td>{$item['value']}元</td><td>{echo:substr($item['end_time'],0,10)}</td><td class="blue">{if:$item['is_userd']==1}<span class="bold orange">已使用</span>{elseif:$item['is_close']==1}<span class="bold gray">已禁用</span>{elseif:$item['is_close']==2}<span class="bold gray">临时锁定</span>{elseif:(strtotime('now')-strtotime($item['end_time']))>0}<span class="bold light_gray">已过期</span>{else:}<span class="bold green">可使用</span>{/if}</td>
+				</tr>
+			{/foreach}
+			</tbody>
+			<tfoot><tr><td colspan="4" class="t_l">{$queryPropList->getPageBar()}</td></tr></tfoot>
+			{/if}
+		</table>
+	</div>
+</div>
+<script>
+$("#nav_3").attr("class","cta");
+</script>

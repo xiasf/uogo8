@@ -1,0 +1,57 @@
+{set:
+  $id = IFilter::act(IReq::get('id'),'int');
+  $zhaobiao = new IModel('zhaobiao');
+  $item = $zhaobiao->getObj('id = ' . $id);
+}
+
+<section class="g_wrap m_orderDetail">
+  <header class="head">
+    <h3>{$item['title']}</h3>
+    <p>
+
+      {if:$item['status'] == 1}
+      竞标中……
+      {elseif:$item['status'] == 2}
+      已签
+      {elseif:$item['status'] == 0}
+      无效
+      {/if}
+
+    </p>
+    <i class="u_ico3 ico{$orderStatus}"></i> </header>
+  <div class="continfo mb15">
+    <p>预算<em class="f_fr">￥{$item['real_freight']}</em></p>
+  </div>
+  <div class="m_firm m_firm3 mb15">{set:$order_id=$item['id']}
+    <header>
+      <h4 class="f_fl">竞标记录</h4>
+    </header>
+    <ul>
+      {query:name=zhaobiao_log as log join=left join jiaju_company as c on log.company_id eq c.id where=zhaobiao_id eq $id field=log.*,c.name item=$good} 
+      <li class="info f_clear list"> <a href="{url:/v_deco/company_info/id/$good[company_id]}"> <img class="img f_fl " src="{webroot:$good[logo]}"> </a>
+        <div class="cont f_fl">
+          <p> <a href="{url:/v_deco/company_info/id/$good[company_id]}">{$good['name']}</a> </p>
+          <em> </em> </div>
+        <div class="cont2 f_fr">
+          <p>{$good['create_time']}</p>
+        </div>
+      </li>
+      {if:$item['status'] == 1}
+      <div class="btn"><form action="{url:ucenter/zhaobiao_toubiao}" method="post"><input type="hidden" name="order_id" value="26"><input type="hidden" name="id" value="{$id}"><input type="hidden" name="company_id" value="{$good['company_id']}"><input type="submit" class="button btn-1" value="投标"></form></div>
+      {/if}
+      {if:$good['company_id'] == $item['company_id']}
+      <div style="position: relative;
+    background-color: #2CC370;
+    text-align: center;
+    padding: 10px;
+    color: #fff;">中标</div>
+      {/if}
+    {/query}
+    </ul>
+  </div>
+</section>
+
+<!--新界面结束-->
+<link rel="stylesheet" href="../skin/mall/page_1.css">
+<link rel="stylesheet" href="../skin/user/css/pptm.css">
+<link rel="stylesheet" href="../skin/user/css/rem.css">

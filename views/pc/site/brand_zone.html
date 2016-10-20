@@ -1,0 +1,114 @@
+{set:$brandId = IFilter::act(IReq::get('id'),'int')}
+{set:$brandRow=Api::run('getBrandInfo',$brandId)}
+{if:!$brandRow}
+{set:IError::show(403,'品牌信息不存在')}
+{/if}
+
+<div class="position"> <span>您当前的位置：</span> <a href="{url:}"> 首页</a> » 商品品牌 </div>
+<div class="wrapper clearfix container_2">
+	<div class="sidebar f_l">
+		<div class="box m_10">
+			<div class="title">销售排行榜</div>
+			<div class="content">
+			  <ul class="ranklist" id="ranklist">
+			  	{foreach:items=Api::run('getGoodsListBrandSum',array('#brandid#',$brandId),10)}
+			  	<li><span>{echo:intval($key+1)}</span><a href="{url:/site/products/id/$item[id]}"><img src="{url:/pic/thumb/img/$item[img]/w/58/h/58}" width="58px" height="58px" /></a><a href="{url:/site/products/id/$item[id]}" class="p_name">{$item['name']}</a><b>￥{$item['sell_price']}</b></li>
+			  	{/foreach}
+			  </ul>
+			</div>
+		</div>
+
+		<div class="box m_10">
+			<div class="title">热卖商品</div>
+			<div class="cont">
+				<ul class="ranklist">
+					{foreach:items=Api::run('getCommendHotBrand',array('#brandid#',$brandId),10)}
+					<li class='current'><a href="{url:/site/products/id/$item[id]}"><img src="{url:/pic/thumb/img/$item[img]/w/58/h/58}" width="58" height="58" /></a><a href="{url:/site/products/id/$item[id]}" class="p_name">{$item['name']}</a><b>￥{$item['sell_price']}</b></li>
+					{/foreach}
+				</ul>
+			</div>
+		</div>
+
+		<div class="box m_10">
+			<div class="title">更多品牌</div>
+			<div class="cont">
+			  <ul class="textlist_2 clearfix">
+			  	{foreach:items=Api::run('getBrandList',10)}
+			  	<li><a href="{url:/site/brand_zone/id/$item[id]}">{$item['name']}</a></li>
+			  	{/foreach}
+			  </ul>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="main f_r">
+		<div class="box m_10">
+			<div class="title">品牌专区</div>
+			<div class="cont">
+				<div class="c_box">
+					<dl class="clearfix">
+						<dt><img src="{webroot:}{$brandRow['logo']}" width="160" height="80" /></dt>
+<!--						<dd><strong>{$brandRow['name']}</strong></dd>
+						<dd>官方站点：{$brandRow['url']}</dd>-->
+						<p style="padding-left:180px;line-height:22px;">{$brandRow['description']}</p>
+					</dl>
+				</div>
+			</div>
+		</div>
+        
+        <div class="search_result_box clear">
+            <div class="mall_rankl" style="width:938px">
+                <ul class="rank_left_ul clear">
+                    <li class="first">
+                        <a>排序</a>
+                    </li>
+                    
+                    {foreach:items=search_goods::getOrderType()}
+					{set:$next = search_goods::getOrderValue($key)}
+                    <li class="zr_hot {echo:search_goods::isOrderCurrent($key) ? 'current':''}">
+                        <a href="{echo:search_goods::searchUrl('order',$next)}">
+                            <em>{$item}</em><span></span>
+                        </a>
+                    </li>
+                    {/foreach}
+                </ul>
+            </div>
+        </div>
+        
+        <div class="list_container list_container1 mt10">
+            {set:$goodsObj = search_goods::find(array('brand_id' => $brandId));$resultData = $goodsObj->find();}
+			{if:$resultData}
+			{set:$listSize = search_goods::getListSize(IFilter::act(IReq::get('show_type')))}
+            <ul id="goodsList" class="list clear">
+                {foreach:items=$resultData}
+                <li>
+                    <a href="{url:/site/products/id/$item[id]}" class="pic" target="_blank">
+                        <img src="{url:/pic/thumb/img/$item[img]/w/$listSize[width]/h/$listSize[height]}" alt="{$item['name']}" class="lazy" height="210" width="210" />
+                    </a>
+                    <div class="cur_pric">
+                        <p class="cur_msg">
+                            <a href="{url:/site/products/id/$item[id]}" target="_blank">{$item['name']}</a>
+                        </p>
+                        <p class="f_c_e81a62 cur_msg"></p>
+                        <p class="pri_msg">
+                            ￥<span class="f_arial">{$item['sell_price']}</span>
+                            <del>￥{$item['market_price']}</del>
+                        </p>
+                        <p class="pri_total">
+                            已售 <span>{$item['sale']}</span>件
+                        </p>
+                    </div>
+                </li>
+                {/foreach}
+            </ul>
+            {$goodsObj->getPageBar()}
+    
+            {else:}
+            <p class="display_list mt_10" style='margin-top:50px;margin-bottom:50px;text-align:center;'>
+                <strong class="gray f14">对不起，没有找到相关商品</strong>
+            </p>
+            {/if}
+        </div>
+	</div>
+</div>

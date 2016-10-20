@@ -1,0 +1,26 @@
+{set:$order = IFilter::act(IReq::get('order'))}
+<div class="orderContentWrapper" style="margin-bottom:20px;">
+    <div class="user_order_box">
+        <dl>
+        <dt><a href="{url:/ucenter/order}" class="bvc1">物流信息</a></dt>
+        </dl>
+        <br>
+    </div>
+    
+	<div class="logistics_by_city" style="margin-top:0px;">
+		<div class="by_city_info">
+			<i class="round"></i>
+			<span>订单号</span>
+			<em>{$order}</em>
+		</div>
+        {foreach:items = $this->data}
+		<div class="by_city_info">
+			<i class="round"></i>
+			<span>{$item['time']}</span>
+			<em>{$item['station']}</em>
+		</div>
+		{/foreach}
+
+    </div>
+    <a href='javascript:void(0)' onclick='javascript:window.history.go(-1);' style="margin-top:20px;" class="comfim_x"/>返回列表</a>
+</div>

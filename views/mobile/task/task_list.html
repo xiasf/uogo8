@@ -1,0 +1,36 @@
+
+<div class="task_box">
+	<span class="task_col cheke">任务大厅</span>
+	<span class="task_col"><a href="task_user">我的任务<i>（-）</i></a></span>
+	<span class="task_col"><a href="{url:task/goods_list}">积分商城</a></span>
+	<ul class="task_list">
+		{foreach:items=$task_list}
+		<li>
+		
+			<a href="{url:task/task_info/id/$item['id']}">
+				<img class="task_img" src="{webroot:$item['banner']}" />
+				<p>{$item['describe']}</p>
+			</a>
+			<span class="task_span" style="border-bottom: 1px solid #f5f5f5; ">
+				<p class="title t_left">{$item['title']}</p>
+				<p class="title t_right">{$item['rewards']}积分</p>
+			</span>
+			<span class="task_span">
+				<a href="javascript:void(0)">已参与人数：{$item['participants_counts']}人</a>
+				<a href="{url:task/task_info/id/$item['id']}">任务详情>></a>
+			</span>
+		</li>
+		{/foreach}
+	</ul>
+</div>
+<script type="text/javascript">
+	var task_user_url	= "{url:task/taskUserCount}";
+	var task_nav_i		= $('.task_col a i');
+	$.getJSON(task_user_url,function(result){
+		if(typeof result.errCode != "undefined"){
+			alert(result.errMsg);
+		} else {
+			task_nav_i.text('（'+result.total+'）')
+		}
+	})
+</script>

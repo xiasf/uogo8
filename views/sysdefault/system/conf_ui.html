@@ -1,0 +1,91 @@
+<div class="headbar">
+  <div class="position"><span>系统</span><span>></span><span>网站管理</span><span>></span><span>主题设置</span></div>
+</div>
+<form action="{url:/system/applyTheme}" method="post">
+  <div class="content"> {foreach:items = Common::getSitePlan('theme') key = $theme}
+    <table class='list_table th_right'>
+      <colgroup>
+      <col width='175px' />
+      <col width='60px' />
+      <col />
+      </colgroup>
+      <tbody>
+        <tr>
+          <th rowspan='7'> <div class="thumbnail"> <img src="{echo:$item['thumb']}" width='160px' height='210px' /> {if:Common::isThemeUsed($theme)}
+              <div class="sel"><span>正在使用</span></div>
+              {/if} </div>
+          </th>
+          <th>名称：</th>
+          <td>{$item['name']}</td>
+        </tr>
+        <tr>
+          <th>目录：</th>
+          <td>{echo:IWeb::$app->getWebViewPath()}{$theme}</td>
+        </tr>
+        <tr>
+          <th>版本：</th>
+          <td>{$item['version']}</td>
+        </tr>
+        <tr>
+          <th>时间：</th>
+          <td>{$item['time']}</td>
+        </tr>
+        <tr>
+          <th>简介：</th>
+          <td>{$item['info']}</td>
+        </tr>
+        <tr>
+          <th>类型：</th>
+          <td class="{echo:common::themeType($theme)}">{echo:common::themeTypeTxt(common::themeType($theme))}</td>
+        </tr>
+        <tr>
+          <th>启用：</th>
+          <td> {foreach:items = IClient::supportClient() item = $client}
+            选择应用于{$client}端：
+            <select name="{$client}[{$theme}]" title='当客户用{$client}端访问网站时候，此主题模板会进行呈现'>
+              <option value="" selected="selected">不启用</option>
+              
+						{foreach:items=Common::getSitePlan('skin',$theme) key=$skin item=$skinItem}
+						
+              <option value="{$skin}" data="{$client}{$theme}{$skin}">{$skinItem['name']}</option>
+              
+						{/foreach}
+					
+            </select>
+            &nbsp;&nbsp;&nbsp;
+            {/foreach} <a href='{url:/system/conf_skin/theme/$theme}' class='orange' title='选择主题模板的皮肤颜色'>查看皮肤详情</a></td>
+        </tr>
+      </tbody>
+    </table>
+    <br />
+    {/foreach} </div>
+  <div class="pages_bar">
+    <div class="t_c">
+      <button type="submit" class="submit"><span>保存主题设置</span></button>
+    </div>
+  </div>
+</form>
+<script type="text/javascript">
+//主题模板数据初始化
+jQuery(function()
+{
+	var theme = {echo:JSON::encode(IWeb::$app->config['theme'])};
+	if(theme)
+	{
+		for(var k in theme)
+		{
+			var childObj = theme[k];
+			for(var i in childObj)
+			{
+				var checkKey = k+i+childObj[i];
+				$("option[data='"+checkKey+"']").attr("selected",true);
+			}
+		}
+	}
+});
+</script>
+<style type="text/css">
+.site{color:red;font-weight:bold;}
+.system{color:green;font-weight:bold;}
+.seller{color:orange;font-weight:bold;}
+</style>

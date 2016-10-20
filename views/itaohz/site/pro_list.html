@@ -1,0 +1,174 @@
+{set:$seo_data=array(); $site_config=new Config('site_config');}
+{set:
+	$goodsObj = search_goods::find(array('category_extend' => $this->childId));
+	$resultData = $goodsObj->find()
+}
+{set:$breadGuide = goods_class::catRecursion($this->catId)}
+{set:$seo_data['title'] = $this->catRow['title']?$this->catRow['title']:$this->catRow['name']}
+{set:$seo_data['title'].="_".$site_config->name}
+{set:$seo_data['keywords']=$this->catRow['keywords']}
+{set:$seo_data['description']=$this->catRow['descript']}
+{set:seo::set($seo_data);}
+<div class="position"> <span>您当前的位置：</span> <a href="{url:}">首页</a>{foreach:items=$breadGuide} » <a href="{url:/site/pro_list/cat/$item[id]}">{$item['name']}</a>{/foreach} </div>
+<div class="wrapper_1180">
+  <div id="searchItem" class="search_select_type">
+  {set:$districtSearchList = search_goods::$districtSearch}{if:$districtSearchList}
+      <div class="search_st_dl">
+      <div class="search_st_dt">商圈</div>
+      <div class="search_st_dd "> 
+            <div class="all_gz" id='district_dd'> 
+            <a class="nolimit current" href="{echo:search_goods::searchUrl('dist','')}">不限</a> 
+            {foreach:items = $districtSearchList} <a href="{echo:search_goods::searchUrl('dist',$item[id])}" id='district_{$item[id]}' title="{$item['name']}">{$item['name']}</a> {/foreach} 
+            </div>
+        </div>
+    </div>{/if}
+    {set:$brandList = search_goods::$brandSearch}
+    {if:$brandList}
+    <div class="search_st_dl ">
+      <div class="search_st_dt">品牌</div>
+      <div class="search_st_dd "> 
+        <div class="all_gz_a" id='brand_dd'> <a class="nolimit current" href="{echo:search_goods::searchUrl('brand','')}">不限</a> {foreach:items = $brandList} <a href="{echo:search_goods::searchUrl('brand',$item['id'])}" id='brand_{$item['id']}' title="{$item['name']}"><img src="{url:$item['logo']}" width="94" /></a> {/foreach} </div>
+        </div>
+    </div>{/if}
+    <div class="search_st_dl ">
+      <div class="search_st_dt">价格</div>
+      <div class="search_st_dd ">
+        <div class="all_gz" id='price_dd'> <a class="nolimit current" href="{echo:search_goods::searchUrl(array('min_price','max_price'),'')}">不限</a> {foreach:items=search_goods::$priceSearch}
+          {set:$priceZone = explode('-',$item)} <a href="{echo:search_goods::searchUrl(array('min_price','max_price'),array($priceZone[0],$priceZone[1]))}" id="{$priceZone[0]}-{$priceZone[1]}">{$item}</a> {/foreach} </div>
+      </div>
+    </div>
+    {set:$catSide = goods_class::catTree($this->catId)}
+    {if:$catSide}
+    <div class="search_st_dl ">
+      <div class="search_st_dt">{$this->catRow['name']}</div>
+      <div class="search_st_dd ">
+        <div class="all_gz"> {foreach:items=$catSide item=$first}<a href="{echo:search_goods::searchUrl('cat',$first[id])}">{$first['name']}</a> {/foreach} </div>
+      </div>
+    </div>
+    {/if}
+    
+    {foreach:items = search_goods::$attrSearch}
+    <div class="search_st_dl " name="itemList" style="display:none;">
+      <div class="search_st_dt"> <a href="javascript:;">{$item['name']}</a> </div>
+      <div class="search_st_dd ">
+        <div class="all_gz" id='attr_dd_{$item['id']}'>
+        <a class="nolimit current" href="{echo:search_goods::searchUrl('attr['.$item["id"].']','')}">不限</a> {foreach:items=$item['value'] item=$attr} <a href="{echo:search_goods::searchUrl('attr['.$item["id"].']',$attr)}" id="attr_{$item['id']}_{echo:md5($attr)}">{$attr}</a> {/foreach} </div>
+    </div>
+  </div>
+  {/foreach} </div>
+<!--<a href="javascript:;" class="more_options_bottom">更多选项<em class="mall_icn_arrow"></em></a>
+--><div class="search_result_box mt20 clear ">
+  <div class="mall_rankl">
+    <ul class="rank_left_ul clear">
+      <li class="first"> <a href="#"> 淘黄州承诺 </a> </li>
+      <li><em class="icn_zheng_s"></em><span class="f_song">假一赔十</span></li>
+      <li><em class="icn_di_s"></em><span class="f_song">贵一赔三</span></li>
+      <li><em class="icn_pei_s"></em><span class="f_song">先行赔付</span></li>
+      <li><em class="icn_piao_s"></em><span class="f_song">正规发票</span></li>
+      <li><em class="icn_song_s"></em><span class="f_song">定时发货</span></li>
+      <li><em class="icn_tui_s"></em><span class="f_song">退换无忧</span></li>
+      <li><em class="icn_jia_s"></em><span class="f_song">价优货实</span></li>
+    </ul>
+  </div>
+  <div class="mall_rankl">
+    <ul class="rank_left_ul clear">
+      <li class="first"> <a>排序</a> </li>
+      {foreach:items=search_goods::getOrderType()}
+      {set:$next = search_goods::getOrderValue($key)}
+      <li class="zr_hot {echo:search_goods::isOrderCurrent($key) ? 'current':''}"> <a href="{echo:search_goods::searchUrl('order',$next)}"> <em>{$item}</em><span></span> </a> </li>
+      {/foreach}
+      <li id="priceSelect" class="input_num"> <span class="input_l">
+        <input id="floorPrice" placeholder="￥" name="min_price" value="{echo:IFilter::act(IReq::get('min_price'),'url')}" onchange="checkPrice(this);" type="text" />
+        </span>-<span class="input_r">
+        <input id="ceilPrice" placeholder="￥" name="max_price" onchange="checkPrice(this);" value="{echo:IFilter::act(IReq::get('max_price'),'url')}" type="text" />
+        <input id="conformPrice" class="btn_ed4b4b" value="确定" onclick="priceLink();" type="button" />
+        </span> </li>
+    </ul>
+  </div>
+</div>
+<div class="pro_list mt10"> {if:$resultData}
+  {set:$listSize = search_goods::getListSize(IFilter::act(IReq::get('show_type')))}
+  {foreach:items=$resultData}
+  <li><a target="_blank" href="{url:/site/products/id/$item[id]}" class="goods_img"><img src="{url:/pic/thumb/img/$item[img]/w/280/h/280}" width="280" height="280"></a>
+    <h3>&nbsp;<a target="_blank" class="" href="{url:/site/products/id/$item[id]}" rel="nofollow" title="{$item['name']}">{$item['name']}</a></h3>
+    <div class="ptzj fr">{if:$item['seller_id']==0}平台自营{else:}优质商家{/if}</div>
+    <h4>&nbsp;<em>¥<b>{$item['sell_price']}</b></em>&nbsp;&nbsp;<p><i>¥{$item['market_price']}</i><u>立省{echo:round($item['market_price']-$item['sell_price'],2)}</u></p></h4>
+      <div class="icon_bydj">
+        <div class="sold f_r"><span>已售<em>{$item['sale']}</em>件</span><i></i></div>
+        <div class="icon_by" title="包邮"></div>
+        <div class="icon_fjf" title="返积分"></div>
+      </div>
+  </li>
+  {/foreach}
+  <div class="clear"></div>
+  {$goodsObj->getPageBar()}
+  
+  {else:}
+  <p class="display_list mt_10" style='margin-top:50px;margin-bottom:50px;text-align:center;'> <strong class="gray f14">对不起，没有找到相关商品</strong> </p>
+  {/if} </div>
+</div>
+<script type='text/javascript'>
+//价格跳转
+function priceLink()
+{
+	var minVal = $('[name="min_price"]').val();
+	var maxVal = $('[name="max_price"]').val();
+	if(isNaN(minVal) || isNaN(maxVal))
+	{
+		alert('价格填写不正确');
+		return '';
+	}
+	var urlVal = "{echo:IFilter::act(preg_replace('|&min_price=\w*&max_price=\w*|','',search_goods::searchUrl(array('min_price','max_price'),'')),'url')}";
+	window.location.href=urlVal+'&min_price='+minVal+'&max_price='+maxVal;
+}
+
+//价格检查
+function checkPrice(obj)
+{
+	if(isNaN(obj.value))
+	{
+		obj.value = '';
+	}
+}
+
+//筛选条件按钮高亮
+jQuery(function(){
+	{set:
+		$brand = IFilter::act(IReq::get('brand'),'int');
+	}
+
+	{if:$brand}
+	$('#brand_dd>a').removeClass('current');
+	$('#brand_{$brand}').addClass('current');
+	{/if}
+	{set:
+		$district = IFilter::act(IReq::get('dist'),'int');
+	}
+
+	{if:$district}
+	$('#district_dd>a').removeClass('current');
+	$('#district_{$district}').addClass('current');
+	{/if}
+
+
+
+	{set:$tempArray = IFilter::act(IReq::get('attr'),'url')}
+	{if:$tempArray}
+		{set:$json = JSON::encode(array_map('md5',$tempArray))}
+		var attrArray = {$json};
+		for(val in attrArray)
+		{
+			if(attrArray[val])
+			{
+				$('#attr_dd_'+val+'>a').removeClass('current');
+				document.getElementById('attr_'+val+'_'+attrArray[val]).className = 'current';
+			}
+		}
+	{/if}
+
+	{if:IReq::get('min_price') != ''}
+	$('#price_dd>a').removeClass('current');
+	$('#{echo:IReq::get('min_price')}-{echo:IReq::get('max_price')}').addClass('current');
+	{/if}
+});
+</script>

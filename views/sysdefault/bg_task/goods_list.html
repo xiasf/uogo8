@@ -1,0 +1,81 @@
+<div class="headbar">
+	<div class="position"><span>任务</span><span>></span><span>积分商城</span><span>></span><span>商品列表</span></div>
+	<div class="operating">
+		<a href="javascript:;"><button class="operating_btn" type="button" onclick="window.location='{url:/bg_task/goods_edit}'"><span class="addition">添加商品</span></button></a>
+	</div>
+	<div class="field">
+		<table class="list_table">
+			<col width="50px" />
+			<col width="350px" />
+			<col width="100px" />
+			<col width="100px" />
+			<col width="100px" />
+			<col width="100px" />
+			<col width="100px" />
+			<col width="100px" />
+			<col width="200px" />
+			<col />
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>名称</th>
+					<th>销量</th>
+					<th>库存</th>
+					<th>所需积分</th>
+					<th>排序</th>
+					<th>类型</th>
+					<th>状态</th>
+					<th>是否限制兑换次数</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
+<div class="content">
+	<table id="list_table" class="list_table">
+		<col width="50px" />
+		<col width="350px" />
+		<col width="100px" />
+		<col width="100px" />
+		<col width="100px" />
+		<col width="100px" />
+		<col width="100px" />
+		<col width="100px" />
+		<col width="200px" />
+		<col />
+		<tbody>
+			{query: name=task_goods order=is_lock asc, sort asc, id desc}
+			<tr>
+				<td>{$item['id']}</td>
+				<td class="orange"><img style="width: 50px;border: 0;" src='{url:/pic/thumb/img/$item[img]/w/50/h/50}' class='ico' />&nbsp;&nbsp;<b>{$item['name']}</b></td>
+				<td>{$item['sales']}件</td>
+				<td>剩余{$item['inventory']}件</td>
+				<td>{$item['integral']}积分</td>
+				<td>
+					<input type="number" value="{$item['sort']}" class="tiny" onchange="changeSort({$item['id']},this);" />
+				</td>
+				<td>{if:$item['type']==0}实物{else:}<span class="orange">虚拟</span>{/if}</td>
+				<td>{if:$item['is_lock']==0}<span class="orange">显示</span>{else:}锁定{/if}</td>
+				<td>{if:$item['limit_num']==0}<span class="orange">不限制</span>{else:}{$item['limit_num']}{/if}</td>
+				<td><a href="{url:/bg_task/goods_edit/id/$item[id]}"><img class="operator" src="{skin:images/admin/icon_edit.gif}" alt="修改" /></a><a href="javascript:void(0)" onclick="delModel({link:'{url:/bg_task/goods_del/id/$item[id]}'})"><img class="operator" src="{skin:images/admin/icon_del.gif}" alt="删除" /></a></td>
+			</tr>
+			{/query}
+		</tbody>
+	</table>
+</div>
+
+<script>
+//修改排序
+function changeSort(gid,obj)
+{
+	var selectedValue = obj.value;
+	$.getJSON(
+	     "/bg_task/ajax_goods_sort",
+		 {"id":gid,"sort":selectedValue},
+	     function(content) {
+			 if(content.result == 'succeed'){} else {alert("排序失败")}
+		}
+	)
+}
+</script>

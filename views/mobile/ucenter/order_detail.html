@@ -1,0 +1,194 @@
+{set:$item = $this->order_info;}
+{set:$orderStatus = Order_Class::getOrderStatus($item)} 
+<!--  <div class="proReduce_title" style="    border-bottom: 1px #ECECEC solid;">订单信息</div>
+  <div class="logistics_by_city" style="    "> {set:$orderStep = Order_Class::orderStep($this->order_info)}
+    <div class="by_city_info" style="    border-bottom: 1px #ECECEC solid;"> <i class="round"></i> <span>订单号</span> <em>{$item['order_no']}</em> </div>
+    {foreach:items=$orderStep item=$stepData key=$eventTime}
+    <div class="by_city_info" style=" "> <i class="round"></i> <span>{$eventTime}</span> <em>{$stepData}</em> </div>
+    {/foreach}
+    <div class="by_city_in"> <i class="round"></i> <span><b class="{if:$orderStatus >= 6}green{else:}orange{/if}">{echo:Order_Class::orderStatusText($orderStatus)}</b></span> </div>
+  </div>
+  
+   0 => '未知',
+			1 => '等待发货',
+			2 => '等待付款',
+			3 => '已发货',
+			4 => '等待收货',
+			5 => '已取消',
+			6 => '已完成',
+			7 => '已退款',
+			8 => '部分发货',
+			9 => '部分发货',
+			10=> '部分退款',
+			11=> '已发货',
+			12=> '申请退款',
+  
+  
+  --> 
+
+
+<!--新界面-->
+
+
+<section class="g_wrap m_orderDetail">
+  <header class="head">
+    <h3> {echo:Order_Class::orderStatusText($orderStatus)} </h3>
+    <p>
+    {if:in_array($orderStatus,array(5,7))}
+        系统自动关闭
+    {elseif:in_array($orderStatus,array(0,1,4))}
+        {query:name=order_voucher where=order_id eq $item[id] item=$voucher}
+        消费券：{$voucher['voucher']}
+        {/query}
+    {elseif:in_array($orderStatus,array(2))}
+        剩&nbsp;{$this->residualTime}&nbsp;自动关闭 
+    {/if}</p>
+    <i class="u_ico3 ico{$orderStatus}"></i> </header>
+  <div class="address3 mb15"> <i class="u_ico1 ico"></i> <span>收件人：{$item['accept_name']}</span><span>{$item['mobile']}</span>
+    <p>收件地址：{$item['addregion']}/{$item['address']}</p>
+  </div>
+   <div class="continfo mb15">
+    <p>订单编号：{$item['order_no']}</p>
+    <p>创建时间：{$item['create_time']}</p>
+  </div>
+  <div class="continfo mb15">
+    <h3>订单金额(含运费)<em class="f_fr cur">￥{$item['order_amount']}</em></h3>
+    <!--    <p>商品总额<em class="f_fr">￥172.00</em></p>
+-->
+    <p>运费总计<em class="f_fr">￥{$item['real_freight']}</em></p>
+  </div>
+  <div class="m_firm m_firm3 mb15">{set:$order_id=$item['id']}
+    {query:name=order_goods as og join=left join goods as go on og.goods_id eq go.id where=order_id eq $order_id field=og.*,go.point item=$good} 
+    <!--{set:$good_info = JSON::decode($good['goods_array']);$totalWeight = $good['goods_nums'] * $good['goods_weight']}-->
+    <header>
+      <h4 class="f_fl">{$good['name']}</h4>
+    </header>
+    <ul>
+      <li class="info f_clear list"> <a href="{url:/site/products/id/$good[id]}"> <img class="img f_fl " src="{webroot:$good[img]}"> </a>
+        <div class="cont f_fl">
+          <p> <a href="{url:/site/products/id/$good[id]}">{$good['name']}</a> </p>
+          <em> </em> </div>
+        <div class="cont2 f_fr"> <em>￥{$good['real_price']}</em>
+          <p>x{$good['goods_nums']}</p>
+        </div>
+      </li>
+    </ul>
+    {/query}
+    <div class="btn">小计：{echo:$good['goods_nums']*$good['real_price']}</div>
+  </div>
+ 
+  <div class="continfo mb15">
+    <p>发票<em class="f_fr">不需要发票</em></p>
+  </div>
+</section>
+<section class="m_balance f_clear">
+  <div class="select clearfix">
+  	<div class="adlert_kf" style="bottom: 50px;">
+			<p><a href="tel:15871815678">客服电话:158-7181-5678</a></p>
+		</div>
+  	<div id="serviceBtn" style="width:30%;float: left;">
+  		<a href="javascript:;" style="display: block;width: 50%;line-height: 40px;margin: 0px auto;">
+  			<i class="u_ico1 ico" style="background-position: -268px -180px;width: 28px;background-size: 483px auto;height: 28px;"></i>
+  			<em style="display: block;height: 15px;margin-top: -15px;line-height: 15px;color: #ddd;">客服</em>
+  		</a>
+  	</div>
+    <form action='{url:/ucenter/order_status}' method='post' onSubmit='return check()' name="orderForm">
+      <input type="hidden" name="order_id" value="{$this->order_info['order_id']}" />
+
+      {if:in_array($orderStatus,array(1,2))}
+      <a href="{url:/block/doPay/order_id/$this->order_info['order_id']}" class="btn-2 f_fr">立即付款</a>
+      <input type="hidden" name='op' value='cancel' />
+      <input type="submit" class="btn-2 f_fr" value="取消订单" />
+      {/if}
+      
+      {if:in_array($orderStatus,array(4,11,3))}
+      <input type="hidden" name='op' value='confirm' />
+      <input type="submit" class="btn-2 f_fr" value="确认收货" />
+      <!--<a href="{url:/ucenter/freight/id/$this->order_info['freight']['freight_id']/code/$this->order_info['freight']['delivery_code']/order/$item['order_no']}" class="btn-2 f_fr"/>快递跟踪</a>--> {/if}
+      
+      
+      {if:Order_Class::isRefundmentApply($this->order_info)}<!-- <a href="{url:/ucenter/refunds_edit/order_id/$this->order_info['order_id']}" class="comfim_r"/>申请退款</a> -->{/if}
+    </form>
+  </div>
+</section>
+<!--新界面结束-->
+<link rel="stylesheet" href="../skin/mall/page_1.css">
+<link rel="stylesheet" href="../skin/user/css/pptm.css">
+<link rel="stylesheet" href="../skin/user/css/rem.css">
+<script type="text/javascript">
+//DOM加载完毕
+$(function(){
+	//设置商品总重量
+	//$('[name="goods_weight"]').val({$totalWeight});
+});
+
+function check(){
+  layer.open({
+      content: '如果你没有收到货之前，确认收货会让你钱货两空<br />你确定需要这样做吗？',
+      btn: ['我已收到货', '我还没收到货'],
+      shadeClose: false,
+      yes: function(){
+         $('form[name=orderForm]').submit();
+         layer.closeAll();
+      }
+  });
+  return false;
+}
+
+//计算运费
+/*function countDelievey()
+{
+	var provinceId   = $('[name="province"]').val();
+	var total_weight = {$totalWeight};
+	var goodsSum     = {$item['real_amount']};
+	var distribution = {$item['distribution']};
+
+	$.getJSON('{url:/block/order_delivery}',{"province":provinceId,"total_weight":total_weight,"goodsSum":goodsSum,"distribution":distribution},function(json){
+		if(json)
+		{
+			//不能送达
+			if(json.if_delivery == 1)
+			{
+				alert('对不起，该地区不能送达，请您重新选择省份');
+				return;
+			}
+
+			//做订单差运算
+			var oldFreightFee  = $('#freightFee').text();
+			var oldOrderAmount = $('#order_amount').text();
+			var diff           = parseFloat(json.price) - parseFloat(oldFreightFee);
+			var diffAmount     = parseFloat(oldOrderAmount) + parseFloat(diff);
+
+			//更新数据
+			$('#freightFee').text(json.price);
+			$('#order_amount').text(diffAmount);
+		}
+	});
+}*/
+
+/*//快递单跟踪
+function exdelievey()
+{
+	art.dialog.open('{url:/block/exdelivery}',{title:'快递跟踪',width:"820px",height:"420px"});
+}
+
+//修改表单信息
+function editForm()
+{
+	$('#acceptShow').toggle();
+	$('#acceptForm').toggle();
+}*/
+
+
+var num=0;
+	$('#serviceBtn').click(function(){
+		if(num==0){
+			$('.adlert_kf').show();
+			num=1;
+		}else{
+				$('.adlert_kf').hide();
+				num=0;
+		}
+		
+	})
+</script> 

@@ -1,0 +1,21 @@
+{set:$seo_data=array();$site_config=new Config('site_config');$site_config=$site_config->getInfo();}
+{set:$seo_data['title']="商品搜索_".$site_config['name']}
+{set:seo::set($seo_data);}
+{set:$defaultWhere = array('search' => $this->word , 'category_extend' => $this->cat_id )}
+{set:$goodsObj = search_goods::find($defaultWhere);$resultData = $goodsObj->find();}
+
+<style>
+    .site_search {margin: 50px 0;text-align: center;}
+    .search_input {height: 30px;border: 1px red solid;width: 50%;}
+    .site_search .search_submit {height: 32px;background-color: #E81A62;color: #fff;border-radius: 5px;}
+</style>
+
+
+<div class="site_search">
+  <form action="/" method="get">
+      <input class="search_input" name="word" autocomplete="off" placeholder="输入关键字..." type="text">
+      <input class="search_submit" value="搜 索" type="submit" onclick="checkInput('word','输入关键字...');">
+      <input type="hidden" name="controller" value="site">
+      <input type="hidden" name="action" value="search_list">
+  </form>
+</div>

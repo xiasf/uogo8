@@ -1,0 +1,58 @@
+<div class="wrapper wrapper-content animated bounceInRight">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>团购</h5>
+        </div>
+        <div class="ibox-content">
+          <div class="row m-b-sm m-t-sm">
+            <div class="col-md-1"> <a class="btn btn-primary btn-sm" href="{url:/seller/regiment_edit}"><i class="fa fa-plus"></i>&nbsp;添加团购</a> </div>
+            <div class="col-md-11">
+              <div class="input-group">
+                <input type="text" placeholder="请输入名称" class="input-sm form-control">
+                <span class="input-group-btn">
+                <button type="button" class="btn btn-sm btn-primary"> 搜索</button>
+                </span> </div>
+            </div>
+          </div>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>选择</th>
+                <th>标题</th>
+                <th>团购时间</th>
+                <th>排序</th>
+                <th>状态</th>
+                <th>销售情况</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody>
+            
+            {set:$seller_id = $this->seller['seller_id'];}
+            {set:$page= (isset($_GET['page'])&&(intval($_GET['page'])>0))?intval($_GET['page']):1;}
+            {query:name=regiment where=seller_id eq $seller_id order=sort asc page=$page}
+            <tr>
+              <td><input type='checkbox' name='id[]' value='{$item['id']}' /></td>
+              <td><a href='{url:/site/groupon/id/$item[id]}' target='_blank' class="orange" title="{$item['title']}">{$item['title']}</a></td>
+              <td>{$item['start_time']} ～ {$item['end_time']}</td>
+              <td>{$item['sort']}</td>
+              <td>{echo:($item['is_close']==1) ? '关闭':'开启'}</td>
+              <td>{$item['sum_count']}/{$item['store_nums']}</td>
+              <td><a href="{url:/seller/regiment_edit/id/$item[id]}" class="btn btn-white btn-sm"><i class="fa fa-edit"></i>&nbsp;修改</a>&nbsp;&nbsp; <a href="javascript:void();" onClick="delModel('{url:/seller/regiment_del/id/$item[id]}')"  class="btn btn-white btn-sm"><i class="fa fa-times-circle"></i>&nbsp;删除</a></td>
+            </tr>
+            {/query}
+            </tbody>
+            
+            <tfoot>
+              <tr>
+                <td colspan="7">{$query->getPageBar()} </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>ajax测试json</title>
+		<script src="jquery-2.1.0.js"></script>
+	</head>
+	<body>
+		<input type="text" name="name" id="name" value="" /><span class="info_display"></span>
+		<input type="password" name="pass" id="pass" value="" /><span class="info_display"></span>
+		<p id="click">
+			点击
+		</p>
+	</body>
+	<script>
+		var bool=false;
+		$('#name').blur(function(e){
+			thisx=$(this)
+			ajax(thisx,'user','用户名错误')
+				
+		})
+		$('#pass').blur(function(){
+				thisx=$(this)
+				ajax(thisx,'pasd','密码错误')
+		})
+		
+		
+		function ajax(thisx,user,t_html){
+			$.post('json.json',function(data){
+				if(thisx.val()!=data[user]){
+					thisx.next('.info_display').html(t_html)
+				}else{
+					thisx.next('.info_display').html('√')
+				}
+			},'json');
+		}
+		
+		
+	</script>
+</html>

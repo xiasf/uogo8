@@ -1,0 +1,60 @@
+{set:
+
+    $from = array('TZX' => '招标', 'ZXB' => '装修保', 'TBJ' => '报价', 'TLF' => '量房', 'TSJ' => '设计', 'TJC' => '建材');
+    $budget = array('', '8-10万', '10-15万', '5-8万', '15万以上', '3万-5万', '3万以下');
+    $way = array('', '半包', '清包', 19 => '全包');
+}
+
+<link rel="stylesheet" type="text/css" href="skin/zb_detail/css/zb_show_style.css">
+<link rel="stylesheet" type="text/css" href="skin/tenders_list/css/zb_style.css">
+
+<div style="margin-top: 20px;" class="subwd_ container">
+<div id="slist_left">
+			<ul id="slist">
+				{set:$page = IReq::get('page') ? IFilter::act(IReq::get('page'),'int') : 1}
+				{query:name=zhaobiao order=id desc page=$page}
+
+				<li class="">
+					<div class="li_div_show">
+						<p>招标数</p>
+						<p style="color: red;">
+						<b class="pointcl">{$item['looks']}</b>位</p>
+					</div>
+				<div class="info">
+					<h2>
+										<a href="{url:v_deco/zb_detail/id/$item['id']}" target="_blank">{$item['title']}</a>
+										<em>发布时间：{$item['create_time']}</em></h2>
+					<p><span class="s1">项目类型：<b>{$from[$item['from']]}</b></span><span class="s2">建筑面积：<b>{$item['house_mj']}㎡</b></span><!--装修预算：<b>5-8万</b>--></p>
+					<p><span class="s1">装修类型：<b>{$way[$item['way_id']]}</b></span><!--<span class="s2">装修预算：<b>{$budget[$item['budget_id']]}</b></span>--></p>
+					<p class="tishi1">
+						<!--<b class="red">投标成功后请到后台查看业主联系方式</b>-->
+						<br>（联系装修用户时请说是淘黄州装修网推荐的，有助于获得装修用户的信任）
+					</p>
+					<div class="yaoqiu">
+						<span>装修要求：</span><p>2016-04-30，已交房,旧房（二手房）：局部,工程量：水电可能小改，地板不做，其他整体装修,明天上午可以量房，但要提前电话联系预约时间，满意的话就在5月初装修。考虑半包，具体面谈。。公司资质:要求口碑比较好，信誉比较有保证的公司,装修风格:中式,</p>
+					</div>
+					<div class="yaoqiu">
+						<span>参与要求：</span>
+						<p>
+							1、必须是本地的工商注册的正规公司。<br>
+							2、经过淘黄州资质认证以上级别，最好是精品公司
+						</p>
+					</div>
+				</div>
+				<!--<div class="oper">
+											<b>已满标</b>
+									-->
+				<!--
+					<br />
+											<input type="button" value="已完成" disabled="disabled" class="over" />
+									-->
+				<!--</div>-->
+			</li>
+			{/query}
+		</ul>
+	</div>
+
+	<div class="zgs_cl_right"><div class="zgs_clr_zsm"><span class="zcf_title">免费申请装修服务</span><span class="zcf_title_ext">优质装修公司免费帮您出方案</span><form class="mod_form" id="infoForm"><input name="ptag" type="hidden" value="1_4_2_4"><ul><li><input type="text" name="chenghu" class="yourname"><label>您的称呼</label></li><li><input type="text" name="phone" class="youriphone"><label>手机号码</label></li><li><select class="province" name="User_Shen" id="User_Shen" onchange="changeProvince('User_Shen','User_City','User_Town');"><option value="">省/市</option><option value="安徽">A 安徽</option><option value="北京">B 北京</option><option value="重庆">C 重庆</option><option value="福建">F 福建</option><option value="广西">G 广西</option><option value="贵州">G 贵州</option><option value="广东">G 广东</option><option value="甘肃">G 甘肃</option><option value="海南">H 海南</option><option value="湖北">H 湖北</option><option value="黑龙江">H 黑龙江</option><option value="河南">H 河南</option><option value="河北">H 河北</option><option value="湖南">H 湖南</option><option value="江苏">J 江苏</option><option value="吉林">J 吉林</option><option value="江西">J 江西</option><option value="辽宁">L 辽宁</option><option value="内蒙古">N 内蒙古</option><option value="宁夏">N 宁夏</option><option value="澳门">O 澳门</option><option value="青海">Q 青海</option><option value="四川">S 四川</option><option value="陕西">S 陕西</option><option value="上海">S 上海</option><option value="山东">S 山东</option><option value="山西">S 山西</option><option value="台湾">T 台湾</option><option value="天津">T 天津</option><option value="西藏">X 西藏</option><option value="香港">X 香港</option><option value="新疆">X 新疆</option><option value="云南">Y 云南</option><option value="浙江">Z 浙江</option></select><select class="city" name="User_City" id="User_City" onchange="changeTown('User_Shen','User_City','User_Town');"><option value="">市/地区</option><option value="1"></option></select><div style="display:none;"><select class="langSelect" id="User_Town" name="User_Town"><option>县/区</option></select></div></li></ul><input type="submit" submit_type="ajax_select3" value="免费帮您推荐1-3家公司" class="zcz_btn"></form></div><div class="zgs_clr_fc"><span class="zcf_title">在淘黄州找装修公司，<br>比任何渠道便宜20%以上；<br>施工质量严格监管，高于行业标准。</span><ul><li><span class="zcf_kxy"></span><b>不懂装修注意事项？</b><em>淘黄州300名家装顾问.免费一对一帮你解疑惑。</em></li><li><span class="zcf_bfa"></span><b>不懂验房和装修验收？</b><em>200名专业监理免费帮你做5次验收，1次突击检查。</em></li><li><span class="zcf_bbj"></span><b>怕装修猫腻、偷工减料？</b><em>"五星服务"、"四标规范"免费帮你做把控。</em></li><li><span class="zcf_bbz"></span><b>怕给了钱，质量没保障？</b><em>"装修保"免费帮你保障，满意了才付装修款。</em></li></ul><input type="button" value="享受省心的装修服务" class="zcz_btn" onclick="freeBooking({toid:0,s_source:75, ptag:'1_5_1_13'},1);"></div></div>
+
+		<div class="pagebar">{$query->getPageBar()}</div>
+</div>

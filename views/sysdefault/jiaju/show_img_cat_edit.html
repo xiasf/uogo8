@@ -1,0 +1,48 @@
+<div class="headbar">
+	<div class="position"><span>家居建材</span><span>></span><span>装修效果图分类</span><span>></span><span>{if:isset($this->show_img_catRow['id'])}编辑{else:}添加{/if}装修效果图分类</span></div>
+</div>
+<div class="content_box">
+	<div class="content form_content">
+		<form action="{url:/jiaju/show_img_cat_edit_act}" method="post" name='show_img_cat_edit' callback="invalid_callback('rule_table');" enctype="multipart/form-data">
+			<input type='hidden' name='id' />
+			<table class="form_table" name="rule_table">
+				<col width="150px" />
+				<col />
+				<tr>
+					<th>分类名称：</th>
+					<td><input type='text' class='normal' name='name' pattern='required' alt='请填写活动名称' /><label>* 填写分类名称</label></td>
+				</tr>
+				<tr>
+					<th>排序：</th>
+					<td><input style="width:50px;" type='text' class='normal' name='sort' pattern='required' alt='请填写活动排序' /><label>* 填写分类排序</label></td>
+				</tr>
+			</table>
+			<button class="submit" type='submit'><span>确 定</span></button>
+		</form>
+	</div>
+</div>
+
+<script type='text/javascript'>
+
+	//校验回调
+	function invalid_callback(nameVal)
+	{
+		if($('.invalid-text').length > 0)
+		{
+			var parentObj = $('.invalid-text:eq(0)').parents('[name="'+nameVal+'"]');
+			$('[name="'+nameVal+'"]').index(parentObj);
+			select_tab($('[name="'+nameVal+'"]').index(parentObj));
+			return false;
+		}
+		return true;
+	}
+
+	//表单回填
+	var formObj = new Form('show_img_cat_edit');
+	formObj.init
+	({
+		'id':'{$this->show_img_catRow['id']}',
+		'name':'{$this->show_img_catRow['name']}',
+		'sort':'{$this->show_img_catRow['sort']}',
+	});
+</script>

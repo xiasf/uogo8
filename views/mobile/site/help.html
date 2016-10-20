@@ -1,0 +1,21 @@
+<div class="pending-detial">
+    <h2 class="tips_msgx">
+        <p>
+关于淘黄州
+        </p>
+    </h2>
+
+    <div class="tips_back">
+        您现在可以去：
+        {set:$callback = IFilter::act(IReq::get('callback'),'text')}
+        {if:$callback}
+        <a class="blue" href="{url:$callback}">继续操作 >></a>
+        {/if}
+
+        {if:$this->user['user_id']}
+        <a class="blue" href="{url:/ucenter/index}">个人中心 >></a>
+        {/if}
+
+        <a class="blue" href="{url:/site/index}">网站首页 >></a>
+    </div>
+</div>

@@ -1,0 +1,154 @@
+{set:
+
+$user_info = Api::run('getMemberInfo', $this->user['user_id']);
+
+}
+
+<style type="text/css">
+.task_top_right{
+	display: block;
+	width: 100px;
+	height: 28px;
+	line-height: 28px;
+	float: right;
+	text-align: center;
+	background-color: #27CE79;
+	transform: rotate(45deg);
+	color: #fff;
+	position: absolute;
+	right: -31px;
+	top: 4px;
+	font-size: 12px;
+	z-index:999;
+}
+.por_long_war{
+	    width: 100%;
+    height: 5px;
+    background: rgba(0, 0, 0, 0.34);
+    position: absolute;
+    bottom: 60px;
+    z-index: 999;
+    left: 0;
+	}
+	.por_long{
+	    width: 0%;
+	    height: 5px;
+	    background: red;
+	    position: absolute;
+	    top: 0;
+	    z-index: 999;
+	    left: 0;
+	    background: linear-gradient(to right,#A019CE,#FB2FAF);
+	    opacity: .8;
+	        transition: ease 1s all;
+    -webkit-transition: ease 1s all;
+    -moz-transition: ease 1s all;
+    -ms-transition: ease 1s all;
+    -o-transition: ease 1s all;
+	}
+	.hide {
+		opacity: 0;
+			        transition: ease 1s all;
+    -webkit-transition: ease 1s all;
+    -moz-transition: ease 1s all;
+    -ms-transition: ease 1s all;
+    -o-transition: ease 1s all;
+	}
+</style>
+<div class="task_box">
+   <header class="headerbanner">
+    <figure> <img src="skin/task/images/user_bg.jpg" width="100%" height="auto" alt="bg">
+      <figcaption> <img src="{webroot:$this->user['head_ico']}" onerror="this.src='{theme:skin/user/images/user_ico.gif}'" alt="header" style="background-color:#fff">
+        <h2>{$this->user['true_name']}</h2>
+        <h2>{$this->user['username']}</h2>
+        <h2>余额：<b>￥{$user_info['balance']}</b> </h2>
+         <h2> 积分：<b>{$user_info['point']}</b></h2>
+      </figcaption>
+    </figure>
+  </header>
+  <ul class="nav">
+  	<li><a href="{url:/task/task_user}?status=0">进行中<i>（-）</i></a></li>
+  	<li><a href="{url:/task/task_user}?status=1">已完成<i>（-）</i></a></li>
+  	<li><a href="{url:/task/task_user}?status=2">失败<i>（-）</i></a></li>
+  	<li><a href="{url:task/goods_list}">积分商城</a></li>
+  </ul>
+  <ul class="task_list">
+	{foreach:items=$task_list}
+		<li data-task_id="{$item['task_id']}" data-user_task_id="{$item['user_task_id']}">
+		<div class="por_long_war">
+			<div class="por_long"></div>
+		</div>
+		<div class="task_top_right hide">已完成</div>
+		<!-- {if:$item['status']==1}<div class="task_top_right">已完成</div>{elseif:$item['status']==2}<div class="task_top_right" style="background: red">失败</div>{/if} -->
+			<a href="{url:task/task_user_info/user_task_id/$item['user_task_id']}">
+
+				<img class="task_img" src="{webroot:$item['banner']}" />
+				<p>{$item['describe']}</p>
+			</a>
+			<!-- <p class="task_status"></p> -->
+			<span class="task_span" style="border-bottom: 1px solid #f5f5f5; ">
+				<p class="title t_left">{$item['title']}</p>
+				<p class="title t_right">{$item['rewards']}积分</p>
+			</span>
+			<span class="task_span">
+				<a href="#">已有{$item['participants_counts']}人参与</a>
+				<a>
+				
+{if:$item['completion_time'] != '0000-00-00 00:00:00'}
+完成时间：{$item['completion_time']}
+{elseif:$item['update_time'] != '0000-00-00 00:00:00'}
+更新时间：{$item['update_time']}
+{else:}
+领取时间：{$item['create_time']}
+{/if}
+
+				</a>
+			</span>
+		</li>
+		{/foreach}
+	</ul>
+</div>
+<script type="text/javascript">
+	var str_url=location.href;
+	var cheke=str_url.substr(str_url.length-1,1);
+	var cheke_li_text=$('.nav').find('li').eq(cheke).text();
+	$('.task_status').text(cheke_li_text);
+	if(isNaN(cheke)){
+		$('.nav').find('li').eq(0).attr('class','cheke')
+	}
+	$('.nav').find('li').eq(cheke).attr('class','cheke')
+	var task_user_url	= "{url:task/taskUserCount}";
+	var task_nav_i		= $('.nav li a i');
+	$.getJSON(task_user_url,function(result){
+		if(typeof result.errCode != "undefined"){
+			alert(result.errMsg);
+		} else {
+			task_nav_i.eq(0).text('（'+result.ongoing+'）')
+			task_nav_i.eq(1).text('（'+result.complete+'）')
+			task_nav_i.eq(2).text('（'+result.failure+'）')
+		}
+	})
+	var rec_task_url  = "{url:task/getTaskProgress}";
+
+	function get_r(li, task_id, user_task_id){
+		$.getJSON(rec_task_url + '?' + Math.random(), {id:task_id, user_task_id:user_task_id}, function(result){
+			if(typeof result.errCode != "undefined"){
+				alert(result.errMsg);
+			} else {
+				$bi = result[0] / result[1];
+				li.find('.por_long_war .por_long').css('width', ($bi) * 100 + '%');
+				if ($bi == 1) {
+					setTimeout(function(){
+						li.find('.task_top_right').css('opacity', 1);
+						li.find('.por_long_war').css('opacity', 0);
+					}, 1000);
+				}
+			}
+		});
+	}
+
+
+	$('ul.task_list').find('li').each(function(i, v){
+		get_r($(this), $(this).data('task_id'), $(this).data('user_task_id'));
+	});
+</script>

@@ -1,0 +1,16 @@
+{set:$user_id = $this->user['user_id']}
+
+<section id="orderList" class="g_wrap">
+  {set:$page = IReq::get('page') ? IFilter::act(IReq::get('page'),'int') : 1}
+  {query:name=zhaobiao page=$page where=user_id eq $user_id order=id desc} 
+  <a href="{url:/ucenter/zhaobiao_detail/id/$item['id']}"><div name="itemList" class="m_firm m_firm3">
+    <header><h4 class="f_fl"></h4><span class="f_fr">{$item['title']}</span></header>
+    <p class="txt">已有<em>{$item['looks']}</em>家公司竞标</p>
+    <p class="txt"> <em>{$item['create_time']}</em></p>
+  </div></a>
+  {/query}
+  <div>{$query->getPageBar()}</div>
+</section>
+<link rel="stylesheet" href="../skin/mall/page_1.css">
+<link rel="stylesheet" href="../skin/user/css/pptm.css">
+<link rel="stylesheet" href="../skin/user/css/rem.css">

@@ -1,0 +1,57 @@
+<div class="wrapper clearfix container">
+	<div class="wrap_box">
+		<div class="error box clearfix">
+			<table class="form_table prompt_3">
+				<colgroup>
+					<col width="320px" />
+					<col />
+				</colgroup>
+
+				<tbody>
+					<tr>
+						<th><img src="{skin:images/front/right.gif}" width="48px" height="51px" /></th>
+						<td>
+							<strong class="fs18">
+							&nbsp;&nbsp;{echo:IReq::get('message') ? IFilter::act(IReq::get('message'),'text') : '操作成功！'}
+							</strong>
+
+							{set:$order_id = IReq::get('order_id')}
+            {if:$order_id}
+            {query:name=order_voucher where=order_id eq $order_id}
+                <div style="    font-size: 40px;
+    color: #F36F27;">{$item['voucher']}</div>
+                <h2>请记住您的消费凭证</h2>
+                <img src="{url:block/qrcode/txt/$item['voucher']}" width='300' height='300' style="margin: 0 auto;" />
+            {/query}
+            {/if}
+
+						</td>
+					</tr>
+
+					<tr>
+						<th></th>
+						<td>
+							您现在可以去：
+							{set:$callback = IFilter::act(IReq::get('callback'),'text')}
+							{if:$callback}
+							<a class="f_c_e81a62" href="{url:$callback}">继续操作 >></a>
+							{/if}
+
+							{if:$this->user['user_id']}
+							<a class="f_c_e81a62" href="{url:/ucenter/index}">个人中心 >></a>
+							{/if}
+
+							{set:$email = IFilter::act(IReq::get('email'))}
+							{if:$email}
+							<a class="f_c_e81a62" href="{url:/simple/send_check_mail/email/$email}">重新发送验证邮件 >></a>
+							{/if}
+
+							<a class="f_c_e81a62" href="{url:/site/index}">网站首页</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<!-- -->

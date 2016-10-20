@@ -1,0 +1,354 @@
+{set:$seller_name = $this->seller['seller_name'];}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<title>淘黄州商户后台管理系统</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link rel="shortcut icon" href="/favicon.ico#http://">
+<script type="text/javascript">if (top.location != self.location)top.location=self.location;</script>
+</head>
+<body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
+<div id="wrapper"> 
+  <!--顶部通栏-->
+  <div class="row border-bottom">
+    <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+      <div class="navbar-header"><a href="{url:/sellermain/index}" class="logo"><img src="img/logo.png"></a></div>
+      <ul class="nav navbar-top-links navbar-right">
+        <li class="dropdown"> <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#"> <i class="fa fa-envelope"></i> <span class="label label-warning">0</span> </a>
+          <ul class="dropdown-menu dropdown-messages">
+            <!--              <li class="m-t-xs">
+                <div class="dropdown-messages-box"> <a href="#" class="pull-left"> <img alt="image" class="img-circle" src="img/a7.jpg"> </a>
+                  <div class="media-body"> <small class="pull-right">46小时前</small> <strong>小四</strong> 这个在日本投降书上签字的军官，建国后一定是个不小的干部吧？ <br>
+                    <small class="text-muted">3天前 2014.11.8</small> </div>
+                </div>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <div class="dropdown-messages-box"> <a href="#" class="pull-left"> <img alt="image" class="img-circle" src="img/a4.jpg"> </a>
+                  <div class="media-body "> <small class="pull-right text-navy">25小时前</small> <strong>国民岳父</strong> 如何看待“男子不满自己爱犬被称为狗，刺伤路人”？——这人比犬还凶 <br>
+                    <small class="text-muted">昨天</small> </div>
+                </div>
+              </li>
+-->
+            <li class="divider"></li>
+            <li>
+              <div class="text-center link-block"> <a class="J_menuItem" href="mailbox.html"> <i class="fa fa-envelope"></i> <strong> 查看所有消息</strong> </a> </div>
+            </li>
+          </ul>
+        </li>
+        <li class="dropdown"> <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#"> <i class="fa fa-bell"></i> <span class="label label-primary">0</span> </a>
+          <ul class="dropdown-menu dropdown-alerts">
+            <!--              <li> <a href="#">
+                <div> <i class="fa fa-envelope fa-fw"></i> 您有16条未读消息 <span class="pull-right text-muted small">4分钟前</span> </div>
+                </a> </li>
+              <li class="divider"></li>
+-->
+            <li class="divider"></li>
+            <li>
+              <div class="text-center link-block"> <a class="J_menuItem" href="#"> <strong>查看所有 </strong> <i class="fa fa-angle-right"></i> </a> </div>
+            </li>
+          </ul>
+        </li>
+        <li class="hidden-xs"> <a href="/" target="_blank"><i class="fa fa-home"></i> 淘黄州</a> </li>
+        <li class="dropdown hidden-xs"> <a class="right-sidebar-toggle" aria-expanded="false"> <i class="fa fa-tasks"></i> 主题 </a> </li>
+      </ul>
+    </nav>
+  </div>
+  <!--左侧导航开始-->
+  <nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="nav-close"><i class="fa fa-times-circle"></i> </div>
+    <div class="sidebar-collapse">
+      <ul class="nav" id="side-menu">
+        <li class="nav-header">
+          <div class="dropdown profile-element">
+                <div class="rain">
+                    <div class="border start">
+                        <img alt="image" width="64px" height="64px" style="border-radius: 50%;" src="../img/face_def.png">
+                    </div>
+                </div>
+                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                    <span class="clear">
+                        <span class="block m-t-xs"><strong class="font-bold">{$seller_name}</strong></span>
+                        <span class="text-muted text-xs block">账户设置<b class="caret"></b></span>
+                    </span>
+                </a>
+
+<!--             <span>
+                <img alt="image" class="img-circle" src="img/face_def.png" width="64" height="64">
+            </span>
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                <span class="clear">
+                    <span class="block m-t-xs"><strong class="font-bold">{$seller_name}</strong></span>
+                    <span class="text-muted text-xs block">账户设置<b class="caret"></b></span>
+                </span>
+            </a> -->
+
+            <ul class="dropdown-menu animated fadeInRight m-t-xs">
+              <li><a class="J_menuItem" href="{url:seller/index}">修改头像</a> </li>
+              <li><a class="J_menuItem" href="{url:/seller/seller_edit}">修改密码</a> </li>
+              <li class="divider"></li>
+              <li><a href="{url:/systemseller/logout}">安全退出</a> </li>
+            </ul>
+          </div>
+          <div class="logo-element">淘黄州</div>
+        </li>
+        <!--        <li> <a href="#"> <i class="fa fa-home"></i> <span class="nav-label">主页</span> <span class="fa arrow"></span> </a>
+          <ul class="nav nav-second-level">
+            <li> <a class="J_menuItem" href="index_v1.html" data-index="0">主页示例一</a> </li>
+            <li> <a class="J_menuItem" href="index_v2.html">主页示例二</a> </li>
+            <li> <a class="J_menuItem" href="index_v3.html">主页示例三</a> </li>
+            <li> <a class="J_menuItem" href="index_v4.html">主页示例四</a> </li>
+            <li> <a href="index_v5.html" target="_blank">主页示例五</a> </li>
+          </ul>
+        </li>
+        <li> <a class="J_menuItem" href="layouts.html"><i class="fa fa-columns"></i> <span class="nav-label">布局</span></a> </li>--> 
+        
+        <!--       <li> <a href="mailbox.html"><i class="fa fa-envelope"></i> <span class="nav-label">信箱 </span><span class="label label-warning pull-right">16</span></a>
+          <ul class="nav nav-second-level">
+            <li><a class="J_menuItem" href="mailbox.html">收件箱</a> </li>
+            <li><a class="J_menuItem" href="mail_detail.html">查看邮件</a> </li>
+            <li><a class="J_menuItem" href="mail_compose.html">写信</a> </li>
+          </ul>
+        </li>
+-->
+
+        <li> <a href="#"><i class="fa fa-money"></i> <span class="nav-label">消费验证</span><span class="fa arrow"></span></a>
+          <ul class="nav nav-second-level">
+            <li><a class="J_menuItem" href="{url:/seller/voucher}">验证消费券</a> </li>
+            <li><a class="J_menuItem" href="{url:/seller/voucher_list}">未用消费券</a> </li>
+          </ul>
+        </li>
+        <li> <a href="#"><i class="fa fa-desktop"></i> <span class="nav-label">商品</span><span class="fa arrow"></span></a>
+          <ul class="nav nav-second-level">
+            <li><a class="J_menuItem" href="{url:/seller/goods_list}">商品库<span class="label label-warning pull-right">{echo:statistics::goodsCount($this->seller['seller_id'])}</span></a></li>
+            <li><a class="J_menuItem" href="{url:/seller/goods_edit}">添加商品</a></li>
+            <!--<li><a class="J_menuItem" href="{url:/seller/share_list}">平台共享商品</a></li>-->
+            <li><a class="J_menuItem" href="{url:/seller/refer_list}">商品咨询<span class="label label-primary pull-right">{echo:statistics::referWaitCount($this->seller['seller_id'])}</span></a></li>
+            <li><a class="J_menuItem" href="{url:/seller/comment_list}">商品评价<span class="label label-success pull-right">{echo:statistics::commentCount($this->seller['seller_id'])}</span></a></li>
+            <li><a class="J_menuItem" href="{url:/seller/refundment_list}">商品退款<span class="label label-danger pull-right">{echo:statistics::refundsCount($this->seller['seller_id'])}</span></a></li>
+            <li><a class="J_menuItem" href="{url:/seller/spec_list}">商品规格</a></li>
+            <li><a class="J_menuItem" href="{url:/seller/category_list}">商品分类</a></li>
+          </ul>
+        </li>
+        <li> <a href="#"><i class="fa fa-heartbeat"></i> <span class="nav-label">折扣活动</span><span class="fa arrow"></span></a>
+          <ul class="nav nav-second-level">
+            <!--<li><a class="J_menuItem" href="{url:/seller/regiment_list}">团购</a></li>-->
+            <li><a class="J_menuItem" href="{url:/seller/pro_rule_list}">促销</a></li>
+          </ul>
+        </li>
+        <li> <a href="#"><i class="fa fa-map-pin"></i> <span class="nav-label">店铺</span><span class="fa arrow"></span></a>
+          <ul class="nav nav-second-level">
+            <li><a class="J_menuItem" href="{url:/seller/shop_list}">店铺</a></li>
+<!--            <li><a class="J_menuItem" href="{url:/seller/shop_edit}">添加店铺</a></li>
+-->            <li> <a href="#"><i class="fa fa-truck"></i> <span class="nav-label">物流配送</span><span class="fa arrow"></span></a>
+              <ul class="nav nav-second-level">
+                <li><a class="J_menuItem" href="{url:/seller/delivery}">物流配送</a></li>
+                <li><a class="J_menuItem" href="{url:/seller/ship_info_list}">发货地址</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li> <a class="J_menuItem" href="{url:/seller/order_list}"><i class="fa fa-cart-plus"></i> <span class="nav-label">订单 </span></a>
+        </li>
+<!--        <li> <a href="#"><i class="fa fa-users"></i> <span class="nav-label">店员 </span><span class="fa arrow"></span></a>
+          <ul class="nav nav-second-level">
+            <li><a class="J_menuItem" href="{url:/seller/clerk_list}">店员列表</a></li>
+            <li><a class="J_menuItem" href="{url:/seller/clerk_edit}">添加店员</a></li>
+          </ul>
+        </li>-->
+        <li> <a href="#"> <i class="fa fa fa-bar-chart-o"></i> <span class="nav-label">销售提现</span> <span class="fa arrow"></span> </a>
+          <ul class="nav nav-second-level">
+            <!--<li><a class="J_menuItem" href="{url:/seller/account}">销售额统计</a></li>-->
+            <li> <a class="J_menuItem" href="{url:/seller/order_goods_list}">货款提现</a> </li>
+            <li> <a class="J_menuItem" href="{url:/seller/bill_list}">提现进度</a> </li>
+            <li> <a class="J_menuItem" href="{url:/seller/seller_bank}">提现银行卡</a> </li>
+          </ul>
+        </li>
+
+
+        {if:$this->seller['user_type'] == 11111}
+
+
+        <li> <a href="#"> <i class="fa fa fa-bar-chart-o"></i> <span class="nav-label">招标大厅</span> <span class="fa arrow"></span> </a>
+          <ul class="nav nav-second-level">
+            <!--<li><a class="J_menuItem" href="{url:/seller/account}">销售额统计</a></li>-->
+            <li> <a class="J_menuItem" href="{url:/seller/zhaobiao_list}">招标列表</a> </li>
+          </ul>
+        </li>
+
+        {/if}
+
+      </ul>
+    </div>
+  </nav>
+  <!--左侧导航结束--> 
+  <!--右侧部分开始-->
+  <div id="page-wrapper" class="gray-bg dashbard-1">
+    <div class="row content-tabs">
+      <button class="roll-nav roll-left" id="navbar-minimalize"><i class="fa fa-bars"></i> </button>
+      <nav class="page-tabs">
+        <div class="page-tabs-content"><a href="{url:seller/index}" class="J_menuItem">欢迎</a> <a class="J_menuItem" href="{url:/seller/voucher}">消费券</a><a class="J_menuItem" href="{url:/seller/goods_list}">商品库</a><a class="J_menuItem" href="{url:/seller/shop_list}">店铺</a><a class="J_menuItem" href="{url:/seller/order_list}">订单</a><a class="J_menuItem" href="{url:/seller/order_goods_list}">货款</a><a class="J_menuItem" href="{url:/seller/pro_rule_list}">促销</a></div>
+      </nav>
+      <!--     <button class="roll-nav roll-right"><i class="fa fa-backward"></i> </button>
+      <button class="roll-nav roll-right"><i class="fa fa-forward"></i> dsfdsf</button>-->
+      <div class="btn-group roll-nav roll-right">
+        <button class="dropdown J_tabClose" data-toggle="dropdown">更多操作<span class="caret"></span> </button>
+        <ul role="menu" class="dropdown-menu dropdown-menu-right">
+          <!--          <li class="J_tabShowActive"><a>定位当前选项卡</a> </li>
+          <li class="divider"></li>
+-->
+          <li class="J_tabCloseAll"><a>关闭全部选项卡</a> </li>
+          <li class="J_tabCloseOther"><a>关闭其他选项卡</a> </li>
+        </ul>
+      </div>
+      <a href="{url:/systemseller/logout}" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a> </div>
+    <div class="row J_mainContent" id="content-main">
+      <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="{url:seller/index}" frameborder="0" seamless></iframe>
+    </div>
+    <div class="footer">
+      <div class="pull-right">&copy; 2015-2016 <a href="http://www.itaohz.com/" target="_blank">淘黄州 - 一家专做家居生活的特卖网站</a> </div>
+    </div>
+  </div>
+  <!--右侧部分结束--> 
+  <!--右侧边栏开始-->
+  <div id="right-sidebar">
+    <div class="sidebar-container">
+      <ul class="nav nav-tabs navs-3">
+        <li class="active"> <a data-toggle="tab" href="#tab-1"> <i class="fa fa-gear"></i> 主题 </a> </li>
+        <li class=""><a data-toggle="tab" href="#tab-2"> 通知 </a> </li>
+        <li><a data-toggle="tab" href="#tab-3"> 任务 </a> </li>
+      </ul>
+      <div class="tab-content">
+        <div id="tab-1" class="tab-pane active">
+          <div class="sidebar-title">
+            <h3> <i class="fa fa-comments-o"></i> 主题设置</h3>
+            <small><i class="fa fa-tim"></i> 你可以从这里选择和预览主题的布局和样式，这些设置会被保存在本地，下次打开的时候会直接应用这些设置。</small> </div>
+          <div class="skin-setttings"> 
+            <!--<div class="title">主题设置</div>
+            <div class="setings-item"> <span>收起左侧菜单</span>
+              <div class="switch">
+                <div class="onoffswitch">
+                  <input type="checkbox" name="collapsemenu" class="onoffswitch-checkbox" id="collapsemenu">
+                  <label class="onoffswitch-label" for="collapsemenu"> <span class="onoffswitch-inner"></span> <span class="onoffswitch-switch"></span> </label>
+                </div>
+              </div>
+            </div>
+            <div class="setings-item"> <span>固定顶部</span>
+              <div class="switch">
+                <div class="onoffswitch">
+                  <input type="checkbox" name="fixednavbar" class="onoffswitch-checkbox" id="fixednavbar">
+                  <label class="onoffswitch-label" for="fixednavbar"> <span class="onoffswitch-inner"></span> <span class="onoffswitch-switch"></span> </label>
+                </div>
+              </div>
+            </div>
+            <div class="setings-item"> <span> 固定宽度 </span>
+              <div class="switch">
+                <div class="onoffswitch">
+                  <input type="checkbox" name="boxedlayout" class="onoffswitch-checkbox" id="boxedlayout">
+                  <label class="onoffswitch-label" for="boxedlayout"> <span class="onoffswitch-inner"></span> <span class="onoffswitch-switch"></span> </label>
+                </div>
+              </div>
+            </div>
+            <div class="title">皮肤选择</div>-->
+            <div class="setings-item default-skin nb"> <span class="skin-name "> <a href="#" class="s-skin-0"> 默认主题 </a> </span> </div>
+            <div class="setings-item blue-skin nb"> <span class="skin-name "> <a href="#" class="s-skin-1"> 蓝色主题 </a> </span> </div>
+            <div class="setings-item yellow-skin nb"> <span class="skin-name "> <a href="#" class="s-skin-3"> 黄色/紫色主题 </a> </span> </div>
+          </div>
+        </div>
+        <div id="tab-2" class="tab-pane">
+          <div class="sidebar-title">
+            <h3> <i class="fa fa-comments-o"></i> 最新通知</h3>
+            <small><i class="fa fa-tim"></i> 您当前有0条未读信息</small> </div>
+          <div> 
+            <!--<div class="sidebar-message"> <a href="#">
+              <div class="pull-left text-center"> <img alt="image" class="img-circle message-avatar" src="img/a4.jpg"> </div>
+              <div class="media-body"> 我发起了一个投票 【你认为下午大盘会翻红吗？】 <br>
+                <small class="text-muted">星期一 8:37</small> </div>
+              </a> </div>--> 
+          </div>
+        </div>
+        <div id="tab-3" class="tab-pane">
+          <div class="sidebar-title">
+            <h3> <i class="fa fa-cube"></i> 最新任务</h3>
+            <small><i class="fa fa-tim"></i> 您当前有0个任务，0个已完成</small> </div>
+          <ul class="sidebar-list">
+            <!--<li> <a href="#">
+              <div class="small pull-right m-t-xs">9小时以后</div>
+              <h4>市场调研</h4>
+              按要求接收教材；
+              <div class="small">已完成： 22%</div>
+              <div class="progress progress-mini">
+                <div style="width: 22%;" class="progress-bar progress-bar-warning"></div>
+              </div>
+              <div class="small text-muted m-t-xs">项目截止： 4:00 - 2015.10.01</div>
+              </a> </li>-->
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--右侧边栏结束--> 
+  <!--mini聊天窗口开始-->
+  <!--<div class="small-chat-box fadeInRight animated">
+    <div class="heading" draggable="true"> <small class="chat-date pull-right"> 2015.9.1 </small> 与 Beau-zihan 聊天中 </div>
+    <div class="content"> 
+            <div class="left">
+        <div class="author-name"> Beau-zihan <small class="chat-date"> 10:02 </small> </div>
+        <div class="chat-message active"> 你好 </div>
+      </div>
+      <div class="right">
+        <div class="author-name"> 游客 <small class="chat-date"> 11:24 </small> </div>
+        <div class="chat-message"> 你好，请问H+有帮助文档吗？ </div>
+      </div>
+      <div class="left">
+        <div class="author-name"> Beau-zihan <small class="chat-date"> 08:45 </small> </div>
+        <div class="chat-message active"> 有，购买的H+源码包中有帮助文档，位于docs文件夹下 </div>
+      </div>
+      <div class="right">
+        <div class="author-name"> 游客 <small class="chat-date"> 11:24 </small> </div>
+        <div class="chat-message"> 那除了帮助文档还提供什么样的服务？ </div>
+      </div>
+      <div class="left">
+        <div class="author-name"> Beau-zihan <small class="chat-date"> 08:45 </small> </div>
+        <div class="chat-message active"> 1.所有源码(未压缩、带注释版本)； <br>
+          2.说明文档； <br>
+          3.终身免费升级服务； <br>
+          4.必要的技术支持； <br>
+          5.付费二次开发服务； <br>
+          6.授权许可； <br>
+          …… <br>
+        </div>
+      </div>
+    </div>
+    <div class="form-chat">
+      <div class="input-group input-group-sm">
+        <input type="text" class="form-control">
+        <span class="input-group-btn">
+        <button class="btn btn-primary" type="button">发送 </button>
+        </span> </div>
+    </div>
+  </div>
+  <div id="small-chat"> <span class="badge badge-warning pull-right">0</span> <a class="open-small-chat"> <i class="fa fa-comments"></i> </a> </div>--> 
+</div>
+</body>
+</html>
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link href="../css/font-awesome.min.css" rel="stylesheet">
+<link href="../css/animate.min.css" rel="stylesheet">
+<link href="../css/style.min.css" rel="stylesheet">
+<link href="js/plugins/layer/layim/layim.min.css" rel="stylesheet">
+<script src="js/jquery.min.js"></script> 
+<script src="js/bootstrap.min.js"></script> 
+<script src="js/plugins/metisMenu/jquery.metisMenu.js"></script> 
+<script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script> 
+<script src="js/plugins/layer/layer.min.js"></script>
+<!--<script src="js/plugins/layer/layim/layim.min.js"></script> 
+<script src="js/plugins/pace/pace.min.js"></script> --> 
+<script src="js/packet/common.js"></script> 
+<script src="js/hplus.min.js"></script>
+

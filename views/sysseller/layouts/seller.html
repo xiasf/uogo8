@@ -1,0 +1,110 @@
+{set:$seller_id = $this->seller['seller_id'];$seller_name = $this->seller['seller_name'];}
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta charset="utf-8">
+<title>淘黄州商户后台管理系统</title>
+<link type="image/x-icon" href="favicon.ico" rel="icon">
+{js:jquery}
+	{js:dialog}
+	{js:form}
+	{js:artTemplate}
+<script type='text/javascript' src="{theme:javascript/html5.js}"></script>
+<script type='text/javascript' src="{theme:javascript/common.js}"></script>
+<!--[if lt IE 9]>
+	<link rel="stylesheet" href="{skin:css/ie.css}" type="text/css" media="screen" />
+	<![endif]-->
+<link rel="stylesheet" href="{skin:css/admin.css}" type="text/css" media="screen">
+{js:validate}
+</head>
+
+<body>
+<!--头部 开始-->
+<header id="header">
+  <hgroup>
+    <h1 class="site_title"><a href="{url:/seller/index}"><img src="{skin:images/main/logo.png}"></a></h1>
+    <h2 class="section_title"></h2>
+    <div class="btn_view_site"><a href="{url:}" target="_blank">网站首页</a></div>
+    <div class="btn_view_site"><a href="{url:/site/home/id/$seller_id}" target="_blank">店铺主页</a></div>
+    <div class="btn_view_site"><a href="{url:/systemseller/logout}">退出登录</a></div>
+  </hgroup>
+</header>
+<!--头部 结束--> 
+
+<!--面包屑导航 开始-->
+<section id="secondary_bar">
+  <div class="user">
+    <p>欢迎商户：{$seller_name}</p>
+  </div>
+  <div class="user_mn">
+    <ul>
+      <li><a href="{url:/seller/index}">管理首页</a></li>
+      <li><a href="{url:/seller/account}">销售额统计</a></li>
+      <li><a href="{url:/seller/order_goods_list}">货款明细列表</a></li>
+      <li><a href="{url:/seller/bill_list}">货款结算申请</a></li>
+    </ul>
+  </div>
+</section>
+<!--面包屑导航 结束--> 
+
+<!--侧边栏菜单 开始-->
+<aside id="sidebar" class="column">
+  <h3>统计结算</h3>
+  <ul class="toggle">
+    <li class="icn_settings"><a href="{url:/seller/account}">销售额统计</a></li>
+    <li class="icn_categories"><a href="{url:/seller/order_goods_list}">货款明细列表</a></li>
+    <li class="icn_photo"><a href="{url:/seller/bill_list}">货款结算申请</a></li>
+  </ul>
+  <h3>分类管理</h3>
+  <ul class="toggle">
+    <li class="icn_categories"><a href="{url:/seller/category_list}">分类列表</a></li>
+    <li class="icn_new_article"><a href="{url:/seller/category_edit}">添加分类</a></li>
+  </ul>
+  <h3>商品管理</h3>
+  <ul class="toggle">
+    <li class="icn_categories"><a href="{url:/seller/goods_list}">商品列表</a></li>
+    <li class="icn_new_article"><a href="{url:/seller/goods_edit}">添加商品</a></li>
+    <li class="icn_photo"><a href="{url:/seller/share_list}">平台共享商品</a></li>
+    <li class="icn_audio"><a href="{url:/seller/refer_list}">商品咨询</a></li>
+    <li class="icn_audio"><a href="{url:/seller/comment_list}">商品评价</a></li>
+    <li class="icn_audio"><a href="{url:/seller/refundment_list}">商品退款</a></li>
+    <li class="icn_categories"><a href="{url:/seller/spec_list}">规格列表</a></li>
+  </ul>
+  <h3>订单管理</h3>
+  <ul class="toggle">
+    <li class="icn_categories"><a href="{url:/seller/order_list}">订单列表</a></li>
+  </ul>
+  <h3>折扣活动</h3>
+  <ul class="toggle">
+    <li class="icn_view_users"><a href="{url:/seller/regiment_list}">团购</a></li>
+    <li class="icn_categories"><a href="{url:/seller/pro_rule_list}">促销活动列表</a></li>
+  </ul>
+  <h3>配送设置</h3>
+  <ul class="toggle">
+    <li class="icn_categories"><a href="{url:/seller/delivery}">物流配送</a></li>
+    <li class="icn_categories"><a href="{url:/seller/ship_info_list}">发货地址</a></li>
+  </ul>
+      <h3>店员管理</h3>
+  <ul class="toggle">
+    <li class="icn_view_users"><a href="{url:/seller/clerk_list}">店员列表</a></li>
+    <li class="icn_new_article"><a href="{url:/seller/clerk_edit}">添加店员</a></li>
+  </ul>
+  <h3>店铺资料</h3>
+  <ul class="toggle">
+    <li class="icn_profile"><a href="{url:/seller/seller_edit}">商户资料</a></li>
+    <li class="icn_video"><a href="{url:/site/home/id/$seller_id}" target="_blank">店铺主页</a></li>
+  </ul>
+  <footer>
+    <hr>
+    <p><strong>Copyright &copy; 2015 itaohz</strong></p>
+    <p>Powered by <a href="http://www.itaohz.com">itaohz</a></p>
+  </footer>
+</aside>
+<!--侧边栏菜单 结束--> 
+
+<!--主体内容 开始-->
+<section id="main" class="column"> {viewcontent} </section>
+<!--主题内容 结束-->
+</body>
+</html>

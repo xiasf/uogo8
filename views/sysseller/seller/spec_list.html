@@ -1,0 +1,109 @@
+{set:$seller_id = $this->seller['seller_id']}
+<div class="wrapper wrapper-content animated bounceInRight">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>团购</h5>
+        </div>
+        <div class="ibox-content">
+          <div class="row m-b-sm m-t-sm">
+            <div class="col-md-1"> <a class="btn btn-primary btn-sm" onclick="addNewSpec();" ><i class="fa fa-plus"></i>&nbsp;添加规格</a> </div>
+            <div class="col-md-11">
+              <div class="input-group">
+                <input type="text" placeholder="请输入名称" class="input-sm form-control">
+                <span class="input-group-btn">
+                <button type="button" class="btn btn-sm btn-primary"> 搜索</button>
+                </span> </div>
+            </div>
+          </div>
+          <form action='{url:/seller/spec_del}' method='post' name='specForm'>
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th class="header"></th>
+                  <th class="header">规格名称</th>
+                  <th class="header">显示方式</th>
+                  <th class="header">规格数据</th>
+                  <th class="header">操作</th>
+                </tr>
+              </thead>
+              <tbody>
+              
+              {set:$page= (isset($_GET['page'])&&(intval($_GET['page'])>0))?intval($_GET['page']):1;}
+              {query:name=spec where=is_del eq 0 and seller_id in $this->shop_list order=id desc page=$page}
+              <tr>
+                <td><input type="checkbox" name="id[]" value="{$item['id']}" /></td>
+                <td>{$item['name']}{echo:$item['note']?"【".$item['note']."】":"";}</td>
+                <td>{if:$item['type']==1}文字{else:}图片{/if}</td>
+                <td> {foreach:items=JSON::decode($item['value']) item=$rs}
+                  {if:$item['type']==1}
+                  {$rs},
+                  {else:} <img class="spec_photo" src={webroot:$rs} /> {/if}
+                  {/foreach} </td>
+                <td><a href="javascript:addNewSpec({$item['id']});" class="btn btn-white btn-sm"><i class="fa fa-edit"></i>&nbsp;修改</a>&nbsp;&nbsp; <a href='javascript:void(0)' onclick="delModel({link:'{url:/seller/spec_del/id/$item[id]}'});" class="btn btn-white btn-sm"><i class="fa fa-times-circle"></i>&nbsp;删除</a></td>
+              </tr>
+              {/query}
+                </tbody>
+              
+              <tfoot>
+                <tr>
+                  <td colspan="7">{$query->getPageBar()}</td>
+                </tr>
+              </tfoot>
+            </table>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 	<header>
+		<h3 class="tabs_involved">规格列表</h3>
+
+		<ul class="tabs">
+			<li><input type="button" class="alt_btn" onclick="addNewSpec();" value="添加规格" /></li>
+			<li><input type="button" class="alt_btn" onclick="selectAll('id[]')" value="全选" /></li>
+			<li><input type="button" class="alt_btn" onclick="delModel();" value="批量删除" /></li>
+		</ul>
+	</header> --> 
+
+<script type='text/javascript'>
+//添加新规格
+function addNewSpec(spec_id)
+{
+	var tempUrl = '{url:/goods/spec_edit/id/@spec_id@/seller_id/$seller_id}';
+	tempUrl = tempUrl.replace('@spec_id@',spec_id?spec_id:0);
+	top.layer.open({
+		type: 2,
+		title: '规格设置',
+		shadeClose: true,
+		shade: 0.8,
+		area: ['620px', '90%'],
+		content: tempUrl, //iframe的url
+		btn: ['保存','取消'], //按钮
+		maxmin: true,
+		yes: function(index, layerDom){
+			//do somethin
+			layerDom = $("iframe",layerDom)[0].contentWindow;
+			//添加的规格
+	    	var formObject = layerDom.document.forms['specForm'];
+			$.post(formObject.action,$(formObject).serialize(),function(json){
+				if(json.flag == 'success')
+				{
+					window.location.reload();
+					return true;
+				}
+				else
+				{
+					alert(json.message);
+					return false;
+				}
+			},'json');
+			// //如果设定了yes回调，需进行手工关闭
+			top.layer.close(index);
+		}
+	});
+}
+</script>

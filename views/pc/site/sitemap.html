@@ -1,0 +1,88 @@
+<div class="position"> <span>您当前的位置：</span> <a href="{url:}"> 首页</a> » 站点地图 </div>
+<div class="sitemap wrapper container">
+	<div class="site_map">
+		<div class="block map_title" style="padding:0px 0px 18px 0px;">
+			<h3>服务</h3>
+		</div>
+		<div class="map_block theme_purple">
+			<div class="block_inner" style="padding:30px 0px;">
+				<ul class="site_map_listx" id="site_map_listx">
+					<li><i class="icon_app icon_1"></i>
+						<a target="_blank" href="{url:/simple/reg}">注册</a>
+					</li>
+					
+					<li><i class="icon_app icon_1"></i>
+						<a target="_blank" href="{url:/simple/login}">登录</a>
+					</li>
+					
+					<li><i class="icon_app icon_2"></i>
+						<a href="{url:/simple/cart}" target="_blank">购物车</a>
+					</li>
+					
+					<li><i class="icon_app icon_3"></i>
+						<a href="{url:/site/groupon}" target="_blank">团购</a>
+					</li>
+					
+					<li><i class="icon_app icon_4"></i>
+						<a href="{url:/site/article}" target="_blank">新闻资讯</a>
+					</li>
+					
+					<li><i class="icon_app icon_5"></i>
+						<a href="{url:/site/tags}" target="_blank">热门标签</a>
+					</li>
+					
+					<li><i class="icon_app icon_6"></i>
+						<a href="{url:/site/notice}" target="_blank">站点公告</a>
+					</li>
+					
+					<li><i class="icon_app icon_7"></i>
+						<a href="{url:/site/help_list}" target="_blank">帮助中心</a>
+					</li>
+					
+					<li><i class="icon_app icon_8"></i>
+						<a href="{url:/simple/find_password}" target="_blank">找回密码</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="block map_title">
+			<h3>所有商品分类</h3>
+		</div>
+		<div class="map_block theme_orange">
+			<div class="block_inner" style="padding:30px 0px 10px 0;">
+				<ul class="site_map_listy" id="site_map_listy">
+					{foreach:items=Api::run('getCategoryListTop') item=$first}
+					{set:$tmpI++;}
+					<li><i class="icon_app icon_1{$tmpI}"></i>
+						<dl>
+							<dt><a href="{url:/site/pro_list/cat/$first[id]}" target="_blank">{$first['name']}</a></dt>
+							{foreach:items=Api::run('getCategoryByParentid',array('#parent_id#',$first['id'])) item=$second}
+							<dd><a href="{url:/site/pro_list/cat/$second[id]}" target="_blank">{$second['name']}</a></dd>
+							{/foreach}
+						</dl>
+					</li>
+					{/foreach}
+				</ul>
+			</div>
+		</div>
+			
+		<div class="block map_title" style="clear:both;">
+			<h3>热搜榜 <span class="en_title">Hot</span></h3>
+		</div>
+		<div class="map_block theme_red">
+			<div class="block_inner" style="padding-top:20px;">
+				<ul class="site_map_list">
+					<li> <i class="icon_app icon_23"></i>
+						<dl>
+							<dt>榜单</dt>
+							{foreach:items=Api::run('getKeywordList',100) }
+							{set:$tmpWord = urlencode($item['word']);}
+							<dd><a href="{url:/site/search_list/word/$tmpWord}">{$item['word']}</a></dd>
+							{/foreach}
+						</dl>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

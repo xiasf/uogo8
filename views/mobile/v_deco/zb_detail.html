@@ -1,0 +1,147 @@
+{set:
+
+    $from = array('TZX' => '招标', 'ZXB' => '装修保', 'TBJ' => '报价', 'TLF' => '量房', 'TSJ' => '设计', 'TJC' => '建材');
+    $budget = array('', '8-10万', '10-15万', '5-8万', '15万以上', '3万-5万', '3万以下');
+    $way = array('', '半包', '清包', 19 => '全包');
+}
+
+<link rel="stylesheet" type="text/css" href="skin/zb_detail/css/zxzb-detail.css">
+<!-- <link rel="stylesheet" type="text/css" href="skin/zb_detail/css/common.min.css"> -->
+
+
+<section class="zxzb-detail-wrap">
+    <section class="zxzb-summary">
+        <h2 class="zxzb-title text-over-hidden">{$this->zhaobiao['title']}</h2>
+        <ul class="zxzb-info clearfix">
+            <li>发布时间：{$this->zhaobiao['create_time']}</li>
+            <li>面积：{$this->zhaobiao['house_mj']}㎡</li>
+            <li>项目类型：{$from[$this->zhaobiao['from']]}</li>
+            <!--<li>预算：{$budget[$this->zhaobiao['budget_id']]}</li>-->
+            <li>所在区域：{set:$home_id = $this->zhaobiao['home_id'];}
+                {query:name=zhaobiao_home where=id eq $home_id item=$home}
+                {$home['name']}
+                {/query}</li>
+            <li>装修类型：{$way[$this->zhaobiao['way_id']]}</li>
+        </ul>
+    </section>
+    <section class="zxzb-sect zxzb-bd">
+        <section class="zxzb-zxyq">
+            <h3>装修要求</h3>
+            <a class="zxzb-sect-main">{$this->zhaobiao['comment']}</a>
+        </section>
+        <section class="zxzb-cyyq">
+            <h3>参与要求</h3>
+            <a class="zxzb-sect-main">
+                1、必须是黄州本地的工商注册的正规公司。<br>
+                2、经过淘黄州资质认证以上级别，最好是精品公司
+            </a>
+        </section>
+        <section>
+            <div class="tenders_zb_form pding rt">
+            	<form id="form_jb" action="" method="post">
+            		<ul>
+            			<li>
+            				<span>店名</span>
+            				<input name="shop_name" type="text" class="text long"/>
+            			</li>
+            			<li>
+            				<span>您的姓名</span>
+            				<input type="text" name="contact" class="text long" placeholder="请输入您的姓名"/>
+            			</li>
+            			<li>
+            				<span>联系电话</span>
+            				<input type="text" name="mobile" class="text long" placeholder="请输入您的联系方式" />
+            			</li>
+            			<li>
+            				<span>详细地址</span>
+            				<input name="addr" type="text" class="text long" />
+            			</li>
+            			<li>
+            				<span>报价</span>
+            				<input name="baojia" type="text" class="text long" />
+            			</li>
+            			<li style="margin-top: 10px;">
+            				<input class="btn_sub_tuan btn" type="submit" value="竞标">
+            			</li>
+            		</ul>
+            	</form>
+            </div>
+        </section>
+
+    </section>
+    <section class="zxzb-sect zxzb-ad">
+        <h2>装修首选淘黄州</h2>
+        <ul class="zxzb-ad-detail">
+            <li>
+                <h3>三大免费服务</h3>
+                <ul>
+                    <li>免费量房</li>
+                    <li>免费设计</li>
+                    <li>免费报价</li>
+                </ul>
+            </li>
+            <li>
+                <h3>四大装修保障</h3>
+                <ul>
+                    <li>免费质检员质检</li>
+                    <li>满意后付装修款</li>
+                    <li>快速维权</li>
+                    <li>平安装修保险</li>
+                </ul>
+            </li>
+        </ul>
+        <figure class="zxzb-detail-img zxzb-detail-img1">
+            <img src="skin/zb_detail/images/zxzb-detail-1.png" width="640" height="339">
+        </figure>
+        <figure class="zxzb-detail-img zxzb-detail-img2">
+            <img src="skin/zb_detail/images/zxzb-detail-2.png" width="640" height="468">
+        </figure>
+        <figure class="zxzb-detail-img zxzb-detail-img3">
+            <img src="skin/zb_detail/images/zxzb-detail-3.png" width="640" height="464">
+        </figure>
+        <figure class="zxzb-detail-img zxzb-detail-img4">
+            <img src="skin/zb_detail/images/zxzb-detail-4.png" width="640" height="552">
+        </figure>
+        <figure class="zxzb-detail-img zxzb-detail-img5">
+            <img src="skin/zb_detail/images/zxzb-detail-5.png" width="640" height="540">
+        </figure>
+    </section>
+
+    <!--<a class="zxzb-apply-link" href="{url:v_deco/zb}"><i class="icon-zxzb-zxapply"></i>我也要装修</a>-->
+</section>
+
+
+<script>
+    $("#form_jb").submit(function(){
+        if (!$('#form_jb input[name="shop_name"]').val().trim()) {
+          alert('店名必填！');
+          return false;
+        }
+        if (!$('#form_jb input[name="contact"]').val().trim()) {
+          alert('姓名必填！');
+          return false;
+        }
+        if (!$('#form_jb input[name="mobile"]').val().trim()) {
+          alert('手机号码必填！');
+          return false;
+        }
+        if (!$('#form_jb input[name="addr"]').val().trim()) {
+          alert('地址必填！');
+          return false;
+        }
+        if (!$('#form_jb input[name="baojia"]').val().trim()) {
+          alert('报价必填！');
+          return false;
+        }
+
+        $.post("{url:/v_deco/zhaobiao_jinbiao2/zhaobiao_id/$this->zhaobiao[id]}", $('#form_jb').serialize(), function (result) {
+            if (result.result == 'succeed') {
+                alert(result.message);
+                window.location.reload();
+            } else {
+                alert(result.message);
+            }
+        }, 'json');
+        return false;
+    });
+</script>

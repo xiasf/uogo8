@@ -1,0 +1,55 @@
+{set:$cid = IFilter::act(IReq::get('cid'),'int');}
+
+<section class="bbs-header bgfff">
+  <div class="infobox">
+    <h1>发表新帖</h1>
+  </div>
+</section>
+
+<section class="bbs-header bgfff">
+    <form class="mfsj-from" id="zb_form">
+        <input type="hidden" name="category_id" value="{$cid}">
+        <input style="width: 100%;height: 32px;margin: 10px 0;padding: 5px;border: 1px orange solid;" type="text" name="title" value="" placeholder="请输入标题">
+        <textarea style="    width: 100%;
+    height: 100px;
+    margin: 10px 0;
+    padding: 5px;
+    border: 1px orange solid;" id="form-c" name="contents" placeholder="请输入内容" reply-content="0"></textarea>
+        <input style="    padding: 10px;
+    border: 1px #2CD4B5 solid;
+    background-color: #2AD81F;
+    color: #fff;" type="submit" onclick="return checkform(this)" reply-submit="0" value="发表帖子">
+      </form>
+</section>
+
+<link href="skin/bbs/bbs.css" rel="stylesheet" type="text/css">
+
+<script>
+    function checkform(button){
+  if(!$('#form-c').val().trim()){
+    alert('请填写帖子内容');return;
+  }
+
+  $(button).val('提交中……');
+  $.ajax({
+      type: "POST",
+      dataType: "json",
+      url: "{url:v_deco/bbs_post_act}",
+      data: $('#zb_form').serialize(),
+      success: function (result) {
+          if (result.status == 1) {
+            alert(result.info);
+            window.location.href = document.referrer;
+          } else {
+            alert(result.info);
+            window.location.reload();
+          }
+      },
+      error: function(result) {
+          alert("error:"+result.responseText);
+       }
+  });
+
+  return false 
+};
+</script>

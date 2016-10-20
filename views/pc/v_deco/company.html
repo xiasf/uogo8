@@ -1,0 +1,103 @@
+<div class="container clear">
+  <div class="zgs_cl_left">
+    <div class="zgs_rank">
+      <ul>
+        <li class="zr_hot on"> <a href="#" rel="nofollow"> 热门排序 </a> </li>
+        <li class="has_arrow "> <a href="#" rel="nofollow"> <em>口碑值</em> <span></span> </a> </li>
+        <li class="has_arrow "> <a href="#" rel="nofollow"> <em>设计方案数</em> <span></span> </a> </li>
+        <li class="has_arrow "> <a href="#" rel="nofollow"> <em>施工案例数</em> <span></span> </a> </li>
+      </ul>
+      <div class="zgsr_fy"> <a href="javascript:void(0)" class="zgsr_fy_left" rel="nofollow"></a> <a href="#" class="zgsr_fy_right" rel="nofollow"></a> <span> <em>1</em>/1 </span> </div>
+      <div class="zgsr_sx">
+        <label>
+          <input type="checkbox"  rel="nofollow">
+          优惠 </label>
+        <label>
+          <input type="checkbox" rel="nofollow">
+          知名品牌 </label>
+        <label>
+          <input type="checkbox" rel="nofollow">
+          推荐公司 </label>
+      </div>
+    </div>
+    <div class="zgs_company_list ">
+      <ul>
+        {set:$page = IReq::get('page') ? IFilter::act(IReq::get('page'),'int') : 1}
+        {query:name=jiaju_company where=status eq 1 page=$page}
+
+        <li>
+          <div class="zgscl_container"> <a href="{url:v_deco/company_info/id/$item[id]}" target="_blank" class="zgscl_logo" rel="nofollow"> <img src="{webroot:$item['logo']}" alt="{$item['name']} - 装修公司" width="138" height="138"> </a>
+            <div class="zgsclc_data"> <span class="zd_one">
+              <h3> <a href="{url:v_deco/company_info/id/$item[id]}" target="_blank" class="zgscl_name">{$item['name']}</a> </h3>
+              <a href="{url:v_deco/company_info/id/$item[id]}" target="_blank" rel="nofollow" class="zgscl_golden"><em class="zgs_ico_golden5" title="五星公司：支持升级版装修保、支持四标规范"></em></a> </span> <span class="zd_two"> <i class="zdq_3" title="该公司营业执照已认证"></i> <i class="zdq_4" title="认证公司"></i> <i class="zdq_5_no"></i> <i class="zdq_2" title="该公司已交15000.00元保障金"></i><em title="该公司已交15000.00元保障金">15000元</em> <a href="{url:v_deco/company_info/id/$item[id]}" title="设计方案" target="_blank"><i class="zdq_6" title="设计方案"></i><em>0套</em></a> <a href="{url:v_deco/company_info/id/$item[id]}" title="工地数量" target="_blank"> <i class="zdq_7" title="工地数量"></i> <em>0个</em> </a> <a href="{url:v_deco/company_info/id/$item[id]}" title="评价次数" target="_blank" rel="nofollow"> <i class="zdq_8" title="评价次数"></i> <em> 0次</em> </a> </span> <span class="zd_three"> <em></em>{$item['address']}</span>
+              <div class="zgsclc_consult"> <a href="javascript:void(0)" class="free_design on" onclick="javascript:freeDesign(this,'2589059','1_5_1_1')">免费帮我做设计</a> <a href="javascript:void(0)" class="free_price" onclick="javascript:freePrice(this,2589059)">免费帮我出报价</a> </div>
+            </div>
+            <div class="zgsclc_koubei"> <span>口碑值</span> <a href="{url:v_deco/company_info/id/$item[id]}" rel="nofollow" target="_blank"><em>0</em></a> <span class="zgsclc_koubei_hp">好评率：0.00%</span> </div>
+          </div>
+          <div class="special_service">
+            <p> 已有 <em>0</em> 人咨询 </p>
+          </div>
+          <!--<div class="relative_diary"> <span class="relative_hd"><i class="zgs_ico_rd"></i>业主真实经历</span> 
+          <a href="http://www.to8to.com/riji/scenedetail.php?id=1065151&amp;pid=all&amp;order=desc" target="_blank" class="diary_lnk" rel="nofollow">
+           <span class="diary_hd">《唯美简欧风…一家三口的幸福之旅期待ing》已更新至16篇：</span> 已经入住一个月了，还行，希望给我做甲醛测试，宝宝太小了很不放心。 </a>
+            </div>-->
+        </li>
+        {/query}
+
+      </ul>
+    </div>
+    <div class="pagebar">{$query->getPageBar()}</div>
+  </div>
+  <div class="zgs_cl_right">
+<!--    <div style="margin-top: 30px;">
+      <iframe id="zxbjFrame" width="100%" scrolling="no" height="365" frameborder="0" name="zxbjFrame" src="http://www.to8to.com/yezhu/zxbjWidget.php?mod=company&amp;zxjc_ptag=1_5_1_30&amp;zxbj_ptag=1_5_1_3&amp;t=201508071546&amp;is_bottom_new=&amp;submod1="></iframe>
+    </div>-->
+    <div class="zgs_clr_fc"> <span class="zcf_title">在淘黄州找装修公司价格实惠；<br>
+      施工质量严格监管，不低于行业标准。</span>
+      <ul>
+        <li> <span class="zcf_kxy"></span> <b>不懂装修注意事项？</b> <em>300名家装顾问.免费一对一帮你解疑惑。</em> </li>
+        <li> <span class="zcf_bfa"></span> <b>不懂验房和装修验收？</b> <em>200名专业质检免费帮你做5次验收，1次突击检查。</em> </li>
+        <li> <span class="zcf_bbj"></span> <b>怕装修猫腻、偷工减料？</b> <em>"五星服务"、"四标规范"免费帮你做把控。</em> </li>
+        <li> <span class="zcf_bbz"></span> <b>怕给了钱，质量没保障？</b> <em>"装修保"免费帮你保障，满意了才付装修款。</em> </li>
+      </ul>
+      <input type="button" value="享受省心的装修服务" class="zcz_btn" onclick="freeBooking({toid:0,s_source:75, ptag:'1_5_1_13'},1);">
+    </div>
+    
+    <!--各种热点-->
+    <div class="zgs_clr_ad"> <img src="skin/img/hot_company_list.jpg"> </div>
+    <div class="zgs_clr_rank"> <span class="zcf_title"><a href="http://www.to8to.com/company/wh/" target="_blank">装修公司排行榜</a> </span> <em class="zgs_clr_rank_t">装修知名品牌</em>
+      <ul class="zgs_clr_rank_list">
+        <li><a href="http://sz.to8to.com/zs/891219/" target="_blank" title="居众装饰集团"><i class="zgs_ico_crown"></i><span>居众装饰集团</span></a></li>
+        <li><a href="http://sz.to8to.com/zs/3157493/" target="_blank" title="乐蜂精装"><i class="zgs_ico_crown"></i><span>乐蜂精装</span></a></li>
+        <li><a href="company/" target="_blank" title="轻舟装饰"><i class="zgs_ico_crown"></i><span>轻舟装饰</span></a></li>
+      </ul>
+    </div>
+    <div class="zgs_clr_lm">
+      <ul>
+        <li>
+          <dl>
+            <dt>
+              <h2><a id="lw_zx_yezhu" href="/company/zxzt.php" target="_blank" hidefocus="">装修报价</a></h2>
+            </dt>
+            <dd> <a href="company/z55538.html" target="_blank" title="">三室一厅装修多少钱？</a> <a href="company/z18272.html" target="_blank" title="">装修材料价格表详细</a> <a href="company/z18252.html" target="_blank" title="">装修费用清单解读</a> </dd>
+          </dl>
+        </li>
+        <li>
+          <dl>
+            <dt>
+              <h2><a href="/company/zxsj.php" target="_blank" hidefocus="">装修设计</a></h2>
+            </dt>
+            <dd> <a href="company/z77125.html" target="_blank" title="">一室一厅装修攻略及装修效果图欣赏</a> <a href="company/z77064.html" target="_blank" title="">办公室装修设计注意事项及风水禁忌布局</a> <a href="company/z75758.html" target="_blank" title="">搬家公司哪个好  小编推荐“黄蚂蚁”</a> </dd>
+          </dl>
+        </li>
+        <li class="border_none">
+          <dl>
+            <dt><a href="/company/zxsj.php?ttype=7" target="_blank" hidefocus="">本地资讯</a></dt>
+            <dd> <a href="company/z77731.html" target="_blank" title="">喷码机公司分享</a> <a href="company/z77128.html" target="_blank" title="">墙绘公司有哪些？</a> <a href="company/z76711.html" target="_blank" title="">酒柜装修设计技巧</a> </dd>
+          </dl>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<link rel="stylesheet" href="../skin/company/company.css">

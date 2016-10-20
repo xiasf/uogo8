@@ -1,0 +1,307 @@
+{set:
+	$myCartObj  = new Cart();
+	$myCartInfo = $myCartObj->getMyCart();
+	$siteConfig = new Config("site_config");
+}
+	<!DOCTYPE html>
+	<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>{echo:$siteConfig->name}</title>
+    <link type="image/x-icon" href="/favicon.ico" rel="icon">
+    <link rel="stylesheet" href="{skin:css/index.css}" />
+    <link rel="stylesheet" href="{skin:css/global.css}" /><meta property="qc:admins" content="3520147707614170263757" />
+    {js:jquery}
+    {js:form}
+    {js:validate}
+    {js:dialog}
+    {js:artTemplate}
+    <script type='text/javascript' src="{theme:javascript/common.js}"></script>
+    <script type='text/javascript' src='{theme:javascript/site.js}'></script>
+    <script type='text/javascript'>
+		//用户中心导航条
+		function menu_current()
+		{
+		    var current = "{echo:$this->getAction()->getId()}";
+		    if(current == 'consult_old') current='consult';
+		    else if(current == 'isevaluation') current ='evaluation';
+		    else if(current == 'withdraw') current = 'account_log';
+		    var tmpUrl = "{url:/ucenter/current}";
+		    tmpUrl = tmpUrl.replace("current",current);
+		    $('div.cont ul.list li a[href^="'+tmpUrl+'"]').parent().addClass("current");
+		}
+	</script>
+    </head>
+    <body class="mall">
+    <div class="header">
+      <div class="header_top">
+        <div class="header_top_center">
+          <div class="header_top_right">
+            <li class="imyeah"> <a href="{url:/ucenter/index}">我的淘黄州<em class="icn icn_gay_down"></em></a>
+              <ul style="width:120px">
+                <li><a href="{url:/ucenter/order}"> 我的订单 </a></li>
+              </ul>
+            </li>
+            <span class="htr_line"></span>
+            <li class="imyeah"> <a href="{url:/sellermain/index}">我要入驻<em class="icn icn_gay_down"></em></a>
+            <ul style="width:120px">
+            <li><a id="nav_1" href="{url:/sellermain/index}">商家登陆</a></li>
+            <li><a id="nav_2" href="{url:/simple/seller}">商家入驻</a></li>
+            </ul>          
+          </li>
+            <span class="htr_line"></span>
+            <li class="imyeah"><a href="{url:/site/help_list}"><em class="icn icn_mob"></em>手机访问<em class="icn icn_gay_down"></em></a>
+              <ul style="left:-60px">
+                <li>访问淘黄州手机版<img src="{skin:images/100x100wap.png}" border="0"></li>
+              </ul>
+            </li>
+            <span class="htr_line"></span>
+            <li> <a href="{url:/site/help_list}" target="_blank">帮助中心</a></li>
+          </div>
+          <div class="header_top_left">
+            <li> <a href="{url:}">您好，欢迎您来到{echo:$siteConfig->name}！</a></li>
+            <span class="htr_line"></span> {if:$this->user}
+            <li class="fl">欢迎&nbsp;&nbsp;{echo:$this->user['username']}</li>
+            <li> <a href="{url:/simple/logout}">安全退出</a> </li>
+            {else:}
+            <li> <a href="{url:/simple/login?callback=$callback}">请登录</a></li>
+            <li> <a href="{url:/simple/reg?callback=$callback}">免费注册</a></li>
+            {/if} </div>
+        </div>
+      </div>
+      <div class="header_center">
+        <div class="header_center_container clear">
+          <div class="header_top_logo"><a href="{url:/site/index}"><img alt="" src="{if:$siteConfig->logo}{webroot:$siteConfig->logo}{else:}{skin:sjl/images/logo.png}{/if}" border="0"></a></div>
+          <!--<div class="hd_prism_wrap" id="hdPrismWrap">
+            <div class="hd_prism hd_order"> <a href="{url:/ucenter/order}" class="hd_prism_tab"><em></em>
+              <p>订单查询</p>
+              </a> </div>
+            <div class="hd_mini_cart mycart"><a class="hd_prism_cart" href="{url:/simple/cart}"><em name="mycart_count" class="emArrow">{$myCartInfo['count']}</em><i class="acart"></i>购物车</a> 
+              
+            </div>
+          </div>-->
+          <div class="header_top_searchbox">
+            <form action="{url:/}" method="get">
+              <div class="header_top_search ">
+                <input class="header_search_submit mallClickStream" value="搜 索" type="submit" onclick="checkInput('word','输入关键字...');" />
+                <input class="header_top_search_input" name='word' autocomplete="off" value="输入关键字..." type="text" />
+                <input type='hidden' name='controller' value='site' />
+                <input type='hidden' name='action' value='search_list' />
+              </div><ul class="auto_list"></ul>
+            </form>
+            <div class="header_top_searchkey">热门: {set:$classArray = array('bold f_c_e81a62','f_c_e81a62');$colorIndex=0;}
+              {foreach:items=Api::run('getKeywordAllList',5)}
+              {set:$keyword=urlencode($item['word']);} <a href="{url:/site/search_list/word/$keyword}">{$item['word']}</a> {set:$colorIndex++;}
+              {/foreach}<a href="{url:site/tags}">更多</a></div>
+            <!--自动完成div 开始-->
+            <ul class="auto_list" style='display:none'>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="header_bottom">
+        <div class="header_wrap"><span class="header_bottom_ico"></span></div>
+        <ul class="header_nav">
+          <li class="first allsort"> <a>全部商品分类</a> <em class="icn_white_down" name="icn_arrow"></em>
+            <ul class="mall_index_shop sortlist" id='div_allsort' style='display:none'>
+              {set:$sortIcon=1;}
+              {foreach:items=Api::run('getCategoryListTop') item=$first}
+              {set:$sortIcon++;}
+              {set:$clasdId=$first['id'];}
+              <li> <em class="icon{$sortIcon}">&nbsp;</em><em class="icn_ps_r"></em> <a href="{url:/site/pro_list/cat/$first[id]}" target="_blank">{$first['name']}</a> <!--{foreach:items=Api::run('getCategoryByParentid',array('#parent_id#',$first['id']),2) item=$second} <a href="{url:/site/pro_list/cat/$second[id]}" target="_blank">{$second['name']}</a>{/foreach}-->
+                <div class="ps_bg_f7f7f7 sublist" style="display:none;">
+                  <div class="top clear"> {foreach:items=Api::run('getCategoryByParentid',array('#parent_id#',$first['id']))  item=$second}
+                    <div class="box">
+                      <h4><a href="{url:/site/pro_list/cat/$second[id]}">{$second['name']}</a></h4>
+                      <div class="box_a"> 
+                        {foreach:items=Api::run('getCategoryByParentid',array('#parent_id#',$second['id']))  item=$third} <a href="{url:/site/pro_list/cat/$third[id]}" target="_blank">{$third['name']}</a>{/foreach} 
+                      </div>
+                    </div>
+                    {/foreach} </div>
+<!--                  <div class="middle">
+                    <h4>推荐品牌</h4>
+                    {query:name=brand where=category_ids eq $clasdId limit=0,6}
+                    {set:$tmpId=$item[id];} <a href="{url:/site/brand_zone/id/$tmpId}" target="_blank"> <img class="cateLazy" src="{webroot:$item[logo]}" height="38" width="80" /> </a> {/query} </div>
+                </div>-->
+              </li>
+              {/foreach}
+              <li class="last">{foreach:items=Api::run('getadmanageid',array('#position_id#','15')) item=$second} <a href="{$second['link']}"><img src="{url:$second['content']}" width="188" height="74"></a> {/foreach} </li>
+            </ul>
+          </li>
+          <li class="textShadow"><a href="{url:/site/index}">首页</a></li>
+          {foreach:items=Api::run('getGuideList')}<li class="textSplit">/</li><li class="textShadow"><a href="{url:$item[link]}">{$item['name']}</a></li>{/foreach}
+        </ul>
+      </div>
+    </div>
+    <div class="ucenter container">
+      <div class="position"> 您当前的位置： <a href="{url:}">首页</a> » <a href="{url:/ucenter/index}">我的账户</a> </div>
+      <div class="wrapper clearfix">
+        <div class="ht_left">
+          <ul>
+            <li><a id="nav_1" href="{url:/ucenter/index}">个人中心</a></li>
+            <li><a id="nav_2" href="{url:/ucenter/order}">我的订单</a></li>
+            <li><a id="nav_3" href="{url:/ucenter/redpacket}">我的优惠券</a></li>
+            <li><a id="nav_4" href="{url:/ucenter/favorite}">我收藏的商品</a></li>
+            <li><a id="nav_4_" href="{url:/ucenter/favorite_seller}">我收藏的店铺</a></li>
+            <li><a id="nav_5" href="{url:/ucenter/evaluation}">我的评价</a></li>
+            <li><a id="nav_6" href="{url:/ucenter/address}">收货信息</a></li>
+            <li><a id="nav_7" href="{url:/ucenter/info}">个人资料</a></li>
+            <li><a id="nav_8" href="{url:/ucenter/integral}">我的积分</a></li>
+            <li><a id="nav_9" href="{url:/ucenter/account_log}">帐户余额</a></li>
+            <li><a id="nav_10" href="{url:/ucenter/online_recharge}">在线充值</a></li>
+            <li><a id="nav_11" href="{url:/ucenter/refunds}">退款申请</a></li>
+            <li><a id="nav_12" href="{url:/ucenter/message}">短信息</a></li>
+          </ul>
+        </div>
+        {viewcontent} </div>
+    </div>
+    <div class="mall_genuine_box">
+      <div class="mall_genuine_red">
+        <dl>
+          <dt> <a target="_blank" href="#"><em class="icn48 icn_zheng_b"></em></a> </dt>
+          <dd>假一赔十</dd>
+        </dl>
+        <dl>
+          <dt> <a target="_blank" href="#"><em class="icn48 icn_di_b"></em></a> </dt>
+          <dd>贵一赔三</dd>
+        </dl>
+        <dl>
+          <dt> <a target="_blank" href="#"><em class="icn48 icn_piao_b"></em></a> </dt>
+          <dd>正规发票</dd>
+        </dl>
+        <dl>
+          <dt> <a target="_blank" href="#"><em class="icn48 icn_jia_b"></em></a> </dt>
+          <dd>价优货实</dd>
+        </dl>
+        <dl>
+          <dt> <a target="_blank" href="#"><em class="icn48 icn_pei_b"></em></a> </dt>
+          <dd>先行赔付</dd>
+        </dl>
+        <dl>
+          <dt> <a target="_blank" href="#"><em class="icn48 icn_tui_b"></em></a> </dt>
+          <dd>退换无忧</dd>
+        </dl>
+        <dl>
+          <dt> <a target="_blank" href="#"><em class="icn48 icn_song_b"></em></a> </dt>
+          <dd>定时发货</dd>
+        </dl>
+      </div>
+      <div class="shop_direct_dl">
+        <dl>
+          <dt>购物指南</dt>
+          {foreach:items=Api::run('getHelpListByCatidAll',array('#cat_id#',3),4)}
+          <dd><a href="{url:/site/help/id/$item[id]}" target="_blank">{$item['name']}</a></dd>
+          {/foreach}
+        </dl>
+        <dl>
+          <dt>支付帮助</dt>
+          {foreach:items=Api::run('getHelpListByCatidAll',array('#cat_id#',4),4)}
+          <dd><a href="{url:/site/help/id/$item[id]}" target="_blank">{$item['name']}</a></dd>
+          {/foreach}
+        </dl>
+        <dl>
+          <dt>配送帮助</dt>
+          {foreach:items=Api::run('getHelpListByCatidAll',array('#cat_id#',6),4)}
+          <dd><a href="{url:/site/help/id/$item[id]}" target="_blank">{$item['name']}</a></dd>
+          {/foreach}
+        </dl>
+        <dl>
+          <dt>帮助信息</dt>
+          {foreach:items=Api::run('getHelpListByCatidAll',array('#cat_id#',7),4)}
+          <dd><a href="{url:/site/help/id/$item[id]}" target="_blank">{$item['name']}</a></dd>
+          {/foreach}
+        </dl>
+        <dl>
+          <dt>售后服务</dt>
+          {foreach:items=Api::run('getHelpListByCatidAll',array('#cat_id#',5),4)}
+          <dd><a href="{url:/site/help/id/$item[id]}" target="_blank">{$item['name']}</a></dd>
+          {/foreach}
+        </dl>
+        <dl>
+          <dt style="padding-left:20px">淘黄州找宝</dt>
+          <dd> <img src="{skin:images/100x100.jpg}" border="0"> </dd>
+        </dl>
+        <dl class="last">
+          <dt style="padding-left:10px">淘黄州手机版</dt>
+          <dd> <img src="{skin:images/100x100wap.png}" border="0"> </dd>
+        </dl>
+      </div>
+    </div>
+    <div class="footer" id="footerHeight">
+      <div class="footer_bottom">
+        <div class="footer_bottom_container"> 
+          <!--			<div class="fbc_menu">
+                <ul>
+                	{set:$line=0;}
+                	{foreach:items=Api::run('getHelpListByCatidAll',array('#cat_id#',7),0)}
+                    {set:$line++;}
+                    <li><a href="{url:/site/help/id/$item[id]}" target="_blank" {if:$line==1}class="first" {/if}>{$item['name']}</a></li>
+                    {/foreach}
+                </ul>
+			</div>--> 
+          <div style="text-align:center"><p class="links">
+    <a href>关于我们</a>|<a href>常见问题</a>|<a href>安全交易</a>|<a href>购买流程</a>|<a href>如何付款</a>|<a href>联系我们</a>|<a href>合作提案</a>
+</p>
+<p class="copyright">
+    &nbsp; &nbsp;		Powered by <a href="http://www.itaohz.com">itaohz.com</a>
+</p>
+<p>
+    Copyright © 2015 <a class="copyys" href="http://www.miibeian.gov.cn/" target="_blank">鄂ICP备15000956号</a>
+</p></div>
+          <div class="fbc_icpico"> <a href="javascript:;"><span class="fbc_ico1"></span></a> <a href="javascript:;"><span class="fbc_ico2"></span></a> <a href="javascript:;"><span class="fbc_ico3"></span></a> <a href="javascript:;"><span class="fbc_ico4"></span></a> </div>
+        </div>
+      </div>
+    </div>
+    <script type='text/javascript'>
+//DOM加载完毕后运行
+$(function()
+{
+	$(".tabs").each(function(i){
+	    var parrent = $(this);
+		$('.tabs_menu .node',this).each(function(j){
+			var current=".node:eq("+j+")";
+			$(this).bind('click',function(event){
+				$('.tabs_menu .node',parrent).removeClass('current');
+				$(this).addClass('current');
+				$('.tabs_content>.node',parrent).css('display','none');
+				$('.tabs_content>.node:eq('+j+')',parrent).css('display','block');
+			});
+		});
+	});
+
+	//隔行换色
+	$(".list_table tr:nth-child(even)").addClass('even');
+	$(".list_table tr").hover(
+		function () {
+			$(this).addClass("sel");
+		},
+		function () {
+			$(this).removeClass("sel");
+		}
+	);
+
+	menu_current();
+
+	$('input:text[name="word"]').bind({
+		keyup:function(){autoComplete('{url:/site/autoComplete}','{url:/site/search_list/word/@word@}','{$siteConfig->auto_finish}');}
+	});
+
+	{set:$word = IReq::get('word') ? IFilter::act(IReq::get('word'),'text') : '输入关键字...'}
+	$('input:text[name="word"]').val("{$word}");
+
+	//购物车div层
+	$('.mycart').hover(
+		function(){
+			showCart('{url:/simple/showCart}');
+		},
+		function(){
+			$('#div_mycart').hide('slow');
+		}
+	);
+});
+</script>
+    </body>
+    </html>
+	

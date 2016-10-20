@@ -1,0 +1,78 @@
+<div class="pg-ft">
+  <ul class="terminal-nav">
+    <li><a class="active" href="/">首页</a></li>
+    <li><span class="i-sep"></span><a href="/u">会员中心</a></li>
+    <li><span class="i-sep"></span><a href="#">关于我们</a><span class="i-sep"></span></li>
+    <li><a href="site/test">实验室</a></li>
+  </ul>
+  <div class="company-info">手机淘黄州：<a href="{url:/}">www.itaohz.com</a>&nbsp; 鄂ICP备15000956号</div>
+</div>
+<section class="navsub hide" id="navsub">
+  <div>
+    <p><a href="/" class="navsub_btn">淘黄州首页</a></p>
+    <p><a href="{url:ucenter/index}" class="navsub_btn">会员中心</a></p>
+    <p><a href="{url:simple/cart}" class="navsub_btn">购物车</a></p>
+    <p><a href="{url:site/nearby}" class="navsub_btn">附近</a></p>
+    <p><a href="javascript:history.go(-1);" class="navsub_btn">后退</a></p>
+    <p><a href="javascript:window.document.location.reload();" class="navsub_btn">刷新</a></p>
+  </div>
+</section>
+<!--<div class="fix-nav-wrap">
+  <p class="icon-fix-nav"></p>
+</div>-->
+ <div id="count"></div>
+<script src="skin/js/common.min.js" type="text/javascript"></script>
+{if:$this->config["iswechat"]} 
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript"></script> 
+<script type="text/javascript">
+
+/*onMenuListFun = {
+    "onMenuShareAppMessage":function(wxshare){wx.onMenuShareAppMessage(wxshare);},
+    "onMenuShareTimeline":function(wxshare){wx.onMenuShareTimeline(wxshare);},
+    "onMenuShareQQ":function(wxshare){wx.onMenuShareQQ(wxshare);},
+    "onMenuShareWeibo":function(wxshare){wx.onMenuShareWeibo(wxshare);},
+    "onMenuShareQZone":function(wxshare){wx.onMenuShareQZone(wxshare);},
+};*/
+/*console.log(wxshare_ap.title);
+console.log(wxshare.title);*/
+{echo:wechat_facade::getJweixin(false)}
+/*if(typeof wxshare !='undefined'){wxshare.title += " - 淘黄州";wx.ready(function(){
+
+        $(onMenuList).each(function(i, item){
+            onMenuListFun[item](wxshare);
+        });
+
+
+		//分享给朋友
+		wx.onMenuShareAppMessage(wxshare);
+		//分享到朋友圈
+		wx.onMenuShareTimeline(wxshare);
+		//分享到QQ
+		wx.onMenuShareQQ(wxshare);
+		//分享到腾讯微博
+		wx.onMenuShareWeibo(wxshare);
+		//分享到QQ空间
+		wx.onMenuShareQZone(wxshare);
+
+
+         wx.hideMenuItems({
+           menuList': hideMenulist // 要隐藏的菜单项，所有menu项见附录3
+         });
+
+	});
+};*/
+
+/*var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cspan id='cnzz_stat_icon_1258368224'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258368224' type='text/javascript'%3E%3C/script%3E"));*/
+</script> 
+{/if}
+{echo:browse::online()}
+
+
+<!--兼容安卓微信调用摄像头
+ <input type="file" name="file"  capture="camera">
+兼容安卓默认选择sd卡上的相册图片
+ <input type="file" name="file" accept="image/*" >
+ <input type="file" accept="image/*; capture=camera" />  
+<input type="file" accept="video/*; capture=camcorder" />  
+<input type="file" accept="audio/*; capture=microphone" /> -->

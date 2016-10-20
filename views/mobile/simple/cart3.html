@@ -1,0 +1,54 @@
+<style type="text/css">
+table { border-collapse: separate; border-spacing: 0; background-color: #f6f6f6; border-left: 1px solid #e9e9e9; border-top: 1px solid #e9e9e9; width: 100%; clear: both; margin-bottom: 27px; }
+thead { }
+th { height: 48px; line-height: 48px; vertical-align: middle; border-bottom: 1px solid #e9e9e9; border-right: 1px solid #e9e9e9; font-weight: bold; text-align: right; color: #555; background-color: #f6f6f6; text-indent: 16px; }
+tr { line-height: 18px; }
+td { border-right: 1px solid #e9e9e9; border-bottom: 1px solid #e9e9e9; text-align: left; text-indent: 12px; color: #666; padding-top: 9px; padding-bottom: 9px; line-height: 18px; vertical-align: middle; background-color: #fdfdfd; }
+tr:hover > td { background-color: #fff; }
+</style>
+
+<section class="m_cashier g_wrap">
+  <div class="box">
+    <p class="alertBoxContent"> <strong class="f14">恭喜，已成功提交订单！</strong><br/>
+      编号：{$this->order_num} </p>
+  </div>
+</section>
+<section class="m_cashier g_wrap">
+  <table class="form_table">
+    <col width="120px" />
+    <col />
+    <tbody>
+      <tr>
+        <td class="t_r">收货人名：</td>
+        <td><label class="delivery_label">{$accept_name}</label></td>
+      </tr>
+      <tr>
+        <td class="delivery_cart3"><span>订单金额：</span></td>
+        <td class="delivery_cart3 delivery_left" align="left">￥<b class="red">{$this->final_sum}</b></td>
+      </tr>
+      <tr>
+        <td>收货时间：</td>
+        <td><label class="delivery_label">{$accept_time}</label></td>
+      </tr>
+      <tr>
+        <td>支付方式：</td>
+        <td><label class="delivery_label">{$this->payment}</label></td>
+      </tr>
+      <tr>
+        <td>配送方式：</td>
+        <td><label class="delivery_label">{$this->delivery}</label></td>
+      </tr>
+      <tr>
+        <td>联系方式：</td>
+        <td><label class="delivery_label">{$mobile}</label></td>
+      </tr>
+    </tbody>
+  </table>
+  <!--不是货到付款并且支付方式为线上支付--> 
+  {if:$this->deliveryType == 0 && $this->paymentType == 1}
+  {set:$tmpId=$this->order_id;}
+  <form action='{url:/block/doPay/order_id/$tmpId}' method='post'>
+    <input type="submit" value="立即支付" class="btn">
+  </form>
+  {/if} </section>
+<link rel="stylesheet" type="text/css" href="skin/mall/page_1.css">

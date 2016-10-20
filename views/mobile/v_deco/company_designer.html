@@ -1,0 +1,33 @@
+<link rel="stylesheet" href="../skin/company_info/findcompany.css">
+<div class="topbannerFrame">
+  <figure>
+    <div class="find-company-topbanner"> <img src="http://img.to8to.com/wap/v2/company/com_background_9.jpg">
+      <div class="find-company-logo">
+        <figure><img src="{webroot:$this->company['logo']}" alt="{$this->company['name']}"></figure>
+      </div>
+      <h1>{$this->company['name']}</h1>
+      <p>已有<span>0</span>人咨询</p>
+    </div>
+  </figure>
+</div>
+<nav>
+  <ul class="find-company-nav clearfix">
+    <li><a href="{url:v_deco/company_info/id/$this->company['id']}" class="">首页</a></li>
+    <li><a class="click-point" data-point="2_5_2_1" href="{url:v_deco/company_designer_works/id/$this->company['id']}">设计方案</a></li>
+    <li><a class="click-point active" data-point="2_5_3_1" href="{url:v_deco/company_designer/id/$this->company['id']}">设计团队</a></li>
+    <li><a class="click-point" data-point="2_5_4_1" href="{url:v_deco/company_comments/id/$this->company['id']}">业主评论</a></li>
+  </ul>
+</nav>
+
+<ul class="desiger-list clearfix">
+  {foreach:items=$this->designer}
+  <li>
+    <a href="{url:v_deco/designer/id/$item['id']}">
+     <figure>
+        <img src="{webroot:$item['logo']}">
+        <figcaption><i>{$item['name']}</i><br><span>首席设计师</span></figcaption>
+     </figure>
+     </a>
+  </li>
+  {/foreach}
+  </ul>

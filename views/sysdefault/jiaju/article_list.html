@@ -1,0 +1,88 @@
+<div class="headbar">
+	<div class="position"><span>家居</span><span>></span><span>文章管理</span><span>></span><span>文章列表</span></div>
+	<div class="operating">
+		<a href="javascript:void(0)" onclick="event_link('{url:/jiaju/article_edit}')"><button class="operating_btn" type="button"><span class="addition">添加文章</span></button></a>
+		<a href="javascript:void(0)" onclick="selectAll('id[]');"><button class="operating_btn" type="button"><span class="sel_all">全选</span></button></a>
+		<a href="javascript:void(0)" onclick="delModel();"><button class="operating_btn" type="button"><span class="delete">批量删除</span></button></a>
+	</div>
+	<div class="field">
+		<table class="list_table">
+			<col width="40px" />
+			<col width="250px" />
+			<col width="120px" />
+			<col width="150px" />
+			<col width="150px" />
+			<col width="280px" />
+			<col width="60px" />
+			<col />
+			<thead>
+				<tr>
+					<th class="t_c">选择</th>
+					<th>标题</th>
+					<th>文章分类</th>
+					<th>发布时间</th>
+					<th>标记</th>
+					<th>推荐</th>
+					<th>排序</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
+<div class="content">
+	<form action="{url:/jiaju/article_del}" method="post" name="article">
+		<table class="list_table">
+			<col width="40px" />
+			<col width="250px" />
+			<col width="120px" />
+			<col width="150px" />
+			<col width="150px" />
+			<col width="280px" />
+			<col width="60px" />
+			<col />
+			<tbody>
+				{set:$tag = array('其它', '收房', '设计', '预算', '合同', '拆改', '水电', '', '', '防水', '泥瓦', '木工', '油漆', '竣工', '软装', '入住', '房产')}
+				{set:$commend = array('其它', '头条', '时事', '精华')}
+				{set:$page= (isset($_GET['page'])&&(intval($_GET['page'])>0))?intval($_GET['page']):1;}
+				{query:name=jiaju_article order=sort asc,id desc page=$page}
+				<tr>
+					<td class="t_c"><input type="checkbox" name="id[]" value="{$item['id']}" /></td>
+					<td><a target="_blank" href='{url:v_deco/yezhu/id/$item[id]}' title='查看'><img src='{url:/pic/thumb/img/$item[img]/w/100/h/100}' class='ico' />{$item['title']}</a></td>
+					<td>
+						{query:name=jiaju_article_category where=id eq $item[category_id] page=$page id=$c item=$category}
+						{$category['name']}
+						{/query}
+					</td>
+					<td>{$item['create_time']}</td>
+					<td>
+						{if:$item['tag']}
+						{set:$item['tag'] = explode(',', $item['tag'])}
+						{foreach:items=$item['tag'] item=$_x}
+						{set:$item['tag'][$key] = $tag[$_x]}
+						{/foreach}
+						{echo:join(',', $item['tag'])}
+						{/if}
+					</td>
+					<td>
+						{if:$item['commend']}
+						{set:$item['commend'] = explode(',', $item['commend'])}
+						{foreach:items=$item['commend'] item=$_x}
+						{set:$item['commend'][$key] = $commend[$_x]}
+						{/foreach}
+						{echo:join(',', $item['commend'])}
+						{/if}
+					</td>
+					<td>{$item['sort']}</td>
+					<td>
+						<a href='{url:/jiaju/article_edit/id/$item[id]}'><img class="operator" src="{skin:images/admin/icon_edit.gif}" alt="编辑" title="编辑" /></a>
+						<a target="_blank" href='{url:v_deco/yezhu/id/$item[id]}'><img class="operator" src="{skin:images/admin/icon_check.gif}" alt="查看" title="查看" /></a>
+						<a href='javascript:void(0)' onclick="delModel({link:'{url:/jiaju/article_del/id/$item[id]}'});"><img class="operator" src="{skin:images/admin/icon_del.gif}" alt="删除" title="删除" /></a>
+					</td>
+				</tr>
+				{/query}
+			</tbody>
+		</table>
+	</form>
+</div>
+{$query->getPageBar()}

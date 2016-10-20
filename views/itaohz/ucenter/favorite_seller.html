@@ -1,0 +1,72 @@
+{set:$user_id = $this->user['user_id']}
+{set:$favoriteSum = 0}
+<div class="ht_right">
+	<div class="order">
+		<div class="uc_title m_10">
+			<label class="current"><span>我的收藏</span></label>
+		</div>
+		
+		<ul class="collection" style="display:none;">
+			<li>您还未收藏过店铺哦，快去<a href="{url:}"><u>首页</u></a>看看吧。</li>
+		</ul>
+		
+		<form action="#" method="post" id="favorite" name="favorite">
+		<table class="border_table" width="100%" cellpadding="0" cellspacing="0">
+			<col width='15px' style="border-right:1px solid #e0e0e0;" />
+			<col style="border-right:1px solid #e0e0e0;" />
+			<col width='120px' style="border-right:1px solid #e0e0e0;" />
+			<col width='120px' />
+			<thead>
+				<tr>
+					<td><input type="checkbox" onclick="selectAll('id[]');" /></td>
+					<td align="center">店铺名称</td>
+					<td align="center">收藏时间</td>
+					<td align="center">操作</td>
+				</tr>
+			</thead>
+
+			<tbody>
+				{set:$favoriteObj = null;$favoriteList = $this->get_seller_favorite($favoriteObj)}
+				{foreach:items=$favoriteList}
+				{set:$type=1}
+				<tr>
+					<td><input name="id[]" type="checkbox" value="{$item['id']}" /></td>
+					<td>
+						<dl>
+							{set:$tmpIMG=$item['data']['logo'];}
+							<dt><a href="{url:/site/home/id/$item[sid]}"><img onerror="this.src='{skin:images/front/nologo.gif}'" src="{url:/pic/thumb/img/$tmpIMG/w/88/h/88}" width="88px" height="88px" alt="{$item['data']['true_name']}" /></a></dt>
+							<dd><a class="blue" href="{url:/site/home/id/$item[sid]}">{$item['data']['true_name']}</a></dd>
+						</dl>
+					</td>
+
+					<td>{$item['time']}</td>
+					<td>
+						<input type="button" class="btn_gray_s" value="取消收藏" onclick="delModel({link:'{url:/ucenter/favorite_seller_del/id/$item[id]}',msg:'是否取消收藏？'});" /></span>
+					</td>
+				</tr>
+				{/foreach}
+			</tbody>
+
+			<tfoot>
+				<tr>
+					<td colspan="5">
+						<div class="pages_bar f_r">{$favoriteObj->getPageBar()}</div>
+						<label style="float:left; margin-top:3px; margin-right:10px;"><input class="radio" type="checkbox" onclick="selectAll('id[]');" />全选</label>
+						<input type="button" class="btn_gray_s" onclick="$('#favorite').attr('action','{url:/ucenter/favorite_seller_del}');delModel({msg:'是否取消收藏？',form:'favorite'});" value="取消收藏" /></span>
+					</td>
+				</tr>
+			</tfoot>
+
+		</table>
+	</form>
+	</div>
+</div>
+
+<script>
+$("#nav_4_").attr("class","cta");
+
+//统计总数
+$('#favoriteSum').html('{$favoriteSum}');
+
+
+</script>

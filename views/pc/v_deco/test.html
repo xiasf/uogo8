@@ -1,0 +1,38 @@
+{set:
+	$myCartObj  = new Cart();
+	$myCartInfo = $myCartObj->getMyCart();
+	$siteConfig = new Config("site_config");
+	$callback   = IReq::get('callback') ? urlencode(IFilter::act(IReq::get('callback'),'url')) : '';
+	
+	
+	$controller = IUrl::getInfo("controller");
+	$act = $this->getId();
+	
+}
+<script>
+	document.write(window.location.href+",1<br />")
+	document.write(window.location.hash+",2<br />")
+	document.write(window.location.host+",3<br />")
+	document.write(window.location.hostname+",4<br />")
+	document.write(window.location.pathname+",5<br />")
+	document.write(window.location.port+",6<br />")
+	document.write(window.location.protocol+",7<br />")
+	document.write(window.location.search+",<br />------end")
+</script>
+<p>{url:file} </p>
+<p>{webroot:file}</p>
+<p>{theme:file}</p>
+<p>{skin:file}</p>
+<p>{echo:$controller.'/'.$act}</p>
+
+<p id="box">123</p>
+<script>
+	$('#box').text(window.location.hostname+window.location.pathname+'.css')
+</script>
+<img src="http://thumbnail0.baidupcs.com/thumbnail/5db0d8f703fb0fe98615d7afe8f444a8?fid=726736319-250528-316355010819458&time=1463205600&rt=sh&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-ag0UeSSJlsUFEdeuuqwhSgCNfFw%3D&expires=8h&chkv=0&chkbd=0&chkpc=&dp-logid=3122265535966158925&dp-callid=0&size=c710_u400&quality=100" />
+<!--<link id="link_link" rel="stylesheet" type="text/css" href="#"/>
+<script>
+	$('#link_link').attr('href','http://'+window.location.hostname+'/views/pc'+window.location.pathname+'.css')
+</script>-->
+
+

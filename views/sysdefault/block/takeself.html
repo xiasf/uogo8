@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link rel="stylesheet" href="{skin:css/admin.css}" />
+{js:jquery}{js:jqueryext}
+{js:dialog}
+{js:artTemplate}
+</head>
+
+<body style="width:550px;min-height:160px;">
+<div class="pop_win">
+  <table class="form_table" width="95%" cellspacing="0" cellpadding="0" border="0">
+    <thead>
+      <tr>
+        <td><select name="province" onchange="getData('province');">
+            <option value="">请选择省份</option>
+            
+							{query:name=takeself as ts join=left join areas as a on a.area_id eq ts.province fields=a.* order=ts.sort asc group=ts.province}
+							
+            <option value="{$item['area_id']}">{$item['area_name']}</option>
+            
+							{/query}
+						
+          </select>
+          <select name="city" onchange="getData('city');">
+            <option value="">请选择城市</option>
+          </select>
+          <select name="area" onchange="getData('area');">
+            <option value="">请选择区域</option>
+          </select></td>
+      </tr>
+    </thead>
+    <tbody id="takeselfBox">
+    </tbody>
+    
+    <!--自提点模板--> 
+    <script type="text/html" id="takeselfRowTemplate">
+			<tr>
+				<td>
+					<label>
+						<input type='radio' value='<%=jsonToString(item)%>' name='takeselfItem' checked='checked' />
+
+						<%=item['address']%>
+
+						<%if(item['phone']){%>
+						，电话：<%=item['phone']%>
+						<%}%>
+
+						<%if(item['mobile']){%>
+						，手机：<%=item['mobile']%>
+						<%}%>
+					</label>
+				</td>
+			</tr>
+			</script>
+  </table>
+</div>
+</body>
+<script type='text/javascript'>
+//获取数据
+function getData(typeVal)
+{
+	var selectedVal = $('[name="'+typeVal+'"] option:selected').val();
+	$.getJSON("{url:/block/getTakeselfList}",{"id":selectedVal,"type":typeVal},function(jsonData)
+	{
+		switch(typeVal)
+		{
+			case "province":
+			{
+				$('[name="city"] option:gt(0)').remove();
+				for(var index in jsonData)
+				{
+					var item = jsonData[index];
+					$('[name="city"]').append('<option value="'+item['city']+'">'+item['city_str']+'</option>');
+				}
+			}
+			break;
+
+			case "city":
+			{
+				$('[name="area"] option:gt(0)').remove();
+				for(var index in jsonData)
+				{
+					var item = jsonData[index];
+					$('[name="area"]').append('<option value="'+item['area']+'">'+item['area_str']+'</option>');
+				}
+			}
+			break;
+
+			case "area":
+			{
+				$('#takeselfBox').empty();
+				for(var index in jsonData)
+				{
+					var item = jsonData[index];
+					var takeselfHtml = template.render('takeselfRowTemplate',{"item":item});
+					$('#takeselfBox').append(takeselfHtml);
+				}
+			}
+			break;
+		}
+	});
+}
+</script>
+</html>

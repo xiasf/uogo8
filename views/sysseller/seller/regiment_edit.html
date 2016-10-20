@@ -1,0 +1,120 @@
+{set:$seller_id = $this->seller['seller_id']}
+<div class="wrapper wrapper-content animated bounceInLeft">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>团购编辑</h5>
+        </div>
+        <div class="ibox-content">
+          <form class="form-horizontal m-t" id="EditForm" action="{url:/seller/regiment_edit_act}"  method="post" name='EditForm' enctype='multipart/form-data'>
+          <input type='hidden' name='id' /><input type='hidden' name='goods_id' />
+            <div class="form-group">
+              <label class="col-sm-3 control-label">团购标题：</label>
+              <div class="col-sm-8">
+                <input name="title" class="form-control" type="text" required>
+                <label class="tip"><i class="fa fa-info-circle"></i> 填写团购名称</label>  </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">介绍：</label>
+              <div class="col-sm-8">
+                <textarea name="intro" class="form-control" required>{$this->regimentRow['intro']}</textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">团购时间：</label>
+              <div class="col-sm-8">
+                <input type='text' placeholder="请填写开始日期" class="form-control layer-date" id="start" name='start_time' required>
+                <input type='text' placeholder="请填写结束日期" class="form-control layer-date" id="end" name='end_time' required>
+                <label class="tip">* 此团购的时间段</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">团购商品：</label>
+              <div class="col-sm-8">
+                <div class="ibox">
+                  <div class="ibox-content" id='regiment_box'>请选择商品</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-8 col-sm-offset-3">
+              <button class="btn btn-primary" type="button" onclick='searchGoods("{url:/block/search_goods/type/radio/seller_id/$seller_id}",searchGoodsCallback);'>选择商品</button>&nbsp;&nbsp;
+                <button class="btn btn-primary" type="submit"><i class="fa fa-check-square"></i>&nbsp;提交</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="js/plugins/validate/jquery.validate.min.js"></script> 
+<script src="js/plugins/validate/messages_zh.min.js"></script> 
+<script src="js/plugins/layer/laydate/laydate.js"></script> 
+<script src="js/packet/form.js"></script> 
+<script>
+$().ready(function() {
+	
+	var start={elem:"#start",format:"YYYY-MM-DD hh:mm:ss",min:laydate.now(),max:"2099-06-16 23:59:59",istime:true,istoday:false,choose:function(datas){end.min=datas;end.start=datas}};
+	var end={elem:"#end",format:"YYYY-MM-DD hh:mm:ss",min:laydate.now(),max:"2099-06-16 23:59:59",istime:true,istoday:false,choose:function(datas){start.max=datas}};
+	laydate(start);laydate(end);
+	
+	
+
+	//关联商品信息
+	{if:isset($this->regimentRow['goodsRow'])}
+	relationCallBack({$this->regimentRow['goodsRow']},"{$this->regimentRow['img']}");
+	{/if}
+	//表单回填
+	var formObj = new Form('EditForm');
+	formObj.init({echo:JSON::encode($this->regimentRow)});
+	
+	//表单验证
+	validator("#EditForm");
+});
+
+	//输入筛选商品的条件
+	function searchGoodsCallback(goodsList)
+	{
+		goodsList.each(function()
+		{
+			var temp = $.parseJSON($(this).attr('data'));
+			var content = {
+				"data":
+				{
+					"id":temp.goods_id,
+					"name":temp.name,
+					"img":temp.img,
+					"sell_price":temp.sell_price,
+					"img":temp.img,
+					"store_nums":temp.store_nums
+				}
+			};
+			relationCallBack(content);
+		});
+	}
+
+	//关联商品回调处理函数
+	function relationCallBack(content,regimentImg)
+	{
+		if(content)
+		{
+			$('input[name="goods_id"]').val(content['data']['id']);
+			regimentImg = !regimentImg ? content['data']['img'] : regimentImg;
+
+			var imgUrl = "{webroot:@url@}";
+			imgUrl     = imgUrl.replace("@url@",regimentImg);
+
+			var html = '<div class="form-group" ><label class="col-sm-2 control-label">商品名称：</label><div class="col-sm-8">'+content['data']['name']+'</div></div>'
+					  +'<div class="form-group" ><label class="col-sm-2 control-label">展示图片：</label><div class="col-sm-8"><img src="'+imgUrl+'" title="'+content['data']['name']+'" style="max-width:140px;" /><p><input type="file" class="file" name="img" /></p></div></div>'
+					  +'<div class="form-group" ><label class="col-sm-2 control-label">团购价格：</label><div class="col-sm-3"><input type="text" class="form-control" name="regiment_price"required pattern="float" alt="填写数字" /><label class="label label-primary">目前原价：'+content['data']['sell_price']+'</label><label class="tip">* 设置团购价格</label></div></div>'
+					  +'<div class="form-group" ><label class="col-sm-2 control-label">最大销售量：</label><div class="col-sm-3"><input type="text" class="form-control" name="store_nums" required pattern="int" alt="填写数字" /><label class="label label-primary">目前库存：'+content['data']['store_nums']+'</label><label class="tip">* 团购出售的最大数量</label></div></div>'
+					  +'<div class="form-group" ><label class="col-sm-2 control-label">每人最小量：</label><div class="col-sm-8"><input type="text" class="form-control" name="limit_min_count" pattern="int" alt="填写数字" /><label class="tip">限制每个用户购买的最小数量，少于这个数量则无法购买，0表示不限制</label></div></div>'
+					  +'<div class="form-group" ><label class="col-sm-2 control-label">每人最大量：</label><div class="col-sm-8"><input type="text" class="form-control" name="limit_max_count" pattern="int" alt="填写数字" /><label class="tip">限制每个用户购买的最大数量，大于这个数量则无法购买，0表示不限制</label></div></div>';
+
+			$('#regiment_box').html(html);
+		}
+	}
+
+</script> 

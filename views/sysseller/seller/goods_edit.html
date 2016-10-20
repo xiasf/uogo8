@@ -1,0 +1,1033 @@
+{js:baidueditor}
+{set:$seller_id = $this->seller['seller_id']}
+<link href="css/plugins/upload/upload.css" rel="stylesheet" >
+<div class="wrapper wrapper-content">
+  <div class="row animated bounceInDown">
+    <div class="alert alert-info">注意：每次修改商品后。都需要淘黄州运营团队审核后方可显示在网站上,审核时间 2 个小时以内</div>
+  </div>
+  <div class="row animated fadeIn">
+    <div class="col-sm-12">
+      <div class="ibox ">
+        <div class="ibox-title">
+          <h5>商品编辑 <small>编辑或添加商品</small></h5>
+        </div>
+        <div class="ibox-content">
+        <form class="form-horizontal validform" action="{url:/seller/goods_update}" name="goodsForm" id="goodsForm" method="post">
+          <input type="hidden" name="id" value="0" />
+          <input type='hidden' name="img" value="" />
+          <input type='hidden' name="_imgList" value="" />
+          <input type='hidden' name="seller_id" value="0" />
+          <input type='hidden' name="callback" value="{echo:IUrl::getRefRoute()}" />
+          <div class="row m-b-lg">
+            <div class="col-sm-12">
+              <div class="tabs-container">
+                <div class="tabs-left">
+                  <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#tab-1"><i class="fa fa-recycle"></i>基本信息</a> </li>
+                    <li><a data-toggle="tab" href="#tab-3"><i class="fa fa-gg-circle"></i>价格库存</a> </li>
+                    <li><a data-toggle="tab" href="#tab-4"><i class="fa fa-code-fork"></i>模型属性</a> </li>
+                    <!--<li><a data-toggle="tab" href="#tab-5"><i class="fa fa-amazon"></i>品牌信息</a> </li>-->
+                    <li><a data-toggle="tab" href="#tab-6"><i class="fa fa-map-o"></i>店铺</a> </li>
+                    <li><a data-toggle="tab" href="#tab-7" onClick="initupLoader(this);"><i class="fa fa-picture-o"></i>主图相册</a> </li>
+                    <li><a data-toggle="tab" href="#tab-8"><i class="fa fa-object-group"></i>详情描述</a> </li>
+                    <li><a data-toggle="tab" href="#tab-2"><i class="fa fa-th-large"></i>全站分类</a> </li>
+                    <li><a data-toggle="tab" href="#tab-9"><i class="fa fa-paw"></i>产品服务</a> </li>
+                  </ul>
+                  <div class="tab-content ">
+                    <div id="tab-1" class="tab-pane active">
+                      <div class="panel-body">
+                        <div class="col-sm-11">
+                          <div class="ibox-content">
+                            <div class="form-group">
+                              <label class="col-sm-2 control-label">商品名称</label>
+                              <div class="col-sm-10">
+                                <input type="text" name="name" placeholder="商品名称" class="form-control" datatype="*" onblur="wordsPart()">
+                              </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                              <label class="col-sm-2 control-label">商品关键词</label>
+                              <div class="col-sm-10">
+                                <input type="text" name="search_words" placeholder="商品关键词" class="form-control" >
+                                <label class="tip">每个关键词最长为15个字符，超过后系统不予存储，每个词以逗号分隔</label>
+                              </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                              <label class="col-sm-2 control-label">商品简要</label>
+                              <div class="col-sm-10">
+                                <textarea  name="smalldescription" class="form-control" rows="3"></textarea>
+                                <label class="tip">商品简要描述，显示在详情页标题下方</label>
+                              </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                              <label class="col-md-2 control-label">商品排序</label>
+                              <div class="col-md-2">
+                                <input name="sort" type="text" datatype="int" value="99" maxlength="2" class="form-control" />
+                              </div>
+                              <label class="col-md-2 control-label">计量单位显示</label>
+                              <div class="col-md-2">
+                                <input name="unit" type="text" value="千克" class="form-control" />
+                              </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                              <label class="col-md-2 control-label">商品状态</label>
+                              <div class="col-sm-10">
+                                <label class="radio-inline">
+                                  <input type="radio" value="3" name='is_del' checked="checked">
+                                  申请上架</label>
+                                <label class="radio-inline">
+                                  <input type="radio" value="2" name='is_del'>
+                                  下架</label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!--end--> 
+                      </div>
+                    </div>
+                    <div id="tab-2" class="tab-pane">
+                      <div class="panel-body">
+                        <div class="alert alert-info">注意：该分类商家不可修改。由淘黄州审核团队根据商品类型分配</div>
+                        <div id="categoryBox"></div>
+                        
+                        <!--分类数据显示--> 
+                        <script id="categoryButtonTemplate" type="text/html">
+							<input type="hidden" value="<%=templateData['id']%>" name="_goods_category[]" />
+							<a class="btn btn-success btn-outline"><i class="fa fa-fire"> </i>&nbsp;&nbsp;<%=templateData['name']%></a> &nbsp;&nbsp;&nbsp;&nbsp;
+                        </script> 
+                      </div>
+                    </div>
+                    <div id="tab-3" class="tab-pane">
+                      <div class="panel-body">
+                        <div class="col-sm-10">
+                          <button class="btn btn-primary " onclick="selSpec()" type="button"><i class="fa fa-plus-square-o"></i>&nbsp;添加规格</button>
+                        </div>
+                        <table class="table table-hover">
+                          <thead id="goodsBaseHead">
+                          </thead>
+                          <tbody id="goodsBaseBody">
+                          </tbody>
+                          
+                          <!--商品标题模板--> 
+                          <script id="goodsHeadTemplate" type='text/html'>
+					<tr>
+						<th width="20%">商品货号</th>
+						<%var isProduct = false;%>
+						<%for(var item in templateData){%>
+						<%isProduct = true;%>
+						<th width="7%"><a href="javascript:confirm('确定要删除此列规格？','delSpec(<%=templateData[item]['id']%>)');"><%=templateData[item]['name']%></a></th>
+						<%}%>
+						<th width="12%">库存</th>
+						<th width="12%">市场价格</th>
+						<th>销售价格</th>
+						<th width="12%">成本价格</th>
+						<th width="8%">重量(克)</th>
+						<%if(isProduct == true){%>
+						<th width="7%">操作</th>
+						<%}%>
+					</tr>
+					</script> 
+                          <!--商品内容模板--> 
+                          <script id="goodsRowTemplate" type="text/html">
+					<%var i=0;
+					for(var item in templateData){
+					item = templateData[item]%>
+					<tr>
+						<td>
+						<input class="form-control" name="_goods_no[<%=i%>]" type="text" value="<%=item['goods_no'] ? item['goods_no'] : item['products_no']%>" /></td>
+						<%var isProduct = false;
+						var specArrayList = parseJSON(item['spec_array'])
+						for(var result in specArrayList){
+						result = specArrayList[result]%>
+						<input type='hidden' name="_spec_array[<%=i%>][]" value='{"id":"<%=result.id%>","type":"<%=result.type%>","value":"<%=result.value%>","name":"<%=result.name%>"}' />
+						<%isProduct = true;%>
+						<td>
+							<%if(result['type'] == 1){%>
+								<%=result['value']%>
+							<%}else{%>
+								<img class="img_border" width="30px" height="30px" src="{webroot:<%=result['value']%>}">
+							<%}%>
+						</td>
+						<%}%>
+						<td>
+							<div class="input-group">
+							  <input class="form-control" name="_store_nums[<%=i%>]" type="text" datatype="int" value="<%=item['store_nums']?item['store_nums']:100%>" />
+							  <span class="input-group-addon">件</span>
+							</div>
+						</td>
+						<td>
+								<div class="input-group">
+								<input class="form-control" name="_market_price[<%=i%>]" type="text" datatype="float" value="<%=item['market_price']?item['market_price']:100%>" />
+								<span class="input-group-addon">元</span></div>
+						</td> 
+						<td>
+							<input type='hidden' name="_groupPrice[<%=i%>]" value="<%=item['groupPrice']%>" />
+								<span class="input-group">
+								    <span class="btn btn-warning input-group-addon" onclick="memberPrice(this);" title="会员组的价格"><i class="fa fa-vimeo"></i> <%if(item['groupPrice']){%>*<%}%></span>
+									<input class="form-control" name="_sell_price[<%=i%>]" type="text" datatype="float" value="<%=item['sell_price']?item['sell_price']:10%>" />
+									<span class="input-group-addon">元</span>
+								</span>
+						</td>
+						<td>
+							<div class="input-group">
+							  <input class="form-control" name="_cost_price[<%=i%>]" type="text" datatype="float" empty value="<%=item['cost_price']?item['sell_price']:1%>" />
+							  <span class="input-group-addon">元</span>
+							</div>
+						</td>
+						<td><input class="form-control" name="_weight[<%=i%>]" type="text" datatype="float" empty value="<%=item['weight']?item['weight']:100%>" /></td>
+						<%if(isProduct == true){%>
+						<td><a href="javascript:void(0)" onclick="delProduct(this);">删除</a></td> 
+						<%}%>
+					</tr>
+					<%i++;%>
+					<%}%>
+					</script>
+                        </table>
+                      </div>
+                    </div>
+                    <div id="tab-4" class="tab-pane">
+                      <div class="panel-body">
+                        <div class="col-sm-11">
+                          <div class="ibox-content">
+                            <div class="form-group">
+                              <label class="col-sm-2 control-label">商品模型</label>
+                              <div class="col-sm-10">
+                                <select name="model_id" onchange="create_attr(this.value)" class="form-control m-b">
+                                  <option value="0">通用类型</option>
+                                  
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+					{query:name=model}
+					
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                  <option value="{$item['id']}">{$item['name']}</option>
+                                  
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+					{/query}
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                  
+                                </select>
+                              </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                              <label class="col-sm-2 control-label">扩展属性</label>
+                              <div class="col-sm-10">
+                                <table class="table table-hover" id="propert_table">
+                                </table>
+                                
+                                <!--商品属性模板 开始--> 
+                                <script type='text/html' id='propertiesTemplate'>
+									<%for(var item in templateData){
+									item = templateData[item]
+									var valueItems = item['value'].split(',');%>
+									<tr>
+										<td width="20%">
+											<%=item["name"]%></td>
+										<td>
+											<%if(item['type'] == 1){%>
+												<%for(var tempVal in valueItems){%>
+												<%tempVal = valueItems[tempVal]%>
+													<label class="radio-inline"><input type="radio" checked="" name="attr_id_<%=item['id']%>" value="<%=tempVal%>"><%=tempVal%></label>
+												<%}%>
+											<%}else if(item['type'] == 2){%>
+												<%for(var tempVal in valueItems){%>
+												<%tempVal = valueItems[tempVal]%>
+													<label class="checkbox-inline"><input type="checkbox" name="attr_id_<%=item['id']%>[]" value="<%=tempVal%>"><%=tempVal%></label>
+												<%}%>
+											<%}else if(item['type'] == 3){%>
+												<select name="attr_id_<%=item['id']%>" class="form-control m-b">
+												<%for(var tempVal in valueItems){%>
+												<%tempVal = valueItems[tempVal]%>
+												<option value="<%=tempVal%>"><%=tempVal%></option>
+												<%}%>
+												</select>
+											<%}else if(item['type'] == 4){%>
+												<input type="text" name="attr_id_<%=item['id']%>" value="<%=item['value']%>" class="form-control" />
+											<%}%>
+										</td>
+									</tr>
+									<%}%>
+									</script> 
+                                <!--商品属性模板 结束--> 
+                              </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!--                      <div id="tab-5" class="tab-pane">
+                        <div class="panel-body">
+                          <div class="col-sm-11">
+                            <div class="ibox-content">
+                              <div class="form-group">
+                                <label class="col-sm-2 control-label">商品品牌</label>
+                                <div class="col-sm-10">
+                                  <select name="brand_id" class="form-control m-b">
+                                    <option value="0">请选择品牌</option>
+                                    
+                                    {query:name=brand}
+                                    
+                                    <option value="{$item['id']}">{$item['name']}</option>
+                                    
+                                    {/query}
+                                  
+                                  
+                                  </select>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+-->
+                    <div id="tab-6" class="tab-pane">
+                      <div class="panel-body">
+                        <div class="alert alert-info">注意：添加商品需要先添加店铺。否则系统自动不予审核通过</div>
+                        <div class="row"> {query:name=seller where=seller_user_id eq $seller_id}
+                          <div class="col-sm-4">
+                            <div class="widget-head-color-box navy-bg p-lg text-center shopItem" id="shopbox{$item[id]}" tag="{$item[id]}">
+                              <div class="m-b-md">
+                                <h2 class="font-bold no-margins"> {$item['shopname']}</h2>
+                                <small>已认证</small> </div>
+                              <img src="{webroot:$item[logo]}" class="img-circle circle-border m-b-md" onerror="this.src='{theme:img/shopnologo.png}'" alt="shop logo" width="64" height="64">
+                              <div> <span>0 商品</span>&nbsp;|&nbsp; <span>0 销量</span>&nbsp;|&nbsp; <span>0 关注者</span> </div>
+                            </div>
+                            <div class="widget-text-box">
+                              <h4 class="media-heading"><i class="fa fa-tty"></i>&nbsp;&nbsp;{$item[mobile]}</h4>
+                              <p><i class="fa fa-road"></i>&nbsp;&nbsp;{$item[address]}({$item[addressreference]})</p>
+                              <!--yellow-bg--> 
+                              <span class="text-left"> <a class="btn btn-xs btn-primary" href="javascript:void();" onClick="selectShop({$item[id]})"><i class="fa fa-heart"></i>&nbsp;&nbsp;选中它</a> </span> </div>
+                          </div>
+                          {/query}</div>
+                          
+                    </div>
+                  </div>
+                  <div id="tab-7" class="tab-pane">
+                    <div class="panel-body">
+                      <div class="col-sm-12"> 
+                        
+                        <!--上传控件-->
+                        <div class="alert alert-info">可上传多张图片，分辨率3000px以下，大小不得超过{echo:IUpload::getMaxSize()}</div>
+                        <div id="filePicker"><i class="fa fa-picture-o"></i>&nbsp;&nbsp;选择图片</div>
+                        <!--上传控件结束-->
+                        <div class="m-b-lg">
+                          <h2>主图相册&nbsp;&nbsp;<small>请设定一张主图</small></h2>
+                        </div>
+                        <ul class="uploader-list sortable-list connectList agile-list" id="fileList">
+                        </ul>
+                        <!--图片模板--> 
+                        <script type='text/html' id='picTemplate'>
+                                <%for(var item in picRoot)
+                                {%>
+                                    <div class="file-item thumbnail file-item-done">
+                                    <img src="{webroot:}<%=picRoot[item].img%>" alt="<%=picRoot[item].img%>">
+									<div class="btngroup">
+									  <a class="btn btn-danger btn-xs" href="javascript:void(0)" onclick="syncGoodsPhoto(this,2);"><i class="fa fa-times"></i>删除</a>&nbsp;&nbsp;
+									  <a class="btn btn-warning btn-xs" href="javascript:void(0)" onclick="syncGoodsPhoto(this,1);"><i class="fa fa-object-ungroup"></i>主图</a>
+									 </div>
+                                    </div>
+                                <%}%>
+
+                            </script> 
+                      </div>
+                    </div>
+                  </div>
+                  <div id="tab-8" class="tab-pane">
+                    <div class="panel-body">
+                      <textarea id="content" name="content" style="width:800px"></textarea>
+                    </div>
+                  </div>
+                  <div id="tab-9" class="tab-pane">
+                    <div class="panel-body">
+                      <div class="col-sm-11">
+                        <div class="ibox-content">
+                          <div class="form-group">
+                            <label class="col-md-2 control-label">产品服务</label>
+                            <div class="col-sm-10">{query:name=goods_svcpro_cate where=type eq 1 and isopen eq 0}
+                              <label class="checkbox-inline">
+                                <input name="_goods_svcpro[]" type="checkbox" value="{$item['id']}">
+                                {$item['name']}</label>
+                              {/query} </div>
+                          </div>
+                          <div class="hr-line-dashed"></div>
+                          <div class="form-group">
+                            <label class="col-md-2 control-label">服务承诺</label>
+                            <div class="col-sm-10">{query:name=goods_svcpro_cate where=type eq 2 and isopen eq 0}
+                              <label class="checkbox-inline">
+                                <input name="_goods_svcpro[]" type="checkbox" value="{$item['id']}">
+                                {$item['name']}</label>
+                              {/query} </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+          <div class="hr-line-dashed"></div>
+          <div class="form-group">
+            <div class="col-sm-4 col-sm-offset-3">
+              <button class="btn btn-primary" type="submit">提交保存</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<script src="js/plugins/validate/validform.min.js"></script> 
+<script src="js/plugins/artpl/artpl.min.js"></script> 
+<script src="js/plugins/webuploader/webuploader.min.js"></script> 
+<script src="js/packet/form.js"></script> 
+<script language="javascript">
+//创建表单实例
+var formObj = new Form('goodsForm');
+
+//默认货号
+var defaultProductNo = '{echo:goods_class::createGoodsNo()}';
+
+$(function()
+{
+	initProductTable();
+
+	//存在商品信息
+	{if:isset($form)}
+
+	{set:$seller_category = new IModel('seller_category');}
+	{set:$seller_category_extend = new IModel('seller_category_extend');}
+	{set:$category_extend = $seller_category_extend->getObj("goods_id=$form[id]")}
+	{set:if ($category_extend) $category = $seller_category->getObj("id=$category_extend[category_id]")}
+	{set:$form = array_merge($form, array('_goods_seller_category' => $category['id']))}
+
+
+	var goods = {echo:JSON::encode($form)};
+
+	var goodsRowHtml = template('goodsRowTemplate',{'templateData':[goods]});
+	$('#goodsBaseBody').html(goodsRowHtml);
+
+	formObj.init(goods);
+
+	//模型选择
+	$('[name="model_id"]').change();
+	{else:}
+	$('[name="_goods_no[0]"]').val(defaultProductNo);
+	{/if}
+
+	//存在货品信息,进行数据填充
+	{if:isset($product)}
+		var spec_array = {echo:$product[0]['spec_array']};
+		var product    = {echo:JSON::encode($product)};
+	
+		var goodsHeadHtml = template('goodsHeadTemplate',{'templateData':spec_array});
+		$('#goodsBaseHead').html(goodsHeadHtml);
+	
+		var goodsRowHtml = template('goodsRowTemplate',{'templateData':product});
+		$('#goodsBaseBody').html(goodsRowHtml);
+	{/if}
+
+	//商品分类回填
+	{if:isset($goods_category)}
+		{set:$categoryId = join(",",$goods_category)}
+		{query:name=category items=$categoryData where=id in ($categoryId)}{/query}
+		var categoryObj = {echo:JSON::encode($categoryData)};
+		for(var item in categoryObj)
+		{
+			item = categoryObj[item];
+			var goodsCategoryHtml = template('categoryButtonTemplate',{'templateData':item});
+			$('#categoryBox').append(goodsCategoryHtml);
+		}
+	{/if}
+
+	
+
+	  //商品服务回填
+	{if:isset($goods_svcpro)}
+		formObj.setValue('_goods_svcpro[]',"{echo:join(';',$goods_svcpro)}");
+	{/if}
+
+	//商品图片的回填
+	{if:isset($goods_photo)}
+		var goodsPhoto = {echo:JSON::encode($goods_photo)};
+		var picHtml = template('picTemplate',{'picRoot':goodsPhoto});
+		$('#fileList').append(picHtml);
+	{/if}
+
+	//商品默认图片
+	{if:isset($form['img']) && $form['img']}
+		syncGoodsPhoto("{echo:$form['img']}",3);
+	{/if}
+	//回填店铺
+	selectShop({$form['seller_id']});
+	//编辑器载入
+	UE.getEditor('content');
+});
+//显示分类数据信息
+function showCategory(categoryId,level)
+{
+	$('ul.select:gt('+level+')').remove();
+	var childCategory = categoryParentData[categoryId];
+	if(childCategory)
+	{
+		var templateHtml = template('AllCategoryListTemplate',{'templateData':childCategory,'level':level+1});
+		$('#AllCategoryBox').append(templateHtml);
+	}
+}
+
+//选中商品的店铺
+function selectShop(id){
+	if($(".shopItem").length==0){
+		window.document.location.href = '{url:seller/shop_edit}';
+		window.alert('请先添加店铺才能添加商品');
+		return;}
+	if(!id)id = $(".shopItem:first").attr("tag");
+	$(".yellow-bg").removeClass('yellow-bg').addClass("navy-bg");
+	$("#shopbox"+id).addClass('yellow-bg').removeClass("navy-bg");
+	$('input[name="seller_id"]').val(id);//alert(id)
+}
+//初始化货品表格
+function initProductTable()
+{
+
+	//默认产生一条商品标题空挡
+	var goodsHeadHtml = template('goodsHeadTemplate',{'templateData':[]});
+	$('#goodsBaseHead').html(goodsHeadHtml);
+
+	//默认产生一条商品空挡 
+	var goodsRowHtml = template('goodsRowTemplate',{'templateData':[{}]});   
+	$('#goodsBaseBody').html(goodsRowHtml);
+}
+
+//删除货品
+function delProduct(_self)
+{
+	$(_self).parent().parent().remove();
+	if($('#goodsBaseBody tr').length == 0)
+	{
+		initProductTable();
+	}
+}
+
+
+
+//添加规格
+function selSpec()
+{
+	var tempUrl = '{url:/goods/search_spec/model_id/@model_id@/seller_id/$seller_id/goods_id/@goods_id@}';
+	var model_id = $('[name="model_id"]').val();
+	var goods_id = $('[name="id"]').val();
+
+	tempUrl = tempUrl.replace('@model_id@',model_id);
+	tempUrl = tempUrl.replace('@goods_id@',goods_id);
+	top.layer.open({
+		type: 2,
+		title: '设置商品的规格',
+		shadeClose: true,
+		shade: 0.8,
+		area: ['90%', '90%'],
+		content: tempUrl, //iframe的url
+		btn: ['保存','取消'], //按钮
+		maxmin: true,
+		yes: function(index, layerDom){
+			//do somethin
+			layerDom = $("iframe",layerDom)[0].contentWindow;
+			//添加的规格
+			var addSpecObject = $(layerDom.document).find('[id^="vertical_"]');
+			if(addSpecObject.length == 0)
+			{
+				top.layer.close(index);
+				return;
+			}
+
+			var specIsHere    = getIsHereSpec();
+			var specValueData = specIsHere.specValueData;
+			var specData      = specIsHere.specData;
+
+			//追加新建规格
+			addSpecObject.each(function()
+			{
+				$(this).find('input:hidden[name="specJson"]').each(function()
+				{
+					var json = $.parseJSON(this.value);
+					if(!specValueData[json.id])
+					{
+						specData[json.id]      = json;
+						specValueData[json.id] = [];
+					}
+					specValueData[json.id].push(json['value']);
+				});
+			});
+			createProductList(specData,specValueData);
+			// //如果设定了yes回调，需进行手工关闭
+			top.layer.close(index);
+		}
+	});
+
+}
+
+//笛卡儿积组合
+function descartes(list,specData)
+{
+	//parent上一级索引;count指针计数
+	var point  = {};
+
+	var result = [];
+	var pIndex = null;
+	var tempCount = 0;
+	var temp   = [];
+
+	//根据参数列生成指针对象
+	for(var index in list)
+	{
+		if(typeof list[index] == 'object')
+		{
+			point[index] = {'parent':pIndex,'count':0}
+			pIndex = index;
+		}
+	}
+
+	//单维度数据结构直接返回
+	if(pIndex == null)
+	{
+		return list;
+	}
+
+	//动态生成笛卡尔积
+	while(true)
+	{
+		for(var index in list)
+		{
+			tempCount = point[index]['count'];
+			temp.push({"id":specData[index].id,"type":specData[index].type,"name":specData[index].name,"value":list[index][tempCount]});
+		}
+
+		//压入结果数组
+		result.push(temp);
+		temp = [];
+
+		//检查指针最大值问题
+		while(true)
+		{
+			if(point[index]['count']+1 >= list[index].length)
+			{
+				point[index]['count'] = 0;
+				pIndex = point[index]['parent'];
+				if(pIndex == null)
+				{
+					return result;
+				}
+
+				//赋值parent进行再次检查
+				index = pIndex;
+			}
+			else
+			{
+				point[index]['count']++;
+				break;
+			}
+		}
+	}
+}
+
+//根据模型动态生成扩展属性
+function create_attr(model_id)
+{
+	$.getJSON("{url:/block/attribute_init}",{'model_id':model_id}, function(json)
+	{
+		if(json && json.length > 0)
+		{
+			var templateHtml = template('propertiesTemplate',{'templateData':json});
+			$('#propert_table').html(templateHtml).show();
+
+			//表单回填设置项
+			{if:isset($goods_attr)}
+			{set:$attrArray = array();}
+			{foreach:items = $goods_attr}
+			{set:$valArray = explode(',',$item);}
+			{set:$attrArray[] = '"attr_id_'.$key.'[]":"'.join(";",$valArray).'"'}
+			{set:$attrArray[] = '"attr_id_'.$key.'":"'.join(";",$valArray).'"'}
+			{/foreach}
+			formObj.init({{echo:join(',',$attrArray)}});
+			{/if}
+		}
+		else
+		{
+			$('#propert_table').hide();
+		}
+	});
+}
+
+
+/**
+ *分解名称关键词
+ */
+function wordsPart(){
+	var goodsName = $('input[name="name"]').val();
+	if(goodsName)
+	{
+		$.getJSON("{url:/goods/goods_tags_words}",{"content":goodsName},function(json)
+		{
+			if(json.result == 'success')
+			{
+				$('input[name="search_words"]').val(json.data);
+			}
+		});
+	}
+}
+
+
+/**
+ * 会员价格
+ * @param obj 按钮所处对象
+ */
+function memberPrice(obj)
+{
+	var sellPrice = $(obj).siblings('input[name^="_sell_price"]')[0].value;
+	if($.isNumeric(sellPrice) == false)
+	{
+		alert('请先设置商品的价格再设置会员价格');
+		return;
+	}
+
+	var groupPriceValue = $(obj).siblings('input[name^="_groupPrice"]');
+
+	//用户组的价格
+	//alert(groupPriceValue.val());
+
+	//开启新页面
+	var tempUrl = '{url:/goods/member_price/sell_price/@sell_price@/seller_id/$seller_id}';
+	tempUrl = tempUrl.replace('@sell_price@',sellPrice);
+	top.layer.open({
+		type: 2,
+		title: '此商品对于会员组价格',
+		shadeClose: true,
+		shade: 0.8,
+		area: ['710px', '90%'],
+		content: tempUrl, //iframe的url
+		btn: ['保存','取消'], //按钮
+		maxmin: true,
+		yes: function(index, layerDom){
+			//do somethin
+			layerDom = $("iframe",layerDom)[0].contentWindow;
+	    	var formObject = layerDom.document.forms['groupPriceForm'];
+	    	var groupPriceObject = {};
+	    	$(formObject).find('input[name^="groupPrice"]').each(function(){
+	    		if(this.value != '')
+	    		{
+	    			//去掉前缀获取group的ID
+		    		var groupId = this.name.replace('groupPrice','');
+
+		    		//拼接json串
+		    		groupPriceObject[groupId] = this.value;
+	    		}
+	    	});
+
+	    	//更新会员价格值
+    		var temp = [];
+    		for(var gid in groupPriceObject)
+    		{
+    			temp.push('"'+gid+'":"'+groupPriceObject[gid]+'"');
+    		}
+    		groupPriceValue.val('{'+temp.join(',')+'}');
+			// //如果设定了yes回调，需进行手工关闭
+			top.layer.close(index);
+		}
+	});
+	
+
+}
+
+//删除规格
+function delSpec(specId)
+{
+	$('input:hidden[name^="_spec_array"]').each(function()
+	{
+		var json = $.parseJSON(this.value);
+		if(json.id == specId)
+		{
+			$(this).remove();
+		}
+	});
+
+	//当前已经存在的规格数据
+	var specIsHere = getIsHereSpec();
+	createProductList(specIsHere.specData,specIsHere.specValueData);
+}
+
+//获取已经存在的规格
+function getIsHereSpec()
+{
+	//开始遍历规格
+	var specValueData = {};
+	var specData      = {};
+
+	//规格已经存在的数据
+	if($('input:hidden[name^="_spec_array"]').length > 0)
+	{
+		$('input:hidden[name^="_spec_array"]').each(function()
+		{
+			var json = $.parseJSON(this.value);
+			if(!specValueData[json.id])
+			{
+				specData[json.id]      = json;
+				specValueData[json.id] = [];
+			}
+
+			if(jQuery.inArray(json['value'],specValueData[json.id]) == -1)
+			{
+				specValueData[json.id].push(json['value']);
+			}
+		});
+	}
+	return {"specData":specData,"specValueData":specValueData};
+}
+
+/**
+ * @brief 根据规格数据生成货品序列
+ * @param object specData规格数据对象
+ * @param object specValueData 规格值对象集合
+ */
+function createProductList(specData,specValueData)
+{
+	//生成货品的笛卡尔积
+	var specMaxData = descartes(specValueData,specData);
+
+	//从表单中获取默认商品数据
+	var productJson = {};
+	$('#goodsBaseBody tr:first').find('input[type="text"]').each(function(){
+		productJson[this.name.replace(/^_(\w+)\[\d+\]/g,"$1")] = this.value;
+	});
+
+	//生成最终的货品数据
+	var productList = [];
+	for(var i = 0;i < specMaxData.length;i++)
+	{
+		var productItem = {};
+		for(var index in productJson)
+		{
+			//自动组建货品号
+			if(index == 'goods_no')
+			{
+				//值为空时设置默认货号
+				if(productJson[index] == '')
+				{
+					productJson[index] = defaultProductNo;
+				}
+
+				if(productJson[index].match(/(?:\-\d*)$/) == null)
+				{
+					//正常货号生成
+					productItem['goods_no'] = productJson[index]+'-'+(i+1);
+				}
+				else
+				{
+					//货号已经存在则替换
+					productItem['goods_no'] = productJson[index].replace(/(?:\-\d*)$/,'-'+(i+1));
+				}
+			}
+			else
+			{
+				productItem[index] = productJson[index];
+			}
+		}
+		productItem['spec_array'] = specMaxData[i];
+		productList.push(productItem);
+	}
+
+	//创建规格标题
+	var goodsHeadHtml = template('goodsHeadTemplate',{'templateData':specData});
+	$('#goodsBaseHead').html(goodsHeadHtml);
+
+	//创建货品数据表格
+	var goodsRowHtml = template('goodsRowTemplate',{'templateData':productList});
+	$('#goodsBaseBody').html(goodsRowHtml);
+
+	if($('#goodsBaseBody tr').length == 0)
+	{
+		initProductTable();
+	}
+}
+//同步化主图
+function syncGoodsPhoto(_self,type)
+{
+	switch(type)
+	{//设置主图
+	case 1:
+		  $('.file-item').removeClass('file-item-current');
+		  $(_self).parent().parent().addClass('file-item-current');
+		  var mainUrl = $(_self).parent().parent().find("img").attr('alt');
+		  $('input[name="img"]').val(mainUrl);
+	  break;
+	case 2://删除图片
+		  $(_self).parent().parent().remove();
+	  break;
+	case 3://初始选中图片
+	  	$('#fileList img[alt="'+_self+'"]').parent().addClass('file-item-current');
+		$('input[name="img"]').val(_self);
+	  break;
+	default:
+	  break;
+	};
+	
+	//整理商品图片
+	var goodsPhoto = [];
+	$('#fileList img').each(function(){
+		this.alt.length>0 && goodsPhoto.push(this.alt);
+	});
+	if(goodsPhoto.length > 0)
+	{
+		$('input[name="_imgList"]').val(goodsPhoto.join(','));
+		$('input[name="img"]').val().length==0 && $('input[name="img"]').val(goodsPhoto[0]) && $('.file-item:first').addClass('file-item-current');
+	}
+	
+}
+
+// 图片上传
+function initupLoader(t){
+var $ = jQuery,
+        $list = $('#fileList'),
+        // 优化retina, 在retina下这个值是2
+        ratio = window.devicePixelRatio || 1,
+
+        // 缩略图大小
+        thumbnailWidth = 100 * ratio,
+        thumbnailHeight = 100 * ratio,
+
+        // Web Uploader实例
+        uploader;
+
+    // 初始化Web Uploader
+    uploader = WebUploader.create({
+
+        // 自动上传。
+        auto: true,
+
+        // swf文件路径
+        swf: '',//BASE_URL + '/js/Uploader.swf',
+
+        // 文件接收服务端。
+        server: '{url:seller/goods_img_upload}',
+
+        // 选择文件的按钮。可选。
+        // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+        pick: '#filePicker',
+
+        // 只允许选择文件，可选。
+        accept: {
+            title: 'Images',
+            extensions: 'gif,jpg,jpeg,bmp,png',
+            mimeTypes: 'image/*'
+        },
+		resize: false
+    });
+	$(t).removeAttr("onclick");
+    // 当有文件添加进来的时候
+    uploader.on( 'fileQueued', function( file ) {
+		$(":submit").attr("disabled",true);
+        var $li = $(
+                '<div id="' + file.id + '" class="file-item thumbnail">' +
+                    '<img>' +
+                    '<div class="btngroup">' + 
+					'	<a class="btn btn-danger btn-xs" href="javascript:void(0)" onclick="syncGoodsPhoto(this,2);"><i class="fa fa-times"></i>删除</a>&nbsp;&nbsp;'+
+					'   <a class="btn btn-warning btn-xs" href="javascript:void(0)"  onclick="syncGoodsPhoto(this,1);"><i class="fa fa-object-ungroup"></i>主图</a>'+
+					'</div>' +
+                '</div>'
+                ),
+            $img = $li.find('img');
+
+        $list.append( $li );
+
+        // 创建缩略图
+        uploader.makeThumb( file, function( error, src ) {
+            if ( error ) {
+                $img.replaceWith('<span>不能预览</span>');
+                return;
+            }
+
+            $img.attr( 'src', src );
+        }, thumbnailWidth, thumbnailHeight );
+    });
+
+    // 文件上传过程中创建进度条实时显示。
+    uploader.on( 'uploadProgress', function( file, percentage ) {
+        var $li = $( '#'+file.id ),
+            $percent = $li.find('.progress-bar');
+
+        // 避免重复创建
+        if ( !$percent.length ) {
+			 $percent = $('<div class="progress progress-striped active"><div class="progress-bar"><span class="sr-only">0%</span></div></div>')
+                    .appendTo( $li )
+                    .find('.progress-bar');
+        }
+
+        $percent.css( 'width', percentage * 100 + '%' );
+    });
+
+    // 文件上传成功，给item添加成功class, 用样式标记上传成功。
+    uploader.on( 'uploadSuccess', function( file,result ) {
+		var $li = $( '#'+file.id );
+		if(result.flag == 1){
+        $li.addClass('file-item-done')
+			.children("img")
+			.attr({
+				"src":"/"+result.img,"alt":result.img
+			});
+		syncGoodsPhoto(null,4);
+		}else{
+			$('<div class="error">错误：'+ result.flag +'</div>').appendTo( $li )
+		}
+    });
+
+    // 文件上传失败，现实上传出错。
+    uploader.on( 'uploadError', function( file ) {
+        var $li = $( '#'+file.id ),
+            $error = $li.find('div.error');
+
+        // 避免重复创建
+        if ( !$error.length ) {
+            $error = $('<div class="error"></div>').appendTo( $li );
+        }
+
+        $error.text('上传失败');
+    });
+
+    // 完成上传完了，成功或者失败，先删除进度条。
+    uploader.on( 'uploadComplete', function( file ) {
+        $( '#'+file.id ).find('.progress').remove();
+    });
+	uploader.on('uploadFinished',function(file){
+		$(":submit").removeAttr('disabled');
+	})
+}
+</script> 

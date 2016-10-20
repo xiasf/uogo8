@@ -1,0 +1,13 @@
+/*可以在这里添加你自己的css*/
+@charset "utf-8";
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td, button,select { padding: 0; margin: 0;font-family: "微软雅黑", "宋体"; font-size: 1.0em; text-shadow: #fff 0 1px 0px; }
+label input { vertical-align: middle }
+a:link, a:visited { text-decoration: none; color: orange; }
+a:hover, a:active { text-decoration: none }
+body { color: black; background-color: #fff; text-align: left; overflow: hidden; line-height: 1.5; }
+img { border: 0; vertical-align: middle;margin:0; }
+table { border-collapse: collapse; }
+ul li { list-style: none }
+a.hidefocus { outline: none }
+button.hidefocus::-moz-focus-inner {border:none}
+input,botton,select{border-radius:3px;line-height: 22px; }

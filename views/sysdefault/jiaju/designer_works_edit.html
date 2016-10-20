@@ -1,0 +1,137 @@
+{js:baidueditor}
+<div class="headbar">
+	<div class="position"><span>家居建材</span><span>></span><span>设计作品</span><span>></span><span>{if:isset($this->show_img_catRow['id'])}编辑{else:}添加{/if}设计作品</span></div>
+</div>
+<div class="content_box">
+	<div class="content form_content">
+		<form action="{url:/jiaju/designer_works_edit_act}" method="post" name='designer_edit' callback="invalid_callback('rule_table');" enctype="multipart/form-data">
+			<input type='hidden' name='id' />
+			<table class="form_table" name="rule_table">
+				<col width="150px" />
+				<col />
+				<tr>
+					<th>作品名称：</th>
+					<td><input type='text' class='normal' name='name' pattern='required' alt='请填写公司名称' /><label>* 填写公司名称</label></td>
+				</tr>
+
+				<tr>
+					<th>主图：</th>
+					<td>
+						<input type="file" name="logo" />
+			              {if:isset($this->designer_worksRow['logo']) && $this->designer_worksRow['logo']}
+			              <p><a target="_blank" href="{webroot:}{$this->designer_worksRow['logo']}"><img src='{webroot:}{$this->designer_worksRow['logo']}' style='width:100px;height: 100100pxpx;border:1px solid #ccc' /></a></p>
+			              {/if}
+					</td>
+                </tr>
+
+                        <tr>
+          <th>风格：</th>
+          <td><select class="auto" name="style" pattern="required" alt="风格">
+              <option value='简约'>简约</option>
+              <option value='现代'>现代</option>
+              <option value='中式'>中式</option>
+              <option value='欧式'>欧式</option>
+              <option value='美式'>美式</option>
+              <option value='田园'>田园</option>
+              <option value='新古典'>新古典</option>
+              <option value='混搭'>混搭</option>
+              <option value='地中海'>地中海</option>
+              <option value='东南亚'>东南亚</option>
+              <option value='日式'>日式</option>
+              <option value='宜家'>宜家</option>
+              <option value='北欧'>北欧</option>
+              <option value='简欧'>简欧</option>
+              <option value='其它'>其它</option>
+            </select></td>
+        </tr>
+
+        <tr>
+					<th>楼盘名称：</th>
+					<td><input type='text' class='normal' name='building' pattern='required' alt='请填写面积（单位：平米）' /><label>* 填写面积（单位：平米）</label></td>
+				</tr>
+
+        		<tr>
+					<th>面积：</th>
+					<td><input type='text' class='normal' name='area_size' pattern='required' alt='请填写面积（单位：平米）' /><label>* 填写面积（单位：平米）</label></td>
+				</tr>
+
+                        <tr>
+          <th>价格：</th>
+          <td><select class="auto" name="price" pattern="required" alt="风格">
+              <option value='6-8万'>6-8万</option>
+              <option value='8-10万'>8-10万</option>
+              <option value='10-12万'>10-12万</option>
+              <option value='12-15万'>12-15万</option>
+              <option value='15-18万'>15-18万</option>
+              <option value='18-23万'>18-23万</option>
+              <option value='23-50万'>23-50万</option>
+            </select></td>
+        </tr>
+
+
+                                <tr>
+          <th>房型：</th>
+          <td><select class="auto" name="room" pattern="required" alt="风格">
+              <option value='小户型'>小户型</option>
+              <option value='中户型'>中户型</option>
+              <option value='大户型'>大户型</option>
+              <option value='超大户型'>超大户型</option>
+              <option value='豪华户型'>豪华户型</option>
+            </select></td>
+        </tr>
+
+				<tr>
+					<th>灵感：</th>
+					<td><textarea name='smalldescribe' class='textarea'>{$this->designer_worksRow['smalldescribe']}</textarea></td>
+				</tr>
+				<tr>
+					<th>详细：</th>
+					<td><textarea style="width:800px;height:400px;" name='describe' id="describe">{$this->designer_worksRow['describe']}</textarea></td>
+				</tr>
+
+				<tr>
+		          <th>设计师：</th>
+		          <td>
+		            <select class="auto" name="designer" pattern="required" alt="设计师">
+		              <option value="0" selected>请选择设计师</option>
+		              {query:name=jiaju_designer}
+		              <option value="{$item[id]}">{$item['name']}</option>
+		              {/query}
+		            </select>
+		          </td>
+		        </tr>
+
+				<tr>
+					<th>是否发布：</th>
+					<td>
+						<label class='attr'><input type='radio' name='status' value='1' checked=checked />是</label>
+						<label class='attr'><input type='radio' name='status' value='0' />否</label>
+					</td>
+				</tr>
+				<tr>
+					<th>排序：</th>
+					<td><input style="width:50px;" type='text' class='normal' name='sort' value="99" pattern='required' alt='请填写活动排序' /><label>* 排序</label></td>
+				</tr>
+
+				<tr>
+					<th></th>
+					<td><button class="submit" type='submit'><span>确 定</span></button></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</div>
+
+<script type='text/javascript'>
+$(function(){
+	//表单回填
+	var formObj = new Form('designer_edit');
+	{if:isset($this->designer_worksRow)}
+		formObj.init({echo:JSON::encode($this->designer_worksRow)});
+	{/if}
+
+	//编辑器载入
+	UE.getEditor('describe');
+
+});
+</script>

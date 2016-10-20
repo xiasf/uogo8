@@ -1,0 +1,436 @@
+<section class="g_wrap m_gDetail"> 
+  <!--banner图-->
+  <section class="m_banner">
+    <div class="swiper-container swiper-container-horizontal">
+      <div class="swiper-wrapper"> {foreach:items=$photo}
+        <div class="swiper-slide swiper-slide-prev"><img src='{webroot:}{echo:Thumb::get($item['img'],400,400)}'/></div>
+        {/foreach} </div>
+      <div class="swiper-pagecount swiper-pagination-clickable"></div>
+    </div>
+    <div class="btn"><a href="{url:/site/products_info_m/id/$id}">图文详情</a></div>
+  </section>
+  <!--倒计时-->
+  {if:isset($promotion) && $promotion}
+  {set:$time=Api::run('getPromotionRowById',array('#id#',$active_id));$free_time = ITime::getDiffSec($time['end_time']);} 
+  <section class="m_countdown"> <i class="u_ico1 ico"></i><time class="seckillTime" data-type=1 data-date="{echo:ITime::getTime($time['start_time'])}" data-endate="{echo:ITime::getTime($time['end_time'])}"></time></section>
+  
+  {/if}
+  <!--商品标题信息-->
+  <section class="pd">
+    <h2>{$name}</h2>
+    <h3>{$smalldescription}</h3>
+    <!-- <h3>配送说明：黄州市区15:00之前下单当日内免费送货上门，15:00之后下单次日免费送货上门;除黄州市区外其他地区次日发快递。</h3> -->
+    <div class="price" id="price">loading...</div>
+    <div class="row"> <span id="express" class="f_fl">物流配送:系统默认</span> <!--<span class="f_tc">已售&nbsp;{$sale}&nbsp;件，浏览量：{$visit}次，收藏：{$favorite}次</span>--><span id="deliveryAddr" class="f_fr" style="text-align: right;">湖北黄冈</span></div>
+    <div class="row"> <span id="express" class="f_fl">浏览&nbsp;{echo:$visit+1020}</span> <span class="f_tc">月售&nbsp;{$sale}&nbsp;件<!--，浏览量：{$visit}次，收藏：{$favorite}次--></span><span id="deliveryAddr" class="f_fr" style="text-align: right;">收藏&nbsp;{$favorite}&nbsp;次</span></div>
+  </section>
+  <!--特点-->
+  <ul class="u_feature clearfix">
+    <li><em><i class="u_ico1 ico"></i>假一赔十</em></li>
+    <li><em><i class="u_ico1 ico"></i>超值低价</em></li>
+    <li><em><i class="u_ico1 ico"></i>先行赔付</em></li>
+    <li><em><i class="u_ico1 ico"></i>售后保障</em></li>
+  </ul>
+  <!--未上线提示层-->
+  {if:$is_del!=0}<section class="noBuyinfo">提示：该商品暂时未上线，无法购买</section>{/if}
+  <!--展开的内容-->
+  <section id="activityDetail" class="m_firm m_firm2" style="display: none;">
+    <div class="action"></div>
+  </section>
+  
+  <!--规格--> {if:$spec_array}
+   <section class="m_specs j_tog" id="specClick"><span> 规格：</span> <span class="group" id="specTitel">请选择规格</span> <i class="u_arr u_arr1"></i> </section>{/if}
+  <!--展开的内容--> 
+  <!--  <section class="m_dispatch u_public" id="selectArea">
+    <ul class="add clearfix">
+      <li>送至</li>
+      <li id="province">广东</li>
+      <li id="city">深圳</li>
+      <li><b class="f_fl" id="town">南山区</b><i class="u_ico1 ico f_fl"></i></li>
+    </ul>
+     <em>正</em><span>该商品支持7天退换</span>
+    <i class="u_arr u_arr1"></i> </section>--> 
+  <div id="serviceWrap" class="m_service u_public"> <span> 服务：</span> {if:isset($seller)}<span class="group">由第三方商家提供配送服务</span>{else:}由淘黄州提供配送服务{/if}<i class="u_arr u_arr1"></i> </div>
+  <section class="m_num u_public"> <span class="f_fl">数量：</span>
+    <div class="u_amount f_fl"> <a href="javascript:;" class="minus">-</a>
+      <input type="text" value="1" id="buyNums" readonly>
+      <a href="javascript:;" class="plus">+</a> </div>
+    <em class="f_fl"> [库存<span id="stock_num">{$store_nums}</span>件] </em> </section>
+
+</section>
+<section class="g_wrap">
+  <div id="detailInfoWrap" class="m_datepage u_public"> <a style="display:block" href="{url:/site/products_info_m/id/$id}"><span>商品详情</span><i class="u_arr u_arr1"></i></a> </div>
+  {if:$comments>0}
+  <div class="m_comment u_public mb15">
+    <a style="display:block" href="{url:/site/comments_list/id/$id}"> <span class="f_fl">商品评价</span> <span class="f_fr mr">已有{$comments}人评价</span> <i class="u_arr u_arr1"></i> </a> </div>
+  {/if}
+  <!--{if:isset($buyer_id) && $buyer_id}
+  <section class="m_like">
+    <div class="u_tit clearfix">
+      <h3>猜你喜欢1</h3>
+    </div>
+    <ul class="list clearfix">
+      {foreach:items=Api::run('getOrderGoodsByBuyerid',array('#buyer_id#',$buyer_id))}
+      <li> <a class="cont" href="{url:site/products/id/$item[id]}"> <img src="{url:/pic/thumb/img/$item[img]/w/210/h/210}">
+        <p>{$item['name']}</p>
+        <em>￥{$item['price']}</em> <del>￥{$item['price']}</del> </a> </li>
+      {/foreach}
+    </ul>
+    </section> {/if}-->
+  <!-- <section id="drapLoad" class="m_see">
+            <span>继续拖动，查看详情</span>
+        </section>
+</section>
+
+<!--底部按钮-->
+<section class="m_fixedBtn time">
+	<div class="adlert_kf">
+		<p><a href="tel:15871815678">客服电话:187-7163-7285</a></p>
+		<div class="whole" style="height:auto;line-height:2em;padding:10px 5px"><span style="float:left;width:30%;padding-right:10px"><img style="width: 100%;" src="http://m.itaohz.com/views/mobile/skin/index/wxgroup.jpg"><em style="text-align: center;display: block;margin-top:5px">按住扫描</em></span><span class="clearfix">如有疑问请加微信客服群，我们竭诚为您服务。不定期发放购物券，优惠券、代金券、免单活动等。快来吧，就差你咯！</span></div>
+	</div>
+
+	<div class="temai_a"><a href="{url:v_deco/seckill}">淘黄州自营特卖</a><a href="{url:v_deco/seckill2}">淘黄州本地特卖</a></div>
+
+  <ul class="g_wrap">
+  <span class="smallbtn">
+    <li><a href="javascript:;" class="btn" id="serviceBtn"><i class="u_ico1 ico"></i><em>客服</em></a></li>
+    <li><a href="javascript:;" class="btn" id="serviceBtn2"><i class="u_ico1 ico temai"></i><em>特卖</em></a></li>
+    {if:isset($seller)}<li><a href="{url:/site/home/id/$seller_id}" class="btn"><i class="u_ico1 ico2"></i><em>进店</em></a></li>{/if}
+    </span>
+ <span>   {if:isset($promotion) && $promotion}
+ 	{set: $_time = date('Y-m-d H:i:s');}
+    {if:$store_nums <= 0}
+    <li><a href="javascript:void(0)" class="btn4 disable">已售完</a></li>
+    {elseif: $_time < $time['end_time'] && $_time > $time['start_time']}
+    <li><a href="javascript:void(0)" class="btn4 buyNowBtn">立即购买</a></li>
+    {else:}
+    <li><a href="javascript:void(0)" class="btn4 disable">暂未开始</a></li>
+    {/if}
+    <!--抢购过期-->
+    {else:}
+    <li><a href="javascript:void(0)" class="btn4 disable">已结束</a></li>
+    {/if}</span>
+  </ul>
+</section><!--规格选择器-->
+<section id="goodsOptionsWrap" class="m_selAttr hide">
+  <div class="bg" id="goodsOptionsBG"><div style="background-color:#fff;margin-top:200px;line-height:60px;width:10%;text-align:center">返<br>回</div></div>
+  <div class="cont">
+    <div class="goods f_clear"> <img id="selectedGoodImg" class="f_fl" src="{url:$img}"> <span id="price_retail_attach" class="f_fl">loading...</span>
+      <p class="f_fl">已选：<span id="specTitel_attach"></span></p>
+    </div>
+    <div class="attr">
+  {if:$spec_array}
+  {set:$specArray = JSON::decode($spec_array);}
+  {foreach:items=$specArray}
+  <dl class="u_attr u_attr2" name="specCols">
+    <dt>{$item['name']}</dt>
+    <dd class="mall_detail" id="specList{$item['id']}">
+    {set:$specVal=explode(',',trim($item['value'],','))}
+    {foreach:items=$specVal item=$spec_value}
+        {if:$item['type'] == 1}
+        <em value='{"id":"{$item['id']}","type":"{$item['type']}","value":"{$spec_value}","name":"{$item['name']}"}' class="specItem">{$spec_value}</em>
+        {else:}
+        <em value='{"id":"{$item['id']}","type":"{$item['type']}","value":"{$spec_value}","name":"{$item['name']}"}' class="specItem" ><img src="{webroot:$spec_value}" width='30px' height='30px' /></em>
+        {/if}
+    {/foreach} </dd> </dl>
+  {/foreach}
+  {/if} 
+
+      <section class="m_num u_public"> <span class="size">数量</span><br>
+        <div id="numPickerAttach" class="u_amount f_fl"> <a href="javascript:;" class="minus">-</a>
+          <input type="text" value="1" id="buyNums2">
+          <a href="javascript:;" class="plus">+</a> </div>
+        <em class="stock f_fl"> [库存&nbsp;<span id="stock_num_attach">{$store_nums}</span>&nbsp;件] </em> </section>
+    </div>
+    <section class="u_btn">
+      <ul>
+        {if:$store_nums <= 0}
+        <li style="width:100%"><a href="javascript:void(0)" class="btn2">该商品已售完！</a></li>
+        {else:}
+        <li class="btn3"><a href="javascript:void(0)" class="addCartBtn">加入购物车</a></li>
+        <li class="btn2"><a href="javascript:void(0)" class="buyNowBtn">立即购买</a></li>
+        {/if}
+      </ul>
+    </section>
+  </div>
+</section>
+<input type='hidden' id='product_id' alt='货品ID' value='' />
+<p class="tip-add-successful" style="display: none;"> 添加成功！<br>商品已成功加入购物车 </p>
+{if:isset($seller)} 
+<section class="m_mode hide" style="bottom:54px">
+	{set:$logo = $seller['logo'] ? : $seller['weixin_logo']}
+<span><img src="{url:$logo}" width="106" height="auto"><big>&nbsp;&nbsp;&nbsp;&nbsp;{$seller[shopname]}</big></span>
+<h4>电话：<a href="tel:{$seller[mobile]}">{$seller[mobile]}</a><a href="sms:{$seller[mobile]}">发送短信</a></h4>
+<h4>地址：{$seller[addregion]}</h4><h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$seller[address]}</h4>
+</section>{/if}
+<link rel="stylesheet" type="text/css" href="skin/js/swiper/swiper.min.css">
+<link rel="stylesheet" type="text/css" href="skin/mall/page_1.css">
+<script type="text/javascript" src="skin/js/swiper/swiper.min.js"></script> 
+<script type="text/javascript">
+$(function(){
+
+	wxshare.title = '{$name}';
+	wxshare.desc = '{echo:IFilter::replace($smalldescription)}';
+	wxshare.imgUrl = '{url:}{echo:Thumb::get($photo[0][img],400,400)}';
+
+	var swiper = new Swiper('.swiper-container',{pagination: '.swiper-pagecount',paginationClickable: true }),_this= {isBuy:true};
+	$("#serviceBtn").click(function(e) {
+        $(".m_mode").toggleClass("hide");
+    });
+
+
+    $('.seckillTime').downCount();
+	_this.price = function(price){
+		var priceStr; 
+		if(typeof price =='undefined')
+			price = {"group_price":"{$group_price}",
+				"minSellPrice":"{$minSellPrice}","maxSellPrice":"{$maxSellPrice}","sell_price":"{$sell_price}",
+				"minMarketPrice":"{$minMarketPrice}","maxMarketPrice":"{$maxMarketPrice}","market_price":"{$market_price}"
+			};
+		{if:isset($promotion) && $promotion} 
+			price.sell_price = {$promotion['award_value']};
+		{/if}
+
+		 if(price.group_price){
+			 priceStr = '<em class="f_fl" id="real_price">￥'+ price.group_price +'</em><del class="f_fl">￥';
+			 priceStr += (price.minSellPrice != price.maxSellPrice)?price.minSellPrice+' - ￥'+ price.maxSellPrice:price.sell_price;
+			 priceStr += '</del>';
+		}else{
+			 priceStr = '<em class="f_fl" id="real_price">￥';
+			 priceStr += (price.minSellPrice != price.maxSellPrice)?price.minSellPrice+' - ￥'+ price.maxSellPrice:price.sell_price;
+			 priceStr += '</em><del class="f_fl">￥';
+			 priceStr += (price.minMarketPrice != price.maxMarketPrice)?price.minMarketPrice+ ' - ￥'+ price.maxMarketPrice:price.market_price;
+			 priceStr += '</del>';
+		};
+		$("#price,#price_retail_attach").html(priceStr);
+	};
+	_this.price();
+	_this.checkSpecSelected = function()
+	{
+		if($('[name="specCols"]').length === $('[name="specCols"] .cur').length)
+		{
+			return true;
+		}
+		return false;
+		
+	};
+	_this.buyNow = function(){
+		//对规格的检查
+		if(!_this.checkSpecSelected())
+		{
+			alert('请选择商品的规格');
+			return;
+		}
+		if(!_this.isBuy){
+			alert("暂时无法购买");
+			return;
+		};
+
+		{if:$this->is_buyed}
+			alert("您已买过TA了");
+			return;
+		{/if}
+
+		//设置必要参数
+		var buyNums  = parseInt($.trim($('#buyNums').val()));
+		var id = {$id};
+		var type = 'goods';
+	
+		if($('#product_id').val())
+		{
+			id = $('#product_id').val();
+			type = 'product';
+		}
+		//普通购买
+		// var url = '{url:/simple/cart2/id/@id@/num/@buyNums@/type/@type@}';
+		// url = url.replace('@id@',id).replace('@buyNums@',buyNums).replace('@type@',type);
+
+
+			{if:$promo}
+	//有促销活动（团购，抢购）
+	var url = '{url:/simple/cart2/id/@id@/num/@buyNums@/type/@type@/promo/$promo/active_id/$active_id}';
+	url = url.replace('@id@',id).replace('@buyNums@',buyNums).replace('@type@',type);
+	{/if}
+
+	
+		//页面跳转
+		window.location.href = url;
+	};
+	$(".buyNowBtn").bind("click",_this.buyNow);
+	_this.checkBuyNums = function(){
+		//购买数量小于0
+		var buyNums = parseInt($.trim($('#buyNums').val()));
+		if(buyNums <= 0)
+		{
+			$('#buyNums').val(1);
+			return;
+		}
+	
+		//购买数量大于库存
+		var storeNums = parseInt($.trim($('#stock_num').text()));
+		if(buyNums >= storeNums)
+		{
+			$('#buyNums').val(storeNums);
+			return;
+		}
+	};
+	/**
+	 * @param code 增加或者减少购买的商品数量
+	 */
+	_this.modified = function(code)
+	{
+		var buyNums = parseInt($.trim($('#buyNums').val()));
+		switch(code)
+		{
+			case 1:
+			{
+				buyNums++;
+			}
+			break;
+	
+			case -1:
+			{
+				buyNums--;
+			}
+			break;
+		};
+		$('#buyNums,#buyNums2').val(buyNums);
+		_this.checkBuyNums();
+	};
+	$('#buyNums').bind("blur",_this.checkBuyNums);
+	// plus  minus
+	// $("a.plus").click(function(e) {_this.modified(1)});
+	// $("a.minus").click(function(e) {_this.modified(-1)});
+	//商品加入购物车
+	_this.joinCart = function(){
+		if(!_this.checkSpecSelected())
+		{
+			alert('请先选择商品的规格');
+			return;
+		}
+	
+		var buyNums   = parseInt($.trim($('#buyNums').val()));
+		var price     = parseFloat($.trim($('#real_price').text()));
+		var productId = $('#product_id').val();
+		var type      = productId ? 'product' : 'goods';
+		var goods_id  = (type == 'product') ? productId : {$id};
+	
+		$.getJSON('{url:/simple/joinCart}',{"goods_id":goods_id,"type":type,"goods_num":buyNums,"random":Math.random},function(content){
+			if(content.isError == false)
+			{
+				//获取购物车信息
+				$.getJSON('{url:/simple/showCart}',{"random":Math.random},function(json)
+				{
+					$('.cartGoodnum').text(json.count);
+					//$('.cartGoodnum').text(json.sum);
+	
+					//暂闭加入购物车按钮
+					$('.addCartBtn').attr('disabled','disabled').unbind("click");
+					$('.tip-add-successful').show();
+					alert("添加成功");
+				});
+			}else{
+				alert(content.message);
+			}
+		});
+	};
+	$('.addCartBtn').bind("click",_this.joinCart);
+	_this.specSelected = function(){
+		var str="";
+		$('[name="specCols"] .cur').each(function(index, data) {
+            str += '<i>"'+$(data).text() + '"</i>';
+        });
+		$("#specTitel_attach,#specTitel").html(str || "请选择规格");
+	};
+	/**
+	 * 规格的选择
+	 * @param _self 规格本身
+	 */
+	_this.specSelect = function()
+	{   
+		var _self = this,specObj = $.parseJSON($(_self).attr('value'));
+		
+		//已经为选中状态时
+		if($(_self).hasClass("cur"))
+		{
+			$(_self).removeClass('cur');
+		}
+		else
+		{
+			//清除同行中其余规格选中状态
+			$(_self).parent().find('.cur').removeClass('cur');
+	
+			$(_self).addClass('cur');
+		};
+		_this.specSelected();
+				
+		//检查规格是否选择符合标准
+		if(_this.checkSpecSelected())
+		{
+			//整理规格值
+			var specArray = [];
+			$('[name="specCols"]').each(function(){
+				specArray.push($(this).find('.cur').attr('value'));
+			});
+			var specJSON = '['+specArray.join(",")+']';
+			
+			//获取货品数据并进行渲染
+			$.getJSON('{url:/site/getProduct}',{"goods_id":"{$id}","specJSON":specJSON,"random":Math.random},function(json){
+				if(json.flag == 'success')
+				{
+					//普通商品购买方式(非团购，抢购等),商品价格渲染
+					var data = {"group_price":0,"minSellPrice":0,"maxSellPrice":0,"minMarketPrice":0,"maxMarketPrice":0}
+					data.sell_price = json.data.sell_price;
+					data.market_price = json.data.market_price;
+					_this.price(data);
+	
+					//普通货品数据渲染
+					//$('#data_goodsNo').text(json.data.products_no);//货号
+					$('#stock_num,#stock_num_attach').text(json.data.store_nums);//库存
+					//$('#data_marketPrice').text("￥"+json.data.market_price);//原价
+					//$('#data_weight').text(json.data.weight);//节省
+					$('#product_id').val(json.data.id);//有规格ID
+	
+					//库存监测
+					_this.checkStoreNums();
+				}
+				else
+				{	_this.isBuy = false;
+					alert(json.message);
+					
+				}
+			});
+		}else _this.price();//恢复价位到原始状态
+	};
+	/**
+	 * 监测库存操作
+	 */
+	_this.checkStoreNums = function()
+	{
+		var storeNums = parseInt($.trim($('#stock_num').text()));
+		_this.isBuy = (storeNums > 0)?true:false;
+	};
+
+	$(".specItem").on("click",_this.specSelect);
+	$("#specClick,#goodsOptionsBG").click(function(e) {
+        $("#goodsOptionsWrap").toggleClass("hide")
+    });
+
+});
+</script>
+<script>
+var num=0;
+$('#serviceBtn').click(function(){
+	if(num==0){
+		$('.adlert_kf').show();
+		num=1;
+	}else{
+			$('.adlert_kf').hide();
+			num=0;
+	}
+});
+
+$("#serviceBtn2").click(function(e) {
+    $(".temai_a").toggle();
+});
+</script>

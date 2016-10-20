@@ -1,0 +1,57 @@
+{if:$this->user} 
+<script language="javascript">  
+$(document).ready(function() {  
+    location.href="{url:/ucenter/index}";  
+});  
+</script> 
+{else:}
+<link rel="stylesheet" href="../skin/user/css/pptm.css">
+<form method="post" action="{url:/simple/login_act}">
+  <input type="hidden" name='callback' value="{$this->config[callback]}" />
+  <section class="user-login-frame">
+    <div id="username_div">
+      <label for="usename">账号：</label>
+      <input type="text" class="login_info" autocomplete="off" placeholder="输入用户名/手机号/邮箱" name="login_info" id="username">
+    </div>
+    <h3></h3>
+    <div id="password_div">
+      <label for="password">密码：</label>
+      <input type="password" class="login_info" autocomplete="off" placeholder="输入密码" name="password" id="password">
+    </div>
+    <h3></h3>
+  </section>
+  <input type="submit" class="invoice-save-button" id="login_submit" value="登 录">
+</form>
+<section class="login-methods clearfix">
+  <div><span class="pptm-icon"></span><strong><a class="th_login" href="javascript:void(0);" url="/weiboLogin/go">微博登录</a></strong></div>
+  <div><span class="pptm-icon"></span><strong><a class="th_login" href="javascript:void(0);" url="/qqLogin/go">QQ登录</a></strong></div>
+</section>
+<section class="login-methods reg-pass clearfix">
+  <div><a href="{url:/simple/reg}">立即注册&gt;&gt;</a></div>
+  <!--<div><a href="javascript:void(0)">忘记密码 ？</a></div>--> 
+</section>
+
+<!-- <div class="pageContentWrapper"> 
+    <form action='{url:/simple/login_act}' method='post'>
+        <input type="hidden" name='callback' value="{$this->config[callback]}" />
+        <fieldset>
+        <div class="formFieldWrapper">
+            <em>用户帐号:</em>
+            <input class="loginNameField" type="text" name="login_info" value="{echo:ICookie::get('loginName');}" required='required' alt='填写登录名' />
+        </div>
+        <div class="formFieldWrapper">
+            <em>用户密码:</em>
+            <input class="loginPasswordField" type="password" name="password" pattern='^\S{6,32}$' alt='填写密码' />
+        </div>
+        
+        <div class="BottomFieldWrapper">
+            <input type="submit" value="登录" class="loginButton" id="loginButton">
+        </div>
+        
+        <div class="loginButtonsWrapper">
+            <a href="{url:/simple/reg/}" class="loginRegisterButton">注册</a> <a href="{url:/simple/find_password/}" class="loginRecoverButton">找回密码</a>
+        </div>
+        </fieldset>
+    </form>
+</div> --> 
+{/if}

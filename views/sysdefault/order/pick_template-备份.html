@@ -1,0 +1,73 @@
+
+<div class="container">
+	<table width="100%" cellspacing="0" cellpadding="0" border="0">
+		<tr>
+			<td class="f18" width="35%"><h3>{if:isset($this->order_info[0]['set']['name'])}{$this->order_info[0]['set']['name']}{else:}淘黄州{/if}配货清单</h3></td>
+		</tr>
+		<tr>
+			<td valign="bottom" align="right"><p style="    font-weight: bold;">客户:{$this->order_info[0]['accept_name']}<span class="ml_20">地址:{$this->order_info[0]['address']}</span><span class="ml_20">电话:{$this->order_info[0]['mobile']}</span></p></td>
+		</tr>  
+	</table>  
+
+	<table class="table" width="100%" cellspacing="0" cellpadding="0" border="1">
+		<thead>	<tr class="f14">
+				<th width="35">序号</th>
+				<th>商品名称</th>
+				<th>商品货号</th>
+				<th>单价</th>
+				<th>重量</th>
+				<th>数量</th>
+				<th>小计</th>
+			</tr></thead>
+	<tbody>{set:$real_amount = 0;}
+	{foreach:items=$this->order_info item=$order_item}
+	{set:$real_amount += $order_item['real_amount'];$key++}
+			<tr class="f17">
+				<td rowspan="3">{$key}</td>
+				<td colspan="2" style="text-align:left;border-right:none;">
+					<b>订单号:{$order_item['order_no']}</b>
+				</td>
+				<td colspan="4" style="text-align:right;border-left:none;">
+					<b>订购日期:{echo:date('Y-m-d',strtotime($order_item['create_time']))}</b>
+				</td>
+			</tr>
+
+
+				{query:name=order_goods where=order_id eq $order_item[id]}
+				{set:$goodsRow = JSON::decode($item['goods_array']);}
+				<tr>
+					<td align="left">
+						<label>
+							{$goodsRow['name']}  
+							<span class="gray">{$goodsRow['value']}</span>
+						</label>
+					</td>
+					<td>{$goodsRow['goodsno']}</td>
+					<td>￥{$item['real_price']}</td>
+					<td>{$item['goods_weight']}g</td>
+					<td>{$item['goods_nums']}</td>
+					<td>￥{echo:$item['real_price'] * $item['goods_nums']}</td>
+				</tr>
+				{/query}
+						<tr>
+				<td align="left">商品总价：￥{$order_item['real_amount']}　　　运费价格：￥{$order_item['real_freight']}</td>
+				<td align="left" colspan="2">用户备注：{$order_item['postscript']}</td>
+				<td align="left" colspan="3">管理员备注：{$order_item['note']}</td>
+			</tr>
+
+			{/foreach}
+		</tbody>
+		<tfoot>
+			<tr>
+				<td align="right" colspan="8" class="f18">合计：￥{$real_amount} 元</td>
+			</tr>
+		</tfoot>
+	</table>
+
+	<table class="table" width="100%" cellspacing="0" cellpadding="0" border="0">
+		<tr><td class="f18" align="left" width="50%"><b contenteditable="true">打印日期：{echo:date('Y-m-d')}</b></td><td class="f18" align="left"><b contenteditable="true">配货员：</b></td></tr>
+	</table>
+
+	<input type="submit" class="btn_print noprint" onclick="window.print();" value="打印" />
+
+</div>

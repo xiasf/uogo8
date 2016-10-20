@@ -1,0 +1,123 @@
+<section class="m_banner2 g_wrap"> <img src="skin/seckill/soldbn.jpg" width="100%" height="auto"> </section>
+<!--<section class="g_wrap m_pbuying f_mb">
+  <div name="seckillTitle" data-stime="1459303200" data-etime="1459353599" data-ntime="1458890302" class="u_tit tit">
+    <h3>抢购预告</h3>
+    <time><i></i><span class="time">3月30日开抢</span></time>
+  </div>
+  <a href="http://m.to8to.com/mall/temai/20377.html" class="contlist"> <img src="http://pic.to8to.com/tumall/2015/09/15/e7a720f794741c6f3c7e75b625b59428_303x303M.jpg">
+  <p>【每个ID限购1件】MOPO/摩普 304</p>
+  <b>5.7折</b> <em>￥958</em> <del>￥1680</del> </a> <a href="http://m.to8to.com/mall/temai/21893.html" class="contlist"> <img src="http://pic.to8to.com/tumall/2015/07/23/fc29de6e351073984ef286d8506b7c38_303x303M.jpg">
+  <p>【每个ID限购1件】飞雕花洒纯铜</p>
+  <b>3.7折</b> <em>￥268</em> <del>￥718</del> </a> <a href="http://m.to8to.com/mall/temai/20798.html" class="contlist"> <img src="http://pic.to8to.com/tumall/2016/03/04/c5d2733d74476cecfa6b7750af3cce0f_303x303M.jpg">
+  <p>【每个ID限购1件】卡贝卫浴毛巾</p>
+  <b>3.0折</b> <em>￥89</em> <del>￥295</del> </a> 
+  敬请期待哦。
+  </section>-->
+<link rel="stylesheet" href="../skin/mall/page_1.css">
+
+
+  <!--抢购开始-->
+  <div class="brand_qg_box" id="menu_item0">
+        <div class="brand-top"><span class="fr"></span>开场抢购<span><i>2016-08-10 10:00:00 准时开抢</i></span> </div>
+        <ul class="tm_nav_list">
+          <li><a href="{url:v_deco/seckill}">淘黄州本地特卖</a></li>
+          <li class="cheke"><a href="{url:v_deco/seckill2}">淘黄州自营特卖</a></li>
+        </ul>
+        <div class="brand_qg_list">
+      <ul>
+            {foreach:items=Api::run('getPromotionList',40)}
+            {set:$free_time = ITime::getDiffSec($item['end_time']);
+            $countNumsItem[] = $item['p_id'];
+$tmpGoodsId=$item['goods_id'];$tmpPId=$item['p_id'];}
+            <li> 
+            	<div>
+	            	<a href="{url:/site/products_time/id/$tmpGoodsId/active_id/$tmpPId}">
+	            		<img src="{url:/pic/thumb/img/$item[img]/w/260/h/260}" alt="{$item['name']}" title="{$item['name']}">
+	            		
+	            	</a>
+	          		<!--<p class="countdown">倒计时:<b class="cd_hour" id="cd_hour_{$item['p_id']}">{echo:floor($free_time/3600/24);}</b>天
+	          			<b id="cd_minute_{$item['p_id']}">{echo:floor(($free_time%3600)/60);}</b>分
+	          			<b id="cd_second_{$item['p_id']}">{echo:$free_time%60;}</b>秒</p>-->
+	          			
+	          			
+	          			<p class="countdown seckillTime" data-type=1 
+	          				data-date="{echo:ITime::getTime($item['start_time'])}" 
+	          				data-endate="{echo:ITime::getTime($item['end_time'])}">loading...</p>
+          		</div>
+          <div class="award_value_box">
+          			<p class="light_gray"><b>￥{$item['award_value']}</b><del>￥{$item['sell_price']}</del></p>
+                <p class="pro_title"><a href="{url:/site/products_time/id/$tmpGoodsId/active_id/$tmpPId}">{$item['name']}</a></p>
+                <div class="lj_buy"><a href="{url:/site/products_time/id/$tmpGoodsId/active_id/$tmpPId}">立即抢购</a></div>
+              </div>
+        </li>
+            {/foreach}
+
+                {foreach:items=Api::run('getCommendRecommended')}
+            <li>
+            	<div>
+	              <a href="{url:/site/products/id/$item['id']}">
+	                <img src="{url:/pic/thumb/img/$item[img]/w/260/h/260}" alt="{$item['name']}" title="{$item['name']}">
+	              </a>
+	              <!-- <p class="countdown seckillTime" data-type=1 
+	          				data-date="{echo:ITime::getTime('2016-05-24 10:00:00')}"
+	          				data-endate="{echo:ITime::getTime('2016-05-26 00:00:00')}">loading...</p> -->
+	           </div>
+          <div class="award_value_box">
+          			<p class="light_gray"><b>￥{$item['sell_price']}</b><del>￥{$item['market_price']}</del></p>
+                <p class="pro_title"><a href="{url:/site/products/id/$item['id']}">{$item['name']}</a></p>
+                <div class="lj_buy"><a href="{url:/site/products/id/$item['id']}">立即抢购</a></div>
+              </div>
+        </li>
+
+  {/foreach}
+
+            <div style="clear: both;"></div>
+          </ul>
+    </div>
+      </div>
+  <!-- <img src="https://mp.weixin.qq.com/cgi-bin/verifycode?username=thz-zb&r=1454290693082">--> 
+  <!--抢购结束--> 
+
+  <script>
+
+//倒计时
+var countdown=function()
+{
+  var _self=this;
+  this.handle={};
+  this.parent={'second':'minute','minute':'hour','hour':""};
+  this.add=function(id)
+  {
+    _self.handle.id=setInterval(function(){_self.work(id,'second');},1000);
+  };
+  this.work=function(id,type)
+  {
+    if(type=="")
+    {
+      return false;
+    }
+
+    var e = document.getElementById("cd_"+type+"_"+id);
+    var value=parseInt(e.innerHTML);
+    if( value == 0 && _self.work( id,_self.parent[type] )==false )
+    {
+      clearInterval(_self.handle.id);
+      return false;
+    }
+    else
+    {
+      e.innerHTML = (value==0?59:(value-1));
+      return true;
+    }
+  };
+};
+  
+  //显示抢购倒计时
+ $(function(){$('.seckillTime').downCount();})
+  var cd_timer = new countdown();
+  {if:isset($countNumsItem) && $countNumsItem}
+  {foreach:items = $countNumsItem}
+    //cd_timer.add({$item});
+  {/foreach}
+  {/if}
+  </script>

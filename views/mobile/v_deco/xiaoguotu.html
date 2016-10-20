@@ -1,0 +1,169 @@
+<!-- <link rel="stylesheet" href="../skin/xiaoguotu/css/common.min.css"> -->
+<link rel="stylesheet" href="../skin/xiaoguotu/css/xgt.min.css">
+<div class="xgt-content">
+
+    <div class="xgt-beauty-box">
+        <a class="xgt-topiclink click-point" data-point="2_2_1_2" href="#">
+            <img src="img/xgt-gotopic.png" alt="每日精品专题，点击查看">
+        </a>
+    </div>
+
+    <div class="xgt-beauty-box">
+        <div class="xgt-beauty-show">
+            {query:name=jiaju_show_img where=local_type eq 6 limit=1}
+                {set:$img = current(explode(',', $item['img_list']))}
+            <a class="xgt-beauty-show-item xgt-beauty-span" style="background-image:url({webroot:$img})" href="{url:v_deco/effectpic/$this->searchUrl('local', 6)}">
+                
+                <!-- <img src="{url:/pic/thumb/img/$img/w/400/h/390}" alt="地中海风格装修效果图"> -->
+                {/query}
+                <p><span>榻榻米</span></p>
+            </a>
+            <a class="xgt-beauty-info xgt-beauty-span" href="{url:v_deco/effectpic}" style="background-image:url(http://m.itaohz.com/views/mobile/v_deco/img/xgt-beauty-title02.png)">
+                <!-- <img src="http://img.to8to.com/wap/xgt-beauty-title02.png" alt="局部之美装修效果图"> -->
+            </a>
+            {query:name=jiaju_show_img where=local_type eq 9 limit=1}
+                {set:$img = current(explode(',', $item['img_list']))}
+            <a class="xgt-beauty-show-item xgt-beauty-span" style="background-image:url({webroot:$img})" href="{url:v_deco/effectpic/$this->searchUrl('local', 9)}">
+                
+                <!-- <img src="{url:/pic/thumb/img/$img/w/190/h/190}" alt="阁楼装修效果图"> -->
+                {/query}
+                <p><span>阁楼</span></p>
+            </a>
+        </div>
+        <ul class="xgt-beauty-list">
+            <li><p>局部</p><p>LAYOUT</p></li>
+            <ul>
+                <li><a href="{url:v_deco/effectpic/$this->searchUrl('local', 1)}" title="背景墙装修效果图">背景墙</a></li>
+                <li><a href="{url:v_deco/effectpic/$this->searchUrl('local', 3)}" title="隔断装修效果图">隔断</a></li>
+                <li><a href="{url:v_deco/effectpic/$this->searchUrl('local', 4)}" title="窗帘装修效果图">窗帘</a></li>
+                <li><a href="{url:v_deco/effectpic/$this->searchUrl('local', 5)}" title="飘窗装修效果图">飘窗</a></li>
+                <li><a href="{url:v_deco/effectpic/$this->searchUrl('local', 8)}" title="博古架装修效果图">博古架</a></li>
+                <li><a href="{url:v_deco/effectpic/$this->searchUrl('local', 7)}" title="橱柜装修效果图">橱柜</a></li>
+            </ul>
+        </ul>
+    </div>
+    <div class="xgt-beauty-box">
+        <div class="xgt-beauty-show">
+            {query:name=jiaju_show_img where=space_type eq 7 limit=1}
+                {set:$img = current(explode(',', $item['img_list']))}
+            <a class="xgt-beauty-show-item xgt-beauty-span" style="background-image:url({webroot:$img})" href="{url:v_deco/effectpic/$this->searchUrl('space', 7)}">
+                
+                <!-- <img class="lazy" alt="书房装修效果图" src="{url:/pic/thumb/img/$img/w/400/h/390}" style="display: inline;"> -->
+                {/query}
+                <p><span>书房</span></p>
+            </a>
+            <a class="xgt-beauty-info xgt-beauty-span" href="{url:v_deco/effectpic}" style="background-image:url(http://m.itaohz.com/views/mobile/v_deco/img/xgt-beauty-title03.png)">
+                <!-- <img class="lazy" alt="空间之美装修效果图" src="http://img.to8to.com/wap/xgt-beauty-title03.png" style="display: inline;"> -->
+            </a>
+            {query:name=jiaju_show_img where=space_type eq 8 limit=1}
+                {set:$img = current(explode(',', $item['img_list']))}
+            <a class="xgt-beauty-show-item xgt-beauty-span" style="background-image:url({webroot:$img})" href="{url:v_deco/effectpic/$this->searchUrl('space', 8)}">
+                
+                <!-- <img class="lazy" alt="儿童房装修效果图" src="{url:/pic/thumb/img/$img/w/190/h/190}" style="display: inline;"> -->
+                {/query}
+                <p><span>儿童房</span></p>
+            </a>
+        </div>
+        <ul class="xgt-beauty-list">
+            <li><p>空间</p><p>TYPE</p></li>
+            <ul>
+                <li><a href="{url:v_deco/effectpic/$this->searchUrl('space', 1)}" title="客厅装修效果图">客厅</a></li>
+                <li><a href="{url:v_deco/effectpic/$this->searchUrl('space', 2)}" title="卧室装修效果图">卧室</a></li>
+                <li><a href="{url:v_deco/effectpic/$this->searchUrl('space', 3)}" title="餐厅装修效果图">餐厅</a></li>
+                <li><a href="{url:v_deco/effectpic/$this->searchUrl('space', 4)}" title="厨房装修效果图">厨房</a></li>
+                <li><a href="{url:v_deco/effectpic/$this->searchUrl('space', 5)}" title="卫生间装修效果图">卫生间</a></li>
+                <li><a href="{url:v_deco/effectpic/$this->searchUrl('space', 6)}" title="阳台装修效果图">阳台</a></li>
+            </ul>
+        </ul>
+    </div>
+    <div class="xgt-beauty-box">
+        <div class="xgt-beauty-show">
+            {query:name=jiaju_show_img where=style_type eq 8 limit=1}
+                {set:$img = current(explode(',', $item['img_list']))}
+            <a class="xgt-beauty-show-item xgt-beauty-span" style="background-image:url({webroot:$img})" href="{url:v_deco/effectpic/$this->searchUrl('style', 8)}">
+                
+                <!-- <img class="lazy" alt="混搭装修效果图" src="{url:/pic/thumb/img/$img/w/400/h/390}" style="display: inline;"> -->
+                {/query}
+                <p><span>混搭</span></p>
+            </a>
+            <a class="xgt-beauty-info xgt-beauty-span" href="{url:v_deco/effectpic}" style="background-image:url(http://m.itaohz.com/views/mobile/v_deco/img/xgt-beauty-title04.jpg)">
+                <!-- <img class="lazy" alt="风格之美装修效果图" src="http://img.to8to.com/wap/xgt-beauty-title04.jpg" style="display: inline;"> -->
+            </a>
+             {query:name=jiaju_show_img where=style_type eq 13 limit=1}
+                {set:$img = current(explode(',', $item['img_list']))}
+            <a class="xgt-beauty-show-item xgt-beauty-span" style="background-image:url({webroot:$img})" href="{url:v_deco/effectpic/$this->searchUrl('style', 13)}">
+                <!-- <img class="lazy" alt="北欧装修效果图" src="{url:/pic/thumb/img/$img/w/190/h/190}" style="display: inline;"> -->
+                {/query}
+                <p><span>北欧</span></p>
+            </a>
+        </div>
+        <ul class="xgt-beauty-list">
+            <li><p>风格</p><p>STYLE</p></li>
+            <ul>
+                <li><a href="{url:v_deco/effectpic/$this->searchUrl('style', 1)}" title="简约装修效果图">简约</a></li>
+                <li><a href="{url:v_deco/effectpic/$this->searchUrl('style', 2)}" title="现代装修效果图">现代</a></li>
+                <li><a href="{url:v_deco/effectpic/$this->searchUrl('style', 3)}" title="中式装修效果图">中式</a></li>
+                <li><a href="{url:v_deco/effectpic/$this->searchUrl('style', 4)}" title="欧式装修效果图">欧式</a></li>
+                <li><a href="{url:v_deco/effectpic/$this->searchUrl('style', 9)}" title="地中海装修效果图">地中海</a></li>
+                <li><a href="{url:v_deco/effectpic/$this->searchUrl('style', 6)}" title="田园装修效果图">田园</a></li>
+            </ul>
+        </ul>
+    </div>
+    <div class="xgt-gz-box">
+        <div class="xgt-gz-head">
+            <span class="xgt-divider"></span>
+            <a href="#">公装效果图</a>
+            <span class="xgt-divider"></span>
+        </div>
+        <ul class="xgt-gz-list">
+            <li>
+                <a href="#" title="美发店装修效果图">
+                    <img src="http://img.to8to.com/wap/xgt-gz-01.gif" class="lazy" data-original="http://img.to8to.com/wap/xgt-gz-01.gif" alt="美发店装修效果图" style="display: inline;">
+                    <span>美发店</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" title="服装店装修效果图">
+                    <img src="http://img.to8to.com/wap/xgt-gz-02.gif" class="lazy" data-original="http://img.to8to.com/wap/xgt-gz-02.gif" alt="服装店装修效果图" style="display: inline;">
+                    <span>服装店</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" title="美容院装修效果图">
+                    <img src="http://img.to8to.com/wap/xgt-gz-03.gif" class="lazy" data-original="http://img.to8to.com/wap/xgt-gz-03.gif" alt="美容院装修效果图" style="display: inline;">
+                    <span>美容院</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" title="KTV装修效果图">
+                    <img src="http://img.to8to.com/wap/xgt-gz-04.gif" class="lazy" data-original="http://img.to8to.com/wap/xgt-gz-04.gif" alt="KTV装修效果图" style="display: inline;">
+                    <span>KTV</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" title="会所装修效果图">
+                    <img src="http://img.to8to.com/wap/xgt-gz-05.gif" class="lazy" data-original="http://img.to8to.com/wap/xgt-gz-05.gif" alt="会所装修效果图" style="display: inline;">
+                    <span>会所</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" title="酒吧装修效果图">
+                    <img src="http://img.to8to.com/wap/xgt-gz-06.gif" class="lazy" data-original="http://img.to8to.com/wap/xgt-gz-06.gif" alt="酒吧装修效果图" style="display: inline;">
+                    <span>酒吧</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" title="幼儿园装修效果图">
+                    <img src="http://img.to8to.com/wap/xgt-gz-07.gif" class="lazy" data-original="http://img.to8to.com/wap/xgt-gz-07.gif" alt="幼儿园装修效果图" style="display: inline;">
+                    <span>幼儿园</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" title="酒店装修效果图">
+                    <img src="http://img.to8to.com/wap/xgt-gz-08.gif" class="lazy" data-original="http://img.to8to.com/wap/xgt-gz-08.gif" alt="酒店装修效果图" style="display: inline;">
+                    <span>酒店</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

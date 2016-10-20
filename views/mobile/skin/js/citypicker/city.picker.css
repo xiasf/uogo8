@@ -1,0 +1,10 @@
+
+.city-picker-wrap{position:absolute;z-index: 9999;left:0;right:0;top:0;min-height:100%;background-color: #fff;display: none;}
+.city-picker-wrap>.city-picker-state{background-color: #f9f9f9;height: 50px;line-height: 50px;padding-left: 10px;color: #AA0002;}
+.city-picker-wrap>.city-picker-info{background-color: #f9f9f9;height: 50px;line-height: 50px;text-align: center;font-size: .8em;color: #BCBCBC;}
+.city-picker-wrap>p{position:fixed;top:10px;right:10px;z-index: 5;color: #FFFFFF;background-color:rgba(0,0,0,.6);padding:5px 10px;font-size: 1.2em;border-radius:20px;}
+.city-picker-wrap>dl{color: #000;width:100%;height:auto;background-color: #fff;}
+.city-picker-wrap>dl>dt{background-color: #eee;padding:5px;color:#848484}
+.city-picker-wrap>dl>dd{font-size: 1.2em;padding:15px 15px;border-bottom:solid 1px #eee;}
+.city-picker-wrap>dl>dd:active{background-color: #FFDCA9;}
+.city-picker-wrap>dl>dd>em{float: right;color: #9A9A9A;}

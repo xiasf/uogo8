@@ -1,0 +1,152 @@
+{set:
+
+$user_info = Api::run('getMemberInfo', $this->user['user_id']);
+
+}
+<style>
+	.content{
+		    padding: 10px;
+    border: 1px #D8D8D8 solid;
+    box-shadow: 0 0 10px rgba(144, 144, 144, 0.7);
+    width: 90%;
+    margin: 20px auto;
+	}
+	.content img {
+		max-width: 100%;
+	}
+	.task_info span.nu {
+    margin:10px 0; 
+    font-size: 17px;
+    line-height: 23px;
+    padding: 10px 0;
+    display: block;
+    text-align: center;
+    background-color: rgba(214, 214, 214, 0.53);
+    height: 41px;
+    color: #D63C46;
+    border: 1px #CCCCCC solid;
+    float: none;
+}
+</style>
+
+<div class="task_box">
+	<div class="task_tit_box">
+		<img class="task_box_bg" src="{webroot:$banner}">
+		<img class="task_box_face" src="{webroot:$logo}">
+	</div>
+	<p class="win_list"></p>
+	<div class="task_win">
+		<!-- <img class="task_img" src="skin/task/images/win.png" alt=""> -->
+			<div class="task_info"> 
+				<h1>任务详情</h1>
+				<p> 
+					{$describe} 
+				</p> 
+				<h1>任务规则</h1>
+				<p>
+					{$rule}
+				</p> 
+				<span class="nu" >完成任务奖励 <i>{$rewards}</i> 积分</span>
+				<span class="nu">我当前有{$user_info['point']}积分</span> <a style="    display: block;
+    width: 80%;
+    text-align: center;
+    background-color: #27CE79;
+    padding: 11px 10px;
+    margin: 20px auto 0;
+    color: white;" href="{url:task/goods_list}">前往积分商城</a>
+				<div class="clear"></div>
+				<span class="zx"><a href="javascript:void(0)" id="rec_task">领取任务</a></span>
+			</div>
+
+			<div class="content">
+				{$content}
+			</div>
+
+			<div class="task_info"> 
+			<h1>参与列表</h1>
+			<ul class="task_tit">
+				<li class="task_win_tit">
+				用户
+					<ul class="task_username">
+					</ul>
+				</li>
+				<!-- <li class="task_win_tit">
+				奖品
+					<ul class="task_reward">
+					</ul>
+				</li> -->
+				<li class="task_win_tit">
+				参与时间
+					<ul class="task_time">
+					</ul>
+				</li>
+			</ul>
+			</div>
+	</div>
+	<script>
+	var rec_task_url="{url:task/toTask}";
+	var task_id="{$id}";
+	var task_list_id="{$task_id}";
+	var url = "{url:task/task_user_info/user_task_id/}/";
+	$('#rec_task').click(function (){
+		  $.post(rec_task_url + '?' + Math.random(), {id: task_id}, function(result) {
+		  	if(typeof result.errCode != "undefined"){
+		  		layer.open({
+				    type: 0,
+				    time: 1,
+				    content: result.errMsg,
+				    end: function(){
+				    	if(result.errCode == 0){
+				    		 location.href = url+result.data['user_task_id'];
+				    	}
+				    }
+			  	});
+		  	} else {
+		  		layer.open({
+				    type: 0,
+				    time: 1,
+				    content: result.info,
+				    end: function(){
+				    	location.href=url+result.data['user_task_id'];
+					}
+			  	});
+		  	}
+		  },"json");
+	});
+	var task_tit_url	="{url:task/getTaskParticipate}";
+	var task_username	=$('.task_username');
+	var task_reward		=$('.task_reward');
+	var task_time		=$('.task_time');
+	$.get(task_tit_url + '?' + Math.random(),{id:task_id}, function(data){
+			for(var i = 0; i < data.length ; i++){
+				if(data[i]['head_ico']==null){
+					data[i]['head_ico']='upload/image/20160604/20160604163621483.png';
+				}
+				task_username.append('<li><img src={url:'+data[i]['head_ico']+'}></li>');
+				// task_reward.append('<li>'+data[i]["rewards_tracker"]+'积分</li>');
+				task_time.append('<li>'+data[i]["create_time"]+'</li>');
+			}
+
+	// 		setTimeout(task_list, 2000)
+	// function task_list(){
+	// 	var task_list      = $('.task_win_tit ul li') ;
+		// var task_list_hei  = task_list.height();
+		// var task_list_leng = (task_list.length / $('.task_win_tit ul').length);
+		// console.log(task_list.offset().top)
+		// setInterval(function(){
+ 			
+		// }, 1000)
+	// 	task_username.prepend('<li><img src={url:'+data[1]['head_ico']+'}></li>');
+	// 	task_time.prepend('<li>'+data[1]["create_time"]+'</li>');
+	// }
+		},'json');
+
+	wxshare = {
+		title:"{echo:IFilter::replace($param['title'])}",
+		desc:"{echo:IFilter::replace($param['describe'])}",
+		link:"{$param['url']}",
+		imgUrl:"{url:$logo}",
+	};
+	hideMenulist = ['menuItem:share:timeline', 'menuItem:share:appMessage', 'menuItem:share:qq', 'menuItem:share:qq', 'menuItem:share:weiboApp', 'menuItem:share:QZone'];
+	</script>
+</div>

@@ -1,0 +1,158 @@
+.post-cont .user .avatar img { width: 2.5rem; height: 2.5rem; border-radius: 50%; margin-right: 5px; }
+.post-cont .user .avatar img { width: 2.5rem; height: 2.5rem; border-radius: 50%; margin-right: 5px; }
+.post-cont .user time { float: right; margin-top: 0.3125rem; color: #888; }
+.post-header { overflow: hidden; }
+.post-header h1 { padding: 12px 12px 0; font-size: 20px; font-weight: bold; color: #333; line-height: 28px; overflow: hidden }
+.post-header h1 .icon { float: left; height: 18px; margin: 4px 8px 0 0 }
+.post-header .data { padding: 6px 12px; font-size: 12px; color: #939393; overflow: hidden }
+.post-header .data .reply, .post-header .data .view { float: left; min-width: 100px }
+.post-header .data .reply .icon-reply, .post-header .data .view .icon-reply { float: left }
+.post-header .data .reply .icon-view, .post-header .data .view .icon-view { float: left }
+.post-header .handle { padding: 8px 12px 8px 0; border-top: solid #ccc 1px; overflow: hidden }
+.post-header .handle .icon-favor, .post-header .handle .icon-favor-fill { float: right; height: 28px }
+.post-header .handle .icon-favor::before, .post-header .handle .icon-favor-fill::before { margin-top: 2px }
+.post-header .handle .icon-share { float: right; height: 28px; margin-right: 12px }
+.post-header .handle .icon-share::before { margin-top: 4px }
+.post-header .handle .split { float: right; height: 18px; margin: 5px 12px 0 0; border-right: solid #ccc 1px }
+.post-header .handle .apply, .post-header .handle .only { float: right; margin-right: 12px; padding: 6px 0; font-size: 16px; color: #2f75bb }
+.post-header .handle .issue { float: right; margin-right: 12px; padding: 6px 0; font-size: 16px; color: #f60 }
+.post-header .handle .newest { float: right; margin-right: 12px; border-top-left-radius: 0; border-bottom-left-radius: 0 }
+.post-header .handle .earliest { float: right; margin-right: -1px; border-top-right-radius: 0; border-bottom-right-radius: 0 }
+.post-header .admin { clear: both; padding: 6px 0 12px; border-top: solid #ccc 1px; text-align: center; overflow: hidden }
+.post-header .admin .btn { margin: 6px 1px 0; vertical-align: top }
+.post-main { background-color: #f9f9f9 }
+.post-main .post-cont { margin: 18px 0; background-color: #fff; overflow: hidden; -webkit-box-shadow: 0 2px 6px -2px rgba(0,0,0,.7), inset 0 1px 2px 0 rgba(255,255,255,0.5); border-top: 2px rgba(0, 0, 0, 0.2) solid; }
+.post-main .post-cont header { position: relative; z-index: 11; line-height: 28px; padding: 5px; }
+.post-main .post-cont header::after { content: ""; clear: both; display: block; height: 0; overflow: hidden }
+.post-main .post-cont header time { font-size: 14px; color: #939393 }
+.post-main .post-cont header .btn-highlight-orange { float: right; margin-right: 12px }
+.post-main .post-cont header .floor { float: right; font-size: 14px; text-align: right }
+.post-main .post-cont header .popup { box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; position: absolute; top: 60px; right: 8px; width: 180px; padding: 8px 30px 12px 30px; font-size: 16px; color: #fff; line-height: 1.5; white-space: nowrap; background-color: rgba(0,0,0,0.7); border-radius: 3px }
+.post-main .post-cont header .popup::after { content: ""; position: absolute; top: -14px; left: 50%; width: 0; height: 0; margin-left: -7px; border: solid; border-width: 0 14px 14px; border-color: transparent transparent rgba(0,0,0,0.7) }
+.post-main .post-cont header .popup .btn-highlight { display: block; width: 80px; margin: 8px auto 0 }
+.post-main .post-cont section { padding: 12px; font-size: 16px; line-height: 1.6; position: relative }
+.post-main .post-cont section .blue { color: #3b5998 }
+.post-main .post-cont section .orange { color: #f60 }
+.post-main .post-cont section .bolder { font-weight: bolder }
+.post-main .post-cont section img { max-width: 100%; height: auto; margin: 5px 0 }
+.post-main .post-cont section .spic { margin: 0 }
+.post-main .post-cont section .x-loaded { text-align: center }
+.post-main .post-cont section .x-loaded img { margin: 5px 0; background: #f9f9f9 url(http://s.autoimg.cn/mass/v1/img/phimg.gif) no-repeat center center; background-size: 60px auto }
+.post-main .post-cont section .figure { margin: 5px 0 }
+.post-main .post-cont section .figure .x-loaded img { margin: 0 }
+.post-main .post-cont section .figure .description { padding: 4px 6px; font-size: 16px; color: #fff; line-height: 1.5; background-color: #333 }
+.post-main .post-cont section .figure .description:empty { display: none }
+.post-main .post-cont section .figure.mixture .x-loaded { background-color: #e8e8e8 }
+.post-main .post-cont section a { color: #2f75bb }
+.post-main .post-cont section b { font-weight: bold }
+.post-main .post-cont section .btn-highlight { color: #fff }
+.post-main .post-cont section .anchor { height: 24px }
+.post-main .post-cont section .anchor p { box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; width: 100%; padding: 2px 12px 2px 30px; font-size: 12px; color: #939393; line-height: 1; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; position: absolute; bottom: 10px; left: 0 }
+.post-main .post-cont section .anchor p .icon-anchor { position: absolute; top: 0; left: 12px }
+.post-main .post-cont .recommend { border: solid #ccc 1px; padding: 0 0 12px; font-size: 16px; line-height: 1.6 }
+.post-main .post-cont .recommend a { color: #2f75bb }
+.post-main .post-cont .recommend .recommend-tt { line-height: 32px; border-bottom: 1px solid #e9e9e9; padding: 0 2px }
+.post-main .post-cont .recommend-bd { overflow: hidden }
+.post-main .post-cont .recommend-bd li { float: left; width: 50%; overflow: hidden; height: 40px; line-height: 40px; padding: 0 2px; border-bottom: 1px solid #e9e9e9; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box }
+.post-main .post-cont footer { height: 40px; position: relative; overflow: hidden; border-top: 1px #E0E0E0 solid; }
+.post-main .post-cont footer .adv { float: left; padding: 0 12px; font-size: 14px; color: #2f75bb; line-height: 40px }
+.post-main .post-cont footer .delete, .post-main .post-cont footer .report { float: left; padding: 0 12px; border-right: solid #ccc 1px; font-size: 14px; line-height: 40px }
+.post-main .post-cont footer .btn { float: right; margin: 6px 12px 0 0 }
+.post-main .post-cont footer .btn.btn-highlight-orange { margin-right: 6px }
+.post-main .post-cont .qa-tips { background-color: #edf8ec }
+.post-main .post-cont .qa-tips .inner { width: 300px; height: 50px; margin: 0 auto; overflow: hidden }
+.post-main .post-cont .qa-tips .inner .icon-car-horn { float: left; margin: 14px 12px 0 0 }
+.post-main .post-cont .qa-tips .inner p { margin-top: 7px; font-size: 14px; font-weight: bold; color: #4fb947; line-height: 18px; white-space: nowrap }
+.post-main .post-cont .qa-tips .inner p strong { margin: 0 3px; color: #f60 }
+.post-main .post-cont .qa-tips .inner .split { display: block; width: 0; height: 0 }
+.post-user { position: relative; padding: 10px; }
+.post-user .brief .name { font-size: 16px; line-height: 18px }
+.post-user .brief .name abbr { display: inline-block; height: 1.125em; max-width: 6em; overflow: hidden; vertical-align: top }
+.post-user .brief .icon-v { height: 11px; margin: 4px 0 0 2px }
+.post-user .brief .mark-level { vertical-align: top; white-space: nowrap }
+.post-user .brief .fans { width: 55px; height: 20px; vertical-align: top }
+.post-user .brief .grade { display: block; margin-top: 6px; font-size: 12px; line-height: 16px }
+.post-user .brief .grade em { margin-left: 8px }
+.post-user .brief .grade em:first-child { margin-left: 0 }
+.post-user .brief .grade .icon-star { margin-right: 2px }
+.post-user .brief .status { display: none !important; font-size: 16px; color: #f60; line-height: 18px }
+.post-title { margin-bottom: 10px; font-size: 18px; font-weight: bold; color: #333; line-height: 24px }
+.post_editer { margin-top: 10px; font-size: 12px }
+.post_editer-list { margin-top: 10px; padding-bottom: 5px; background-color: #f9f9f9; border: solid #ccc 1px }
+.post_editer-list::before { content: ""; display: block; width: 100%; height: 3px; background-color: #ccd3e4 }
+.post_editer-list h1 { margin: 0 10px 5px; padding: 0 25px; border-bottom: dotted #e9e9e9 1px; font-size: 12px; line-height: 28px; overflow: hidden }
+.post_editer-list h1 span { float: left }
+.post_editer-list h1 span.user { width: 180px }
+.post_editer-list h1 span.type { width: 160px }
+.post_editer-list h1 span.time { width: 160px }
+.post_editer-list p { margin: 0 10px; padding: 5px 25px; font-size: 12px; line-height: 32px; overflow: hidden }
+.post_editer-list p span { float: left }
+.post_editer-list p span.user { width: 180px }
+.post_editer-list p span.user img { float: left; width: 30px; height: 30px; margin: 0 8px 0 0; border: solid #ccc 1px }
+.post_editer-list p span.type { width: 160px }
+.post_editer-list p span.time { width: 160px }
+.btn-highlight-orange { min-width: 90px; background-color: #2f75bb; border-color: #2f75bb; color: #fff; text-align: center; padding: 7px; }
+.btn-highlight-orange:visited { color: #fffffe }
+.btn-highlight-orange { background-color: #f60; border-color: #f60 }
+.btn.btn-small.btn-highlight.replyto { width: 50px; background-color: #2f75bb; border-color: #2f75bb; color: #fff; text-align: center; height: 28px; padding: 6px; font-size: 14px; line-height: 14px; }
+.input-textarea { box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; width: 98%; height: 100px; padding: 6px; background-color: #fff; border: solid #949494 1px; border-radius: 0; font-size: 16px; color: #444; line-height: 24px; -webkit-box-shadow: 3px 1px 5px 3px #999 inset; -moz-box-shadow: 3px 1px 5px 3px #999 inset; -box-box-shadow: 3px 1px 5px 3px #999 inset; box-shadow: 3px 1px 5px 3px #C1C1C1 inset; margin: 0 auto; display: block; }
+.multiissue { }
+.multiissue .handle .btn { padding-top: 0; padding-bottom: 0; line-height: 26px; padding: 9px; background-color: #23CE28; width: 98%; margin: 0 auto; display: block; margin-bottom: 5px; }
+.post-follow .post-cont section .relyhf { margin-bottom: 9px; padding: 5px; background-color: #f5f5f5; border: solid #ccc 1px; font-size: 12px; color: #939393; line-height: 12px; }
+.post-follow .post-cont section .relyhf .rrlycontxt, .post-follow .post-cont section .relyhf .quote-null { margin: 10px 0; font-size: 14px; color: #444; line-height: 22px; }
+.praise { position: absolute; top: 7px; right: 108px; background-color: #23CE28; padding: 7px; font-size: 13px; color: #fff; }
+/*论坛帖子列表*/
+.bbs-header { position: relative; padding: 10px }
+.bbs-header .infobox h1 { font-size: 2em; color: #333; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; position: relative }
+.sticky-inbox { padding: 20px 10px; overflow: hidden }
+.sticky-inbox .btn, .sticky-inbox .btn-select { padding: 10px 20px }
+.tab { height: 40px; padding: 0 12px; border-bottom: solid #e9e9e9 1px; position: relative }
+.tab .item { float: left; margin-right: 12px; padding: 12px 0; font-size: 16px; line-height: 16px; position: relative }
+.tab .item:last-child { margin-right: 0 }
+.tab .item.activate { color: #2f75bb }
+.tab .item.activate::after { content: ""; width: 100%; height: 4px; background-color: #2f75bb; position: absolute; left: 0; bottom: -1px }
+.tab .ranking { float: right; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; height: 20px; padding: 0 2px; margin: 10px 0 0 6px; border: solid #ccc 1px; font-size: 14px; line-height: 18px; overflow: hidden }
+.tab .ranking .icon { height: 9px; margin-top: 4px }
+.tab .ranking.activate { color: #f60 }
+.tab-sub { height: 36px; padding: 0 12px; background-color: #f9f9f9; border-bottom: solid #ccc 1px }
+.tab-sub .item { float: left; margin: 9px 6px 0 0; margin-bottom: -1px; padding: 6px 12px 6px; border: solid #f9f9f9; border-width: 1px 1px 0; border-radius: 2px; border-bottom-left-radius: 0; border-bottom-right-radius: 0; font-size: 14px; line-height: 14px }
+.tab-sub .item:last-child { margin-right: 0 }
+.tab-sub .item.activate { padding-bottom: 7px; background: #fff; border-color: #ccc; color: #2f75bb }
+.tab-sub .skip { float: right; margin-top: 10px; padding: 5px 0; font-size: 14px; color: #2f75bb; line-height: 14px }
+.list-post { margin-top: -1px; border-top: solid #ccc 1px }
+.list-post li { border-bottom: solid #ccc 1px }
+.list-post li>a { display: block; padding: 6px 12px 6px 36px; overflow: hidden; position: relative }
+.list-post li>a>.icon { position: absolute; top: 9px; left: 12px }
+.list-post li>a .icon-video { overflow: hidden }
+.list-post li>a .icon-video::before { margin-top: 5px }
+.list-post li>a .mark-hot { display: inline-block; width: 28px; height: 16px; background-color: #f00; font-size: 12px; color: #fff; line-height: 16px; text-align: center }
+.list-post li a>.icon { top: 9px }
+.list-post li a .icon-video { margin-left: 6px }
+.list-post li a .mark-live, .list-post li a .mark-update, .list-post li a .mark-hot { margin: 3px 0 0 6px; vertical-align: top }
+.list-post li a .mark-unsolved { margin: 3px 0 0 6px; vertical-align: top }
+.list-post li h2 { font-size: 16px; line-height: 24px }
+.list-post li .editor, .list-post li .latest { float: right; margin-top: 4px; font-size: 14px; color: #939393; line-height: 18px; text-align: right }
+.list-post li .editor .name, .list-post li .latest .name { display: none }
+.list-post li .data { float: left; font-size: 12px; color: #939393; line-height: 18px; text-align: right; overflow: hidden; margin-top: -4px }
+.list-post li .data .reply { margin-right: 12px }
+.list-post li .data .reply .icon-reply { height: 19px; margin: 3px 8px 0 0 }
+.list-post li .data .view .icon-view { height: 13px; margin: 3px 8px 0 0 }
+.list-post li .from { display: none }
+.list-post.list-post-byeditor .latest { display: none }
+.list-post.list-post-bylatest .editor { display: none }
+.list-post.list-post-top h2 { white-space: nowrap; text-overflow: ellipsis; overflow: hidden }
+.list-post.list-post-top .editor, .list-post.list-post-top .latest, .list-post.list-post-top .data { display: none }
+.list-favor { padding: 0 6px 12px; overflow: hidden }
+.list-favor li { float: left; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; width: 50%; padding: 12px 6px 0 }
+.list-favor a { display: block; height: 36px; padding: 10px 24px 10px 8px; background-color: #f9f9f9; border: solid #ccc 1px; border-radius: 2px; font-size: 16px; line-height: 16px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; position: relative }
+.list-favor a small { display: inline-block; margin-top: 8px; font-size: 12px; color: #939393; line-height: 12px }
+.list-favor a .icon-read, .list-favor a .icon-favor { position: absolute; top: 0; right: 0 }
+.list-sticky { padding: 0 4px; overflow: hidden }
+.list-sticky li { float: left; padding-top: 12px }
+.list-sticky a { display: block; width: 140px; margin: 0 auto }
+.list-sticky img { width: 140px; height: 105px }
+.list-sticky h2 { height: 36px; margin-top: 3px; padding: 0 2px; font-size: 12px; line-height: 18px; text-align: center; overflow: hidden }
+.list-sticky p { display: none; height: 18px; padding: 0 2px; font-size: 12px; color: #939393; line-height: 18px; overflow: hidden }
+.list-sticky p .reply { margin-right: 12px }
+.list-sticky p .reply .icon-reply { height: 19px; margin: 3px 8px 0 0 }
+.list-sticky p .view .icon-view { height: 13px; margin: 3px 8px 0 0 }

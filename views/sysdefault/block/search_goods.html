@@ -1,0 +1,83 @@
+{set:$isProducts= IFilter::act(IReq::get('is_products'),'int');}
+{set:$tmpType   = IFilter::act(IReq::get('type'));}
+{set:$seller_id = IFilter::act(IReq::get('seller_id'),'int');}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>管理后台</title>
+<link rel="stylesheet" href="{skin:css/admin.css}" />
+{js:jquery}{js:jqueryext}
+{js:dialog}
+{js:artTemplate}
+<script type='text/javascript' src="{theme:javascript/admin.js}"></script>
+<script type='text/javascript' src="{theme:javascript/common.js}"></script>
+</head>
+<body style="width:990px;height:600px">
+<div class="pop_win">
+	<form action='{url:/block/goods_list/type/$tmpType}' method='post'>
+		<input type='hidden' name='is_products' value='{$isProducts}' />
+		<input type='hidden' name='seller_id' value='{$seller_id}' />
+		<table class='form_table'>
+			<colgroup>
+				<col width="150px" />
+				<col />
+			</colgroup>
+
+			<tbody>
+				<tr>
+					<td class="t_r">商品名称：</td>
+					<td><input type='text' class='small' name='keywords' /></td>
+				</tr>
+				<tr>
+					<td class="t_r">商品货号：</td>
+					<td><input type='text' class='small' name='goods_no' /></td>
+				</tr>
+				<tr>
+					<td class="t_r">商品分类：</td>
+					<td>
+						<span id="__categoryBox" style="margin-bottom:8px"></span>
+
+						<!--分类数据显示-->
+						<script id="categoryButtonTemplate" type="text/html">
+						<ctrlArea>
+						<input type="hidden" value="<%=templateData['id']%>" name="category_id" />
+						<button class="btn" type="button" onclick="return confirm('确定删除此分类？') ? $(this).parent().remove() : '';">
+							<span class="del"><%=templateData['name']%></span>
+						</button>
+						</ctrlArea>
+						</script>
+
+						<button class="btn" type="button" onclick="selectGoodsCategory('{url:/block/goods_category/type/radio}','category_id')"><span class="add">设置分类</span></button>
+					</td>
+				</tr>
+				<tr>
+					<td class="t_r">商品价格：</td>
+					<td>
+						<input type='text' class='tiny' name='min_price' pattern='float' empty /> ～
+						<input type='text' class='tiny' name='max_price' pattern='float' empty />
+					</td>
+				</tr>
+				<tr>
+					<td class="t_r">结果数量：</td>
+					<td>
+						<select class='meddle' name='show_num'>
+							<option value='10'>10</option>
+							<option value='20'>20</option>
+							<option value='30'>30</option>
+							<option value='40'>40</option>
+							<option value='60'>60</option>
+							<option value='80'>80</option>
+							<option value='100' selected='selected'>100</option>
+							<option value='200'>200</option>
+							<option value='400'>400</option>
+							<option value='600'>600</option>
+						</select>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+</div>
+</body>
+</html>

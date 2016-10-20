@@ -1,0 +1,426 @@
+{set:$seller_id = $this->seller['seller_id']}
+<div class="wrapper wrapper-content animated bounceInRight">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>{echo:(IReq::get('id')) ? '店铺编辑':'添加店铺'}</h5>
+        </div>
+        <div class="ibox-content">
+          <form name="shopForm" action="{url:/seller/shop_edit}" method="post" class="form-horizontal validform formfill">
+            <input type="hidden" name="id" value="{$data['id']}"/>
+            <input name='logo' type='hidden' value="">
+            <input name='weixin_logo' type='hidden' value="">
+            <div class="form-group">
+              <label class="col-sm-2 control-label">店铺名称</label>
+              <div class="col-sm-6">
+                <input name="shopname" class="form-control" type="text" value="" alt="" datatype="*" errmsg="请填入店铺名称。不能含有符号" nullmsg="店铺名称必填" />
+              </div>
+            </div>
+            <div class="hr-line-dashed"></div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">店铺logo</label>
+              <div class="col-sm-10">
+                <div class="panel-body row"> 
+                  <!--上传控件-->
+                  <div class="alert alert-warning">可上传一张图片，分辨率3000px以下，大小不得超过{echo:IUpload::getMaxSize()}</div>
+                  <ul class="uploader-list" id="fileList">
+                  </ul>
+                  <div id="filePicker"><i class="fa fa-cloud-upload"></i>&nbsp;&nbsp;选择 LOGO 图片</div>
+                  <!--上传控件结束--> 
+                  <!--图片模板--> 
+                  <script type='text/html' id='picTemplate'>
+							<div class="col-md-3 file-item thumbnail file-item-done">
+							<img src="{webroot:}<%=picRoot.img%>" alt="<%=picRoot.img%>">
+							</div> 
+		          </script> 
+                  <!--图片模板结束--> 
+                </div>
+              </div>
+            </div>
+                        <div class="hr-line-dashed"></div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">微信二维码</label>
+              <div class="col-sm-10">
+                <div class="panel-body row"> 
+                  <!--上传控件-->
+                  <div class="alert alert-warning">可上传一张图片，分辨率3000px以下，大小不得超过{echo:IUpload::getMaxSize()}</div>
+                  <ul class="uploader-list" id="fileList2">
+                  </ul>
+                  <div id="filePicker2"><i class="fa fa-cloud-upload"></i>&nbsp;&nbsp;选择 LOGO 图片</div>
+                  <!--上传控件结束--> 
+                  <!--图片模板--> 
+                  <script type='text/html' id='picTemplate2'>
+							<div class="col-md-3 file-item thumbnail file-item-done">
+							<img src="{webroot:}<%=picRoot.img%>" alt="<%=picRoot.img%>">
+							</div> 
+		          </script> 
+                  <!--图片模板结束--> 
+                </div>
+              </div>
+            </div>
+            <div class="hr-line-dashed"></div>
+            <div class="input-group"> </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">商圈</label>
+              <div class="col-sm-4">
+                <select name="district_id" class="form-control m-b">
+                  <option value='0'>不属于任何商圈</option>
+                  
+					{query:name=district where=ishide eq 1}
+                                    
+                  <option value='{$item['id']}'>{$item['name']}</option>
+                  
+					{/query}
+                                  
+                </select>
+              </div>
+            </div>
+            <div class="hr-line-dashed"></div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">发票税率</label>
+              <div class="col-sm-3">
+                <div class="input-group m-b">
+                  <input name="tax" class="form-control" type="text" datatype="int" value="" errmsg="发票税率必须是数字" />
+                  <span class="input-group-addon">%</span></div>
+                <label class="tip">当买家需要发票的时候就要增加商品金额*率的费用</label>
+              </div>
+            </div>
+            <div class="hr-line-dashed"></div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">负责人手机号码</label>
+              <div class="col-sm-3">
+                <input name="mobile" class="form-control" type="text" value="" datatype="int" />
+              </div>
+              <span class="help-block m-b-none tip"><i class="fa fa-info-circle"></i>&nbsp;请认真填写。每次订单短信通知会发送到该手机号码上</span> </div>
+            <div class="hr-line-dashed"></div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">关闭店铺</label>
+              <div class="col-sm-10">
+                <input type="checkbox" class="js-switch_2" name="is_vis" value="1" />
+              </div>
+            </div>
+            <div class="hr-line-dashed"></div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">店铺地址</label>
+              <div class="col-sm-10">
+                <div class="col-sm-3">
+                  <div id="distpicker">
+                    <div style="position: relative;">
+                      <input id="city-picker" class="form-control" readonly type="text" value="" name="addregion" data-toggle="city-picker">
+                    </div>
+                  </div>
+                </div>
+                <div class="input-group m-b row">
+                  <div class="col-md-5">
+                    <div class="input-group m-b"> <span class="input-group-btn">
+                      <button type="button" id="mapbutton" class="btn btn-primary">定 位</button>
+                      </span>
+                      <input name="address" id="suid" class="form-control" type="text" value="" alt="" placeholder="请输入地址来直接查找相关位置" />
+                    </div>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="input-group m-b"> <span class="input-group-addon">地址参照物</span>
+                      <input name="addressreference" class="form-control" type="text" value="" alt="" placeholder="例如：新车站对面" />
+                    </div>
+                  </div>
+                  <input name="lng" type="text" value="" style="display:none" />
+                  <input name="lat" type="text" value="" style="display:none" />
+                </div>
+              </div>
+            </div>
+            <div class="hr-line-dashed"></div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">地图选址</label>
+              <div class="col-sm-10">
+                <div id="map-dialog" style="height:800px;"> </div>
+              </div>
+            </div>
+            <div class="hr-line-dashed"></div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary">确 定</button>
+              &nbsp;
+              <button type="reset" class="btn">重 置</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<link href="../css/plugins/upload/upload.css" rel="stylesheet" >
+<link href="../css/plugins/switchery/switchery.css" rel="stylesheet">
+<link href="../css/plugins/chosen/chosen.css" rel="stylesheet">
+<link href="../css/plugins/iCheck/custom.css" rel="stylesheet">
+<link href="../css/plugins/citypicker/city.picker.css" rel="stylesheet">
+
+<script src="js/plugins/switchery/switchery.js"></script> 
+<script src="js/plugins/iCheck/icheck.min.js"></script> 
+<script src="js/plugins/citypicker/city.picker.data.js"></script> 
+<script src="js/plugins/citypicker/city.picker.min.js"></script> 
+<script src="js/plugins/webuploader/webuploader.min.js"></script> 
+<script src="js/plugins/validate/validform.min.js"></script> 
+<script src="js/plugins/baidumap/baidumap.min.js"></script> 
+<script src="js/plugins/artpl/artpl.min.js"></script> 
+<script src="js/packet/form.js"></script> 
+<script type="text/javascript">
+var maps;
+function showCoordinate() {
+		var options = {"suid":"suid"};
+		options.markerdragend = function(address){
+			this.replacestr = function(str){
+				var region = $("input:text[name='addregion']").val().split("/");
+				$(region).each(function(index, value) {
+					str = str.replace(value,"");
+                });
+				return str;
+			};
+			
+			$("input:text[name='address']").val(this.replacestr(address.address));
+			$("input:text[name='lng']").val(maps.options.lng);
+			$("input:text[name='lat']").val(maps.options.lat);
+		};
+		var lng = parseFloat($("input:text[name='lng']").val()),lat = parseFloat($("input:text[name='lat']").val());
+		lng && (options.lng = lng);lat && (options.lat = lat);
+		options.address = $("input:text[name='addregion']").val() + $("input:text[name='address']").val();
+		maps = $("#map-dialog").baidumap(options);
+		$("#mapbutton").click(function(){
+			var kw = $("input:text[name='addregion']").val() + $("input:text[name='address']").val();  
+			maps.search(kw,kw);
+		});
+
+}
+
+
+		// 图片上传
+		function initupLoader() {
+			var $ = jQuery,
+		    $list = $('#fileList'),
+		    ratio = window.devicePixelRatio || 1,
+		    thumbnailWidth = 100 * ratio,
+		    thumbnailHeight = 100 * ratio,
+		    uploader;
+
+		    // 初始化Web Uploader
+		    uploader = WebUploader.create({
+		        auto: true,
+		        swf: '',
+		        server: '{url:pic/img_upload}',
+		        pick: '#filePicker',
+		        accept: {
+		            title: 'Images',
+		            extensions: 'gif,jpg,jpeg,bmp,png',
+		            mimeTypes: 'image/*'
+		        },
+				fileNumLimit :5,
+				resize: false
+		    });
+
+		    // 当有文件添加进来的时候
+		    uploader.on( 'fileQueued', function(file) {
+				$(":submit").attr("disabled", true);
+		        var $li = $(
+		                '<div id="' + file.id + '" class="file-item thumbnail">' +
+		                    '<img>' +
+		                '</div>'
+		                ),
+		            $img = $li.find('img');
+
+		        $list.empty().append($li);
+
+		        // 创建缩略图
+		        uploader.makeThumb(file, function(error, src) {
+		            if (error) {
+		                $img.replaceWith('<span>不能预览</span>');
+		                return;
+		            }
+
+		            $img.attr( 'src', src);
+		        }, thumbnailWidth, thumbnailHeight);
+		    });
+
+		    // 文件上传过程中创建进度条实时显示。
+		    uploader.on('uploadProgress', function(file, percentage) {
+		        var $li = $('#'+file.id ),
+		            $percent = $li.find('.progress-bar');
+
+
+
+
+		        // 避免重复创建
+		        if ( !$percent.length ) {
+					 $percent = $('<div class="progress progress-striped active"><div style="width: 1%" aria-valuemax="100" aria-valuemin="1" aria-valuenow="1" role="progressbar" class="progress-bar progress-bar-danger"><span class="sr-only">1% Complete (success)</span></div></div>')
+		                    .appendTo( $li )
+		                    .find('.progress-bar');
+		        }
+
+		        $percent.css('width', percentage * 100 + '%' );
+		    });
+
+		    // 文件上传成功，给item添加成功class, 用样式标记上传成功。
+		    uploader.on( 'uploadSuccess', function( file,result ) {
+				var $li = $( '#'+file.id );
+				if (result.flag == 1) {
+		        $li.addClass('file-item-done')
+					.children("img")
+					.attr({
+						"src":"/"+result.img,"alt":result.img
+					});
+					$("input[name='logo']").val(result.img);
+					
+				} else {
+					$('<div class="error">错误：'+ result.flag +'</div>').appendTo( $li )
+				}
+		    });
+
+		    // 文件上传失败，现实上传出错。
+		    uploader.on( 'uploadError', function( file ) {
+		        var $li = $( '#'+file.id ),
+		            $error = $li.find('div.error');
+
+		        // 避免重复创建
+		        if ( !$error.length ) {
+		            $error = $('<div class="error"></div>').appendTo( $li );
+		        }
+
+		        $error.text('上传失败');
+		    });
+
+		    // 完成上传完了，成功或者失败，先删除进度条。
+		    uploader.on( 'uploadComplete', function( file ) {
+		        $( '#'+file.id ).find('.progress').remove();
+		    });
+			uploader.on('uploadFinished',function(file){
+				$(":submit").removeAttr('disabled');
+			});
+		}
+
+				// 图片上传
+		function initupLoader2() {
+			var $ = jQuery,
+		    $list = $('#fileList2'),
+		    ratio = window.devicePixelRatio || 1,
+		    thumbnailWidth = 100 * ratio,
+		    thumbnailHeight = 100 * ratio,
+		    uploader;
+
+		    // 初始化Web Uploader
+		    uploader = WebUploader.create({
+		        auto: true,
+		        swf: '',
+		        server: '{url:pic/img_upload}',
+		        pick: '#filePicker2',
+		        accept: {
+		            title: 'Images',
+		            extensions: 'gif,jpg,jpeg,bmp,png',
+		            mimeTypes: 'image/*'
+		        },
+				fileNumLimit :5,
+				resize: false
+		    });
+
+		    // 当有文件添加进来的时候
+		    uploader.on( 'fileQueued', function(file) {
+				$(":submit").attr("disabled", true);
+		        var $li = $(
+		                '<div id="' + file.id + '" class="file-item thumbnail">' +
+		                    '<img>' +
+		                '</div>'
+		                ),
+		            $img = $li.find('img');
+
+		        $list.empty().append($li);
+
+		        // 创建缩略图
+		        uploader.makeThumb(file, function(error, src) {
+		            if (error) {
+		                $img.replaceWith('<span>不能预览</span>');
+		                return;
+		            }
+
+		            $img.attr( 'src', src);
+		        }, thumbnailWidth, thumbnailHeight);
+		    });
+
+		    // 文件上传过程中创建进度条实时显示。
+		    uploader.on('uploadProgress', function(file, percentage) {
+		        var $li = $('#'+file.id ),
+		            $percent = $li.find('.progress-bar');
+
+
+
+
+		        // 避免重复创建
+		        if ( !$percent.length ) {
+					 $percent = $('<div class="progress progress-striped active"><div style="width: 1%" aria-valuemax="100" aria-valuemin="1" aria-valuenow="1" role="progressbar" class="progress-bar progress-bar-danger"><span class="sr-only">1% Complete (success)</span></div></div>')
+		                    .appendTo( $li )
+		                    .find('.progress-bar');
+		        }
+
+		        $percent.css('width', percentage * 100 + '%' );
+		    });
+
+		    // 文件上传成功，给item添加成功class, 用样式标记上传成功。
+		    uploader.on( 'uploadSuccess', function( file,result ) {
+				var $li = $( '#'+file.id );
+				if (result.flag == 1) {
+		        $li.addClass('file-item-done')
+					.children("img")
+					.attr({
+						"src":"/"+result.img,"alt":result.img
+					});
+					$("input[name='weixin_logo']").val(result.img);
+					
+				} else {
+					$('<div class="error">错误：'+ result.flag +'</div>').appendTo( $li )
+				}
+		    });
+
+		    // 文件上传失败，现实上传出错。
+		    uploader.on( 'uploadError', function( file ) {
+		        var $li = $( '#'+file.id ),
+		            $error = $li.find('div.error');
+
+		        // 避免重复创建
+		        if ( !$error.length ) {
+		            $error = $('<div class="error"></div>').appendTo( $li );
+		        }
+
+		        $error.text('上传失败');
+		    });
+
+		    // 完成上传完了，成功或者失败，先删除进度条。
+		    uploader.on( 'uploadComplete', function( file ) {
+		        $( '#'+file.id ).find('.progress').remove();
+		    });
+			uploader.on('uploadFinished',function(file){
+				$(":submit").removeAttr('disabled');
+			});
+		}
+
+
+
+//DOM加载完毕
+$(function(){
+
+	var formObj = new Form('shopForm');
+
+	var data = {echo:JSON::encode($this->data)};
+	data.addregion = data.addregion?data.addregion:"湖北省/黄冈市/黄州区";
+	formObj.init(data);
+	//alert(data.logo);
+	if (data.logo) {
+		var picHtml = template('picTemplate',{'picRoot':{"img":data.logo}});
+		$('#fileList').append(picHtml);
+	}
+	if (data.weixin_logo) {
+		var picHtml = template('picTemplate2',{'picRoot':{"img":data.weixin_logo}});
+		$('#fileList2').append(picHtml);
+	}
+	initupLoader();
+	initupLoader2();
+	showCoordinate();
+	new Switchery(document.querySelector(".js-switch_2"), {color: "rgb(237, 85, 101)"});
+});
+
+</script>

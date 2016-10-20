@@ -1,0 +1,938 @@
+{set:
+    $myCartObj  = new Cart();
+    $myCartInfo = $myCartObj->getMyCart();
+    $siteConfig = new Config("site_config");
+    $callback   = IReq::get('callback') ? urlencode(IFilter::act(IReq::get('callback'),'url')) : '';
+}
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta property="qc:admins" content="254132777761131636">
+    <title></title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="copyright" content="">
+    <style type="text/css">
+        body {
+            _behavior: url(http://www.aisy.cn/templates/default/css/csshover.htc);
+        }
+    </style>
+    <link href="../skin/new_index/css/base.css" rel="stylesheet" type="text/css">
+    <link href="../skin/new_index/css/home_header.css" rel="stylesheet" type="text/css">
+    <link href="../skin/new_index/css/home_login.css" rel="stylesheet" type="text/css">
+    <link href="../skin/new_index/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+    var COOKIE_PRE = 'EFE5_';var _CHARSET = 'utf-8';var SITEURL = 'http://www.aisy.cn';var SHOP_SITE_URL = 'http://www.aisy.cn';var RESOURCE_SITE_URL = 'http://resource.aisy.cn';var RESOURCE_SITE_URL = 'http://resource.aisy.cn';var SHOP_TEMPLATES_URL = 'http://www.aisy.cn/templates/default';
+    </script>
+    <script src="../skin/new_index/js/jquery.js"></script>
+    <script src="../skin/new_index/js/common.js" charset="utf-8"></script>
+    <script src="../skin/new_index/js/jquery.ui.js"></script>
+    <script src="../skin/new_index/js/jquery.validation.min.js"></script>
+    <script src="../skin/new_index/js/jquery.masonry.js"></script>
+    <script src="../skin/new_index/js/dialog.js" id="dialog_js" charset="utf-8"></script>
+    <link href="../skin/new_index/css/dialog.css" rel="stylesheet" type="text/css">
+    <script src="../skin/new_index/js/shop_search.js"></script>
+    <script src="../skin/new_index/js/jd_side.js"></script>
+    <script src="../skin/new_index/js/taglibs.js"></script>
+<script type="text/javascript">
+var PRICE_FORMAT = '&yen;%s';
+$(function(){
+  //首页左侧分类菜单
+  $(".category ul.menu").find("li").each(
+    function() {
+      $(this).hover(
+        function() {
+            var cat_id = $(this).attr("cat_id");
+          var menu = $(this).find("div[cat_menu_id='"+cat_id+"']");
+          menu.show();
+          $(this).addClass("hover");
+          if(menu.attr("hover")>0) return;
+          menu.masonry({itemSelector: 'dl'});
+          var menu_height = menu.height();
+          if (menu_height < 60) menu.height(80);
+          menu_height = menu.height();
+          var li_top = $(this).position().top;
+          if ((li_top > 60) && (menu_height >= li_top)) $(menu).css("top",-li_top+50);
+          if ((li_top > 150) && (menu_height >= li_top)) $(menu).css("top",-li_top+90);
+          if ((li_top > 240) && (li_top > menu_height)) $(menu).css("top",menu_height-li_top+90);
+          if (li_top > 300 && (li_top > menu_height)) $(menu).css("top",60-menu_height);
+          if ((li_top > 40) && (menu_height <= 120)) $(menu).css("top",-5);
+          menu.attr("hover",1);
+        },
+        function() {
+          $(this).removeClass("hover");
+            var cat_id = $(this).attr("cat_id");
+          $(this).find("div[cat_menu_id='"+cat_id+"']").hide();
+        }
+      );
+    }
+  );
+  $(".head-user-menu dl").hover(function() {
+    $(this).addClass("hover");
+  },
+  function() {
+    $(this).removeClass("hover");
+  });
+  $('.head-user-menu .my-mall').mouseover(function(){// 最近浏览的商品
+    load_history_information();
+    $(this).unbind('mouseover');
+  });
+  $('.head-user-menu .my-cart').mouseover(function(){// 运行加载购物车
+    load_cart_information();
+    $(this).unbind('mouseover');
+  });
+  $('#button').click(function(){
+      if ($('#keyword').val() == '') {
+        return false;
+      }
+  });
+    /**$("img").lazyload({
+      placeholder : "http://www.aisy.cn/templates/default/images/grey.gif",  
+    effect : "fadeIn",  
+      failurelimit : 10  
+    });*/
+    });
+</script>
+<style>.nc-appbar{display:none;}</style>
+<script src="../skin/new_index/js/share.js"></script>
+<link rel="stylesheet" href="../skin/new_index/css/share_style1_32.css">
+<link rel="stylesheet" href="../skin/new_index/css/share_popup.css">
+<link rel="stylesheet" href="../skin/new_index/css/select_share.css"></head>
+
+<body>
+<!-- S PublicTopLayout -->
+<script type="text/javascript">
+$(document).ready(function () { 
+
+$('#favorite_a').hover(
+  function(){$('#favorite_img').removeClass("hideanimation").addClass("showanimation")},
+  function(){$('#favorite_img').removeClass("showanimation").addClass("hideanimation")}
+  );
+});  
+</script>
+
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div id="ncToolbar" class="nc-appbar">
+    <div class="nc-appbar-tabs" id="appBarTabs">
+        <div class="user" nctype="a-barLoginBox">
+            <div class="avatar">
+                <a _href="http://www.aisy.cn/index.php?act=login&op=index" href="#" class="arrow">
+                    <img src="../skin/new_index/images/default_user_portrait.gif" data-bd-imgshare-binded="1"></a>
+            </div>
+            <p>未登录</p>
+        </div>
+        <ul class="tools">
+            <li>
+                <a href="javascript:void(0);" id="chat_show_user" class="chat" nctype="a-barqq">
+                    聊天 <i id="new_msg" class="new_msg" style="display:none;"></i>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" id="rtoolbar_cart" class="cart">
+                    购物车 <i id="rtoobar_cart_count" class="new_msg" style="display:none;"></i>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" id="compare" class="compare">对比</a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" nctype="share" class="share">分享</a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" id="gotop" class="gotop">顶部</a>
+            </li>
+        </ul>
+        <div class="qq" nctype="barqq" style="display: none;">
+            <dl>
+                <dd>
+                    <a target="_blank" href="#">
+                        <img style="margin:0 12px; CURSOR: pointer" src="./aisy_files/pa" alt="点击这里给我发消息" title="点击这里给我发消息" border="0" data-bd-imgshare-binded="1"></a>
+                </dd>
+                <dd>
+                    <a target="_blank" href="#">
+                        <img style="margin:0 12px; CURSOR: pointer" src="./aisy_files/pa(1)" alt="点击这里给我发消息" title="点击这里给我发消息" border="0" data-bd-imgshare-binded="1"></a>
+                </dd>
+            </dl>
+        </div>
+        <div class="sharecon" nctype="sharecon" style="display: none;">
+            <div class="bdsharebuttonbox bdshare-button-style1-32" data-bd-bind="1476152669538">
+                <a _href="http://www.aisy.cn/#" href="#" class="bds_more" data-cmd="more"></a>
+                <a title="分享到QQ空间" _href="http://www.aisy.cn/#" href="#" class="bds_qzone" data-cmd="qzone"></a>
+                <a title="分享到新浪微博" _href="http://www.aisy.cn/#" href="#" class="bds_tsina" data-cmd="tsina"></a>
+                <a title="分享到腾讯微博" _href="http://www.aisy.cn/#" href="#" class="bds_tqq" data-cmd="tqq"></a>
+                <a title="分享到人人网" _href="http://www.aisy.cn/#" href="#" class="bds_tieba" data-cmd="tieba"></a>
+                <a title="分享到微信" _href="http://www.aisy.cn/#" href="#" class="bds_weixin" data-cmd="weixin"></a>
+            </div>
+            <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"32"},"share":{},"image":{"viewList":["qzone","tsina","tqq","tieba","weixin"],"viewText":"分享到：","viewSize":"24"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+    </script>
+        </div>
+        <div class="content-box" id="content-compare">
+            <div class="top">
+                <h3>商品对比</h3>
+                <a href="javascript:void(0);" class="close" title="隐藏"></a>
+            </div>
+            <div id="comparelist"></div>
+        </div>
+        <div class="content-box" id="content-cart">
+            <div class="top">
+                <h3>我的购物车</h3>
+                <a href="javascript:void(0);" class="close" title="隐藏"></a>
+            </div>
+            <div id="rtoolbar_cartlist"></div>
+        </div>
+        <a id="activator" href="javascript:void(0);" class="nc-appbar-hide"></a>
+    </div>
+    <div class="nc-hidebar" id="ncHideBar">
+        <div class="nc-hidebar-bg">
+            <div class="user-avatar">
+                <img src="../skin/new_index/images/default_user_portrait.gif" data-bd-imgshare-binded="1"></div>
+            <div class="frame"></div>
+            <div class="show"></div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+//返回顶部
+backTop=function (btnId){
+  var btn=document.getElementById(btnId);
+  var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+  window.onscroll=set;
+  btn.onclick=function (){
+    btn.style.opacity="0.5";
+    window.onscroll=null;
+    this.timer=setInterval(function(){
+        scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      scrollTop-=Math.ceil(scrollTop*0.1);
+      if(scrollTop==0) clearInterval(btn.timer,window.onscroll=set);
+      if (document.documentElement.scrollTop > 0) document.documentElement.scrollTop=scrollTop;
+      if (document.body.scrollTop > 0) document.body.scrollTop=scrollTop;
+    },10);
+  };
+  function set(){
+      scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      btn.style.opacity=scrollTop?'1':"0.5";
+  }
+};
+backTop('gotop');
+</script>
+    <div class="public-top-layout w">
+        <div class="topbar wrapper">
+            <div class="link">
+                <a href="#" target="_blank">首页</a>
+                |
+                <a href="#" target="_blank">商城</a>
+                |
+                <a href="#" target="_blank">社区</a>
+                |
+                <a href="#" target="_blank">网络电视</a>
+            </div>
+            <div class="favorite">
+                <a id="favorite_a" _href="http://www.aisy.cn/#this" href="#" onclick="window.external.addFavorite(this.href);return false;" rel="sidebar">
+                    <img id="favorite_img" src="../skin/new_index/images/star.png" data-bd-imgshare-binded="1">收藏</a>
+            </div>
+            <div class="user-entry">
+                您好
+                <a href="#" title="首页" alt="首页"></a>
+                <span>
+                    [
+                    <a _href="http://www.aisy.cn/index.php?act=login&op=index" href="#">登录</a>
+                    ]
+                </span>
+                <span>
+                    [
+                    <a _href="http://www.aisy.cn/index.php?act=login&op=register" href="#">注册</a>
+                    ]
+                </span>
+                <span class="seller-login">
+                    <a _href="http://www.aisy.cn/index.php?act=seller_login&op=show_login" href="#" target="_blank" title="登录商家管理中心">
+                        <i class="icon-signin"></i>
+                        商家管理中心
+                    </a>
+                </span>
+                <span class="seller-login-r">
+                    <a _href="http://www.aisy.cn/index.php?act=show_joinin&op=index" href="#" title="商家入驻">
+                        <i class="icon-share"></i>
+                        商家入驻中心
+                    </a>
+                </span>
+            </div>
+            <div class="quick-menu">
+                <dl class="mob-app">
+                    <a href="#" target="_blank">
+                        <div id="mob"></div>
+                        <dt>&nbsp;&nbsp;手机版</dt>
+                    </a>
+                    <div class="head-app">
+                        <div class="download-app">
+                            <div class="qrcode">
+                                <img src="../skin/new_index/images/qrcode.png" data-bd-imgshare-binded="1"></div>
+                            <!--<div class="hint">
+                            <h4>扫描二维码</h4>
+                            访问手机版
+                        </div>
+                        <div class="addurl">
+                            <a href="#this" target="_blank">
+                                <i class="icon-android"></i>
+                                Android
+                            </a>
+                            <a href="#this" target="_blank">
+                                <i class="icon-apple"></i>
+                                iPhone
+                            </a>
+                        </div>
+                        -->
+                        <!-- <div class="addurl"></div>
+                    -->
+                </div>
+            </div>
+        </dl>
+        <dl class="">
+            <dt>
+                <a _href="http://www.aisy.cn/index.php?act=member_order" href="#">我的订单</a>
+                <i></i>
+            </dt>
+            <dd>
+                <ul>
+                    <li>
+                        <a _href="http://www.aisy.cn/index.php?act=member_order&state_type=state_new" href="#">待付款订单</a>
+                    </li>
+                    <li>
+                        <a _href="http://www.aisy.cn/index.php?act=member_order&state_type=state_send" href="#">待确认收货</a>
+                    </li>
+                    <li>
+                        <a _href="http://www.aisy.cn/index.php?act=member_order&state_type=state_noeval" href="#">待评价交易</a>
+                    </li>
+                </ul>
+            </dd>
+        </dl>
+        <dl>
+            <dt>
+                <a _href="http://www.aisy.cn/index.php?act=member_favorites&op=fglist" href="#">我的收藏</a>
+                <i></i>
+            </dt>
+            <dd>
+                <ul>
+                    <li>
+                        <a _href="http://www.aisy.cn/index.php?act=member_favorites&op=fglist" href="#">商品收藏</a>
+                    </li>
+                    <li>
+                        <a _href="http://www.aisy.cn/index.php?act=member_favorites&op=fslist" href="#">店铺收藏</a>
+                    </li>
+                </ul>
+            </dd>
+        </dl>
+        <dl>
+            <dt>
+                <a _href="http://www.aisy.cn/index.php?act=article&op=show&article_id=42" href="#" target="_blank">联系客服</a>
+                <i></i>
+            </dt>
+        </dl>
+        <!--<dl>
+        <dt>
+            客户服务
+            <i></i>
+        </dt>
+        <dd>
+            <ul>
+                <li>
+                    <a _href="http://www.aisy.cn/article_cate-2.html" html="#">帮助中心</a>
+                </li>
+                <li>
+                    <a _href="http://www.aisy.cn/article_cate-5.html" html="#">售后服务</a>
+                </li>
+                <li>
+                    <a _href="http://www.aisy.cn/article_cate-6.html" html="#">客服中心</a>
+                </li>
+            </ul>
+        </dd>
+    </dl>
+    -->
+    </div>
+</div>
+</div>
+<script type="text/javascript">
+//动画显示边条内容区域
+$(function() {
+  $(function() {
+    $('#activator').click(function() {
+      $('#content-cart').animate({'right': '-250px'});
+      $('#content-compare').animate({'right': '-150px'});
+      $('#ncToolbar').animate({'right': '-60px'}, 300,
+      function() {
+        $('#ncHideBar').animate({'right': '59px'},  300);
+      });
+          $('div[nctype^="bar"]').hide();
+    });
+    $('#ncHideBar').click(function() {
+      $('#ncHideBar').animate({
+        'right': '-79px'
+      },
+      300,
+      function() {
+        $('#content-cart').animate({'right': '-250px'});
+        $('#content-compare').animate({'right': '-250px'});
+        $('#ncToolbar').animate({'right': '0'},300);
+      });
+    });
+  });
+    $("#compare").click(function(){
+      if ($("#content-compare").css('right') == '-210px') {
+       loadCompare(false);
+       $('#content-cart').animate({'right': '-210px'});
+         $("#content-compare").animate({right:'50px'});
+      } else {
+        $(".close").click();
+        $(".chat-list").css("display",'none');
+        }
+  });
+    $("#rtoolbar_cart").click(function(){
+        if ($("#content-cart").css('right') == '-210px') {
+          $('#content-compare').animate({'right': '-210px'});
+        $("#content-cart").animate({right:'50px'});
+        if (!$("#rtoolbar_cartlist").html()) {
+          $("#rtoolbar_cartlist").load('index.php?act=cart&op=ajax_load&type=html');
+        }
+        } else {
+          $(".close").click();
+          $(".chat-list").css("display",'none');
+        }
+  });
+  $(".close").click(function(){
+    $(".content-box").animate({right:'-210px'});
+      });
+
+  $(".quick-menu dl").hover(function() {
+    $(this).addClass("hover");
+  },
+  function() {
+    $(this).removeClass("hover");
+  });
+  
+    $('a[nctype="a-barqq"]').click(function(){
+        $('div[nctype="barqq"]').toggle(500);
+    });
+  $('a[nctype="share"]').click(function(){
+        $('div[nctype="sharecon"]').toggle(500);
+    });
+    // 右侧bar用户信息
+    $('div[nctype="a-barUserInfo"]').click(function(){
+        $('div[nctype="barUserInfo"]').toggle();
+    });
+    // 右侧bar登录
+    $('div[nctype="a-barLoginBox"]').click(function(){
+        $('div[nctype="barLoginBox"]').toggle();
+        document.getElementById('codeimage').src='http://www.aisy.cn/index.php?act=seccode&op=makecode&nchash=109c2fea&t=' + Math.random();
+    });
+    $('a[nctype="close-barLoginBox"]').click(function(){
+        $('div[nctype="barLoginBox"]').toggle();
+    });
+    });
+</script>
+
+<!-- S PublicHeadLayout -->
+<div class="header-wrap">
+<header class="public-head-layout wrapper">
+<h1 class="site-logo">
+<a href="#">
+<img src="../skin/new_index/images/logo.png" class="pngFix" data-bd-imgshare-binded="1"></a>
+</h1>
+
+<div class="site-ad">
+<div>
+<a href="#" target="_blank" title="LOGO动态">
+    <img style="width:192px;height:70px" border="0" src="../skin/new_index/images/05271593267466442.gif" alt="LOGO动态" data-bd-imgshare-binded="1"></a>
+</div>
+</div>
+
+<div class="head-search-bar">
+<div id="search">
+<ul class="tab">
+    <li class="current" act="search">商品</li>
+    <li act="store_list">店铺</li>
+</ul>
+</div>
+<form action="#" method="get" class="search-form" id="top_search_form">
+<input name="act" id="search_act" value="search" type="hidden">
+<input name="keyword" id="keyword" type="text" class="input-text" value="" maxlength="60" x-webkit-speech="" lang="zh-CN" onwebkitspeechchange="foo()" placeholder="请输入您要搜索的商品关键字或店铺名称" x-webkit-grammar="builtin:search">
+<input type="submit" id="button" value="搜索" class="input-submit"></form>
+<div class="keyword">
+热门搜索：
+<ul>
+    <li>
+        <a _href="http://www.aisy.cn/index.php?act=search&op=index&keyword=%E5%AD%9D%E4%BA%B2%E9%9E%8B" href="#">孝亲鞋</a>
+    </li>
+    <li>
+        <a _href="http://www.aisy.cn/index.php?act=search&op=index&keyword=%E7%8E%89%E8%86%B3%E6%88%BF" href="#">玉膳房</a>
+    </li>
+</ul>
+</div>
+</div>
+<div class="head-user-menu">
+<dl class="my-mall">
+<dt>
+    <span class="ico"></span>
+    我的商城
+    <i class="arrow"></i>
+</dt>
+<dd>
+    <div class="sub-title">
+        <h4></h4>
+        <a _href="http://www.aisy.cn/index.php?act=member&op=home" href="#" class="arrow">
+            我的用户中心
+            <i></i>
+        </a>
+    </div>
+    <div class="user-centent-menu">
+        <ul>
+            <li>
+                <a _href="http://www.aisy.cn/index.php?act=member_message&op=message" href="#">
+                    站内消息(
+                    <span>0</span>
+                    )
+                </a>
+            </li>
+            <li>
+                <a _href="http://www.aisy.cn/index.php?act=member_order" href="#" class="arrow">
+                    我的订单
+                    <i></i>
+                </a>
+            </li>
+            <li>
+                <a _href="http://www.aisy.cn/index.php?act=member_consult&op=my_consult" href="#">
+                    咨询回复(
+                    <span id="member_consult">0</span>
+                    )
+                </a>
+            </li>
+            <li>
+                <a _href="http://www.aisy.cn/index.php?act=member_favorites&op=fglist" href="#" class="arrow">
+                    我的收藏
+                    <i></i>
+                </a>
+            </li>
+            <li>
+                <a _href="http://www.aisy.cn/index.php?act=member_voucher" href="#">
+                    代金券(
+                    <span id="member_voucher">0</span>
+                    )
+                </a>
+            </li>
+            <li>
+                <a _href="http://www.aisy.cn/index.php?act=member_points" href="#" class="arrow">
+                    我的积分
+                    <i></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="browse-history">
+        <div class="part-title">
+            <h4>最近浏览的商品</h4>
+            <span style="float:right;">
+                <a _href="http://www.aisy.cn/index.php?act=member_goodsbrowse&op=list" href="#">全部浏览历史</a>
+            </span>
+        </div>
+        <ul>
+            <li class="no-goods">
+                <img class="loading" src="../skin/new_index/images/loading.gif" data-bd-imgshare-binded="1"></li>
+        </ul>
+    </div>
+</dd>
+</dl>
+<dl class="my-cart">
+<dt>
+    <span class="ico"></span>
+    购物车
+    <i class="arrow"></i>
+</dt>
+<dd>
+    <div class="sub-title">
+        <h4>最新加入的商品</h4>
+    </div>
+    <div class="incart-goods-box">
+        <div class="incart-goods">
+            <img class="loading" src="../skin/new_index/images/loading.gif" data-bd-imgshare-binded="1"></div>
+    </div>
+    <div class="checkout">
+        <span class="total-price">
+            共
+            <i>0</i>
+            种商品
+        </span>
+        <a _href="http://www.aisy.cn/index.php?act=cart" href="#" class="btn-cart">结算购物车中的商品</a>
+    </div>
+</dd>
+</dl>
+</div>
+<span class="lxkf" style="position: absolute;top: 99px;font-size: 16px;padding-left: 38px;color: #B1191A;">客服热线：400-088-0719</span>
+</header>
+</div>
+<!-- E PublicHeadLayout -->
+
+<!-- S publicNavLayout -->
+<nav class="public-nav-layout">
+    <div class="wrapper">
+        <div class="all-category">
+            <div class="title">
+                <h3>
+                    <a _href="http://www.aisy.cn/category.html" html="#">所有商品分类</a>
+                </h3>
+                <i class="arrow"></i>
+            </div>
+            <div class="category">
+                <ul class="jspop box">
+                    <li cat_id="1077" class="a1">
+                        <div class="tx">
+                            <a _href="http://www.aisy.cn/cate-1077-0-0-0-0-0-0-0-0.html" html="#">
+                                <i></i>
+                                优选特产
+                                <span class="arrow"></span>
+                            </a>
+
+                        </div>
+                        <dl class="sub_class" cat_menu_id="1077">
+                            <dd>
+                                <a _href="http://www.aisy.cn/cate-1284-0-0-0-0-0-0-0-0.html" html="#" title="绿松石">绿松石</a>
+                                <a _href="http://www.aisy.cn/cate-1303-0-0-0-0-0-0-0-0.html" html="#" title="湖北绿松石">湖北绿松石</a>
+                                <a _href="http://www.aisy.cn/cate-1078-0-0-0-0-0-0-0-0.html" html="#" title="野菌干果">野菌干果</a>
+
+                            </dd>
+                        </dl>
+                        <div class="pop">
+                            <dl>
+                                <dt>
+                                    <a _href="http://www.aisy.cn/cate-1284-0-0-0-0-0-0-0-0.html" html="#">绿松石</a>
+                                </dt>
+                                <dd> <em><a _href="http://www.aisy.cn/cate-1286-0-0-0-0-0-0-0-0.html" html="#">手串/手链</a></em>  <em><a _href="http://www.aisy.cn/cate-1287-0-0-0-0-0-0-0-0.html" html="#">戒指/指环</a></em> 
+                                    <em>
+                                        <a _href="http://www.aisy.cn/cate-1288-0-0-0-0-0-0-0-0.html" html="#">项链/吊坠</a>
+                                    </em>
+                                    <em>
+                                        <a _href="http://www.aisy.cn/cate-1289-0-0-0-0-0-0-0-0.html" html="#">散珠</a>
+                                    </em>
+                                    <em>
+                                        <a _href="http://www.aisy.cn/cate-1290-0-0-0-0-0-0-0-0.html" html="#">耳钉/耳环</a>
+                                    </em>
+                                    <em>
+                                        <a _href="http://www.aisy.cn/cate-1291-0-0-0-0-0-0-0-0.html" html="#">摆件</a>
+                                    </em>
+
+                                </dd>
+                            </dl>
+                            <div class="clr"></div>
+                            <div class="act"></div>
+                            <dl>
+                                <dt>
+                                    <a _href="http://www.aisy.cn/cate-1303-0-0-0-0-0-0-0-0.html" html="#">湖北绿松石</a>
+                                </dt>
+                                <dd></dd>
+                            </dl>
+                            <div class="clr"></div>
+                            <div class="act"></div>
+                            <dl>
+                                <dt>
+                                    <a _href="http://www.aisy.cn/cate-1078-0-0-0-0-0-0-0-0.html" html="#">野菌干果</a>
+                                </dt>
+                                <dd>
+                                    <em>
+                                        <a _href="http://www.aisy.cn/cate-1119-0-0-0-0-0-0-0-0.html" html="#">黑木耳</a>
+                                    </em>
+                                    <em>
+                                        <a _href="http://www.aisy.cn/cate-1120-0-0-0-0-0-0-0-0.html" html="#">野菜/干菜</a>
+                                    </em>
+                                    <em>
+                                        <a _href="http://www.aisy.cn/cate-1266-0-0-0-0-0-0-0-0.html" html="#">香菇/花菇</a>
+                                    </em>
+
+                                </dd>
+                            </dl>
+                            <div class="clr"></div>
+                            <div class="act"></div>
+                            <dl>
+                                <dt>
+                                    <a _href="http://www.aisy.cn/cate-1079-0-0-0-0-0-0-0-0.html" html="#">粮油副食</a>
+                                </dt>
+                                <dd>
+                                    <em>
+                                        <a _href="http://www.aisy.cn/cate-1121-0-0-0-0-0-0-0-0.html" html="#">魔芋面</a>
+                                    </em>
+                                    <em>
+                                        <a _href="http://www.aisy.cn/cate-1122-0-0-0-0-0-0-0-0.html" html="#">手工榨油</a>
+                                    </em>
+                                    <em>
+                                        <a _href="http://www.aisy.cn/cate-1125-0-0-0-0-0-0-0-0.html" html="#">红薯粉</a>
+                                    </em>
+                                    <em>
+                                        <a _href="http://www.aisy.cn/cate-1126-0-0-0-0-0-0-0-0.html" html="#">豆腐乳</a>
+                                    </em>
+
+                                </dd>
+                            </dl>
+                            <div class="clr"></div>
+                            <div class="act"></div>
+                            <dl>
+                                <dt>
+                                    <a _href="http://www.aisy.cn/cate-1080-0-0-0-0-0-0-0-0.html" html="#">滋补养生</a>
+                                </dt>
+                                <dd>
+                                    <em>
+                                        <a _href="http://www.aisy.cn/cate-1123-0-0-0-0-0-0-0-0.html" html="#">葛粉</a>
+                                    </em>
+                                    <em>
+                                        <a _href="http://www.aisy.cn/cate-1124-0-0-0-0-0-0-0-0.html" html="#">蜂蜜</a>
+                                    </em>
+                                    <em>
+                                        <a _href="http://www.aisy.cn/cate-1265-0-0-0-0-0-0-0-0.html" html="#">茗茶</a>
+                                    </em>
+
+                                </dd>
+                            </dl>
+                            <div class="clr"></div>
+                            <div class="act"></div>
+                            <dl>
+                                <dt>
+                                    <a _href="http://www.aisy.cn/cate-1081-0-0-0-0-0-0-0-0.html" html="#">产地直供</a>
+                                </dt>
+                                <dd>
+                                    <em>
+                                        <a _href="http://www.aisy.cn/cate-1176-0-0-0-0-0-0-0-0.html" html="#">新鲜蔬菜</a>
+                                    </em>
+                                    <em>
+                                        <a _href="http://www.aisy.cn/cate-1177-0-0-0-0-0-0-0-0.html" html="#">美味水果</a>
+                                    </em>
+                                    <em>
+                                        <a _href="http://www.aisy.cn/cate-1228-0-0-0-0-0-0-0-0.html" html="#">水产海鲜</a>
+                                    </em>
+                                    <em>
+                                        <a _href="http://www.aisy.cn/cate-1302-0-0-0-0-0-0-0-0.html" html="#">肉禽蛋奶</a>
+                                    </em>
+
+                                </dd>
+                            </dl>
+                            <div class="clr"></div>
+                            <div class="act"></div>
+                            <dl>
+                                <dt>
+                                    <a _href="http://www.aisy.cn/cate-1213-0-0-0-0-0-0-0-0.html" html="#">优质酒水</a>
+                                </dt>
+                                <dd>
+                                    <em>
+                                        <a _href="http://www.aisy.cn/cate-1214-0-0-0-0-0-0-0-0.html" html="#">白酒</a>
+                                    </em>
+                                    <em>
+                                        <a _href="http://www.aisy.cn/cate-1215-0-0-0-0-0-0-0-0.html" html="#">葡萄酒</a>
+                                    </em>
+                                    <em>
+                                        <a _href="http://www.aisy.cn/cate-1216-0-0-0-0-0-0-0-0.html" html="#">啤酒</a>
+                                    </em>
+                                    <em>
+                                        <a _href="http://www.aisy.cn/cate-1217-0-0-0-0-0-0-0-0.html" html="#">黄酒/养生酒</a>
+                                    </em>
+
+                                </dd>
+                            </dl>
+                            <div class="clr"></div>
+                            <div class="act"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <ul class="site-menu">
+            <li>
+                <a href="#" class="current">首页</a>
+            </li>
+            <li>
+                <a target="_blank" _href="http://www.aisy.cn/index.php?act=special&op=special_detail&special_id=18" href="#">黄冈特产</a>
+            </li>
+            <li>
+                <a target="_blank" _href="http://www.aisy.cn/index.php?act=special&op=special_detail&special_id=13" href="#">时尚茶饮</a>
+            </li>
+            <li>
+                <a target="_blank" _href="http://www.aisy.cn/index.php?act=special&op=special_detail&special_id=9" href="#">礼佛.心品</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!-- E PublicNavLayout -->
+
+<div class="nch-breadcrumb-layout" style="padding-top:12px"></div>
+
+<link href="../skin/new_index/css/index.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="../skin/new_index/js/home_index.js" charset="utf-8"></script>
+<script type="text/javascript" src="../skin/new_index/js/unslider.min.js" charset="utf-8"></script>
+<style type="text/css">
+    .category { display: block !important;}
+    .adtop {
+      width: 210px;
+      height: 60px;
+      z-index: 1;
+      bottom: 0px;
+      overflow: hidden;
+      position: absolute;
+      margin-left: -599px;
+      left: 50%;
+    }
+    .mt10 {
+      margin-top: 10px !important;
+    }
+</style>
+<div class="clear"></div>
+
+
+{viewcontent}
+
+<div class="wrapper">
+  <div class="mt10"><a href="#" target="_blank" title="首页通栏"><img style="width:1200px;height:80px" border="0" src="../skin/new_index/images/04955371714411887.jpg" alt="首页通栏" data-bd-imgshare-binded="1"></a></div>
+</div>
+<script>
+var obj10 = document.getElementById("J-header");
+var obj11 = document.getElementById("nav");
+var tops = getTop(obj10);
+var isIE6 = /msie 6/i.test(navigator.userAgent);
+window.onscroll = function(){
+    var bodyScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    if (bodyScrollTop > tops){
+        obj11.style.position = (isIE6) ? "absolute" : "fixed";
+        obj11.style.top = (isIE6) ? bodyScrollTop + "px" : "200px";
+        $("#nav").stop(true,false).animate({"top":200+"px"},550);
+        obj11.style.display = "block";
+    } else {
+        obj11.style.display = "none";
+    }
+}
+function getTop(e){
+    var offset = e.offsetTop;
+    if(e.offsetParent != null) offset += getTop(e.offsetParent);
+    return offset;
+}
+$('#nav').onePageNav({
+    currentClass: 'current',
+    changeHash: false,
+    scrollSpeed: 750,
+    scrollThreshold: 0.5,
+    easing: 'swing',
+});
+</script> 
+ 
+
+
+<div class="fttff29">
+  <div class="warp-all236">
+    <div class="mod_agree">
+      <ul class="mod_agree_con">
+        <li class="mod_agree_item mod_agree_item1"> <a href="#"><img src="../skin/new_index/images/goods.png" data-bd-imgshare-binded="1"></a><strong>商品齐全</strong></li>
+        <li class="mod_agree_item mod_agree_item2"> <a href="#"><img src="../skin/new_index/images/price.png" data-bd-imgshare-binded="1"></a><strong>价格实惠</strong> </li>
+        <li class="mod_agree_item mod_agree_item6"> <a href="#"><img src="../skin/new_index/images/tran.png" data-bd-imgshare-binded="1"></a><strong>担保交易</strong> </li>
+        <li class="mod_agree_item mod_agree_item4"> <a href="#"><img src="../skin/new_index/images/pay.png" data-bd-imgshare-binded="1"></a><strong>支付方便</strong> </li>
+        <li class="mod_agree_item mod_agree_item5"> <a href="#"><img src="../skin/new_index/images/cart.png" data-bd-imgshare-binded="1"></a><strong>购物放心</strong> </li>
+        <li class="mod_agree_item mod_agree_item3"> <a href="#"><img src="../skin/new_index/images/ship.png" data-bd-imgshare-binded="1"></a><strong>送货及时</strong> </li>
+      </ul>
+    </div>
+  </div>
+</div>
+                    <link href="../skin/new_index/css/chat.css" rel="stylesheet" type="text/css">
+                    <link href="../skin/new_index/css/home_login(1).css" rel="stylesheet" type="text/css">
+                    <div style="clear: both;"></div>
+                    <div id="web_chat_dialog" style="display: none;float:right;">
+                    </div>
+                    <a id="chat_login" href="javascript:void(0)" style="display: none;"></a>
+                    <script type="text/javascript">
+                    var APP_SITE_URL = 'http://www.aisy.cn';
+                    var CHAT_SITE_URL = 'http://test.syiptv.com/chat';
+                    var SHOP_SITE_URL = 'http://www.aisy.cn';
+                    var connect_url = "http://10.10.8.231:8090";
+
+                    var layout = "layout/home_layout.php";
+                    var act_op = "index_index";
+                    var user = {};
+
+                    user['u_id'] = "";
+                    user['u_name'] = "";
+                    user['s_id'] = "";
+                    user['s_name'] = "";
+                    user['avatar'] = "http://img.aisy.cn/shop/common/default_user_portrait.gif";
+
+                    $("#chat_login").nc_login({
+                      action:'/index.php?act=login',
+                      nchash:'e48b0f69',
+                      formhash:'u1zKdzJXHyLq5Ly83gFjl-Zy56FfJAY'
+                    });
+                    </script><script type="text/javascript" src="../skin/new_index/js/jquEry.charCount.js" charset="utf-8"></script><script type="text/javascript" src="../skin/new_index/js/jquery.smilies.js" charset="utf-8"></script><script type="text/javascript" src="../skin/new_index/js/user.js" charset="utf-8"></script><div id="faq">
+  <div class="wrapper">
+        <ul>
+                  <li>
+        <dl class="s1">
+          <dt>
+            购物指南          </dt>
+                              <dd><i></i><a href="#" title="购物流程"> 购物流程 </a></dd>
+                    <dd><i></i><a href="#" title="联系客服"> 联系客服 </a></dd>
+                            </dl>
+      </li>
+                        <li>
+        <dl class="s2">
+          <dt>
+            支付方式          </dt>
+                              <dd><i></i><a href="#" title="支付宝支付"> 支付宝支付 </a></dd>
+                    <dd><i></i><a href="#" title="银行卡支付"> 银行卡支付 </a></dd>
+                            </dl>
+      </li>
+                        <li>
+        <dl class="s3">
+          <dt>
+            配送方式          </dt>
+                              <dd><i></i><a href="#" title="配送服务说明"> 配送服务说明 </a></dd>
+                    <dd><i></i><a href="#" title="配送服务收费标准"> 配送服务收费标准 </a></dd>
+                            </dl>
+      </li>
+                        <li>
+        <dl class="s4">
+          <dt>
+            商务合作          </dt>
+                              <dd><i></i><a href="#" title="技术服务"> 技术服务 </a></dd>
+                    <dd><i></i><a href="#" title="广告服务"> 广告服务 </a></dd>
+                            </dl>
+      </li>
+                        <li>
+        <dl class="s5">
+          <dt>
+            商城与你          </dt>
+                              <dd><i></i><a href="#" title="关于我们"> 关于我们 </a></dd>
+                    <dd><i></i><a href="#" title="隐私保护"> 隐私保护 </a></dd>
+                            </dl>
+      </li>
+                </ul>
+      </div>
+</div>
+<div id="footer" class="wrapper">
+  <p><a href="./aisy_files/aisy.html">首页</a>
+                                        | <a href="#">招聘英才</a>
+                | <a target="_blank" href="#">合作及洽谈</a>
+                | <a target="_blank" href="#">联系我们</a>
+                | <a target="_blank" href="#">关于我们</a>
+              </p>
+  Copyright 2015 爱十堰商城 Inc.,All rights reserved.<br>
+  Powered by <span class="vol"><font class="b">A</font><font class="o">iay</font></span><img src="../skin/new_index/images/icplogo.jpg" width="24px" data-bd-imgshare-binded="1">鄂ICP08004371<br>
+  <img src="../skin/new_index/images/ghs.png" width="24px" data-bd-imgshare-binded="1">鄂公网安备 42030302000120号
+  <script src="./aisy_files/z_stat.php" language="JavaScript"></script><script src="./aisy_files/core.php" charset="utf-8" type="text/javascript"></script><a href="#" target="_blank" title="站长统计">站长统计</a> </div>
+<div style="text-align:center;" class="tools">
+</div>
+<script type="text/javascript" src="../skin/new_index/js/jquery.cookie.js"></script>
+<link href="../skin/new_index/css/perfect-scrollbar.min.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="../skin/new_index/js/perfect-scrollbar.min.js"></script> 
+<script type="text/javascript" src="../skin/new_index/js/jquery.qtip.min.js"></script>
+<link href="../skin/new_index/css/jquery.qtip.min.css" rel="stylesheet" type="text/css">
+<!-- 对比 --> 
+<script src="../skin/new_index/js/compare.js"></script> 
+<script type="text/javascript">
+$(function(){
+    // Membership card
+    $('[nctype="mcard"]').membershipCard({type:'shop'});
+});
+</script>
+</body>
+</html>

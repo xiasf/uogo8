@@ -1,0 +1,44 @@
+<section class="g_wrap">
+  <form action='{url:/block/doPay}' method='post'>
+    <section class="user-login-frame">
+      <div class="username_div"> <em>充值金额:</em>
+        <input class="loginCzField" type="text" name="recharge" datatype='float' placeholder='请输入充值的金额'/>
+      </div>
+      <div id='address_often'>
+        <div id='paymentBox'>
+          <dl>
+            {set:$paymentList=Api::run('getPaymentListByOnline')}
+            {if:!empty($paymentList)}
+            {foreach:items = $paymentList}
+            <dt style="background-image:url({webroot:plugins}{$item['logo']});background-size:140% auto">
+              <label style="display:block;line-height:120px;background-color:rgba(255,255,255,.9)">
+                <input class="radio" name="payment_id" title="{$item['name']}" type="radio" value="{$item['id']}" />
+                <em style="font-size:1.5em">{$item['name']}</em></label>
+            </dt>
+            {/foreach}
+            {else:}
+            没有线上支付方式
+            {/if}
+          </dl>
+        </div>
+      </div>
+    </section>
+    <div class="username_div">
+      <input type="submit" value="确定充值" class="invoice-save-button" onclick='return check_form();' id="loginButton">
+    </div>
+  </form>
+</section>
+<link rel="stylesheet" href="../skin/user/css/pptm.css">
+<script type="text/javascript">
+function check_form(){
+	if($('[name="payment_id"]:checked').length == 0){
+		alert('请选择支付方式');
+		return false;
+	}
+
+	if($('[name="recharge"]').val() <= 10){
+		alert('要充值的金额必须大于 10 元');
+		return false;
+	}
+}
+</script>

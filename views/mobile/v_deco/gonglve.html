@@ -1,0 +1,220 @@
+<section class="xzx-index-wrap"> 
+  <!--头部装修流程块-->
+  <section class="zxlc-module">
+    <ul class="zxlc-nav-hd clearfix">
+      <li class="active">装修前</li>
+      <li class="">装修中</li>
+      <li>装修后</li>
+    </ul>
+    <div id="zxlcSlider" class="swipe zxlc-nav-bd" style="visibility: visible;">
+      <div class="swipe_wrap">
+        <div data-index="0">
+          <ul class="swipe-col4 clearfix">
+            <li class="col-side col-first"> <a href="{url:v_deco/article_list?tag=1}"> <i class="icon-xzx-index-zxlc-sf"></i>
+              <p>收房</p>
+              </a> </li>
+            <li class="col-center"> <a href="{url:v_deco/article_list?tag=2}"> <i class="icon-xzx-index-zxlc-sj"></i>
+              <p>设计</p>
+              </a> </li>
+            <li class="col-center"> <a href="{url:v_deco/article_list?tag=3}"> <i class="icon-xzx-index-zxlc-ys"></i>
+              <p>预算</p>
+              </a> </li>
+            <li class="col-side col-last"> <a href="{url:v_deco/article_list?tag=4}"> <i class="icon-xzx-index-zxlc-ht"></i>
+              <p>合同</p>
+              </a> </li>
+          </ul>
+        </div>
+        <div data-index="1" class="hide">
+          <ul class="swipe-col4 clearfix">
+            <li class="col-side col-first"> <a href="{url:v_deco/article_list?tag=5}"> <i class="icon-xzx-index-zxlc-cg"></i>
+              <p>拆改</p>
+              </a> </li>
+            <li class="col-center"> <a href="{url:v_deco/article_list?tag=6}"> <i class="icon-xzx-index-zxlc-sd"></i>
+              <p>水电</p>
+              </a> </li>
+            <li class="col-center"> <a href="{url:v_deco/article_list?tag=9}"> <i class="icon-xzx-index-zxlc-fs"></i>
+              <p>防水</p>
+              </a> </li>
+            <li class="col-side col-last"> <a href="{url:v_deco/article_list?tag=10}"> <i class="icon-xzx-index-zxlc-nw"></i>
+              <p>泥瓦</p>
+              </a> </li>
+          </ul>
+        </div>
+        <div data-index="2" class="hide">
+          <ul class="swipe-col2 clearfix">
+            <li class="col-center"> <a href="{url:v_deco/article_list?tag=14}"> <i class="icon-xzx-index-zxlc-ruanzhuang"></i>
+              <p>软装</p>
+              </a> </li>
+            <li class="col-center"> <a href="{url:v_deco/article_list?tag=15}"> <i class="icon-xzx-index-zxlc-ruzhu"></i>
+              <p>入住</p>
+              </a> </li>
+<!--               <li class="col-center"> <a href="{url:v_deco/article_list?tag=0}"> <i class="icon-xzx-index-zxlc-ruzhu"></i>
+              <p>其它</p>
+              </a> </li> -->
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a class="xzx-index-submodule" href="{url:v_deco/zxlc}">进入装修流程</a> </section>
+  
+  <!--模块列表-->
+  <ul class="xzx-index-modules-list">
+    <!--选材手册模块-->
+    <li class="xzx-index-module xzx-index-xcsc">
+      <h2 class="xzx-index-module-header"><a href="{url:v_deco/article_list?cid=7}">选材手册</a></h2>
+      <section class="xzx-index-module-body"> 
+        <!--选材手册列表-->
+        <ul class="xzx-index-xc-list">
+            {query:name=jiaju_article where=category_id eq 7 limit=5}
+          <li> <a href="{url:v_deco/yezhu/id/$item['id']}" class="clearfix">
+            <figure> <img src="{url:/pic/thumb/img/$item['img']/w/80/h/80}" alt="{$item['title']}" class="lazy" data-original="" style="display: inline;"> </figure>
+            <div>
+              <h4>{$item['title']}</h4>
+              <p>{$item['description']}</p>
+            </div>
+            </a>
+          </li>
+          {/query}
+        </ul>
+        <a class="xzx-index-submodule" href="{url:v_deco/article_list?cid=7}">进入选材手册</a> </section>
+    </li>
+    <!--装修风水模块-->
+    <li class="xzx-index-module xzx-index-zxfs">
+      <h2 class="xzx-index-module-header"><a href="{url:v_deco/article_list?tag=8}">装修风水</a></h2>
+      <section class="xzx-index-module-body"> 
+        <!--装修风水列表-->
+        <ul class="xzx-index-xc-list">
+            {query:name=jiaju_article where=category_id eq 8 limit=5}
+          <li> <a href="{url:v_deco/yezhu/id/$item['id']}" class="clearfix">
+            <figure> <img src="{url:/pic/thumb/img/$item['img']/w/80/h/80}" alt="左眼皮跳是什么征兆？科学解释又是怎样的？" class="lazy" data-original="" style="display: inline;"> </figure>
+            <div>
+              <h4>{$item['title']}</h4>
+              <p>{$item['description']}</p>
+            </div>
+            </a> </li>
+            {/query}
+        </ul>
+        <a class="xzx-index-submodule" href="{url:v_deco/article_list?cid=8}">进入装修风水</a> </section>
+    </li>
+    <!--家居生活模块--> 
+    <!-- <!--   <li class="xzx-index-module xzx-index-xcsc">
+            <h2 class="xzx-index-module-header"><a href="http://m.to8to.com/life/">家居生活</a></h2>
+            <section class="xzx-index-module-body">
+                <!--家居生活列表--> 
+    <!--    <ul class="xzx-index-xc-list">
+
+                                            <li>
+                            <a href="http://m.to8to.com/life/78335.html" class="clearfix">
+                                <figure>
+                                    <img src="http://img.to8to.com/wap/xgt-1px.png" class="lazy" data-original="http://pic.to8to.com/attch/day_160317/20160317_fa20ff661858f9212334OvDyOkiDHDeA_140x140M.jpg?">
+                                </figure>
+                                <div>
+                                    <h4>厦门婚纱工作室哪家好</h4>
+                                    <p>结婚，对于我们每一个人来说，都是一件很幸福的事情。为了记录这一幸福的时刻我们都会选择去拍婚纱照。所以<span><a rel="nofollow" target="_blank" href="">...[更多]</a></span></p>
+                                </div>
+                            </a>
+                        </li>
+                                            <li>
+                            <a href="http://m.to8to.com/life/78317.html" class="clearfix">
+                                <figure>
+                                    <img src="http://img.to8to.com/wap/xgt-1px.png" class="lazy" data-original="http://pic.to8to.com/attch/day_160317/20160317_1803626519f128aa09a4YHY7ZcVx7niC_140x140M.jpg?">
+                                </figure>
+                                <div>
+                                    <h4>天蝎座男人喜欢什么样的女人？为什么？</h4>
+                                    <p>【导语】十二星座中最深情的是天蝎座，而且是天蝎座的男生哦，一旦被天蝎座的男生喜欢，这个女孩的生活就会<span><a rel="nofollow" target="_blank" href="">...[更多]</a></span></p>
+                                </div>
+                            </a>
+                        </li>
+                                            <li>
+                            <a href="http://m.to8to.com/life/78294.html" class="clearfix">
+                                <figure>
+                                    <img src="http://img.to8to.com/wap/xgt-1px.png" class="lazy" data-original="http://pic.to8to.com/attch/day_160312/20160312_e6e2fa5647e596fff389XovnjiBldtzN_140x140M.png?">
+                                </figure>
+                                <div>
+                                    <h4>天蝎座男人的弱点  你或身边的他是这样吗</h4>
+                                    <p>很多人都喜欢研究星座，而且根据星座还能分析出一些这个星座的人有哪些优点缺点，以及其他性格方面等等，很<span><a rel="nofollow" target="_blank" href="">...[更多]</a></span></p>
+                                </div>
+                            </a>
+                        </li>
+                                    </ul>
+                <a class="xzx-index-submodule" href="http://m.to8to.com/life/">进入家居生活</a>
+            </section>
+        </li> --> 
+    
+    <!--暖暖的新家-->
+<!--     <li class="xzx-index-module xzx-index-zxbk">
+      <h2 class="xzx-index-module-header"><a href="{url:v_deco/article_list?cid=9}">暖暖的新家</a></h2>
+      <section class="xzx-index-module-body"> 
+        <ul class="xzx-index-jhkj-list">
+            {query:name=jiaju_article where=category_id eq 9 limit=5}
+          <li> <a href="{url:v_deco/yezhu/id/$item['id']}" class="video-figure-wrap">
+            <figure> <img width="252" height="156" src="{url:/pic/thumb/img/$item['img']/w/80/h/80}" class="lazy" data-original="" alt="{$item['title']}" style="display: inline;"> <i class="icon-xzxsp-play44"></i> </figure>
+            </a>
+            <div class="video-detail">
+              <h4 class="text-over-hidden"><a href="#">{$item['title']}</a> </h4>
+              <p class="text-over-hidden video-author" stype="hight:9px"></p>
+              <p class="text-over-hidden video-author" stype="hight:9px"></p>
+              <p class="text-over-hidden video-info"><span>第2015-09-28期</span><i class="icon-xzxsp-tv"></i><em>2777次</em> </p>
+            </div>
+          </li>
+          {/query}
+        </ul>
+        <a class="xzx-index-submodule" href="{url:v_deco/article_list?cid=9}">进入暖暖的新家</a> </section>
+    </li> -->
+    <!--视频学装修模块
+    <li class="xzx-index-module xzx-index-spxzx">
+      <h2 class="xzx-index-module-header"><a href="http://m.to8to.com/yezhu/id/shipin/">视频学装修</a></h2>
+      <section class="xzx-index-module-body">
+        <ul class="xzx-index-spxzx-list">
+          <li class="head-video"> 
+            <a href="http://m.to8to.com/yezhu/id/shipin/75.html" title="三大绝招！鉴别布艺沙发的质量">
+            <figure> <img src="http://pic.to8to.com/news_center/day_160315/20160315_60cd4b080f39f4c9464eoz97S6EhC9Cl_s.jpg" class="lazy" data-original="http://pic.to8to.com/news_center/day_160315/20160315_60cd4b080f39f4c9464eoz97S6EhC9Cl_s.jpg" width="600" height="334" alt="三大绝招！鉴别布艺沙发的质量" style="display: block;"> <i class="icon-xzxsp-play"></i>
+              <p>三大绝招！鉴别布艺沙发的质量</p>
+            </figure>
+            </a> </li>
+          <li class="summary-video"> <a href="http://m.to8to.com/yezhu/id/shipin/74.html" title="不想沙发变土包？沙发选择是关键！"> <i class="icon-xzxsp-video-item"></i>不想沙发变土包？沙发选择是关键！ </a> </li>
+          <li class="summary-video"> <a href="http://m.to8to.com/yezhu/id/shipin/73.html" title="专家支招 怎样选购结实耐用的橱柜五金"> <i class="icon-xzxsp-video-item"></i>专家支招 怎样选购结实耐用的橱柜五金 </a> </li>
+        </ul>
+        <a class="xzx-index-submodule" href="http://m.to8to.com/yezhu/id/shipin/">进入视频学装修</a> </section>
+    </li>--><li class="xzx-index-module xzx-index-jhkj"></li>
+    <!--交换空间模块
+    <li class="xzx-index-module xzx-index-jhkj">
+      <h2 class="xzx-index-module-header"><a href="http://m.to8to.com/yezhu/id/jhkj/">交换空间</a></h2>
+      <section class="xzx-index-module-body"> 
+
+        <ul class="xzx-index-jhkj-list">
+          <li> <a href="http://m.to8to.com/yezhu/id/e148.html" class="video-figure-wrap">
+            <figure> <img width="252" height="156" src="http://pic.to8to.com/ex/day_160314/20160314_e82313743cb5bcc3cf4bept05v5ULU7v.jpg" class="lazy" data-original="http://pic.to8to.com/ex/day_160314/20160314_e82313743cb5bcc3cf4bept05v5ULU7v.jpg" alt="老房子变身多功能舒适空间" style="display: inline;"> <i class="icon-xzxsp-play44"></i> </figure>
+            </a>
+            <div class="video-detail">
+              <h4 class="text-over-hidden"><a href="http://m.to8to.com/yezhu/id/e148.html">老房子变身多功能舒适空间</a> </h4>
+              <p class="text-over-hidden video-author">于蓝丽 王博</p>
+              <p class="text-over-hidden video-info"><span>第2016-03-12期</span><i class="icon-xzxsp-tv"></i><em>66次</em> </p>
+            </div>
+          </li>
+          <li> <a href="http://m.to8to.com/yezhu/id/e147.html" class="video-figure-wrap">
+            <figure> <img width="252" height="156" src="http://pic.to8to.com/ex/day_160307/20160307_8390df9e87c384bb5bdcek4UfmqGOBhz.jpg" class="lazy" data-original="http://pic.to8to.com/ex/day_160307/20160307_8390df9e87c384bb5bdcek4UfmqGOBhz.jpg" alt="用黑白色调勾勒出时尚的家" style="display: inline;"> <i class="icon-xzxsp-play44"></i> </figure>
+            </a>
+            <div class="video-detail">
+              <h4 class="text-over-hidden"><a href="http://m.to8to.com/yezhu/id/e147.html">用黑白色调勾勒出时尚的家</a> </h4>
+              <p class="text-over-hidden video-author">苏芳芳 杨旭</p>
+              <p class="text-over-hidden video-info"><span>第2016-03-05期</span><i class="icon-xzxsp-tv"></i><em>122次</em> </p>
+            </div>
+          </li>
+        </ul>
+        <a class="xzx-index-submodule" href="http://m.to8to.com/yezhu/id/jhkj/">进入交换空间</a> </section>
+    </li>-->
+    
+  </ul>
+</section>
+<link rel="stylesheet" href="../skin/gonglve/xzx-index.min.css">
+<script type="text/javascript">
+$(function(){
+$(".zxlc-nav-hd li").click(function(e) {
+	var _this = $(this);
+	_this.parent().find("li").removeClass("active");
+	_this.addClass("active");
+    $(".swipe_wrap div").addClass("hide").eq(_this.index()).removeClass("hide");
+});	
+})
+</script>

@@ -1,0 +1,185 @@
+{js:my97date}
+<div class="headbar">
+  <div class="position"><span>工具</span><span>></span><span>区块管理</span><span>></span><span>更新区块</span></div>
+</div>
+<div class="content_box">
+  <div class="content form_content">
+    <form action='{url:/tools/ad_edit_act}' method='post' name='ad' enctype='multipart/form-data'>
+      <input type='hidden' name='id' value='' />
+      <table class="form_table">
+        <colgroup>
+        <col width="150px" />
+        <col />
+        </colgroup>
+        <tr>
+          <th>名称：</th>
+          <td><input type='text' class='normal' name='name' pattern='required' alt="填写名称" />
+            <label>*区块名称（必填）</label></td>
+        </tr>
+        <tr>
+          <th>区块展示类型：</th>
+          <td><label class='attr'>
+              <input type='radio' name='type' value='1' checked=checked />
+              图片</label>
+            <label class='attr'>
+              <input type='radio' name='type' value='2' />
+              flash</label>
+            <label class='attr'>
+              <input type='radio' name='type' value='3' />
+              文字</label>
+            <label class='attr'>
+              <input type='radio' name='type' value='4' />
+              代码</label>
+                       
+            <!--区块内容模板--> 
+            <!--<script id="adTemplate" type="text/html">
+						alert(newType)
+						<%if(newType == "1"){%>
+							<input type="file" name="img" class="file" />
+							<%if(newType == defaultType){%>
+								<p><img src="{webroot:}<%=content%>" width="150px" /></p>
+								<input type="hidden" name="content" value="<%=content%>" />
+							<%}%>
+						<%}else if(newType == "2"){%>
+							<input type="file" name="flash" class="file" />
+							<%if(newType == defaultType){%>
+								<embed src="{webroot:}<%=content%>" width="150px" type="application/x-shockwave-flash"></embed>
+								<input type="hidden" name="content" value="<%=content%>" />
+							<%}%>
+						<%}else if(newType == "3"){%>
+							<input type="text" class="normal" name="content" value="<%=content%>" />
+						<%}else{%>
+							<textarea class='textarea' name='content'><%=content%></textarea>
+						<%}%>
+						</script>--></td>
+        </tr>
+        
+        <tr>
+          <th>主内容：</th>
+          <td><div id='ad_boxs' style="display:block"></div></td>
+        </tr>
+
+        <tr>
+          <th>区块位：</th>
+          <td><select name='position_id' class='normal' pattern='required' alt='区块位不能为空' id="position_id">
+              <option value=''>请选择</option>
+              
+							{query:name=ad_position}
+							
+              <option value='{$item['id']}'>{$item['name']}</option>
+              
+							{/query}
+						
+            </select>
+            <label>*在选择的区块位置内进行展示（必选）</label></td>
+        </tr>
+        <tr>
+          <th>链接地址：</th>
+          <td><input type='text' class='normal' name='link' empty alt='请填写正确URL地址' />
+            <label>点击区块后页面链接的URL地址，为空则不跳转</label></td>
+        </tr>
+        <tr>
+          <th>排序：</th>
+          <td><input type='text' class='small' name='sort' pattern='int' alt='填写正确的数字' id="sort" />
+            <label>数字越小，排列越靠前</label></td>
+        </tr>
+        <tr>
+          <th>开始和结束时间：</th>
+          <td><input type='text' class='Wdate' onfocus='WdatePicker()' name='start_time' pattern='date' />
+            ～
+            <input type='text' class='Wdate' onfocus='WdatePicker()' name='end_time' pattern='date' />
+            <label>*区块展示的开始时间和结束时间（必选）</label></td>
+        </tr>
+        <tr>
+          <th>描述：</th>
+          <td><textarea class='textarea' name='description' alt='请填写文章内容'></textarea></td>
+        </tr>
+        <tr>
+          <th>绑定商品分类：</th>
+          <td><!--分类数据显示--> 
+            <span id="__categoryBox" style="margin-bottom:8px"></span> 
+            <script id="categoryButtonTemplate" type="text/html">
+						<ctrlArea>
+						<input type="hidden" value="<%=templateData['id']%>" name="goods_cat_id" />
+						<button class="btn" type="button" onclick="return confirm('确定删除此分类？') ? $(this).parent().remove() : '';">
+							<span class="del"><%=templateData['name']%></span>
+						</button>
+						</ctrlArea>
+						</script>
+            <button class="btn" type="button" onclick="selectGoodsCategory('{url:/block/goods_category/type/radio}','goods_cat_id')"><span class="add">设置分类</span></button>
+            <label> 可选项，与商品分类做关联，与商品分类绑定在一起，动态的展示 </label></td>
+        </tr>
+        <tr>
+          <th>绑定商圈：</th>
+          <td><select name='district_id' id="district_id">
+              <option value=''>请选择</option>
+              
+							{query:name=district where=ishide eq 1}
+							
+              <option value='{$item['id']}'>{$item['name']}</option>
+              
+							{/query}
+						
+            </select>
+            <label>可选项，与商圈做关联，与商圈绑定在一起，动态的展示</label></td>
+        </tr>
+        <tr>
+          <th></th>
+          <td><button class='submit' type='submit'><span>确 定</span></button></td>
+        </tr>
+      </table>
+    </form>
+  </div>
+</div>
+<script type='text/javascript'>
+//区块数据
+defaultAdRow = {echo:JSON::encode($this->adRow)};
+//联动区位的排序
+$('#position_id').change(function(){ 
+		var p1=$(this).children('option:selected').val();//这就是selected的值 
+		if($("#order").val()==''){
+			$("#order").val(p1);
+			//alert($(this).children('option:selected').val());
+		}
+}) 
+//表单回显
+var FromObj = new Form('ad');
+FromObj.init(defaultAdRow);
+
+//单选按钮点击绑定
+$('input:radio[name="type"]').each(
+	function(i){$(this).click(function(){changeType(i+1);});}
+);
+
+//切换区块类型 1:图片; 2:flash; 3:文字; 4:代码;
+function changeType(typeVal)
+{   var adHtml;
+	var content = (defaultAdRow && typeVal == defaultAdRow['type']) ? defaultAdRow['content'] : "";
+	var defaultType = (defaultAdRow && defaultAdRow['type']) ? defaultAdRow['type'] : "";
+						if(typeVal == "1"){
+							adHtml = '<input type="file" name="img" class="file" />'; 
+							adHtml +=(typeVal == defaultType)?'<p><img src="{webroot:}'+content+'" max-width="650px" /></p><input type="hidden" name="content" value="'+content+'" />':"";
+						}else if(typeVal == "2"){
+							adHtml = '<input type="file" name="flash" class="file" />';
+							adHtml +=(typeVal == defaultType)?'<embed src="{webroot:}'+content+'" width="150px" type="application/x-shockwave-flash"></embed><input type="hidden" name="content" value="'+content+'" />':"";
+						}else if(typeVal == "3"){
+							adHtml = '<input type="text" class="normal" name="content" value="'+content+'" />';
+						}else{
+							adHtml = '<textarea class="textarea" name="content">'+content+'</textarea>'
+						}
+						
+	//var adHtml = template.render('adTemplate',{'newType':typeVal,'defaultType':defaultType,'content':content});
+	$('#ad_boxs').empty().append(adHtml);
+	//$('#ad_box').html('adfsafdsaf').show();
+	//$(adHtml).appendTo('#ad_box')
+}
+
+//商品分类回填
+{if:isset($this->adRow['goods_cat_id'])}
+{set:$categoryId = $this->adRow['goods_cat_id']}
+{query:name=category items=$categoryData where=id in ($categoryId)}{/query}
+createGoodsCategory({echo:JSON::encode($categoryData)});
+{/if}
+
+$("[name='type']:checked").click();
+</script> 

@@ -1,0 +1,34 @@
+<!--分类信息 开始-->
+<div class="tab">
+	<div class="label">
+		<a class="label1" href="javascript:void(0)">
+			<i class="on"></i>分类浏览
+		</a>
+	</div>
+
+	<div class='category'>
+	    <ul>
+	    	{foreach:items=Api::run('getCategoryListTop')  item=$first }
+	        <li class="clearfix">
+	            <div class="info">
+	                <p class="name">
+	                    <a href="{url:/site/pro_list/cat/$first[id]}">{$first['name']}</a>
+	                </p>
+	                <div class="data">
+	                    {foreach:items=Api::run('getCategoryByParentid',array('#parent_id#',$first['id']))  item=$second}
+						<a href="{url:/site/pro_list/cat/$second[id]}">{$second['name']}</a>
+						{/foreach}
+	                </div>
+	            </div>
+	        </li>
+	        {/foreach}
+	    </ul>
+	</div>
+</div>
+<!--分类信息 结束-->
+<SCRIPT TYPE="text/javascript">
+	$(function()
+{		
+	$("#kros_d").css({ color: "#ff0011" });
+})
+</SCRIPT>

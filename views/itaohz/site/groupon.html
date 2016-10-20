@@ -1,0 +1,116 @@
+{set:
+	$seo_data = array();
+	$site_config = new Config('site_config');
+	$seo_data['title'] = '团购_'.$site_config->name;
+	$seo_data['keywords']=$site_config->index_seo_keywords;
+	$seo_data['description']=$site_config->index_seo_description;
+	seo::set($seo_data);
+}
+    <div class="position"> <span>您当前的位置：</span> <a href="{url:}"> 首页</a> » 团购 </div>
+    <div class="groupon wrapper clearfix container"> {set:$countNumItems = array();}
+  {foreach:items=$this->regiment_list}
+  {set:$countNumItems[] = $item['id'];}
+  <div class="clearfix m_10 grouponloops">
+        <div class="main-pic">
+      <div class="clearfix">
+            <div class="normal-pic "> <a href="{url:site/products/id/$item[goods_id]}" target="_blank" class="piclink">
+              <div class="item-pic-wrap"> <img src="{url:/pic/thumb/img/$item['img']/w/460/h/400}" class="J_zoom "></div>
+              </a> </div>
+          </div>
+    </div>
+        <div class="main-box J_mainBox">
+      <h2 class="title"><a href="{url:site/products_tuan/id/$item[goods_id]/active_id/$item[id]}">{$item['title']}</a></h2>
+      <div class="biztag">
+            <label>包邮</label>
+            <label>退货赔运费</label>
+            <label>底价清仓</label>
+          </div>
+      <div class="description">{$item['intro']}</div>
+      {if:$item['store_nums'] > $item['sum_count']}{set:$free_time=strtotime($item['end_time'])-ITime::getNow();}
+      <div class="infobar clearfix">
+            <div class="time-banner">
+          <div class="icon-time">&nbsp;</div>
+          <div class="ju-clock">团购倒计时: <span class="hour" id="cd_hour_{$item['id']}">{echo:floor($free_time/3600);}</span>小时<span class="min" id="cd_minute_{$item['id']}">{echo:floor( ($free_time%3600)/60 );}</span>分<span id="cd_second_{$item['id']}" class="sec">{echo:$free_time%60}</span>秒</div>
+        </div>
+          </div>
+      <div class="status-banner J_statusBanner">
+            <div class="currentPrice"> <small>¥</small>{$item['regiment_price']}</div>
+            <div class="oprice"> <del class="originPrice">¥{$item['sell_price']}</del> </div>
+            <a class="buyaction" href="{url:site/products_tuan/id/$item[goods_id]/active_id/$item[id]}"> <span>马上抢</span> </a> </div>
+      <div class="numOfPeople"> <span class="num">{$item['sum_count']}</span>件已付款&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;仅剩<span class="num">{echo:$item['store_nums']-$item['sum_count']}</span>限购量：<span class="num">{$item['limit_min_count']} ~ {$item['limit_max_count']}</span></div>
+      {else:}
+      <div class="status-banner over">
+            <div class="oprice ">本次团购的商品已售尽！</div>
+            <a class="buyaction" href="javascript:void(0)"><span>已结束</span></a> </div>
+      {/if} </div>
+      </div>
+  {/foreach}
+  <div class="box gr_box" style="margin-top:24px;">
+        <div class="title"><a class="blue" href="{url:/site/groupon_list}" style="float:right">更多团购>>&nbsp;</a>往期精彩团购</div>
+        <div class="ju-itemlist">{foreach:items=$this->ever_list}
+      <ul>
+            <li class="item-small-v3">
+          <div class="status-blank"> <a href="{url:/site/products/id/$item[goods_id]}" class="link-box hover-blank" target="_blank"> <img src="{webroot:}{$item['img']}" class="item-pic">
+            <h4><span class="desc">{$item['title']}</span></h4>
+            <div class="item-prices">
+              <div class="item-info">
+                <div class="price"><i>¥</i><em class="J_actPrice"><span class="yen">{$item['regiment_price']}</span></em></div>
+                <div class="dock">
+                  <div class="dock-price"> <del class="orig-price">¥{$item['sell_price']}</del> </div>
+                  <div class="prompt">
+                    <div class="sold-num"> <em class="J_soldnum">{$item['sum_count']}</em>人已买 </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item-link"><span class="txt">去看看</span></div>
+            </div>
+            </a> </div>
+        </li>
+          </ul>
+      {/foreach} </div>
+      </div>
+</div>
+
+    <!--<div class="box org_box m_10">
+      <div class="title">每天订阅团购信息<span></span></div>
+      <div class="cont clearfix">
+            <p>请输入您的邮箱地址</p>
+            <input type="text" name='orderinfo' class="gray_m">
+            <label class="btn_orange f_r">
+          <input type="button" value="立即订阅" onclick="orderinfo();">
+        </label>
+          </div>
+      <span class="l"></span><span class="r"></span><span class="b_l"></span><span class="b_r"></span> </div>--> 
+
+    <script language="javascript">
+$(function()
+{
+	//倒计时
+	var cd_timer = new countdown();
+	{foreach:items = $countNumItems}
+		cd_timer.add({$item});
+	{/foreach}
+});
+
+//电子邮件订阅
+function orderinfo()
+{
+	var email = $('[name="orderinfo"]').val();
+	if(email == '')
+	{
+		alert('请填写正确的email地址');
+	}
+	else
+	{
+		$.getJSON('{url:/site/email_registry}',{email:email},function(content){
+			if(content.isError == false)
+			{
+				alert('订阅成功');
+				$('[name="orderinfo"]').val('');
+			}
+			else
+				alert(content.message);
+		});
+	}
+}
+</script>

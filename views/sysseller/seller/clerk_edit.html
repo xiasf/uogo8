@@ -1,0 +1,74 @@
+<link href="../css/plugins/iCheck/custom.css" rel="stylesheet">
+<div class="wrapper wrapper-content animated bounceInRight">
+
+	<div class="row">
+
+	    <div class="col-sm-12">
+			<div class="ibox float-e-margins">
+			    <div class="ibox-title">
+			    	<h5>店员编辑</h5>
+			    </div>
+
+			    <div class="ibox-content">
+
+			    	<form name="ModelForm" action="{url:/seller/clerk_edit}" method="post" class="form-horizontal validform">
+						<input type="hidden" name="id" value="{$data['id']}"/>
+				    	<div class="form-group">
+							<label class="col-sm-1 control-label">姓名</label>
+							<div class="col-sm-2">
+								<input name="name" class="normal form-control" type="text" datatype="*" value="" alt="" />
+							</div>
+						</div>
+						<div class="hr-line-dashed"></div>
+
+						<div class="form-group">
+							<label class="col-sm-1 control-label">职务</label>
+							<div class="col-sm-2">
+								<input name="position" class="normal form-control" type="text" datatype="*" value="" alt="" />
+							</div>
+						</div>
+						<div class="hr-line-dashed"></div>
+
+						<div class="form-group">
+							<label class="col-sm-1 control-label">是否客服：</label>
+							<div class="col-sm-10">
+								<label class="control-label span4"><input type="radio" class="i-checks" name="is_ok" value="1" />是</label>&nbsp;&nbsp;&nbsp;
+								<label class="control-label"><input type="radio" class="i-checks" name="is_ok" value="0" />否</label>
+							</div>
+						</div>
+						<div class="hr-line-dashed"></div>
+
+						<div class="form-group">
+							<label class="col-sm-1 control-label">排序</label>
+							<div class="col-sm-2">
+								<input name="sort" class="normal form-control" type="text" datatype="*" value="" alt="" />
+							</div>
+						</div>
+						<div class="hr-line-dashed"></div>
+
+						<div class="form-actions">
+							<button type="submit" class="btn btn-primary">确 定</button>
+							<button type="reset" class="btn">重 置</button>
+						</div>
+
+					</form>
+
+
+			    </div>
+
+			</div>
+	    </div>
+
+	</div>
+
+</div>
+<script src="js/plugins/validate/validform.min.js"></script> 
+    <script src="../js/plugins/iCheck/icheck.min.js"></script>
+<script type='text/javascript'>
+jQuery(function()
+{
+	var formobj = new Form('ModelForm');
+	formobj.init({echo:JSON::encode($this->data)});
+	$(".i-checks").iCheck({checkboxClass:"icheckbox_square-green",radioClass:"iradio_square-green",})
+});
+</script>

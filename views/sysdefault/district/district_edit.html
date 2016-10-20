@@ -1,0 +1,64 @@
+
+<div class="headbar">
+	<div class="position"><span>商圈</span><span>></span><span>商圈管理</span><span>></span><span>编辑商圈</span></div>
+</div>
+<div class="content_box">
+	<div class="content form_content">
+		<form action="{url:/district/district_save}" method="post" name="districtForm" enctype="multipart/form-data">
+			<input name="id" value="" type="hidden" />
+			<table class="form_table">
+				<col width="150px" />
+				<col />
+				<tbody>
+					<tr>
+						<th>名称：</th>
+						<td><input class="normal" name="name" type="text" value="" /><label>商圈名称</label></td>
+					</tr>
+					<tr>
+						<th>代表性建筑：</th>
+						<td><input class="normal" name="mainbuild" type="text" value="" /><label>该商圈具有代表性的建筑名称</label></td>
+					</tr>
+					<tr>
+						<th>介绍：</th>
+						<td><textarea class="normal" rows="3" cols="20" name="description"></textarea><label>商圈介绍</label></td>
+					</tr>
+					<tr>
+						<th>代表性建筑图片：</th>
+						<td><input class="normal" name="upload" type="file" value="" /><label>代表性建筑或商圈图片</label><div id="boxs"></div></td>
+					</tr>
+					<tr>
+						<th>经纬度：</th>
+						<td><input class="normal" name="dx" type="text" value="" /><label>经度</label><br /><br /><input class="normal" name="dy" type="text" value="" /><label>纬度</label></td>
+					</tr>
+					<tr>
+						<th>排序：</th>
+						<td><input class="normal" name="sort" type="text" value="" /><label>排序</label></td>
+					</tr>
+					<tr>
+						<th>状态：</th>
+						<td>
+							<label><input name="ishide" type="radio" value="1" checked="checked" />正常</label>
+							<label><input name="ishide" type="radio" value="2" />隐藏</label>
+						</td>
+					</tr>
+					<tr>
+						<td></td><td><button class="submit" type="submit"><span>确 定</span></button></td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+	</div>
+</div>
+<script language="javascript">
+$(function(){
+	{if:isset($this->userInfo)}
+		var formObj = new Form('districtForm');
+		formObj.init({echo:JSON::encode($this->userInfo)});
+
+		var adHtml = '<br /><p><img src="{webroot:}{$this->userInfo["upload"]}" max-width="650px" /></p><input type="hidden" name="pic" value="{$this->userInfo["upload"]}" />';
+
+		$('#boxs').empty().append(adHtml);
+	{/if}
+});
+
+</script>

@@ -1,0 +1,98 @@
+
+{set:$defaultWhere = array('search' => $this->word , 'category_extend' => $this->cat_id )}
+{set:$goodsObj = search_goods::find($defaultWhere,20);$resultData = $goodsObj->find();}
+{set:$arr = array('sale' =>'销量','cpoint' =>'评分','price'=>'价格')}
+
+<link rel="stylesheet" href="../skin/mall/page_1.css">
+<link rel="stylesheet" href="../skin/user/css/pptm.css">
+<link rel="stylesheet" href="../skin/user/css/rem.css">
+
+<section class="m_ranking" id="j_ranking">
+    {foreach:items=$arr}
+    {set:$next = search_goods::getOrderValue($key)}
+    <a class="zr_hot {echo:search_goods::isOrderCurrent($key) ? 'cur':''}" href="{echo:search_goods::searchUrl('order',$next)}"><span class="delta j_delta {echo:search_goods::isOrderDesc($key) ? 'deltabot':'deltaRot'} ">{$item}{echo:search_goods::isOrderCurrent($key) ? '<i></i>':''}</span></a>
+    {/foreach}
+    <i class="u_ico1 ico1" id="j_ico1"></i>
+</section>
+
+<section id="scrollLoadContent" class="g_wrap f_clear">
+    <div class="m_dateils f_mb" id="j_dateils">
+
+    {set:$str = ''}
+    {query:name=keyword where=word like '$this->word%' and word neq '$this->word' limit=10}
+    {set:$tmpWord=urlencode($item['word']);}
+    {set:$url = IFilter::clearUrl("/site/search_list/word/$tmpWord")}
+    {set:$str.="<a style='margin: 10px;' href=". $url ." class='orange'>".$item['word']."</a>"}
+    {/query}
+    {if:$str}
+          <div class="title" style="padding: 10px; margin: 10px auto;">
+    <strong>你是不是想找：</strong>{$str}
+  </div>
+  {/if}
+
+{if:$resultData}
+  {set:$listSize = search_goods::getListSize(IFilter::act(IReq::get('show_type')))}
+      {foreach:items=$resultData}{set:$tmpId=$item['id'];}
+              <a class="contlist" href="{url:/site/products/id/$tmpId}">
+            <img src="{url:/pic/thumb/img/$item[img]/w/350/h/350}">
+            <p>{echo:mb_substr($item['name'],0,20,"UTF-8")}</p>
+            <em>￥{$item['sell_price']}</em>
+            <span>已售{$item['sale']}件</span>
+        </a>
+
+{/foreach}
+  {$goodsObj->getPageBar()}
+          {else:}
+  <div style="padding:20px;font-size:18px;text-align:center">对不起，没有搜到相关商品</div>
+  {/if} </div>
+
+    </div>
+</section>
+
+
+<!-- <div id="pgcontainer">
+  <div class="glist_header">
+    <ul class="tbox">
+      <li> <b>商品搜索：</b><strong class="resultx">"<span class="red">{$this->word}</span>" 搜索结果 {$this->findSum}</strong> </li>
+    </ul>
+  </div>
+  <div id="sort_div" class="sort_div">
+    <ul>
+      <li><a href="{url:/site/pro_list/cat/$this->catId}">默认产品排序</a></li>
+      <li><a href="{url:/site/pro_list/cat/$this->catId/order/sale}">销量从高到低</a></li>
+      <li><a href="{url:/site/pro_list/cat/$this->catId/order/cpoint}">评份从高到低</a></li>
+      <li><a href="{url:/site/pro_list/cat/$this->catId/order/price}">价格从低到高</a></li>
+      <li><a href="{url:/site/pro_list/cat/$this->catId/order/new_toggle}">最新上架产品</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="time_qg_ad_box">
+  <div class="title"><strong>你是不是想找：</strong> {query:name=keyword where=word like '$this->word%' and word neq '$this->word' limit=10}
+    {set:$tmpWord=urlencode($item['word']);} <a href="{url:/site/search_list/word/$tmpWord}" class='orange'>{$item['word']}</a> {/query} </div>
+  {if:$resultData}
+  {set:$listSize = search_goods::getListSize(IFilter::act(IReq::get('show_type')))}
+  <div class="qg_sid"> {foreach:items=$resultData}{set:$tmpId=$item['id'];}
+    <ul>
+      <li> <a href="{url:/site/products/id/$tmpId}" class="djs_box"> <img src="{url:/pic/thumb/img/$item[img]/w/350/h/350}"/> </a>
+        <div class="award_value_box">
+          <p class="pro_title"><a href="{url:/site/products/id/$tmpId}">{echo:mb_substr($item['name'],0,20,"UTF-8")}</a></p>
+          <p class="light_gray"><a href="{url:/site/products/id/$item[id]}">查看</a>￥{$item['sell_price']}</p>
+        </div>
+      </li>
+    </ul>
+    {/foreach} </div>
+  {$goodsObj->getPageBar()}
+  
+  {else:}
+  <div style="padding:20px;font-size:18px;text-align:center">对不起，没有搜到相关商品</div>
+  {/if} </div> -->
+<!--<div class="cp-tab">
+    <ul>
+      {foreach:items=search_goods::getOrderType()}
+      {set:$next = search_goods::getOrderValue($key)}
+      <li class="{echo:search_goods::isOrderCurrent($key) ? 'cuon':''}"> <a href="{echo:search_goods::searchUrl('order',$next)}">{$item}<span class="{echo:search_goods::isOrderDesc() ? 'desc':''}">&nbsp;</span></a> </li>
+      {/foreach}
+    </ul>
+  </div>--> 
+

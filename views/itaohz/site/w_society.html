@@ -1,0 +1,16 @@
+{set:$msg = IReq::get('msg') ? IReq::get('msg') : '社群 - 正在维护，稍后开放...'}
+<div class="error wrapper clearfix container">
+	<table class="form_table prompt_3 f_l">
+		<col width="250px" />
+		<col />
+		<tr>
+			<th valign="top"><img src="{skin:images/front/err.gif}" width="122" height="98" /></th>
+			<td>
+				<p class="mt_10"><strong class="fs18 gray">{echo:htmlspecialchars($msg,ENT_QUOTES)}</strong></p>
+				<p class="gray">您可以：</p>
+				<p class="gray">1.到<a class="f_c_e81a62" href="{url:/site/help_list}">帮助中心</a>寻求帮助</p>
+				<p class="gray">2.去其他地方逛逛：<a href='javascript:void(0)' class='f_c_e81a62' onclick='window.history.go(-1);'>返回上一级操作</a>|<a class="f_c_e81a62" href="{url:}">网站首页</a>|<a class="f_c_e81a62" href="{url:/ucenter/order}">我的订单</a>|<a class="f_c_e81a62" href="{url:/simple/cart}">我的购物车</a></p>
+			</td>
+		</tr>
+	</table>
+</div>

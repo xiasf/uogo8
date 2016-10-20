@@ -1,0 +1,42 @@
+{set:$user_id = $this->user['user_id']}
+{set:$user = Api::run('getMemberInfo',$user_id)}
+<style>
+  span.grade i {
+    display: inline-block;
+    height: 15px;
+    background: url(http://www.itaohz.com/views/pc/skin/default/images/front/grade_bg.gif) 0 2px no-repeat;
+}
+span.grade {
+    display: inline-block;
+    width: 70px;
+    height: 15px;
+    background: url(http://www.itaohz.com/views/pc/skin/default/images/front/grade_bg.gif) 0 -16px no-repeat;
+}
+
+</style>
+<main id="commentWrap" class="g_wrap m_comments m_usercomm scrollLoad"><!-- g_wrap m_comments m_usercomm -->
+  {if:!statistics::countUserWaitComment($user_id)}
+  <section class="stat f_clear">暂时还没有评价</section>
+  {else:}
+
+    {set:$page = IReq::get('page') ? IFilter::act(IReq::get('page'),'int') : 1}
+    {query:name=comment where=user_id eq $user_id and status neq 0 page=$page order=id desc}
+  <div class="list list-2">
+    <header class="head f_clear"> 
+      {query:name=goods where=id eq $item[goods_id] id=$g item=$goods}
+      <a href="{url:/site/products/id/$goods['id']}"><img  class="f_fl img" style="border-radius:0;min-height: 30px;min-width: 30px;" src="{webroot:$goods['img']}" />
+      <h4 class="lin_p">{$goods['name']}</h4></a>
+      {/query}
+      <p class="clearfix"><b>评分：</b><span class="grade"><i style="width:{echo:Common::gradeWidth($item['point'])}px"></i></span><span class="light_gray">{$dateline}</span><label></label>
+<span class="f_fr">{$item['comment_time']}&nbsp;&nbsp;</span>
+
+</p>
+<p class="text">{echo:$item['contents']?:'TA比较懒，一个字都没有打，系统默认好评。'}</p>
+    </header>
+  </div>
+{/query}
+{$query->getPageBar()}
+  {/if}
+</main>
+<link rel="stylesheet" type="text/css" href="skin/mall/page_1.css">
+<link rel="stylesheet" type="text/css" href="skin/user/css/rem.css">

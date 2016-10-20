@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<link rel="stylesheet" href="{skin:css/admin.css}">
+{js:jquery}{js:jqueryext}
+{js:dialog}
+{js:artTemplate}
+</head>
+{set:$type = IReq::get('type') == 'checkbox' ? 'checkbox' : 'radio'}
+<body style="width:850px;height:420px;">
+	<div class="pop_win">
+
+		<table class="form_table" style="margin-top: 0px;height:400px;">
+			<colgroup>
+				<col width="85px">
+				<col>
+			</colgroup>
+			<th>所属品牌：</th>
+			<td id="brandBox"></td>
+		</table>
+
+		<!--品牌列表-->
+		<script id="brandListTemplate" type="text/html">
+		<ul class="select" style="height:410px;">
+			<%for(var item in templateData){%>
+			<%item = templateData[item]
+			issc = item['sort'];%>
+			<li onmouseover="showCategory(<%=item['id']%>,<%=level%>);"><label>
+			<%if(typeof(issc) != "undefined"){ %><input name="brandVal" type="{$type}" value="<%=item['id']%>" onchange="selectCategory(this);" /><%};%>
+			<%=item['name']%></label></li>
+			<%}%>
+		</ul>
+		</script>
+	</div>
+</body>
+
+<script type="text/javascript">
+//完整分类数据
+{query:name=brand order=sort asc items=$brandData}{/query}
+art.dialog.data('brandWhole',{echo:JSON::encode($brandData)});
+brandCategoryData = {echo:JSON::encode(goods_class::brandStruct($brandData))};
+brandCategoryData[0] = [{"id":"999999999","name":"无品牌","logo":"","url":"","description":"","sort":"0","category_ids":"0"}];
+{query:name=brand_category order=id asc items=$brandCategoryData}{/query}
+Array.prototype.push.apply(brandCategoryData[0],{echo:JSON::encode($brandCategoryData)});
+
+
+
+//初始化被选中的分类ID
+checkedCategory = art.dialog.data('brandValue') ? art.dialog.data('brandValue') : [];
+
+$(function()
+{
+	//生成顶级品牌分类信息
+	//alert('sdfadsfasf----'+brandCategoryData[0].length)
+	var templateHtml = template.render('brandListTemplate',{'templateData':brandCategoryData[0],'level':0,'checkedbrand':checkedCategory});
+	$('#brandBox').append(templateHtml);
+})
+
+//显示分类数据信息
+function showCategory(categoryId,level)
+{
+	$('ul.select:gt('+level+')').remove();
+	var childCategory = brandCategoryData[categoryId];
+	if(childCategory)
+	{
+		var templateHtml = template.render('brandListTemplate',{'templateData':childCategory,'level':level+1,'checkedbrand':checkedCategory});
+		$('#brandBox').append(templateHtml);
+	}
+}
+
+//选择规格数据
+function selectCategory(_self)
+{
+	var categoryId = $(_self).val();
+	var valueIndex  = jQuery.inArray(categoryId,checkedCategory);
+
+	if($(_self).attr('checked'))
+	{
+		(valueIndex == -1) ? checkedCategory.push(categoryId) : "";
+	}
+	else
+	{
+		(valueIndex == -1) ? "" : checkedCategory.splice(valueIndex,1);
+	}
+	//更新分类数据值
+	{if:$type == 'checkbox'}
+	art.dialog.data('brandValue',checkedCategory);
+	{else:}
+	var result = checkedCategory.pop();
+	art.dialog.data('brandValue',Array(result));
+	{/if}
+}
+</script>
+</html>

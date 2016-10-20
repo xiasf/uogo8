@@ -1,0 +1,172 @@
+{set:
+	$myCartObj  = new Cart();
+	$myCartInfo = $myCartObj->getMyCart();
+	$siteConfig = new Config("site_config");
+	$callback   = IReq::get('callback') ? urlencode(IFilter::act(IReq::get('callback'),'url')) : '';
+}
+	<!doctype html>
+	<html>
+    <head>
+    <meta charset="utf-8">
+    <title>{echo:$siteConfig->name}</title>
+    <meta name="Keywords" content="{echo:$siteConfig->keywords}">
+    <meta name="Description" content="{echo:$siteConfig->description}">
+    <meta content="width=device-width, minimum-scale=1,initial-scale=1, maximum-scale=1, user-scalable=1;" id="viewport" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <link type="image/x-icon" href="favicon.ico" rel="icon">
+    <link href="{skin:css/style.css}" rel="stylesheet" type="text/css" media="all">
+    <link href="{skin:css/jquery.mmenu.css}" rel="stylesheet" type="text/css" media="all">
+    {js:jquery}
+    {js:form}
+    <!--js:validate-js:dialog--> 
+    {js:validate}
+    {js:dialog}
+    {js:artTemplate}
+    <script type='text/javascript' src="{theme:javascript/common.js}"></script>
+    <script type='text/javascript' src='{theme:javascript/site.js}'></script>
+    <script type='text/javascript' src='{theme:javascript/jquery.mmenu.min.js}'></script>
+    </head>
+    <body>
+    <a name="top"id="top"></a>
+    <div class="all_box">
+      <div class="top_bg_c"> <span class="user_right"><a href="#top" onclick="displaySo();"class="icn_search"></a></span> <span class="user_left" id="userhome"><a href="javascript:;" onClick="if(document.referrer){history.go(-1);window.location.href=document.referrer;return false;}" class="icn_back"></a></span>
+        <div class="user_title">{echo:$siteConfig->name}</div>
+      </div><!--主内容-->
+      <div class="container"> {viewcontent} </div><!--主内容结束-->
+      <div class="all_list_log"> {if:$this->user} <a href="{url:/ucenter/index}">欢迎您，{echo:$this->user['username']}</a> <a href="{url:/simple/logout}">退出</a> {else:} <a href="{url:/simple/login}" class="log">登录 </a>| <a href="{url:/simple/reg?callback=$callback}" class="reg">注册</a> {/if}</div>
+      <div class="footer">
+        <div class="footer_menu"><a href="{url:/site/index}">首页</a> <a href="{url:/ucenter/}">会员中心</a> <a href="tel:4006822988">联系我们</a></div>
+        <span class="copyright">Copyright © 2015&nbsp;<a href="{url:/site/index}" target="_blank">{echo:$siteConfig->name}</a>&nbsp;All rights reserved.</span> </div>
+      <div id="backtop"><a href="#top"target="_self">TOP</a></div>
+      <div id="search_box">
+      <span class="user_left"><a href="javascript:;" onClick="displaySo();return false;" class="icn_back"></a></span>
+        <form action="{url:/site/search_list}" method="get">
+          <input class="search_submit" value="搜 索" type="submit" onclick="checkInput('word','');">
+          <input class="search_input" name="word" autocomplete="off" placeholder="输入关键字..." type="text">
+        </form>
+        <div class="search_hot"><div>热门搜索</div>
+
+        {set:$classArray = array('bold f_c_e81a62','f_c_e81a62');$colorIndex=0;}
+            {foreach:items=Api::run('getKeywordAllList',5)}
+            {set:$keyword=urlencode($item['word']);} <a href="{url:/site/search_list/word/$keyword}">{$item['word']}</a> {set:$colorIndex++;}
+            {/foreach}
+            </div>
+      </div>
+      <!--<div class="footer_" id="footer_">
+        <ul>
+          <li><a id="ih" href="{url:/site/index}">
+            <div class="nav">
+            <div class="ih ispr"></div>
+            <p>首页</p>
+          </div>
+            </a></li>
+          <li><a id="ic" href="{url:/site/category}">
+            <div class="nav">
+            <div class="ic ispr"></div>
+            <p>分类</p>
+          </div>
+            </a></li>
+          <li><a id="is" href="{url:/simple/cart}">
+            <div class="nav">
+            <div class="is ispr" id="cart"></div>
+            <p>购物车</p>
+          </div>
+            </a></li>
+          <li><a id="if" href="#menu-left">
+            <div class="nav">
+            <div class="if ispr"></div>
+            <p>个人中心</p>
+          </div>
+            </a></li>
+        </ul>
+      </div>-->
+    </div>
+    <nav id="menu-left">
+      <div class="left_class_box"> {if:$this->user}
+        {set:$user_ico = $this->user['head_ico']}
+        <div class="photo"><img src="{webroot:$user_ico}" onerror="this.src='{skin:images/user_ico.gif}'"></div>
+        <div class="username">{echo:$this->user['username']}</div>
+        {else:}
+        <div class="photo"><img src="{skin:images/user_ico.gif}"></div>
+        {/if}
+        <div class="list_ul"> 
+          <ul>
+            <li>
+              <label><a href="{url:/ucenter/index}"><em><img src="{skin:images/icon/man_64.png}"></em>会员中心</a></label>
+            </li>
+            <li>
+              <label><a href="{url:/ucenter/info}"><em><img src="{skin:images/icon/tray_full_64.png}"></em>个人资料</a></label>
+            </li>
+            <li>
+              <label><a href="{url:/ucenter/order}"><em><img src="{skin:images/icon/case_64.png}"></em>我的订单</a></label>
+            </li>
+            <li>
+              <label><a href="{url:/ucenter/integral}"><em><img src="{skin:images/icon/brightness_64.png}"></em>我的积分</a></label>
+            </li>
+            <li>
+              <label><a href="{url:/ucenter/online_recharge}"><em><img src="{skin:images/icon/money_64.png}"></em>在线充值</a></label>
+            </li>
+            <li>
+              <label><a href="{url:/ucenter/address}"><em><img src="{skin:images/icon/plus_64.png}"></em>收货地址</a></label>
+            </li>
+            <li>
+              <label><a href="{url:/ucenter/password}"><em><img src="{skin:images/icon/lock_64.png}"></em>修改密码</a></label>
+            </li>
+            {if:$this->user}
+            <li>
+              <label><a href="{url:/simple/logout}"><em><img src="{skin:images/icon/outbox_64.png}"></em>退出登录</a></label>
+            </li>
+            {/if}
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!--<nav id="menu-right">
+      <div class="right_class_box">
+        <div class="right_cart"><a href="{url:/simple/cart}">
+          <p><em name="mycart_count">{$myCartInfo['count']}</em></p>
+          <span><strong>购物车</strong><u>点击进入购物车</u></span></a></div>
+        <div class="right_icon_box">
+          <ul>
+            <li><a href="{echo:$siteConfig->url}">
+              <p><img src="{skin:images/icon/r_1.png}"></p>
+              <strong>化妆主页</strong></a></li>
+            <li><a href="{url:/ucenter/favorite}">
+              <p><img src="{skin:images/icon/r_2.png}"></p>
+              <strong>我的收藏</strong></a></li>
+            <li><a href="{url:/site/category}">
+              <p><img src="{skin:images/icon/r_3.png}"></p>
+              <strong>所有分类</strong></a></li>
+            <li><a href="{url:/site/cart}">
+              <p><img src="{skin:images/icon/r_4.png}"></p>
+              <strong>产品中心</strong></a></li>
+            <li><a href="{url:/ucenter/index}">
+              <p><img src="{skin:images/icon/r_5.png}"></p>
+              <strong>会员主页</strong></a></li>
+            <li><a href="{url:/site/notice}">
+              <p><img src="{skin:images/icon/r_6.png}"></p>
+              <strong>公告资讯</strong></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>--> 
+    <script type="text/javascript">
+   $(function() {
+        $('nav#menu-left').mmenu({
+            counters: true,
+        });
+	displaySo = function(){
+		$("#search_box").toggle();
+	}
+
+/*        $('nav#menu-right').mmenu({
+            position: 'right',
+            counters: true,
+        });*/
+       //$('#footer_').appendTo('body:first');
+    });
+</script>
+    </body>
+    </html>

@@ -1,0 +1,740 @@
+<link rel="stylesheet" type="text/css" href="skin/tenders/css/public.css">
+<link rel="stylesheet" type="text/css" href="skin/tenders/css/style.css">
+<link rel="stylesheet" type="text/css" href="skin/tenders/css/append.css">
+<div class="tenders_header mb20">
+	<div class="mainwd">
+		<h3><span class="lt"><font class="fontcl2">淘黄州</font>全心致力于打造<font class="fontcl2">中国第一装修平台</font>，做您的贴心管家！</span><span class="rt">目前已帮助<font class="fontcl1">1379</font>户业主</span></h3>
+	</div>
+</div>
+<div class="mainwd">
+	<div class="mb20 tenders_zb">
+		<ul class="tenders_zb_list">
+			<li rel="TZB" class="current">免费招标</li>
+			<li rel="TJC">建材招标</li>
+			<li rel="TSJ">免费设计</li>
+			<li rel="TBJ">免费报价</li>
+			<li rel="TLF">免费量房</li>
+		</ul>
+		<div class="cl">
+		</div>
+		<div class="tenders_zb_box">
+			<div class="tenders_zb_box_con">
+				<img src="skin/tenders/images/tenders_pic1.jpg" class="lt">
+				<div class="tenders_zb_form pding rt">
+					<h3>我要招标</h3>
+					<form id="form_zb" action="{url:v_deco/zb_post_act}" mini-form="tenders_tzx" id="tenders-tzx" method="post" enctype="multipart/form-data">
+						<input type="hidden" name="from" value="TZX">
+						<table>
+						<tbody>
+						<tr>
+							<td class="title">
+								招标标题
+							</td>
+							<td colspan="3">
+								<input name="title" type="text" class="text all">
+							</td>
+						</tr>
+						<tr>
+							<td class="title">
+								<font class="pointcl">*</font>您的姓名
+							</td>
+							<td>
+								<input type="text" name="contact" class="text long" placeholder="请输入您的姓名">
+							</td>
+							<td class="title">
+								<font class="pointcl">*</font>联系电话
+							</td>
+							<td>
+								<input type="text" name="mobile" class="text long" placeholder="请输入您的联系方式">
+							</td>
+						</tr>
+						<tr>
+							<td class="title">
+								招标类型
+							</td>
+							<td>
+								<select name="type_id" class="text long">
+									<option value="2">公装</option>
+									<option value="12">家装</option>
+								</select>
+							</td>
+							<td class="title">
+								装修预算
+							</td>
+							<td>
+								<select name="budget_id" class="text long">
+									<option value="13">8-10万</option>
+									<option value="14">10-15万</option>
+									<option value="11">5-8万</option>
+									<option value="15">15万以上</option>
+									<option value="6">3万-5万</option>
+									<option value="5">3万以下</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td class="title">
+								装修面积
+							</td>
+							<td>
+								<input type="text" name="house_mj" class="text long" placeholder="请输入装修面积，单位为平米">
+							</td>
+							<td class="title">
+								楼盘名称
+							</td>
+							<td>
+								<!-- <input type="text" name="home_name" class="text long" placeholder="请输入楼盘名称"> -->
+								<select name="home_id" class="text long">
+									<option value="0">请选择楼盘</option>
+									{query:name=zhaobiao_home}
+									<option value="{$item['id']}">{$item['name']}</option>
+									{/query}
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td class="title">
+								详细地址
+							</td>
+							<td colspan="3">
+								<input name="addr" type="text" class="text all">
+							</td>
+						</tr>
+						<tr>
+							<td class="title">
+								备注要求
+							</td>
+							<td colspan="3">
+								<textarea name="comment" class="text"></textarea>
+							</td>
+						</tr>
+						<tr>
+							<td class="title">
+							</td>
+							<td colspan="3">
+								<input type="file" name="img">
+								<p class="pro">
+									上传户型图，报价更精准！并可提前一天获得报价方案！
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td class="title">
+							</td>
+							<td colspan="3">
+								<input class="btn_sub_tuan btn" type="submit" value="免费发布招标"><span class="tel">或拨打<b class="fontcl2">0713-8673-773</b></span>
+							</td>
+						</tr>
+						</tbody>
+						</table>
+					</form>
+				</div>
+			</div>
+			<div class="tenders_zb_box_con" style="display: none;">
+				<img src="skin/tenders/images/tenders_pic2.jpg" class="lt">
+				<div class="tenders_zb_form pding rt">
+					<h3>建材招标</h3>
+					<form action="{url:v_deco/zb_post_act}" mini-form="tenders_tjc" id="tenders-tjc" method="post" enctype="multipart/form-data">
+						<input type="hidden" name="from" value="TJC">
+						<table>
+						<tbody>
+							<tr>
+							<td class="title">
+								招标标题
+							</td>
+							<td colspan="3">
+								<input name="title" type="text" class="text all">
+							</td>
+						</tr>
+						<tr>
+							<td class="title">
+								<font class="pointcl">*</font>您的姓名
+							</td>
+							<td>
+								<input type="text" name="contact" class="text long" placeholder="请输入您的姓名">
+							</td>
+							<td class="title">
+								<font class="pointcl">*</font>联系电话
+							</td>
+							<td>
+								<input type="text" name="mobile" class="text long" placeholder="请输入您的联系方式">
+							</td>
+						</tr>
+						<tr>
+							<td class="title">
+								装修面积
+							</td>
+							<td>
+								<input type="text" name="house_mj" class="text long" placeholder="请输入装修面积，单位为平米">
+							</td>
+							<td class="title">
+								楼盘名称
+							</td>
+							<td>
+								<!-- <input type="text" name="home_name" class="text long" placeholder="请输入楼盘名称"> -->
+								<select name="home_id" class="text long">
+									<option value="0">请选择楼盘</option>
+									{query:name=zhaobiao_home}
+									<option value="{$item['id']}">{$item['name']}</option>
+									{/query}
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td class="title">
+								详细地址
+							</td>
+							<td colspan="3">
+								<input type="text" class="text all">
+							</td>
+						</tr>
+						<tr>
+							<td class="title">
+								备注要求
+							</td>
+							<td colspan="3">
+								<textarea name="comment" class="text"></textarea>
+							</td>
+						</tr>
+						<tr>
+							<td class="title">
+							</td>
+							<td colspan="3">
+								<input type="file" name="img">
+								<p class="pro">
+									上传户型图，报价更精准！并可提前一天获得报价方案！
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td class="title">
+							</td>
+							<td colspan="3">
+								<input class="btn_sub_tuan btn" type="submit" value="免费发布招标"><span class="tel">或拨打<b class="fontcl2">0551-64278115</b></span>
+							</td>
+						</tr>
+						</tbody>
+						</table>
+					</form>
+				</div>
+			</div>
+			<div class="tenders_zb_box_con" style="display: none;">
+				<img src="skin/tenders/images/tenders_pic3.jpg" class="lt">
+				<div class="tenders_zb_form pding rt">
+					<h3>免费设计</h3>
+					<form action="{url:v_deco/zb_post_act}" mini-form="tenders_tsj" id="tenders-tsj" method="post" enctype="multipart/form-data">
+						<input type="hidden" name="from" value="TSJ">
+						<table>
+						<tbody>
+							<tr>
+							<td class="title">
+								招标标题
+							</td>
+							<td colspan="3">
+								<input name="title" type="text" class="text all">
+							</td>
+						</tr>
+						<tr>
+							<td class="title">
+								<font class="pointcl">*</font>您的姓名
+							</td>
+							<td>
+								<input type="text" name="contact" class="text long" placeholder="请输入您的姓名">
+							</td>
+							<td class="title">
+								<font class="pointcl">*</font>联系电话
+							</td>
+							<td>
+								<input type="text" name="mobile" class="text long" placeholder="请输入您的联系方式">
+							</td>
+						</tr>
+						<tr>
+							<td class="title">
+								招标类型
+							</td>
+							<td>
+								<select name="type_id" class="text long">
+									<option value="19">全包</option>
+									<option value="10">半包</option>
+									<option value="20">清包</option>
+								</select>
+							</td>
+							<td class="title">
+								装修预算
+							</td>
+							<td>
+								<select name="budget_id" class="text long">
+									<option value="13">8-10万</option>
+									<option value="14">10-15万</option>
+									<option value="11">5-8万</option>
+									<option value="15">15万以上</option>
+									<option value="6">3万-5万</option>
+									<option value="5">3万以下</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td class="title">
+								装修面积
+							</td>
+							<td>
+								<input type="text" name="house_mj" class="text long" placeholder="请输入装修面积，单位为平米">
+							</td>
+							<td class="title">
+								楼盘名称
+							</td>
+							<td>
+								<!-- <input type="text" name="home_name" class="text long" placeholder="请输入楼盘名称"> -->
+								<select name="home_id" class="text long">
+									<option value="0">请选择楼盘</option>
+									{query:name=zhaobiao_home}
+									<option value="{$item['id']}">{$item['name']}</option>
+									{/query}
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td class="title">
+								详细地址
+							</td>
+							<td colspan="3">
+								<input type="text" class="text all">
+							</td>
+						</tr>
+						<tr>
+							<td class="title">
+								备注要求
+							</td>
+							<td colspan="3">
+								<textarea name="comment" class="text"></textarea>
+							</td>
+						</tr>
+						<tr>
+							<td class="title">
+							</td>
+							<td colspan="3">
+								<input type="file" name="img">
+								<p class="pro">
+									上传户型图，报价更精准！并可提前一天获得报价方案！
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td class="title">
+							</td>
+							<td colspan="3">
+								<input class="btn_sub_tuan btn" type="submit" value="免费发布招标"><span class="tel">或拨打<b class="fontcl2">0551-64278115</b></span>
+							</td>
+						</tr>
+						</tbody>
+						</table>
+					</form>
+				</div>
+			</div>
+			<div class="tenders_zb_box_con" style="display: none;">
+				<img src="skin/tenders/images/tenders_pic4.jpg" class="lt">
+				<div class="tenders_zb_form pding rt">
+					<h3>免费报价</h3>
+					<form action="{url:v_deco/zb_post_act}" mini-form="tenders_tbj" id="tenders_tbj" method="post" enctype="multipart/form-data">
+						<input type="hidden" name="from" value="TBJ">
+						<table>
+						<tbody>
+							<tr>
+							<td class="title">
+								招标标题
+							</td>
+							<td colspan="3">
+								<input name="title" type="text" class="text all">
+							</td>
+						</tr>
+						<tr>
+							<td class="title">
+								<font class="pointcl">*</font>您的姓名
+							</td>
+							<td>
+								<input type="text" name="contact" class="text long" placeholder="请输入您的姓名">
+							</td>
+							<td class="title">
+								<font class="pointcl">*</font>联系电话
+							</td>
+							<td>
+								<input type="text" name="mobile" class="text long" placeholder="请输入您的联系方式">
+							</td>
+						</tr>
+						<tr>
+							<td class="title">
+								招标类型
+							</td>
+							<td>
+								<select name="type_id" class="text long">
+									<option value="19">全包</option>
+									<option value="10">半包</option>
+									<option value="20">清包</option>
+								</select>
+							</td>
+							<td class="title">
+								装修预算
+							</td>
+							<td>
+								<select name="budget_id" class="text long">
+									<option value="13">8-10万</option>
+									<option value="14">10-15万</option>
+									<option value="11">5-8万</option>
+									<option value="15">15万以上</option>
+									<option value="6">3万-5万</option>
+									<option value="5">3万以下</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td class="title">
+								装修面积
+							</td>
+							<td>
+								<input type="text" name="house_mj" class="text long" placeholder="请输入装修面积，单位为平米">
+							</td>
+							<td class="title">
+								楼盘名称
+							</td>
+							<td>
+								<!-- <input type="text" name="home_name" class="text long" placeholder="请输入楼盘名称"> -->
+								<select name="home_id" class="text long">
+									<option value="0">请选择楼盘</option>
+									{query:name=zhaobiao_home}
+									<option value="{$item['id']}">{$item['name']}</option>
+									{/query}
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td class="title">
+								详细地址
+							</td>
+							<td colspan="3">
+								<input type="text" class="text all">
+							</td>
+						</tr>
+						<tr>
+							<td class="title">
+								备注要求
+							</td>
+							<td colspan="3">
+								<textarea name="comment" class="text"></textarea>
+							</td>
+						</tr>
+						<tr>
+							<td class="title">
+							</td>
+							<td colspan="3">
+								<input type="file" name="img">
+								<p class="pro">
+									上传户型图，报价更精准！并可提前一天获得报价方案！
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td class="title">
+							</td>
+							<td colspan="3">
+								<input class="btn_sub_tuan btn" type="submit" value="免费发布招标"><span class="tel">或拨打<b class="fontcl2">0551-64278115</b></span>
+							</td>
+						</tr>
+						</tbody>
+						</table>
+					</form>
+				</div>
+			</div>
+			<div class="tenders_zb_box_con" style="display: none;">
+				<img src="skin/tenders/images/tenders_pic5.jpg" class="lt">
+				<div class="tenders_zb_form pding rt">
+					<h3>免费量房</h3>
+					<form action="{url:v_deco/zb_post_act}" mini-form="tenders_tlf" id="tenders-tlf" method="post" enctype="multipart/form-data">
+						<input type="hidden" name="from" value="TLF">
+						<table>
+						<tbody>
+							<tr>
+							<td class="title">
+								招标标题
+							</td>
+							<td colspan="3">
+								<input name="title" type="text" class="text all">
+							</td>
+						</tr>
+						<tr>
+							<td class="title">
+								<font class="pointcl">*</font>您的姓名
+							</td>
+							<td>
+								<input type="text" name="contact" class="text long" placeholder="请输入您的姓名">
+							</td>
+							<td class="title">
+								<font class="pointcl">*</font>联系电话
+							</td>
+							<td>
+								<input type="text" name="mobile" class="text long" placeholder="请输入您的联系方式">
+							</td>
+						</tr>
+						<tr>
+							<td class="title">
+								招标类型
+							</td>
+							<td>
+								<select name="type_id" class="text long">
+									<option value="19">全包</option>
+									<option value="10">半包</option>
+									<option value="20">清包</option>
+								</select>
+							</td>
+							<td class="title">
+								装修预算
+							</td>
+							<td>
+								<select name="budget_id" class="text long">
+									<option value="13">8-10万</option>
+									<option value="14">10-15万</option>
+									<option value="11">5-8万</option>
+									<option value="15">15万以上</option>
+									<option value="6">3万-5万</option>
+									<option value="5">3万以下</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td class="title">
+								装修面积
+							</td>
+							<td>
+								<input type="text" name="house_mj" class="text long" placeholder="请输入装修面积，单位为平米">
+							</td>
+							<td class="title">
+								楼盘名称
+							</td>
+							<td>
+								<!-- <input type="text" name="home_name" class="text long" placeholder="请输入楼盘名称"> -->
+								<select name="home_id" class="text long">
+									<option value="0">请选择楼盘</option>
+									{query:name=zhaobiao_home}
+									<option value="{$item['id']}">{$item['name']}</option>
+									{/query}
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td class="title">
+								详细地址
+							</td>
+							<td colspan="3">
+								<input type="text" class="text all">
+							</td>
+						</tr>
+						<tr>
+							<td class="title">
+								备注要求
+							</td>
+							<td colspan="3">
+								<textarea name="comment" class="text"></textarea>
+							</td>
+						</tr>
+						<tr>
+							<td class="title">
+							</td>
+							<td colspan="3">
+								<input type="file" name="img">
+								<p class="pro">
+									上传户型图，报价更精准！并可提前一天获得报价方案！
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<td class="title">
+							</td>
+							<td colspan="3">
+								<input class="btn_sub_tuan btn" type="submit" value="免费发布招标"><span class="tel">或拨打<b class="fontcl2">0551-64278115</b></span>
+							</td>
+						</tr>
+						</tbody>
+						</table>
+					</form>
+				</div>
+			</div>
+			<div class="cl">
+			</div>
+		</div>
+	</div>
+	<div class="mb20 tenders_step">
+		<ul>
+			<li>
+			<h3><b>免费发布招标</b></h3>
+			<p>
+				免费发布招标，获得江湖家居全程装修管家服务
+			</p>
+			</li>
+			<li>
+			<h3><b>3套方案PK</b></h3>
+			<p>
+				业主对比3套设计方案，选出最优方案
+			</p>
+			</li>
+			<li>
+			<h3><b>3家公司免费量房</b></h3>
+			<p>
+				3家公司上门免费量房并提供设计预算方案
+			</p>
+			</li>
+			<li>
+			<h3><b>选择签订公司</b></h3>
+			<p>
+				选择方案最优，价格合理的公司签定装修合同
+			</p>
+			</li>
+			<li class="last">
+			<p class="tel">
+				<b>0551-64278115</b>
+			</p>
+			<h3><b>获得装修保障</b></h3>
+			<p>
+				提交合同或拨打江湖家居热线电话获得装修保障
+			</p>
+			</li>
+		</ul>
+	</div>
+	<div class="mb20">
+		<h1 class="zb_ten_Tit"><span>装修小贴士</span></h1>
+		<ul class="ten_tieshi">
+			<li class="lt">
+			<img src="skin/tenders/images/xiaotieshi_01.jpg" class="lt">
+			<div class="lt tieshi_text">
+				<h3><span class="ts">贴士1</span><font class="fontcl2">1分钟发布招标</font>，3家正规装修公司免费上门服务</h3>
+				<p>
+					在江湖家居装修网发布装修招标只需要1分钟，让您能够花最短的时间找到最适合的装修公司，江湖家居为您 提供的都是经过严格资格认证的正规装修公司，保证后期施工质量以及资金安全，业主可以放心选择。
+				</p>
+			</div>
+			</li>
+			<li class="rt">
+			<img src="skin/tenders/images/xiaotieshi_02.jpg" class="lt">
+			<div class="lt tieshi_text">
+				<h3><span class="ts">贴士2</span><font class="fontcl2">免费量房、出设计及报价</font>,零成本找到装修公司</h3>
+				<p>
+					己在市面上找装修公司，您可能需要东奔西跑进行选择比较，费时费力，江湖家居针对您的需求为您提供装修公司，免费量房，免费出设计方案和报价，让您可以足不出户就能找到心仪的公司。不需要您支付任何费用。
+				</p>
+			</div>
+			</li>
+			<li class="lt">
+			<img src="skin/tenders/images/xiaotieshi_03.jpg" class="lt">
+			<div class="lt tieshi_text">
+				<h3><span class="ts">贴士3</span><font class="fontcl2">免费赠送第三方监理</font>，分节点严控施工质量</h3>
+				<p>
+					装修要小心，一着不慎后患无穷，尤其是隐蔽工程，如果不过关，后期出了问题，不仅影响生活，整改也很麻烦，还需要花费大量的时间金钱 ，劳心劳力，所以有很多业主都选择第三方监理把控装修质量。
+				</p>
+			</div>
+			</li>
+			<li class="rt">
+			<img src="skin/tenders/images/xiaotieshi_04.jpg" class="lt">
+			<div class="lt tieshi_text">
+				<h3><span class="ts">贴士4</span><font class="fontcl2">装修保障体系</font>,最大化维护业主权益</h3>
+				<p>
+					线下找装修公司，一般工程过半装修款已支付90%，如果后期装修公司拖延工期，施工质量不过关，业主 难以牵制，更有甚者，装修公司卷款逃款，业主求助无门。
+				</p>
+			</div>
+			</li>
+		</ul>
+		<div class="cl">
+		</div>
+	</div>
+	<div class="mb20">
+		<h1 class="zb_ten_Tit"><span>装修预算常见猫腻</span></h1>
+		<ul class="zb_ten_mn">
+			<li class="first">
+			<h3>装修报价、工艺模糊</h3>
+			<p>
+				一些不良的装修公司多采取“模糊报价、低价切入”的方式。消费者要留意装修公司提供的报价单，应清楚表达每个部位的尺寸、做法、用料(包括品牌、型号)、单价以及工艺标准。
+			</p>
+			</li>
+			<li>
+			<h3>报价单恶意增项</h3>
+			<p>
+				有些合同里，装修公司对材料写得含糊其辞,实际装修时,可能用假冒伪劣的材料。当业主追究时,装修公司便拿出当初的合同,称业主没有指定材料品牌。一旦业主要求使用高品质、环保的装修材料，装修公司便会要求加价。
+			</p>
+			</li>
+			<li>
+			<h3>水电工程藏猫腻</h3>
+			<p>
+				水电改造是家装公司最赚钱的项目，业主应该把好这一关。业主要注意询问水电改造费用是否包含在总报价之内，开关盒、开关面板、小配件等以及安装是否另外收费，而且，线埋在墙里和走外线，价格也不一样。
+			</p>
+			</li>
+			<li class="first">
+			<h3>预算测量动手脚</h3>
+			<p>
+				一些不良的装修公司多采取“模糊报价、低价切入”的方式。消费者要留意装修公司提供的报价单，应清楚表达每个部位的尺寸、做法、用料(包括品牌、型号)、单价以及工艺标准。
+			</p>
+			</li>
+			<li>
+			<h3>装修工艺偷工减料</h3>
+			<p>
+				有些公司会采取省略某个程序、减少某项工艺的方法牟取暴利：有些施工队做木龙骨时，省略了刷防水、防火涂料的程序，为日后埋下安全隐患
+			</p>
+			</li>
+			<li>
+			<h3>隐蔽工程多报数量</h3>
+			<p>
+				隐蔽工程，如电的暗装布线、水管的地下铺设、下水道的改造等，由于装修完成会被外皮及地砖遮盖，不易被发现。有些施工队在施工时会偷工
+			</p>
+			</li>
+		</ul>
+		<div class="cl">
+		</div>
+	</div>
+	<div class="mb20">
+		<h2><b>最新装修招标订单</b></h2>
+		<div class="tenders_order">
+			<p class="tenders_order_tit tit">
+				<span>发布日期</span><span>业主</span><span>类型</span><span class="long">标情况</span><span>预算</span><span>查看详情</span>
+			</p>
+			<div class="tenders_order_box">
+				<ul>
+					<li>
+					<span>01-21</span><span></span><span>招标</span>
+					<span class="long">8-10万</span><span>8-10万</span><a href="http://sh.fz.jhcms.cn/tenders/detail-346.html" target="_blank"><span class="fontcl2">查看</span></a>
+					</li>
+					<li>
+					<span>12-23</span><span>游医</span><span>招标</span>
+					<span class="long"></span><span></span><a href="http://sh.fz.jhcms.cn/tenders/detail-279.html" target="_blank"><span class="fontcl2">查看</span></a>
+					</li>
+					<li>
+					<span>01-09</span><span>眼的就到家</span><span></span>
+					<span class="long">眼的就到家</span><span></span><a href="http://sh.fz.jhcms.cn/tenders/detail-139.html" target="_blank"><span class="fontcl2">查看</span></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="http://malsup.github.io/jquery.form.js" type="text/javascript" charset="utf-8"></script>
+
+<script>
+
+var options = {
+	dataType: 'json',
+    success:function(result) {
+        if (result.status == 1) {
+	        alert('发布成功，我们会尽快与您取得联系！');
+	        window.location.href = 'http://www.itaohz.com/v_deco/tenders_list';
+	    } else {
+	        alert(result.info);
+	        window.location.href = 'http://www.itaohz.com/v_deco/tenders_list';
+	    } 
+    }   
+};   
+   
+// pass options to ajaxForm   代替自己写iframe的不二之选
+$('#form_zb').ajaxForm(options); 
+
+
+$('.tenders_zb_list li').click(function(){
+	var _this = $(this);
+	_this.parent().find("li").removeClass("current");
+    _this.addClass("current");
+	$('.tenders_zb_box .tenders_zb_box_con').hide().eq(_this.index()).show().find('form').ajaxForm(options); ;
+});
+
+</script>

@@ -1,0 +1,23 @@
+<link rel="stylesheet" href="../skin/designer_works/css/common.min.css">
+<link rel="stylesheet" href="../skin/designer_works/css/companyDesign.min.css">
+
+<article class="cpy-dsn-atc" style="background-color: #fff;
+    padding-bottom: 10px;">
+    <h2>{$this->designer_works['name']}</h2>
+    <ul class="dsn-summary">
+        <li class="span1 text-over-hidden"><em>设计师：</em>{$this->designer['name']}</li>
+        <li class="span1 text-over-hidden"><em>风格：</em>{$this->designer_works['style']}</li>
+        <li class="span1 text-over-hidden"><em>面积：</em>{$this->designer_works['area_size']}平米</li>
+        <li class="span1 text-over-hidden"><em>价格：</em>{$this->designer_works['price']}</li>
+        <li class="span1 text-over-hidden"><em>房型：</em>{$this->designer_works['room']}</li>
+        <li class="span2 text-over-hidden"><em>楼盘名称：</em>{$this->designer_works['building']}</li>
+        <li class="span2 dsn-inspiration"><em>设计灵感：</em>{$this->designer_works['smalldescribe']}</li>
+    </ul>
+    <div class="design_detail" style="    background-color: #fff;
+    font-size: 1.15rem;
+    line-height: 2.5rem;">
+
+                    {$this->designer_works['describe']}
+
+             </div>
+</article>

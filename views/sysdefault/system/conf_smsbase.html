@@ -1,0 +1,194 @@
+{set:$siteConfigObj = new Config("site_config");$site_config = $siteConfigObj->getInfo();$configArray = array_merge(IWeb::$app->config,$site_config);}
+{if:isset($this->confRow)}{set:$configArray = array_merge($configArray,$this->confRow);}{/if}
+{set:$configArray['form_index'] = IReq::get('form_index') ? IFilter::act(IReq::get('form_index')) : "";$this->confRow = $configArray;}
+<div class="headbar">
+  <div class="position"><span>系统</span><span>></span><span>短信提醒</span><span>></span><span>短信提醒设置</span></div>
+  <ul class='tab' name='conf_menu'>
+    <li><a href="javascript:select_tab('ziying_conf');">短信通知</a></li>
+    <li class='selected'><a href="javascript:select_tab('user_conf');">用户</a></li>
+    <li><a href="javascript:select_tab('seller_conf');">商户</a></li>
+    <li><a href="javascript:select_tab('order_conf');">订单</a></li>
+    <li><a href="javascript:select_tab('logis_conf');">物流</a></li>
+    <li><a href="javascript:select_tab('market_conf');">营销</a></li>
+   <li><a href="javascript:select_tab('others_conf');">其他</a></li>
+ </ul>
+</div>
+<div class="content_box">
+  <div class="content form_content">
+    <!-- 自营 -->
+    <form action="{url:/system/save_conf_smsbase/form_index/ziying_conf}"  method="post" name='ziying_conf'>
+      <table class="form_table">
+        <col width="150px" />
+        <col />
+        <tr>
+          <th>自营商品付款通知：</th>
+          <td>
+            <input type="text" class="normal valid-text" name="buy_mobile">  
+          </td>
+        </tr>
+        <tr>
+          <th>商户申请结算通知：</th>
+          <td>
+            <input type="text" class="normal valid-text" name="bill_mobile">  
+          </td>
+        </tr>
+        <tr>
+          <th></th>
+          <td><button class="submit" type='submit'><span>保存设置</span></button></td>
+        </tr>
+      </table>
+    </form>
+
+    <!-- 用户 -->
+    <form action="{url:/system/save_conf_smsbase/form_index/user_conf}"  method="post" name='user_conf'>
+      <table class="form_table">
+        <col width="150px" />
+        <col />
+        <tr>
+          <th>用户注册短信验证：</th>
+          <td><input name='sms_reg' type='radio' value="1"> 是&nbsp;&nbsp;&nbsp;&nbsp;<input name='sms_reg' type='radio' value="2"> 否&nbsp;&nbsp;&nbsp;&nbsp;
+            </td>
+        </tr>
+        <tr>
+          <th>手机找回密码发送短信：</th>
+          <td><input name='sms_repw' type='radio' value="1"> 是&nbsp;&nbsp;&nbsp;&nbsp;<input name='sms_repw' type='radio' value="2"> 否&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        </tr>
+        <tr>
+          <th></th>
+          <td><button class="submit" type='submit'><span>保存设置</span></button></td>
+        </tr>
+      </table>
+    </form>
+    <!-- 商户 -->
+    <form action='{url:/system/save_conf_smsbase/form_index/seller_conf}' method='post' name='seller_conf'>
+      <table class="form_table">
+        <col width="150px" />
+        <col />
+        <tr>
+          <th>商户注册提示管理员：</th>
+          <td><input name='sms_seller' type='radio' value="1"> 是&nbsp;&nbsp;&nbsp;&nbsp;<input name='sms_seller' type='radio' value="2"> 否&nbsp;&nbsp;&nbsp;&nbsp;
+            </td>
+        </tr>
+        <tr>
+          <th>审核后短信提醒商户：</th>
+          <td><input name='sms_reseller' type='radio' value="1"> 是&nbsp;&nbsp;&nbsp;&nbsp;<input name='sms_reseller' type='radio' value="2"> 否&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        </tr>
+        <tr>
+          <th></th>
+          <td><button class="submit" type='submit'><span>保存设置</span></button></td>
+        </tr>
+      </table>
+    </form>
+    <!-- 订单 -->
+    <form action='{url:/system/save_conf_smsbase/form_index/order_conf}' method='post' name='order_conf'>
+      <table class="form_table">
+        <col width="150px" />
+        <col />
+        <tr>
+          <th>订单发货短信提醒：</th>
+          <td><input name='sms_ordervery' type='radio' value="1"> 是&nbsp;&nbsp;&nbsp;&nbsp;<input name='sms_ordervery' type='radio' value="2"> 否&nbsp;&nbsp;&nbsp;&nbsp;
+            </td>
+        </tr>
+        <tr>
+          <th>订单付款通知商家：</th>
+          <td><input name='sms_orderseller' type='radio' value="1"> 是&nbsp;&nbsp;&nbsp;&nbsp;<input name='sms_orderseller' type='radio' value="2"> 否&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        </tr>
+        <tr>
+          <th>订单付款通知平台：</th>
+          <td><input name='sms_ordermall' type='radio' value="1"> 是&nbsp;&nbsp;&nbsp;&nbsp;<input name='sms_ordermall' type='radio' value="2"> 否&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        </tr>
+        <tr>
+          <th></th>
+          <td><button class="submit" type='submit'><span>保存设置</span></button></td>
+        </tr>
+      </table>
+    </form>
+    <!-- 物流 -->
+    <form action='{url:/system/save_conf_smsbase/form_index/logis_conf}' method='post' name='logis_conf'>
+      <table class="form_table">
+        <col width="150px" />
+        <col />
+        <tr>
+          <th>自提点确认短信：</th>
+          <td><input name='sms_logis' type='radio' value="1"> 是&nbsp;&nbsp;&nbsp;&nbsp;<input name='sms_logis' type='radio' value="2"> 否&nbsp;&nbsp;&nbsp;&nbsp;
+            </td>
+        </tr>
+        <tr>
+          <th></th>
+          <td><button class="submit" type='submit'><span>保存设置</span></button></td>
+        </tr>
+      </table>
+    </form>
+    <!-- 营销 -->
+    <form action='{url:/system/save_conf_smsbase/form_index/market_conf}' method='post' name='market_conf'>
+      <table class="form_table">
+        <col width="150px" />
+        <col />
+        <tr>
+          <th>营销未定：</th>
+          <td><input name='sms_market' type='radio' value="1"> 是&nbsp;&nbsp;&nbsp;&nbsp;<input name='sms_market' type='radio' value="2"> 否&nbsp;&nbsp;&nbsp;&nbsp;
+            </td>
+        </tr>
+        <tr>
+          <th></th>
+          <td><button class="submit" type='submit'><span>保存设置</span></button></td>
+        </tr>
+      </table>
+    </form>
+    <!-- 其它 -->
+    <form action='{url:/system/save_conf_smsbase/form_index/others_conf}' method='post' name='others_conf'>
+      <table class="form_table">
+        <col width="150px" />
+        <col />
+        <tr>
+          <th>其它未定：</th>
+          <td><input name='sms_other' type='radio' value="1"> 是&nbsp;&nbsp;&nbsp;&nbsp;<input name='sms_other' type='radio' value="2"> 否&nbsp;&nbsp;&nbsp;&nbsp;
+            </td>
+        </tr>
+        <tr>
+          <th></th>
+          <td><button class="submit" type='submit'><span>保存设置</span></button></td>
+        </tr>
+      </table>
+    </form>
+  </div>
+</div>
+<script type='text/javascript'>
+//DOM加载完毕
+$(function(){
+	//默认系统定义
+	select_tab("{$this->confRow['form_index']}");
+
+	//全部表单自动填入值
+	var formNameArray = ['ziying_conf','user_conf','market_conf','others_conf','logis_conf','order_conf','seller_conf'];
+	for(var index in formNameArray)
+	{
+		var formObject = new Form(formNameArray[index]);
+		formObject.init({echo:JSON::encode($this->confRow)});
+	}
+
+});
+
+
+//滑动门
+function select_tab(indexVal)
+{
+	//设置默认值
+	if(indexVal == '')
+	{
+		indexVal = 'user_conf';
+	}
+
+	var formObj  = $('form[name="'+indexVal+'"]');
+	var li_index = $('form').index(formObj);
+
+	//切换form
+	$('form').hide();
+	$('form:eq('+li_index+')').show();
+
+	//切换li
+	$('ul[name="conf_menu"] li').attr('class','');
+	$('ul[name="conf_menu"] li:eq('+li_index+')').attr('class','selected');
+}
+
+</script>

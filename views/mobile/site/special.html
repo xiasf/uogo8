@@ -1,0 +1,118 @@
+
+
+<style type="text/css" media="screen">
+.list a.buy-link-a{
+	display:block;
+	width:50%;
+	float:left;
+	padding: 10px 3%;
+	background:white; 
+	border-left:1px solid #eee;
+	border-bottom: 1px solid #eee;
+}
+.list a.buy-link-a h3{
+	text-align:left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height:25px;
+}
+.list a.buy-link-a p{
+	float:left;
+	line-height:27px;
+	color: #e81a62;
+    font-weight: 600;
+}
+.list a.buy-link-a del{
+	float:left;
+	line-height:27px;
+	margin-left:5px;
+	color:#636363;
+}
+.list a.buy-link-a img{
+	width:100%;
+}
+.u_tit ul.u_tit_ul{
+    display: box;
+    display: -webkit-box;
+    display: -moz-box;
+    box-align: center;
+    -webkit-box-align: center;
+    box-pack: center;
+    -webkit-box-pack: center;
+    height:auto;
+}
+.u_tit ul.u_tit_ul li{
+	-moz-box-flex: 1.0;
+    -webkit-box-flex: 1.0;
+    box-flex: 1.0;
+    border-bottom: #dedede solid 2px;
+    height:45px;
+    line-height:45px;
+}
+.u_tit ul.u_tit_ul li.cheke{
+	border-bottom: #ff464e solid 2px; 
+
+}
+.u_tit ul.u_tit_ul a.u_tit_ul_a{
+	text-align:center;
+}
+</style>
+{set:$commend_id = IFilter::act(IReq::get('commend_id'),'int')}
+
+{set:$page = IReq::get('page') ? IFilter::act(IReq::get('page'),'int') : 1}
+
+<script>
+	var i = {$commend_id};
+	var s = {
+		"12":1,
+		"13":2,
+		"11":3,
+		"14":4,
+	};
+</script>
+
+
+<div class="u_tit">
+      <ul class="u_tit_ul">
+        <li> <a class="u_tit_ul_a" href="{url:site/special/commend_id/12}">
+          <h2>9.9包邮</h2>
+          </a> </li>
+        <li> <a class="u_tit_ul_a" href="{url:site/special/commend_id/13}">
+          <h2>20元专区</h2>
+          </a> </li>
+          <li> <a class="u_tit_ul_a" href="{url:site/special/commend_id/11}">
+          <h2>最新折扣</h2>
+          </a> </li>
+           <li> <a class="u_tit_ul_a" href="{url:site/special/commend_id/14}">
+          <h2>明日预告</h2>
+          </a> </li>
+      </ul>
+        <!-- <time class="seckillTime" data-date="{echo:ITime::getTime('2016-06-29 10:00:00')}" data-endate="{echo:ITime::getTime('2016-06-30 18:00:00')}"></time> -->
+    </div>
+<script >
+	$('.u_tit_ul').find('li').removeClass('cheke').eq((s[i]-1)).attr('class','cheke')
+</script>
+
+<div class="list">
+
+{query:name=commend_goods as co join=left join goods as go on co.goods_id eq go.id where=co.commend_id eq $commend_id and go.is_del eq 0 AND go.id is not null page=$page fields=go.img,go.sell_price,go.name,go.id,go.market_price order=sort asc,id desc}
+
+
+    
+        <a href="{url:/site/products/id/$item['id']}" class="buy-link-a">
+            <img src="{url:/pic/thumb/img/$item[img]/w/303/h/303}" alt="正在加载">
+            <h3>{$item['name']}</h3>
+            <p>￥{$item['sell_price']}</p>
+            <!-- <del>原价：{$item['market_price']}</del> -->
+        </a>
+    
+
+
+
+{/query}
+
+</div>
+<div style="clear: both;"></div>
+
+{$query->getPageBar()}

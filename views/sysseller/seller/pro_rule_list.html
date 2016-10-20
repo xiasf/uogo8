@@ -1,0 +1,115 @@
+{set:$seller_id = $this->seller['seller_id']}
+{set:$shop_id=IFilter::act(IReq::get('shop_id'),'int')}
+
+<div class="wrapper wrapper-content animated bounceInRight">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>促销活动</h5>
+        </div>
+        <div class="ibox-content">
+          <div class="row m-b-sm m-t-sm">
+		    <div class="col-md-5">
+	          <select class="form-control input-s-sm inline" name="shop_id" id="shop_id">
+	            <option value="0" selected>请选择店铺</option>
+	            {query:name=seller where=seller_user_id eq $seller_id}
+	            <option value="{$item[id]}">{$item['shopname']}{if:$item[is_vis]==1}-店铺已关闭{/if}</option>
+	            {/query}
+	          </select>
+            </div>
+
+
+            <div class="col-md-1"> <a class="btn btn-primary btn-sm" href="{url:/seller/pro_rule_edit}"><i class="fa fa-plus"></i>&nbsp;添加活动</a> </div>
+            <div class="col-md-6">
+              <div class="input-group">
+                <input type="text" placeholder="请输入名称" class="input-sm form-control">
+                <span class="input-group-btn">
+                <button type="button" class="btn btn-sm btn-primary"> 搜索</button>
+                </span> </div>
+            </div>
+          </div>
+
+
+
+<!-- 	<header>
+		<h3 class="tabs_involved">促销活动列表</h3>
+		<ul class="tabs">
+			<li><input type="button" class="alt_btn" onclick="window.location.href='{url:/seller/pro_rule_edit}';" value="添加活动" /></li>
+			<li><input type="button" class="alt_btn" onclick="selectAll('id[]');" value="全选" /></li>
+			<li><input type="button" class="alt_btn" onclick="delModel();" value="批量删除" /></li>
+		</ul>
+	</header> -->
+
+	<form method='post' action='{url:/seller/pro_rule_del}'>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>选择</th>
+					<th>名称</th>
+					<th>活动时间</th>
+					<th>所属店铺</th>
+					<th>状态</th>
+					<th>介绍</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				{set:$page= (isset($_GET['page'])&&(intval($_GET['page'])>0))?intval($_GET['page']):1;}
+				{set:if(!$shop_id) $shop_list = '('.join(',', $this->get_all_shop()).')'; else $shop_list = '(' . $shop_id . ')'}
+				{query:name=promotion where=seller_id in $shop_list and type eq 0 page=$page}
+				<tr>
+					<td><input type='checkbox' name='id[]' value='{$item['id']}' /></td>
+					<td>{$item['name']}</td>
+					<td>{$item['start_time']} ～ {$item['end_time']}</td>
+					{query:name=seller where=id eq $item[seller_id] item=$seller id=$seller_query}
+					<td>{$seller['shopname']}</td>
+					{/query}
+					<td>{echo:($item['is_close']==1) ? '关闭':'开启'}</td>
+					<td>{$item['intro']}</td>
+
+					<td><a href='{url:/seller/pro_rule_edit/id/$item[id]}' class="btn btn-white btn-sm"><i class="fa fa-edit"></i>&nbsp;修改</a>&nbsp;&nbsp;
+						<a href='javascript:void(0)' onClick="delModel('{url:/seller/pro_rule_del/id/$item[id]}')"  class="btn btn-white btn-sm"><i class="fa fa-times-circle"></i>&nbsp;删除</a></td>
+				</tr>
+				{/query}
+			</tbody>
+
+			<tfoot>
+              <tr>
+                <td colspan="7">{$query->getPageBar()} </td>
+              </tr>
+            </tfoot>
+		</table>
+	</form>
+
+</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type='text/javascript'>
+// function del(id){
+// 	var url = '{url:/seller/pro_rule_del/id}/'+id;
+// 	top.layer.confirm('确定要删除吗？注意删除后不可恢复', {
+// 		icon:3,
+// 		btn: ['确定删除','取消'], //按钮
+// 		shade: false //不显示遮罩
+// 	}, function(index){
+// 		top.layer.close(index);
+// 		window.document.location.href = url;
+// 	});
+// }
+
+$(document).ready(function(e) {
+    $("#shop_id").change(function(){
+    	window.document.location.href='{url:seller/pro_rule_list}?shop_id='+this.value;
+	});
+
+	{if:$shop_id=IFilter::act(IReq::get('shop_id'),'int')}
+		$("#shop_id").val({$shop_id});
+	{/if}
+});
+
+</script>

@@ -1,0 +1,55 @@
+<div class="position"> <span>您当前的位置：</span> <a href="{url:}">首页</a> » <a href="{url:/site/seller}">商户列表</a> </div>
+<div class="wrapper clearfix container">
+  <div class="f_r" style="width:229px"> 
+    <!--VIP商家排行-->
+    <div class="box_right">
+      <div class="title">店家精选</div>
+      <div class="content">
+        <dl>
+          {foreach:items=Api::run('getCommendHot',20)}
+          <dd><a href="{url:/site/products/id/$item[id]}" target="_blank"> <img style="display: inline;" class="lazy" src="{url:/pic/thumb/img/$item[img]/w/180/h/180}" alt="{$item['name']}" /> </a>
+            <div class="price_list"> <a class="f_c_003 lh20" target="_blank" href="{url:/site/products/id/$item[id]}">{$item['name']}</a> <em class="big_em">￥<span>{$item['sell_price']}</span></em><del>￥<span>{$item['market_price']}</span></del> </div>
+          </dd>
+          {/foreach}
+        </dl>
+      </div>
+    </div>
+    <!--VIP商家排行 echo:join(' ',area::name($item['province'],$item['city'],$item['area']))--> 
+  </div>
+  <div class="main f_l"> 
+    <!--商品列表展示-->
+    <div class="sellerList"> {set:$queryObj=Api::run('getSellerList', IFilter::act(IReq::get('dist'),'int'));$resultData=$queryObj->find()}
+      {if:$resultData}
+      <ul class="seller">
+        {foreach:items=$resultData}
+        <li>
+          <div class="fr right">
+            <dl>
+              {query:name=goods where=seller_id eq $item[id] and is_del eq 0 limit=4 order=sort asc,id desc item=$goods}
+              <dd><a href="{url:/site/products/id/$item[id]}"> <img src="{url:/pic/thumb/img/$goods['img']/w/100/h/100}" width="100" height="100">
+                <p>{$goods['name']}</p>
+                <p class="money">¥ {$goods['sell_price']}</p>
+                </a>
+                <p class="best"></p>
+              </dd>
+              {/query}
+            </dl>
+          </div>
+          <div class="left">
+          <div class="top clearfix"><img src="{$item['logo']}" width="100" height="100" class="fl logo" onerror='this.src="{skin:images/front/nologo.gif}"' />
+            <h2><a href="{url:/site/home/id/$item['id']}" class="name">{$item['true_name']}</a>{if:$item['is_vip'] == 1}&nbsp;&nbsp;<em>VIP</em>{/if}</h2>
+            <h2>店长：<a href="{url:/site/home/id/$item['id']}">{$item['true_name']}</a></h2>
+            <h2><a href="{url:/site/home/id/$item[id]}" class="golink">进入店铺</a></h2>
+            <p class="bottom"> 评分： <span class="grade"> <i style="width:{echo:Common::gradeWidth(statistics::gradeSeller($item['id']))}px"></i> </span>， 
+              销量：<b>{echo:statistics::sellCountSeller($item['id'])}</b> 件， 
+              共有宝贝 <b>{query:name=goods fields=count(id) as num where=seller_id eq $item[id] item=$num}{$num['num']}{/query}</b> 件</p>
+          </div>
+        </li>
+        {/foreach}
+      </ul>
+      {$queryObj->getPageBar()}
+      {else:}
+      <p class="display_list mt_40 m_15"> <strong class="gray f14">对不起，当前没有商家</strong> </p>
+      {/if} </div>
+    <!--商品列表展示--> </div>
+</div>

@@ -1,0 +1,128 @@
+{set:$average_point=$this->comment_info['average_point'];}
+{set:$goods_id=$this->comment['goods_id'];}
+{set:$id = $this->comment['id'];}
+{set:$item=Api::run('getGoodsInfo',array("#id#",$goods_id))}
+<div class="clearfix container" style="background-color: #fff;">
+	<div class="sidebar f_l">
+		<div class="box_2 m_10">
+			<div class="content">
+				<ul class="prolist clearfix">
+					<li>
+						<a href="{url:/site/products/id/$goods_id}"><img style="margin: 0 auto;
+    display: block;" src="{webroot:}{$item['img']}" alt="{$item['name']}" height="212" width="167"></a>
+						<p class="pro_title"><a style="    line-height: 23px;" class="blue" href="{url:/site/products/id/$goods_id}">{$item['name']}</a></p>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="wrapper main f_r">
+		<div class="wrap_box">
+			{if:$this->can_submit===true}
+			
+			
+			<form method="post">
+				<ul>
+					<li>
+						<span class="fod back_gu" >评价得分：({$average_point}分)</span>
+						<span class="fod f_right back_gu">评论数：{$this->comment_info['comment_total']}条</span>
+					</li>
+					<li>
+						<span class="fod on">评论等级：</span>
+						<ul id="pin_f" class="f_right">
+							<!--<li>
+								5星<input class="radio" type="radio" value="5" checked="checked" />
+								<span class="grade"><i style="width:{echo:Common::gradeWidth(5)}px"></i></span>
+							</li>
+							<li>
+								4星<input name="point" class="radio" type="radio" value="4" />
+								<span class="grade"><i style="width:{echo:Common::gradeWidth(4)}px"></i></span>
+							</li>
+							<li>
+								3星<input name="point" class="radio" type="radio" value="3" />
+								<span class="grade"><i style="width:{echo:Common::gradeWidth(3)}px"></i></span>
+							</li>
+							<li>
+								2星<input name="point" class="radio" type="radio" value="2" />
+								<span class="grade"><i style="width:{echo:Common::gradeWidth(2)}px"></i></span>
+							</li>
+							<li>
+								1星<input name="point" class="radio" type="radio" value="1" />
+								<span class="grade"><i style="width:{echo:Common::gradeWidth(1)}px"></i></span>
+							</li>-->
+							
+							
+							<select name="point">
+							  <option value="5">5星</option>
+							  <option value="4">4星</option>
+							  <option value="3">3星</option>
+							  <option value="2">2星</option>
+							  <option value="1">1星</option>
+							</select>
+						</ul>
+						
+					</li>
+					<li> 
+						<span class="fod on">评论内容：</span>
+						<textarea name="contents" style="width: 100%;text-align: left;height: 70px;" class="f_right "></textarea>
+					</li>
+					<li style="clear: both;padding-top: 25px;">
+						<span></span>
+						<input id="pingjia" type="button" onclick="comment_add();" value="我要评价" />
+					</li>
+				</ul>
+			<!--<table class="form_table f_l" border="1px">
+				<tr>
+					
+					<td></td>
+					<td>
+						<label></label>
+						<label></label>
+						<label></label>
+						<label></label>
+						<label></label>
+					</td>
+				</tr>
+				<tr>
+					<td id="pinl" style="vertical-align:top"></td><td></td>
+				</tr>
+				<tr><td colspan="2"><label class="btn">
+					</label></td></tr>
+			</table>-->
+			</form>
+			{else:}
+					<div id="echo_p">
+						<p class="mt_10">您暂不能对该商品进行评价,</p>
+						<p>可能有以下原因：</p>
+						<p class="mt_10">1.您可能没有在{echo:$siteConfig->name}购买过该商品；</p>
+						<p class="mt_10">2.您已经评价过该商品。</p>
+					</div>
+						
+			{/if}
+		</div>
+	</div>
+</div>
+
+<script language="javascript">
+function comment_add()
+{
+	var point=$("select[name='point']").val();
+	if(point==0)
+	{
+		alert("请选择评论等级");
+		return;
+	}
+
+	var contents=$("[name=contents]").val();
+	var data={'point':point,'contents':contents,'id':{$id}};
+	$.post("{url:/site/comment_add/id/$id}",data,function(c)
+	{
+		if(c==='success')
+		{
+			location="{url:/site/comments_list/id/$goods_id}";
+		}
+		else
+			alert(c);
+	});
+}
+</script>

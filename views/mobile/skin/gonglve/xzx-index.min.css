@@ -1,0 +1,64 @@
+@charset "UTF-8";
+.zxlc-module { background-color: #fff; border-bottom: 1px solid #ccc }
+.zxlc-nav-hd { box-sizing: border-box; margin: 0 15px }
+.zxlc-nav-hd li { width: 33.333%; height: 40px; line-height: 40px; font-size: 16px; text-align: center; color: #666; border-bottom: 2px solid #ececec; float: left }
+.zxlc-nav-hd li.active { color: #01af63; border-bottom: 2px solid #01af63 }
+.swipe { overflow: hidden; visibility: hidden; position: relative }
+.swipe-wrap { overflow: hidden; position: relative }
+.swipe_wrap>div { float: left; width: 100%; position: relative }
+#zxlcSlider a { display: inline-block; width: 36px; text-align: center }
+#zxlcSlider i { margin-top: 23px }
+#zxlcSlider p { font-size: 14px; line-height: 16px; color: #666; margin-top: 15px }
+.swipe-col4 { box-sizing: border-box; margin: 0 15px }
+.swipe-col4 li { float: left }
+.swipe-col4 li.col-side { width: 20.69% ;text-align: center }
+/*.swipe-col4 li.col-fist { text-align: left }
+.swipe-col4 li.col-last { text-align: right }
+*/.swipe-col4 li.col-center { width: 29.31%; text-align: center }
+.swipe-col2 { width: 77.24%; margin: auto }
+.swipe-col2 li { text-align: center; float: left; width: 50% }
+.xzx-index-module { margin-top: 10px; border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; background-color: #fff }
+.xzx-index-module:last-of-type { border-bottom: 0 }
+.xzx-index-module-header { height: 24px; line-height: 24px; font-size: 16px; font-weight: 700; color: #333; background-color: #fff; padding: 0 10px 0 7px; margin: 10px 0 }
+.xzx-index-module-header a { font-size: 16px; line-height: 24px; font-weight: 700; color: #333 }
+.xzx-index-module-header span { float: right; font-size: 12px; color: #666; font-weight: 700 }
+.xzx-index-module-body { padding: 0 10px }
+.xzx-index-submodule { display: block; height: 44px; line-height: 44px; text-align: center; border: 1px solid #cfcfcf; background-color: #f1f6f7; margin: 20px 0 25px; color: #333 }
+.xzx-index-submodule:visited { color: #333 }
+.zxlc-module .xzx-index-submodule { margin: 20px 10px 25px }
+.xzx-index-xcsc .xzx-index-module-header { border-left: 3px solid #ffd24d }
+.xzx-index-xc-list { width: 100%; margin: 0; padding: 0; -webkit-box-sizing: content-box; box-sizing: content-box }
+.xzx-index-xc-list li { padding: 0 0 0 80px; position: relative; height: 80px; margin: 20px auto }
+.xzx-index-xc-list li:first-of-type { margin-top: 10px }
+.xzx-index-xc-list li:last-of-type { margin-bottom: 15px }
+.xzx-index-xc-list li figure { width: 80px; height: 80px; position: absolute; left: 0; top: 0 }
+.xzx-index-xc-list li figure img { width: 100%; height: 100% }
+.xzx-index-xc-list li div { position: absolute; top: 0; left: 95px; right: 0; height: 80px }
+.xzx-index-xc-list li div h4 { font-size: 14px; line-height: 16px; color: #000; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; margin: 8px 0 }
+.xzx-index-xc-list li div p { font-size: 12px; line-height: 22px; color: #999; height: auto; max-height: 44px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; text-overflow: -o-ellipsis-lastline }
+.xzx-index-zxfs .xzx-index-module-header { border-left: 3px solid #00b2b2 }
+.xzx-index-spxzx .xzx-index-module-header { border-left: 3px solid #e95555 }
+.xzx-index-spxzx-list .head-video a, .xzx-index-spxzx-list .head-video figure { display: block; position: relative }
+.xzx-index-spxzx-list .head-video figure { padding: 27.84% 0; overflow: hidden }
+.xzx-index-spxzx-list .head-video figure img { position: absolute; top: 0; left: 0; bottom: 0; width: 100%; height: auto }
+.xzx-index-spxzx-list .head-video figure p { position: absolute; left: 0; right: 0; bottom: 0; height: 30px; line-height: 30px; text-align: center; font-size: 14px; color: #fff; background-color: rgba(0,0,0,.3); overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+.xzx-index-spxzx-list .head-video .icon-xzxsp-play { position: absolute; left: 50%; top: 50%; margin-top: -16px; margin-left: -16px }
+.xzx-index-spxzx-list .icon-xzxsp-video-item { margin-right: 9px; vertical-align: middle }
+.xzx-index-spxzx-list .summary-video a { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 14px; line-height: 16px; color: #333; margin-top: 15px }
+.xzx-index-jhkj .xzx-index-module-header { border-left: 3px solid #5ace90 }
+.xzx-index-jhkj-list li { position: relative; height: 78px; margin-bottom: 15px; border-top: 1px solid transparent }
+.xzx-index-jhkj-list .video-figure-wrap { position: relative; display: block }
+.xzx-index-jhkj-list .video-figure-wrap .icon-xzxsp-play44 { position: absolute; top: 50%; left: 50%; margin-top: -11px; margin-left: -11px }
+.xzx-index-jhkj-list figure { width: 126px; height: 78px; position: absolute; left: 0; top: 0 }
+.xzx-index-jhkj-list figure img { width: 100%; height: 100% }
+.xzx-index-jhkj-list .video-detail { margin-left: 137px }
+.xzx-index-jhkj-list .video-detail h4 { font-size: 14px; line-height: 16px; color: #333; margin: 5px 0 15px }
+.xzx-index-jhkj-list .video-detail p { font-size: 12px; line-height: 14px; color: #999; margin-bottom: 10px }
+.xzx-index-jhkj-list .video-info i { vertical-align: middle; margin: 0 6px 0 10px }
+.xzx-index-zxbk .xzx-index-module-header { border-left: 3px solid #4d7aff }
+.xzx-index-zxbk-hd-list { box-sizing: border-box; border-bottom: 1px solid #ececec }
+.xzx-index-zxbk-hd-list li { width: 25%; float: left; height: 30px; line-height: 30px; font-size: 14px; color: #333; text-align: center }
+.xzx-index-zxbk-hd-list li.active { background-color: #ececec }
+#zxbkSlider ul { padding: 6px 9px 0; margin-bottom: -6px }
+#zxbkSlider li { display: inline }
+#zxbkSlider li a { font-size: 14px; line-height: 26px; color: #333; margin-right: 8px }

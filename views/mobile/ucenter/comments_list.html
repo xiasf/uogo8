@@ -1,0 +1,18 @@
+{set:$user_id = $this->user['user_id']}
+{set:$user = Api::run('getMemberInfo',$user_id)}
+
+<main id="commentWrap" class="g_wrap m_comments m_usercomm scrollLoad"><!-- g_wrap m_comments m_usercomm --> 
+  
+  {set:$page= (isset($_GET['page'])&&(intval($_GET['page'])>0))?intval($_GET['page']):1;}
+  {query:name=jiaju_article_comment where=user_id eq $user_id order=id desc page=$page}
+  <section class="list list-2">
+    <header class="head f_clear"> <img class="f_fl img" src="{webroot:$this->user['head_ico']}" onerror="this.src='{theme:skin/user/images/user_ico.gif}'">
+      <h3 style="    padding-top: 10px;"> {query:name=jiaju_article where=id eq $item[article_id] id=$d item=$article} <a target="_blank" href="{url:v_deco/yezhu/id/$article['id']}">{$article['title']}</a> {/query} </h3>
+    </header>
+    <p class="text">{$item['contents']}</p>
+    <p class="attr"> <em>{$item['comment_time']}</em>&nbsp;&nbsp;赞<em>{$item['praise']}</em>&nbsp;&nbsp;回复<em> {query:name=jiaju_article_comment where=re_id eq $item[id] id=$d fields=count(id) as n}{$item['n']}{/query} </em></p>
+  </section>
+  {/query}
+  {$query->getPageBar()} </main>
+<link rel="stylesheet" type="text/css" href="skin/mall/page_1.css">
+<link rel="stylesheet" type="text/css" href="skin/user/css/rem.css">

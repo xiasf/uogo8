@@ -1,0 +1,128 @@
+{js:baidueditor}
+
+
+<div class="headbar">
+	<div class="position"><span>任务</span><span>></span><span>任务模型管理</span><span>></span><span>{if:isset($id)}编辑{else:}添加{/if}任务模型</span></div>
+</div>
+<div class="content_box">
+	<div class="content form_content">
+		<form action="{url:/bg_task/model_edit_act}" method="post" enctype="multipart/form-data">
+			<input name="id" value="{$id}" type="hidden" />
+			<table class="form_table" cellpadding="0" cellspacing="0">
+				<col width="150px" />
+				<col />
+				<tr>
+					<th>名称：</th>
+					<td>
+						<input class="small" name="title" type="text" value="{$title}" alt="" />
+					</td>
+				</tr>
+				<tr>
+					<th>logo：</th>
+					<td>
+						<input type="file" name="logo" class="middle w-300">
+						{if:isset($logo) && $logo}
+						<br />
+						<br />
+						<p>
+							<a target="_blank" href="{webroot:$logo}">
+								<img src='{webroot:$logo}' style='width:100px;height: 100100pxpx;border:1px solid #ccc' />
+							</a>
+						</p>
+						{/if}
+					</td>
+				</tr>
+				<tr>
+					<th>描述：</th>
+					<td>
+						<textarea name="describe" class="textarea" style="width:600px;height:150px;">{$describe}</textarea>
+					</td>
+				</tr>
+				<tr>
+					<th>标示：</th>
+					<td>
+						<input class="small" name="name" type="text" value="{$name}" alt="" />
+						<label>任务模型标示（代号）具有唯一性</label>
+					</td>
+				</tr>
+
+				<tr>
+					<th>添加任务模型参数：</th>
+					<td><button class="btn" onclick="addparam()" type="button"><span class="add">添加参数</span></button>
+						<label>任务模型参数发生改变需更新对应的任务处理程序接口，还要更新已经发布的任务，否则不能工作</label>
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>
+						<table width="90%" class='border_table'>
+							<thead>
+								<tr>
+									<th>title</th>
+									<th>name</th>
+									<th>label</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody id="param_list"></tbody>
+
+							<!--属性列表-->
+							<script type='text/html' id='paramListTemplate'>
+							<%for(var item in templateData){%>
+							<%include('paramTrTemplate',{'item':templateData[item]})%>
+							<%}%>
+							</script>
+
+							<!--属性单行-->
+							<script type='text/html' id='paramTrTemplate'>
+							<tr class='td_c'>
+								<td>
+									<input name='param[title][]' class='small' type='text' value="<%=item['title']%>" />
+								</td>
+								<td>
+									<input name='param[name][]' class='small' type='text' value="<%=item['name']%>" />
+								</td>
+								<td>
+									<input class='normal' name='param[label][]' type='text' value="<%=item['label']%>" />
+								</td>
+								<td>
+									<img class="operator" src="{skin:images/admin/icon_del.gif}" alt="删除" onclick="delparam(this)" />
+								</td>
+							</tr>
+							</script>
+						</table>
+					</td>
+				</tr>
+
+				<tr>
+					<td></td><td><button class="submit" type="submit"><span>确 定</span></button></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</div>
+
+<script type='text/javascript'>
+	$(function(){
+		//初始化属性
+		{if:isset($param)}
+		var paramListHtml = template.render('paramListTemplate',{'templateData':{echo:JSON::encode($param)}});
+		$('#param_list').html(paramListHtml);
+		{else:}
+		addparam();
+		{/if}
+	});
+
+	//添加一个模型属性
+	function addparam()
+	{
+		var paramTrHtml = template.render('paramTrTemplate',{'item':[]});
+		$('#param_list').append(paramTrHtml);
+	}
+
+	//删除模型属性
+	function delparam(curr_param)
+	{
+		$(curr_param).parent().parent().remove();
+	}
+</script>

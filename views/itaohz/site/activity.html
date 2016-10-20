@@ -1,0 +1,52 @@
+{set:$queryAct = Api::run('getActivityList');$resultData = $queryAct->find();}
+{set:
+	$site_config=new Config('site_config');
+	$seo_data=array();
+	$seo_data['title']='活动_'.$site_config->name;
+	$seo_data['keywords']=$site_config->index_seo_keywords;
+	$seo_data['description']=$site_config->index_seo_description;
+	seo::set($seo_data);
+} 
+
+
+    <div class="wrapper_1180">
+  <div class="hdsy_banner">
+        <div class="hdsy_flexslider">
+      <ul class="slides">
+            {foreach:items=Api::run('getadmanageid',array('#position_id#','21'),6) item=$second}
+            <li class="sy_hotgzLi flex-active-slide"><a href="{url:$second['link']}" title="购" target="_blank"><img width="1200" height="272" src="{url:/pic/thumb/img/$second[content]/w/1200/h/272}" draggable="false"></a></li>
+            {/foreach}
+          </ul>
+    </div>
+      </div>
+  <div class="hdsy_tab">
+        <ul>
+      <li class="hdsy_tabLi on"><a href="{url:site/activity/id/0}">最新活动</a></li>
+      {query:name=activity_cat order=sort asc,id desc}
+      <li class="hdsy_tabLi"><a href="{url:site/activity/id/$item[id]}">{$item[name]}</a></li>
+      {/query}
+    </ul>
+      </div>
+  <div class="hdsy_tabList">
+        <ul>
+      {foreach:items = $resultData item=$first}
+      <li class="hdsy_Li">
+            <div class="fr hdsy_Li_r"><a target="_blank" href="{url:site/activity_detail/id/$first[id]}"><img width="529" height="390" src="{url:$first['imglist']}"></a></div>
+            <div class="hdsy_Li_l">
+          <div class="hdsy_LiT"> {$first[name]}</div>
+          <p class="hdsy_LiP">{$first[smalldescribe]}</p>
+          <div class="hdsy_LiTime"> 有效期：至 {echo:date('Y-m-d',strtotime($first[end_time]))} <span class="hdsy_LiP"><span class="hdsy_Libms">
+          {query:name=activity_signup where=activity_id eq $first[id] fields=count(*) as amount}{$item['amount']}{/query}</span>人已报名</span> </div>
+          <p class="hdsy_LiPJj">地址：{$first[address]}</p>
+          <p class="hdsy_LiPJj">商家：{query:name=seller where=id eq $first[seller_id] item=$seller}<a target="_blank" href="{url:site/home/id/$seller[id]}">{$seller[true_name]}</a>{/query}</p>
+          <div class="hdsy_Licj">
+                <div class="fl hdsy_Licj_l"><em class="radius100"></em>{$first[tel]}</div>
+                <div class="fr hdsy_Licj_r"><a href="{url:site/activity_detail/id/$first[id]}" class="hdsy_LicjA">立即参加</a></div>
+              </div>
+        </div>
+          </li>
+      {/foreach}
+    </ul>
+    {$queryAct->getPageBar()}
+      </div>
+</div>

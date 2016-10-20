@@ -1,0 +1,27 @@
+<form action='{url:/ucenter/info_edit_act}' method='post' name='user_info'>
+  <section class="user-login-frame">
+    <div class="username_div">
+      <label for="usename">姓名:</label>
+      <input type="text" name="true_name" class="login_info" placeholder='请填写真实姓名' value="{$this->memberRow['true_name']}" />
+    </div>
+    <div class="username_div">
+      <label for="usename">性别:</label>
+      <label class='attr'>
+        <input  style="-webkit-appearance:radio ;" type='radio' name='sex' value='1' />
+        男</label>
+      <label class='attr'>
+        <input style="-webkit-appearance:radio ;" type='radio' name='sex' value='2' checked=checked />
+        女</label>
+    </div>
+    <div class="username_div"> <em>手机号码:</em>
+      <input type="text" name="mobile"  alt='请填写正确的手机号码' value="{$this->memberRow['mobile']}" />
+    </div>
+    <div class="username_div"> <em>QQ号码:</em>
+      <input type="text" name="qq"  alt='请填写正确的QQ号码' value="{$this->memberRow['qq']}" />
+    </div>
+  </section>
+  <div class="username_div">
+    <input type="submit" value="保存基本信息" class="invoice-save-button" id="loginButton">
+  </div>
+</form>
+<link rel="stylesheet" href="../skin/user/css/pptm.css">

@@ -1,0 +1,70 @@
+<!-- <link rel="stylesheet" href="../skin/company/common.min.css"> -->
+<link rel="stylesheet" href="../skin/company/companyIndex.min.css">
+<ul class="company-list">
+            {set:$page = IReq::get('page') ? IFilter::act(IReq::get('page'),'int') : 1}
+            {query:name=jiaju_company where=status eq 1 order=sort asc, id desc page=$page pagesize=20}
+
+            <?php $company = new IModel('jiaju_company');
+                    $this->company = $company->getObj('id = ' . $item['id']);
+
+                    $show_img = new IModel('jiaju_show_img');
+                    $this->show_img = $show_img->getObj('company = ' . $this->company['id']);
+
+                    $a = count($this->show_img);
+
+                    $designer = new IQuery('jiaju_designer');
+                    $designer->where = 'company = ' . $this->company['id'];
+                    $designer->limit = 6;
+                    $this->designer = $designer->find();
+
+
+                    $designer_list = array();
+                    foreach ($this->designer as $value) {
+                        $designer_list[] = $value['id'];
+                    }
+
+                    if ($designer_list) {
+                        $designer_works = new IQuery('jiaju_designer_works');
+                        $designer_works->where = 'designer in (' . join(',', $designer_list).')';
+                        $designer_works->limit = 6;
+                        $this->designer_works = $designer_works->find();
+                    } else {
+                        $this->designer_works = array();
+                    }
+
+                    $b = count($this->designer_works);
+
+
+            ?>
+
+
+
+
+            <li>
+            <a href="{url:v_deco/company_info/id/$item['id']}">
+            <div class="img-wrap">
+                <img src="{webroot:$item['logo']}" class="lazy" data-original="http://pic.to8to.com/user/57/headphoto_4715957.jpg?1444063127" alt="{$item['name']}" style="display: inline;">
+            </div>
+            <div class="company-info">
+                <h2 class="text-overflow">{$item['name']}</h2>
+                <div class="company-score">
+                    <div class="credit text-overflow">
+                        <span>施工案例：</span>
+                        <span>{$a}个</span>
+                    </div>
+                    <div class="wom text-overflow">
+                        <span>口碑值：</span>
+                        <em>{$item['mouth']}</em>
+                    </div>
+                </div>
+                <div class="text-overflow">
+                    <span class="production-count">设计方案：&nbsp;{$b}套</span>
+                    <!--<span class="distance">1km</span>-->
+                </div>
+            </div>
+            </a>
+        </li>
+
+        {/query}
+        </ul>
+        

@@ -1,0 +1,78 @@
+{set:$seller_id = $this->seller['seller_id']}
+{set:$siteConfig = new Config("site_config")}
+<div class="wrapper wrapper-content">
+  <div class="row animated bounceInRight">
+    <div class="col-sm-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-content">
+          <h2>说明：</h2>
+          <p> 统计{echo:$siteConfig->name}应付给您的商品货款 </p>
+          <div class="alert alert-warning"> 只有
+            <在线支付>
+            (非货到付款) 并且
+            <发货后>
+            的商品才会统计到这里 </div>
+          <button class="btn btn-danger dim" type="button" onclick="window.location.href='{url:/seller/bill_edit}';"><i class="fa fa-heart"></i>&nbsp;&nbsp;货款提现</button>
+          <button class="btn btn-primary dim" type="button" onclick="window.location.href='{url:/seller/bill_list}';"><i class="fa fa-money"></i>&nbsp;&nbsp;提现状态</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>商品货款明细</h5>
+        </div>
+        <div class="ibox-content">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>订单号</th>
+                <th>商店</th>
+                <th>下单时间</th>
+                <th>订单金额</th>
+                <th>平台促销活动</th>
+                <th>退款金额</th>
+                <th>结算状态</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody>
+            
+            {set:
+            $page = (isset($_GET['page'])&&(intval($_GET['page'])>0))?intval($_GET['page']):1;
+            $orderGoodsQuery = CountSum::getSellerGoodsFeeQuery($seller_id);
+            $orderGoodsQuery->page = $page;
+            }
+            
+            {foreach: items = $orderGoodsQuery->find()}
+            {set:$countData = CountSum::countSellerOrderFee(array($item))}
+            <tr>
+              <td>{$item['order_no']}</td>
+              <td>{$item['shopname']}</td>
+              <td>{$item['create_time']}</td>
+              <td>￥{$countData['orderAmountPrice']}</td>
+              <td>￥{$countData['platformFee']}</td>
+              <td>￥{$countData['refundFee']}</td>
+              <td> {if:$item['is_checkout'] == 1}
+                <span class='label label-primary'>已结算</span>
+                {else:}
+                <span class='label label-danger'>未结算</span>
+                {/if} </td>
+              <td>
+              
+              <a href="{url:/seller/order_show/id/$item[id]}" class="btn btn-white btn-xs"><i class="fa fa-edit"></i>&nbsp;订单详情</a></td>
+            </tr>
+            {/foreach}
+              </tbody>
+            
+            <tfoot>
+              <tr>
+                <td colspan="7">{$orderGoodsQuery->getPageBar()}</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

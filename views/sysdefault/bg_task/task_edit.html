@@ -1,0 +1,197 @@
+{js:baidueditor}
+
+
+<div class="headbar">
+	<div class="position"><span>任务</span><span>></span><span>任务管理</span><span>></span><span>{if:isset($id)}编辑{else:}添加{/if}任务</span></div>
+</div>
+<div class="content_box">
+	<div class="content form_content">
+		<form action="{url:/bg_task/task_edit_act}" method="post" enctype='multipart/form-data'>
+			<input name="id" value="{$id}" type="hidden" />
+			<table class="form_table" cellpadding="0" cellspacing="0">
+				<col width="150px" />
+				<col />
+				<tr>
+					<th>名称：</th>
+					<td>
+						<input class="small" name="title" type="text" value="{$title}" alt="" />
+					</td>
+				</tr>
+
+				<tr>
+					<th>logo：</th>
+					<td>
+						<input type="file" name="logo" class="middle w-300">
+						{if:isset($logo) && $logo}
+						<br />
+						<br />
+						<p>
+							<a target="_blank" href="{webroot:$logo}">
+								<img src='{webroot:$logo}' style='width:100px;height: 100100pxpx;border:1px solid #ccc' />
+							</a>
+						</p>
+						{/if}
+					</td>
+				</tr>
+
+				<tr>
+					<th>banner</th>
+					<td>
+						<input type="file" name="banner" class="middle w-300">
+						{if:isset($banner) && $banner}
+						<br />
+						<br />
+						<p>
+							<a target="_blank" href="{webroot:$banner}">
+								<img src='{webroot:$banner}'/>
+							</a>
+						</p>
+						{/if}
+					</td>
+				</tr>
+
+				<tr>
+					<th>描述：</th>
+					<td>
+						<textarea name="describe" class="textarea" style="width:600px;height:150px;">{$describe}</textarea>
+					</td>
+				</tr>
+
+				<tr>
+					<th>规则：</th>
+					<td>
+						<textarea name="rule" class="textarea" style="width:600px;height:100px;">{$rule}</textarea>
+					</td>
+				</tr>
+
+
+				<tr>
+					<th>内容：</th>
+					<td>
+						<textarea id="content" name="content" class="textarea" style="width:600px;height:150px;">{echo:htmlspecialchars($content)}</textarea>
+					</td>
+				</tr>
+
+
+				<tr>
+					<th>奖励积分：</th>
+					<td>
+						<input class="small" name="rewards" type="text" value="{$rewards}" alt="" />
+					</td>
+				</tr>
+
+				<tr>
+					<th>排序：</th>
+					<td>
+						<input class="small" name="sort" type="text" value="{$sort}" alt="" />
+					</td>
+				</tr>
+
+				<tr><th>是否启用：</th><td><label class="attr"><input type="radio" name="is_lock" value="0" {if:$is_lock==0}checked="checked"{/if}>启用</label><label class="attr"><input type="radio" name="is_lock" value="1" {if:$is_lock==1}checked="checked"{/if}>不启用</label></td></tr>
+
+				<tr>
+					<th>任务模型：</th>
+					<td>
+						<select name="model_id" id="task_model" onchange="task_model_select(this)">
+							<option value="">请选择任务模型</option>
+							{query:name=task_model order=id desc}
+							<option value="{$item[id]}">{$item['title']}</option>
+							}
+							{/query}
+						</select>
+						{if:$model_id}<label>&nbsp;不要轻易更改任务模型啊，任务模型改变相当于当前任务的模式就变了</label>{/if}
+					</td>
+				</tr>
+
+				<tr>
+					<th>任务参数：</th>
+					<td>
+						<table width="90%" class='border_table'>
+							<tbody id="param_list"><td>请先选择任务模型</td></tbody>
+
+							<!--属性列表-->
+							<script type='text/html' id='paramListTemplate'>
+							<%for(var item in templateData){%>
+							<tr>
+								<th style="text-align: left;"><%=templateData[item]['title']%></th>
+								<td>
+									<input name="param[<%=templateData[item]['name']%>]" class='small' type='text' value="" />
+									<label><%=templateData[item]['label']%></label>
+								</td>
+							</tr>
+							<%}%>
+							</script>
+
+							<!--属性单行-->
+							<script type='text/html' id='paramTrTemplate'>
+
+							</script>
+						</table>
+					</td>
+				</tr>
+
+				<tr>
+					<td></td><td><button class="submit" type="submit"><span>确 定</span></button></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</div>
+
+<div style="width:620px;position:fixed;right:0;z-index:99999999;top:150px" id="wxeditor"><p style="background-color:#D7D7D7;line-height:25px;" onClick="zd()">折叠/展开</p>
+<iframe src="{url:plugins/wechateditor/wxeditor.html}" frameborder="0" height="520" width="100%"></iframe>
+</div>
+
+<script type='text/javascript'>
+	$(function(){
+		{if:$model_id}
+		$('#task_model').val({$model_id});
+		task_model_select($('#task_model'));
+		{/if}
+
+		editor=UE.getEditor('content');
+	});
+
+
+	function init_param() {
+		{if:$param}
+		var param = {$param};
+		{else:}
+		var param = [];
+		{/if}
+		for (var key in param) {
+			$('[name="param['+key+']"]').val(param[key]);
+		}
+	}
+
+
+	function zd(){
+		$("#wxeditor").width($("#wxeditor").width()>100?50:620)
+	}
+
+	function parse(param) {
+		var paramListHtml = template.render('paramListTemplate',{'templateData':param});
+		$('#param_list').html(paramListHtml);
+	}
+
+
+	function task_model_select(_self) {
+		var task_model = $(_self).val();
+		if (!task_model) return false;
+		$('#param_list').html('任务模型参数获取中……');
+		$.getJSON('{url:/bg_task/get_task_model_param}', {id:task_model}, function(res){
+			if (res.status) {
+				param = $.parseJSON(res.info);
+				parse(param);
+				{if:$model_id}
+				if (task_model == {$model_id}) {
+					init_param();
+				}
+				{/if}
+			} else {
+				$('#param_list').html('任务模型参数获取失败，请重试！');
+				alert(res.info);
+			}
+		});
+	}
+</script>

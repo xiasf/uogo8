@@ -1,0 +1,42 @@
+<div class="headbar">
+	<div class="position"><span>商品</span><span>></span><span>服务管理</span><span>></span><span>{if:isset($svcpro['id'])}编辑{else:}添加{/if}服务标签</span></div>
+</div>
+<div class="content_box">
+	<div class="content form_content">
+		<form action="{url:/goods/svcpro_save}" method="post" enctype='multipart/form-data'>
+			<table class="form_table" cellpadding="0" cellspacing="0">
+				<col width="150px" />
+				<col />
+				<tr>
+					<th>名称：</th>
+					<td><input class="small" name="name" type="text" value="{$svcpro['name']}" pattern="required" alt="服务名称不能为空" />
+						<label>*</label>
+						<input name="id" value="{$svcpro['id']}" type="hidden" />
+					</td>
+				</tr>
+				<tr>
+					<th>介绍：</th>
+					<td><textarea name="desc" class="middle">{$svcpro['desc']}</textarea>
+					</td>
+				</tr>
+				<tr>
+					<th>类型：</th>
+					<td><label><input name="type" type="radio" value="1" {if:$svcpro[type]=='1'}checked{/if}>服务</label>&nbsp;&nbsp;&nbsp; 
+                    <label><input name="type" type="radio" value="2" {if:$svcpro[type]=='2'}checked{/if}>承诺</label>
+
+					</td>
+				</tr>
+				<tr>
+					<th>类型：</th><td>
+                    <label><input name="isopen" type="radio" value="0" {if:$svcpro[isopen]=='0'}checked{/if}>开启</label>&nbsp;&nbsp;&nbsp; 
+                    <label><input name="isopen" type="radio" value="1" {if:$svcpro[isopen]=='1'}checked{/if}>关闭</label>
+                    
+                    </td>
+				</tr>
+				<tr>
+					<td></td><td><button class="submit" type="submit"><span>确 定</span></button></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</div>

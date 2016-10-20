@@ -1,0 +1,158 @@
+
+<div class="wrapper wrapper-content animated bounceInRight">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>发货</h5>
+        </div>
+        <div class="ibox-content">
+          <form action="{url:/seller/order_delivery_doc}" method="post" id="deliver_form" class="form-horizontal validform">
+            <input type="hidden" name="order_no" value="{$order_no}"/>
+            <input type="hidden" name="id" value="{$order_id}"/>
+            <input type="hidden" name="weight_total" id="weight_total" value="{$goods_weight}"/>
+            <input type="hidden" name="user_id" value="{$user_id}"/>
+            <input type="hidden" name="freight" value="{$real_freight}" />
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>商品名称</th>
+                  <th>商品价格</th>
+                  <th>购买数量</th>
+                  <th onclick="selectAll('sendgoods[]')">选择发货</th>
+                </tr>
+              </thead>
+              <tbody>
+              
+              {set:$seller_id = $this->seller['seller_id']}
+              {query:name=order_goods where=order_id eq $order_id}
+              <tr>
+                <td> {set:$goodsRow = JSON::decode($item['goods_array'])}
+                  {$goodsRow['name']} &nbsp;&nbsp; {$goodsRow['value']} </td>
+                <td>{$item['real_price']}</td>
+                <td>{$item['goods_nums']}</td>
+                <td> {if:$item['is_send'] == 0}
+                  <input type="checkbox" name="sendgoods[]" class="i-checks" value="{$item['id']}" />
+                  {else:}
+                  {echo:Order_class::goodsSendStatus($item['is_send'])}
+                  {/if} </td>
+              </tr>
+              {/query}
+                </tbody>
+              
+            </table>
+            <table class="table table-bordered">
+              <tbody>
+                <tr>
+                  <th>订单号:</th>
+                  <td align="left">{$order_no}</td>
+                  <th>下单时间:</th>
+                  <td align="left">{$create_time}</td>
+                </tr>
+                <tr>
+                  <th>配送方式:</th>
+                  <td align="left"> {query:name=delivery where=is_delete eq 0}
+                    {if:$distribution == $item['id']}
+                    <input type='hidden' value='{$item['id']}' name='delivery_type' />
+                    {$item['name']}
+                    {/if}
+                    {/query} </td>
+                  <th>配送费用:</th>
+                  <td align="left">{$real_freight}</td>
+                </tr>
+                <tr>
+                  <th>保价费用:</th>
+                  <td align="left">￥{$insured}</td>
+                </tr>
+                <tr>
+                  <th>收货人姓名:</th>
+                  <td align="left"><input type="text" name="name" value="{$accept_name}" datatype="*" class="form-control" /></td>
+                </tr>
+                <tr>
+                  <th>手机:</th>
+                  <td align="left"><input type="text" name="mobile" value="{$mobile}" datatype="int" class="form-control"/></td>
+                  <th>邮政编码:</th>
+                  <td align="left"><input type="text" name="postcode"  value="{$postcode}" pattern="zip" class="form-control" /></td>
+                </tr>
+                <tr>
+                  <th>物流公司：</th>
+                  <td align="left"><select name="freight_id" alt="选择物流公司" class="form-control" datatype="int">
+                      <option value="17">选择物流公司,默认淘黄州</option>
+                      
+                      
+								{query:name=freight_company where=is_del eq 0}
+								
+                      
+                      <option value="{$item['id']}">{$item['freight_name']}</option>
+                      
+                      
+								{/query}
+							
+                    
+                    </select>
+                    <label class="tip">选择物流公司</label></td>
+                  <th>配送单号:</th>
+                  <td align="left"><input type="text" name="delivery_code" class="form-control"/></td>
+                  <input type="hidden" name="province" value="1">
+                  <input type="hidden" name="city" value="1">
+                  <input type="hidden" name="area" value="1">
+                </tr>
+                               <tr>
+                  <th>地区:</th>
+                  <td align="left"><!--<select name="province" child="city,area" onchange="areaChangeCallback(this);" class="auto">
+                    </select>
+                    <select name="city" child="area" parent="province" onchange="areaChangeCallback(this);" class="auto">
+                    </select>
+                    <select name="area" parent="city" pattern="required" class="auto">
+                    </select>--><input type="text" name="addregion" value="{$addregion}" readonly class="form-control" /></td>
+                  <th>详细地址:</th>
+                  <td align="left"><input type="text" name="address" value="{$address}" size="50" class="form-control" /></td>
+                </tr>
+                <tr>
+                  <th>发货单备注:</th>
+                  <td align="left" colspan="3"><textarea name="note" class="form-control"></textarea></td>
+                </tr>
+              </tbody>
+            </table>
+            <footer>
+              <div class="submit_link">
+                <button class="btn btn-primary " type="submit" onclick="return checkForm()"><i class="fa fa-check"></i>&nbsp;提交</button>
+                &nbsp;&nbsp;
+                <input type="reset" value="重 置" class="btn btn-default" />
+              </div>
+            </footer>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<link href="../css/plugins/iCheck/custom.css" rel="stylesheet">
+<script src="../js/plugins/iCheck/icheck.min.js"></script>
+<script src="js/plugins/validate/validform.min.js"></script> 
+<script src="../js/packet/form.js"></script> 
+<script type="text/javascript">
+//DOM加载完毕
+$(function(){
+	//初始化地域联动
+	// template.compile("areaTemplate",areaTemplate);
+
+	// createAreaSelect('province',0,{$province});
+	// createAreaSelect('city',{$province},{$city});
+	// createAreaSelect('area',{$city},{$area});
+	$(".i-checks").iCheck({checkboxClass:"icheckbox_square-green",radioClass:"iradio_square-green",})
+
+});
+
+//表单提交前检测
+function checkForm()
+{
+	var checkedNum = $('input[name="sendgoods[]"]:checked').length;
+	if(checkedNum == 0)
+	{
+		alert('请选择要发货的商品');
+		return false;
+	}
+	return true;
+}
+</script>

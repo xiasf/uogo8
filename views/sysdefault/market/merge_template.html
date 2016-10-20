@@ -1,0 +1,80 @@
+<div class="container">
+	<table width="100%" cellspacing="0" cellpadding="0" border="0">
+		<tr>
+			<td width="33%" align="left"><img width="160" src="../skin/default/images/2.png"></td>
+			<td class="f18" width="35%"><h3>淘黄州商户货款结算单</h3></td>
+			<td width="auto" align="right"><img style="    vertical-align: middle;" width="70" src="../skin/default/images/1.jpg"></td>
+			<td width="100" align="left">微信扫一扫关注淘黄州，获取本地特价、资讯信息</td>
+		</tr>
+	</table>
+
+	<table class="table" width="100%" cellspacing="0" cellpadding="0" border="1">
+		<tbody>
+			<tr>
+				<td width="120">商户名称</td>
+				<td  width="200" class="f14">{query:name=seller_user where=id eq $this->billRow['seller_id']}{$item['seller_name']}{/query}</td>
+				<td width="120">起止时间</td>
+				<td  width="auto" class="f14">{$this->billRow['start_time']}&nbsp;－&nbsp;{$this->billRow['end_time']}</td>
+			</tr>
+			<tr><td>实际结算金额</td><td>【￥{$this->billRow['count_fee']}】</td><td>订单数量共计</td><td>【{$this->billRow['order_num']}单】</td>
+			
+			<tr>
+			<tr><td>计算明细</td><td colspan="3">【订单总金额：￥{$this->billRow['order_amount_price']}】-【退款总金额：￥{$this->billRow['refund_fee']}】+【平台促销活动金额：￥{$this->billRow['platform_fee']}】-【结算手续费：￥{$this->billRow['commission']}】</td></tr>
+			<tr>
+				<td class="f12" colspan="4" align="left" style="word-wrap: break-word;">订单号列表：<p style="word-break: break-word;
+    white-space: pre-wrap;
+    word-wrap: break-word;">{$this->billRow['order_no_ids']}</p></td>
+			</tr>
+			<tr>
+				<td>商户附言</td>
+				<td class="f14">{$this->billRow['apply_content']}</td>
+				<td>管理员</td>
+				<td class="f14">{$this->billRow['pay_content']}</td>
+			</tr>
+			<tr>
+				<td>银行卡信息</td>
+				<td align="left" colspan="3" class="f14">开户行：{$this->billRow['bank_name']} 开户人：{$this->billRow['bank_user']} 卡号：{$this->billRow['bank_card']}</td>
+			</tr>
+			<tr>
+				<td>同意时间  </td>
+				<td  class="f14">{$this->billRow['pay_time']}</td>
+				<td>同意状态</td>
+				<td  class="f14">
+{if:$this->billRow['is_pay'] == 1}
+					<label class="green">已结算</label>
+					{else:}
+					<label class="orange">未结算</label>
+					{/if}
+
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<table class="table" width="100%" cellspacing="0" cellpadding="0" border="0">
+		<tr>
+			<td align="left" class="f14" contenteditable="true">注意：</td>
+		</tr>
+	</table>
+
+	<table class="table topBorder" width="100%" cellspacing="0" cellpadding="0" border="0">
+
+		<tr>
+			<td align="left" width="50%">黄冈市亚博网络科技有限公司<br>
+			{if:($this->order_info[0]['set']['name'])}{$this->order_info[0]['set']['name']}{else:}淘黄州{/if}：{if:($this->order_info[0]['set']['url'])}{$this->order_info[0]['set']['url']}{else:}www.itaohz.com{/if}</td>
+
+			<td align="left" width="50%">收款人：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;收款日期：</td>
+		</tr>
+	</table>
+<div contenteditable="true" style="height:80px">&nbsp;</div>
+	<input type="submit" class="btn_print noprint" onclick="order_print()" value="打印" />
+</div>
+<script>
+	function order_print() {
+		if (confirm('确认打印？')) {
+			window.print();
+		}
+	}
+</script>

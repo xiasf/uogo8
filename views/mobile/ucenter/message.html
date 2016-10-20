@@ -1,0 +1,59 @@
+{set:$msgObj = new Mess($this->user['user_id']);$msgIds = $msgObj->getAllMsgIds();$msgIds = $msgIds ? $msgIds : 0}
+<style type="text/css">
+table{border-collapse: separate;border-spacing: 0;background-color: #f6f6f6;border-left: 1px solid #e9e9e9;border-top: 1px solid #e9e9e9;width: 100%;clear: both;margin-bottom: 27px;}
+thead{}
+th{height: 48px;line-height: 48px;vertical-align: middle;border-bottom: 1px solid #e9e9e9;border-right: 1px solid #e9e9e9;font-weight: bold; text-align:right;color: #555;background-color: #f6f6f6; }
+tr{line-height: 18px;}
+td{border-right: 1px solid #e9e9e9;border-bottom: 1px solid #e9e9e9;text-align: left; color: #666;padding-top: 9px;padding-bottom: 9px;line-height: 18px;vertical-align: middle;background-color: #fdfdfd;}
+tr:hover > td{background-color: #fff;}
+</style>
+
+<div class="pageContentWrapper">
+<!--     <div class="user_menu_box">
+        <dl>
+        <dt><a href="{url:/ucenter/message}" class="bvc8">站内消息</a></dt>
+        </dl>
+        <br>
+    </div> -->
+    
+    
+    <table class="list_table m_10" width="100%" cellpadding="0" cellspacing="0">
+        <col />
+        <col width="80px" />
+        <thead><tr><th><div align="center">标题</div></th><th><div align="center">操作</div></th></tr></thead>
+		<tbody>
+        	{set:$page=(isset($_GET['page'])&&(intval($_GET['page'])>0))?intval($_GET['page']):1;}
+            {query:name=message where=id in($msgIds) page=$page order=id desc}
+        	<tr>
+           	   <td class="t_l" style="padding:10px;"><label class="blue">{$item['title']}</label></td>
+               <td class="blue"><div align="center"><a class='blue' href="{url:/ucenter/message_del/id/$item[id]}">删除</a></div></td>
+            </tr>
+            <tr id='show_msg' class="show">
+            	<td colspan="2" style="padding:10px; line-height:26px; color:#000;">
+                <b class="orange">详细内容：</b><p class="gray indent" id='content' style="line-height:22px; color:#999;">{$item['content']}</p>
+                {$item['time']}
+                </td>
+            </tr>
+            {/query}
+        </tbody>
+        <tfoot><tr><td colspan="4" class="t_l">{$query->getPageBar()}</td></tr></tfoot>
+    </table>
+</div>
+
+<script type="text/javascript">
+//阅读消息
+function show_msg(obj,id)
+{
+    $('#show_msg').insertAfter($(obj).parent().parent());
+    $('#show_msg #content').html($('#messageContent'+id).val());
+    $('#show_msg').show();
+
+    $.get("{url:/ucenter/message_read}",{"id":id},function(data){
+	    if(data == 1)
+	    {
+	    	$("#msg_id_"+id).parent().addClass('bold');
+	    	$("#msg_id_"+id).html('已读');
+	    }
+    });
+}
+</script>

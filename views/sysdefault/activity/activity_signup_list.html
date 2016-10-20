@@ -1,0 +1,64 @@
+<div class="headbar">
+	<div class="position"></span><span>活动管理</span><span>></span><span>活动列表</span></div>
+	<div class="operating">
+		<a href="javascript:;" onclick="event_link('{url:/activity/activity_signup_edit}')"><button class="operating_btn" type="button"><span class="addition">添加活动</span></button></a>
+		<a href="javascript:void(0)" onclick="selectAll('id[]');"><button class="operating_btn" type="button"><span class="sel_all">全选</span></button></a>
+		<a href="javascript:void(0)" onclick="delModel();"><button class="operating_btn" type="button"><span class="delete">批量删除</span></button></a>
+	</div>
+	<div class="field">
+		<table class="list_table">
+			<col width="40px" />
+			<col width="100px" />
+			<col width="100px" />
+			<col width="100px" />
+			<col width="100px"/>
+			<col width="60px" />
+			<col width="100px" />
+			<thead>
+				<tr>
+					<th>选择</th>
+					<th>姓名</th>
+					<th>参与时间</th>
+					<th>电话</th>
+					<th>次数</th>
+					<th>活动ID</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
+<div class="content">
+	<form method='post' action='{url:/activity/activity_del}'>
+		<table class="list_table">
+			<col width="40px" />
+			<col width="100px" />
+			<col width="100px" />
+			<col width="100px" />
+			<col width="100px"/>
+			<col width="60px" />
+			<col width="100px" />
+			<tbody>
+				{query:name=activity_signup}
+				<tr>
+					<td><input type='checkbox' name='id[]' value='{$item['id']}' /></td>
+					<td>{$item['name']}</td>
+					<td>{$item['datetime']}</td>
+					<td>{$item['tel']}</td>
+					<td>{$item['nums']}</td>
+					<td>{$item['activity_id']}</td>
+					<td>
+						<a href='{url:/activity/activity_signup_edit/id/$item[id]}'>
+							<img class="operator" src="{skin:images/admin/icon_edit.gif}" alt="修改" title="修改" />
+						</a>
+
+						<a href='javascript:void(0)' onclick="delModel({link:'{url:/activity/activity_signup_del/id/$item[id]}'});">
+							<img class="operator" src="{skin:images/admin/icon_del.gif}" alt="删除" title="删除" />
+						</a>
+					</td>
+				</tr>
+				{/query}
+			</tbody>
+		</table>
+	</form>
+</div>

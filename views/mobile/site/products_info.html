@@ -1,0 +1,129 @@
+<!--<div class="Product_info">
+  <div class="content_ly">
+    <ul class="saleinfos">
+      <em>规格参数</em> {if:isset($brand) && $brand}
+      <li>品牌：{$brand}</li>
+      {/if}
+      
+      {if:isset($weight) && $weight}
+      <li>商品毛重：
+        <label id="data_weight">{$weight}</label>
+      </li>
+      {/if}
+      
+      {if:isset($unit) && $unit}
+      <li>单位：{$unit}</li>
+      {/if}
+      
+      {if:isset($up_time) && $up_time}
+      <li>上架时间：{$up_time}</li>
+      {/if}
+      
+      {if:($attribute)}
+      {foreach:items=$attribute}
+      <li>{$item['name']}：{$item['attribute_value']}</li>
+      {/foreach}
+      {/if} <br/>
+      {if:isset($bestow)} <em>使用方法</em> {$bestow}
+      {/if} <em>产品详情</em>
+    </ul>
+    {if:isset($content)}
+    <div id="products_content">{$content}</div>
+    {else:}
+    暂无详情数据
+    {/if}
+    
+    {if:($photo)}
+    {foreach:items=$photo} <img src='{url:$item[img]}'/> {/foreach}
+    {/if}
+    <ul class="saleinfos">
+      <em>产品评价&nbsp;&nbsp;&nbsp;<i>已有<b class="red2">{echo:$comments}</b>条</i></em>
+    </ul>
+    <div id='commentBox'></div>
+    
+    <script type='text/html' id='commentRowTemplate'>
+            <%var widthPoint = 14 * point;%>
+            <dl class="itemComment">
+                <dd class="itemCommentlef">
+                    <a href="javascript:void(0)">
+                        <img src="{webroot:<%=head_ico%>}" width="70px" height="70px" onerror="this.src='{skin:images/user_ico.gif}'" />
+                        <span><%=username%></span>
+                    </a>
+                </dd>
+                <dd class="itemCommentInfo">
+                    <p class="pitemScore">
+                        <span class="grade"><i style="width:<%=widthPoint%>px"></i></span>
+                        <span class="light_gray"><%=comment_time%></span>
+                    </p>
+                    <span class="cont"><%=contents%></span>
+                </dd>
+            </dl>
+        </script> 
+    <a href="{url:/site/comments_list}" target="_blank" class="itemCommentAll">查看全部评价 &gt;</a> </div>
+</div>
+<script type="text/javascript">
+function comment_ajax(page){
+	if(!page && $.trim($('#commentBox').text()))
+	{
+		return;
+	}
+	page = page ? page : 1;
+	var url = '{url:/site/comment_ajax/page/@page@/goods_id/$id}';
+	url = url.replace("@page@",page);
+	$.getJSON(url,function(json){
+		//清空评论数据
+		$('#commentBox').empty();
+
+		for(var item in json.data){
+			var commentHtml = template.render('commentRowTemplate',json.data[item]);
+			$('#commentBox').append(commentHtml);
+		}
+	});
+}
+</script>-->
+<section class="product-intro">
+  <ul class="clearfix goods-tab-ul">
+    <li class="goods-tab-li"><a href="javascript:;" class="active">商品介绍</a></li>
+    <li class="goods-tab-li"><a href="javascript:;" class="">规格参数</a></li>
+    <li class="goods-tab-li"><a href="javascript:;" class="">产品评价（{echo:$comments}）</a></li>
+  </ul>
+  <div id="product_intro1" class="padding goods-tab-div">{if:isset($content)}
+    {$content}
+    {else:}
+    暂无详情数据
+    {/if}
+</div>
+  <div id="product_intro2" class="padding goods-tab-div" style="display: none;">
+    <dl class="clearfix">
+      {if:($attribute)}
+          {foreach:items=$attribute}
+              <dt>{$item['name']}</dt><dd>{$item['attribute_value']}</dd>
+          {/foreach}
+      {/if} 
+      {if:isset($bestow)} <em>使用方法</em> {$bestow}{/if}
+    </dl>
+    <article></article>
+    <article>
+      <h1>服务承诺</h1>
+      <h2>正品承诺</h2>
+      <div> 淘黄州特卖商城所售商品均来自正规品牌厂家直供，承诺确保出售商品100%正品，请广大业主放心选购。 </div>
+      <h2>全国联保</h2>
+      <div> 用户在淘黄州特卖商城所购商品，自交易成功起，均享受由品牌厂商官网提供的质保期内的全国联保购物保障。 </div>
+      <h2>特别声明</h2>
+      <div> 1、因厂家会在没有任何提前通知的情况下更改产品包装、产地或者一些附件，本司不能确保客户收到的货物与网站图片、产地、附件说明完全一致。只能确保为原厂正货！并且保证与当时市场上同样主流新品一致。若本站没有及时更新，请大家谅解。<br>
+        2、本站商品信息均来自于合作方，其真实性、准确性和合法性由信息拥有者（合作方）负责。本站不提供任何保证，并不承担任何法律责任。 </div>
+    </article>
+  </div>
+  <div id="product_intro3" class="padding goods-tab-div" style="display: none;">ffffff </div>
+</section>
+<link rel="stylesheet" type="text/css" href="skin/mall/page_1.css">
+<script>
+$(function(){
+  $(".goods-tab-ul li").click(function(e) {
+    var _this = $(this);
+    _this.parent().find("a").removeClass("active");
+    _this.find("a").addClass("active");
+    $(".product-intro .goods-tab-div").hide().eq(_this.index()).show();
+  }); 
+});
+</script>

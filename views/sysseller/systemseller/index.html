@@ -1,0 +1,176 @@
+{set:
+	$siteConfig = new Config("site_config");
+}
+
+	<!DOCTYPE html>
+	<html>
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>{echo:$siteConfig->name} - 商家登录</title>
+    <link rel="stylesheet" type="text/css" href="{skin:css/login.css}">
+    {js:jquery}
+    <style>
+.carousel { width: 750px; height: 430px; float: left; }
+/* 本例子css */
+.focusBox { margin: 0 auto; position: relative; width: 750px; height: 430px; margin-top: 50px; padding: 5px; background: #f5f5f5; overflow: hidden; }
+.focusBox .hd { height: 22px; position: absolute; z-index: 1; bottom: 10px; right: 10px; overflow: hidden; }
+.focusBox .hd ul { float: right; overflow: hidden; }
+.focusBox .hd li { width: 22px; height: 22px; line-height: 22px; text-align: center; background: #999; color: #fff; font-family: Arial; float: left; margin: 0 1px; display: inline; -webkit-border-radius: 22px; -moz-border-radius: 22px; border-radius: 22px; cursor: pointer; }
+.focusBox .hd li.on { background: #c00; }
+.focusBox .bd li { vertical-align: middle; }
+.apple { width: 90%; height: 20px; overflow: hidden; }
+.apple a { color: #1B96EE; }
+.apple a:hover { text-decoration: underline; }
+</style>
+    </head><body>
+    <!--整体内容开始-->
+    <div class="denglu"> 
+      <!--第一部分内容开始-->
+      <div class="denglu-first1">
+        <div class="denglu-first1-content">
+          <div class="denglu-first1-content-left">
+            <div class="logo"><a href="/"><img src="{if:$siteConfig->logo}{webroot:$siteConfig->logo}{else:}{skin:images/logo.png}{/if}"></a></div>
+            <div class="biaoti">
+              <p>3000多个实力品牌强势入驻</p>
+            </div>
+          </div>
+          <div class="denglu-first1-content-right">
+            <p class="jiamengrexian">快速代理加盟热线</p>
+            <p class="dianhua">0713-8673-773</p>
+          </div>
+        </div>
+      </div>
+      <!--第一部分内容结束--> 
+      <!--第二部分内容开始-->
+      <div class="denglu-frist2">
+        <div class="denglu-first2-content">
+          <div class="denglu-first2-content-top">
+            <div class="carousel">
+              <div class="focusBox">
+                <div class="bd">
+                  <div class="tempWrap" style="overflow:hidden; position:relative; height:430px">
+                    <ul style="top: 0px; position: relative; padding: 0px; margin: 0px;">
+                      <li style="height: 430px;"><img src="{skin:images/login/bg.jpg}"></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="denglu-top-contents">
+              <div class="denglu-top-contents-top">
+                <div class="apple">
+                  <ul>
+                    {query:name=seller limit=20 order=id desc}
+                    <li>
+                      <p><span>最新公告：</span>最新商家<a href="#">{$item['shopname']}</a>加盟{echo:$siteConfig->name}！</p>
+                    </li>
+                    {/query}
+                  </ul>
+                </div>
+                <script type="text/javascript"> 
+                function autoScroll(obj){  
+                  $(obj).find("ul").animate({  
+                    marginTop : "-20px"  
+                  },500,function(){  
+                    $(this).css({marginTop : "0px"}).find("li:first").appendTo(this);  
+                  })  
+                }  
+                $(function(){  
+                  setInterval('autoScroll(".apple")',2500);
+                }) 
+            </script> 
+              </div>
+              <div class="denglu-top-contents-bottom">
+                <div class="contents-bottom-neirong">
+                  <div class="contents-bottom-neirong-first1">
+                    <div class="hasMoreTab" style="margin:0 auto">
+                      <div class="hd">
+                        <ul>
+                          <li class="on li1">&nbsp;&nbsp;&nbsp;&nbsp;{echo:$siteConfig->name}商家登录</li>
+                          <li class="onr">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/">{echo:$siteConfig->name}首页</a></li>
+                        </ul>
+                      </div>
+                      <div class="bd">
+                        <div class="conWrap" style="position: relative; width: 384px; height: 420px;">
+                          <div class="con" style="position: absolute; width: 384px; left: 0px; top: 0px; display: block;">
+                            <form method="post" name="login" action="{url:/systemseller/login}" autoComplete="off" class="form-horizontal" role="form">
+                              <div class="yonghuming">
+                                <input type="text" placeholder="用户名" name="username" value="" class="shurukuang">
+                              </div>
+                              <!--<div class="yonghuming_mima1">
+                              <div class="yonghuming_mima">
+                                <input type="text" id="name" name="name" value="" placeholder="验证码" class="shurukuang">
+                              </div>
+                              <a href="#">
+                              <div class="yzmdx"> 发送验证码 </div>
+                              </a> </div>
+                            <div class="nicheng">
+                              <input type="text" id="name" name="name" value="" placeholder="昵称" class="shurukuang">
+                            </div>-->
+                              <div class="mima">
+                                <input type="password" placeholder="密码"  name="password" value="" class="shurukuang">
+                              </div>
+                              <a href="#">
+                              <div class="denglu1">
+                                <button type="submit" class="submit">登&nbsp;&nbsp;&nbsp;&nbsp;录</button>
+                              </div>
+                              </a>
+                            </form>
+                            <div class="xieyi"> <a href="{url:/simple/seller}">我要入驻淘黄州</a> </div>
+                            <div class="zhuce">&nbsp;</div>
+                            <div class="qqdenglu">
+                              <div class="qqdenglu-left"> </div>
+                              <div class="qqdenglu-middle"> 使用第三方账号登录 </div>
+                              <div class="qqdenglu-right"> </div>
+                            </div>
+                            <div class="qqdenglulist"><a href="#" class="qqdenglu-qq">&nbsp;</a></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="denglu-first2-content-bottom">
+            <div class="bottom-left">
+              <div class="bottom-left-top">
+                <p>安全保障</p>
+              </div>
+              <div class="bottom-left-footer">
+                <p> {echo:$siteConfig->name}保障消费者账号密码等重要信息的安全 </p>
+              </div>
+            </div>
+            <div class="bottom-middle">
+              <div class="bottom-left-top">
+                <p>一键登录</p>
+              </div>
+              <div class="bottom-left-footer">
+                <p> 支持邮箱、手机号、昵称等多种其他账号登录，方便快捷 </p>
+              </div>
+            </div>
+            <div class="bottom-right">
+              <div class="bottom-left-top">
+                <p>贴心客服</p>
+              </div>
+              <div class="bottom-left-footer">
+                <p> 客服热线：0713-8673-773 </p>
+                <p> 客服邮箱：3168330078@qq.com </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--第二部分内容结束--> 
+    </div>
+    <!--整体内容结束--> 
+    <!--登录尾部内容开始-->
+    <div class="denglu-footer">
+      <div class="denglu-footer-content"> {echo:$siteConfig->name} 版权所有 2015-2016&nbsp;&nbsp;&nbsp;&nbsp;鄂ICP备15000956号&nbsp;&nbsp; <a href="/">关于{echo:$siteConfig->name}</a>&nbsp; |&nbsp; <a href="{url:/site/help_list}">帮助中心</a> &nbsp;|&nbsp; <a href="#">网站合作</a>&nbsp;|&nbsp; <a href="/site/help/id/44">版权说明</a>&nbsp;|&nbsp; <a href="/site/help/id/49">诚聘英才</a>&nbsp;|&nbsp; <a href="/site/help/id/48">联系我们</a> </div>
+    </div>
+    <!--登录尾部内容结束-->
+    
+    </body>
+    </html>

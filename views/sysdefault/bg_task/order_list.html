@@ -1,0 +1,74 @@
+<div class="headbar">
+	<div class="position"><span>任务</span><span>></span><span>积分商城</span><span>></span><span>商品列表</span></div>
+	<div class="operating">
+		<a href="javascript:;"><button class="operating_btn" type="button" onclick="window.location='{url:/bg_task/task_edit}'"><span class="addition">添加商品</span></button></a>
+	</div>
+	<div class="field">
+		<table class="list_table">
+			<col width="50px" />
+			<col width="300px" />
+			<col width="200px" />
+			<col width="100px" />
+			<col width="100px" />
+			<col />
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>UID</th>
+					<th>兑换时间</th>
+					<th>状态</th>
+					<th>操作</th>
+					<th>商品</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
+<div class="content">
+	<table id="list_table" class="list_table">
+		<col width="50px" />
+		<col width="300px" />
+		<col width="200px" />
+		<col width="100px" />
+		<col width="100px" />
+		<col />
+		<tbody>
+			{query:name=task_order order=id desc}
+			{set:$userInfo = Api::run('getMemberInfo', $item['uid'])}
+			<tr>
+				<td>{$item['id']}</td>
+				<td>{echo:$item['uid'] . '&nbsp;&nbsp;(' . $userInfo['true_name'] . '&nbsp;&nbsp;' . $userInfo['username'] . ')'} <img src="{webroot:$userInfo['head_ico']}" onerror="this.src='http://www.itaohz.com/views/mobile/skin/user/images/user_ico.gif'" alt="header" style="background-color:#fff;width: 35px;"> </td>
+				<td>{$item['create_time']}</td>
+				<td>{if:$item['status'] == 0}待领取{else:}<span class="orange">已领取</span>{/if}</td>
+				<td><a href="javascript:receive({$item['id']})"><img class="operator" src="{skin:images/admin/icon_edit.gif}" alt="查看" /></a></td>
+				<td class="orange"><img style="width: 50px;border: 0;" src='{url:/pic/thumb/img/$item[goods_img]/w/50/h/50}' class='ico' />&nbsp;&nbsp;<b>{$item['goods_name']}</b>&nbsp;&nbsp;<b>(ID：{$item['goods_id']}</b>&nbsp;&nbsp;<b>积分：{$item['integral']})</b></td>
+			</tr>
+			{/query}
+		</tbody>
+	</table>
+</div>
+
+<script>
+
+function receive(id) {
+	art.dialog({
+		okVal:"确定",
+	    content: '确定领取？',
+	    ok:function(iframeWin)
+	    {
+	    	var formObj = iframeWin.document.forms['commendForm'];
+	    	$.getJSON("{url:/bg_task/order_receive}", {id:id},function(content)
+	    	{
+	    		if(content.result == 'fail')
+	    		{
+	    			alert(content.data);
+	    		} else {
+	    			window.location.reload();
+	    			alert(content.data);
+	    		}
+	    	});
+	    }
+	});
+}
+
+</script>

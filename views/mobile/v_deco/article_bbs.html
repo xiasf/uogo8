@@ -1,0 +1,45 @@
+{set:$cid = IFilter::act(IReq::get('cid'),'int');}
+<section class="bbs-header bgfff">
+  <div class="infobox">
+    <h1> 淘黄州论坛 </h1>
+  </div>
+</section>
+<section class="sticky-inbox bgfff"> <a id="a_post" href="{url:v_deco/bbs_post/cid/$cid}" class="btn btn-highlight-orange">发新帖</a> </section>
+<section class="post-normbox bgfff">
+  <h1 class="tab">
+    <div> <a class="item  activate" href="/bbs/forum-c-2767-1.html">帖子列表</a><!-- <a class="item" href="/bbs/qfb-c-2767-1.html">质量反馈</a> <a class="item" href="/bbs/brand-11-c-2767-1.html">品牌论坛</a> <a class="item" href="/bbs/forum-o-200042-1.html">自驾游</a> <a class="item" href="http://k.m.autohome.com.cn">口碑</a> --></div>
+    <!-- <a class="ranking activate" href="#"> 最后回复<i class="icon icon-down-highlight"></i> </a> <a class="ranking" style="margin-left:0;" href="#"> 最新发布<i class="icon icon-down"></i> </a> -->
+     </h1>
+  <h2 class="tab-sub"> <a class="item  activate" href="#">全部</a> <a class="item " href="#">精华</a> <a class="item " href="#">问题</a> 
+    <!-- <a class="skip" href="#">做任务得家人卡</a>  -->
+  </h2>
+  <ul class="list-post list-post-bylatest ">
+    {foreach:items=$this->article_list}
+
+    <li> <a href="{url:v_deco/yezhu/id/$item['id']}"> <i class="icon icon-guan"></i>
+      <h2> {$item['title']} </h2>
+      <!--发布-->
+      <p class="editor"> <span class="name">社区活动</span>
+        <time>{$item['create_time']}</time>
+      </p>
+      <!--end发布--> 
+      <!--回复-->
+      <p class="latest"> <span class="name">HF晨风</span>
+        <time>{$item['create_time']}</time>
+      </p>
+      <!--end回复-->
+      <p class="data"> <span class="reply"><i class="icon icon-reply"></i><span id="span_reply_50840253">
+        顶贴
+        {$item['praise']}
+      </span></span><span class="view"><i class="icon icon-view"></i><span id="span_50840253">
+        回复
+        {query:name=jiaju_article_comment where=article_id eq $item[id] fields=count(id) as n item=$q}{$q['n']}{/query}
+
+      </span></span> </p>
+      </a> </li>
+      {/foreach}
+  </ul>
+  <!--分页-->
+  {$this->getPageBar}
+</section>
+<link href="skin/bbs/bbs.css" rel="stylesheet" type="text/css">

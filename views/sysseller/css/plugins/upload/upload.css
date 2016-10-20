@@ -1,0 +1,43 @@
+﻿@charset "utf-8";
+.webuploader-container { position: relative; }
+.webuploader-element-invisible { position: absolute !important; clip: rect(1px 1px 1px 1px); /* IE6, IE7 */ clip: rect(1px,1px,1px,1px); }
+.webuploader-pick { position: relative; display: inline-block; cursor: pointer; background: #00b7ee; padding: 10px 15px; color: #fff; text-align: center; border-radius: 3px; overflow: hidden; }
+.webuploader-pick-hover { background: #00a2d4; }
+.webuploader-pick-disable { opacity: 0.6; pointer-events: none; }
+/*demo样式*/
+#picker { display: inline-block; line-height: 1.428571429; vertical-align: middle; margin: 0 12px 0 0; }
+#picker .webuploader-pick { padding: 6px 12px; display: block; }
+.thumbnail { min-width: 160px; min-height: 160px;width:160px;height:auto;max-height:160px; }
+.thumbnail img { width: 100%; }
+.uploader-list { width: 100%; overflow: hidden; }
+.file-item { float: left; position: relative; margin: 0 20px 20px 0; padding: 4px;overflow:hidden }
+.file-item .error { position: absolute; top: 4px; left: 4px; right: 4px; background: red; color: white; text-align: center; height: 20px; font-size: 14px; line-height: 23px; }
+.file-item .btngroup { position: absolute;bottom:-900px; z-index: 10;left:10px;}
+.file-item-done .btngroup {bottom:0px;}
+.file-item.file-item-current{border-color:#0C0}
+.file-item.file-item-current .btngroup{display:none}
+.file-item.file-item-current:after { content: "\f00c"; font-family: FontAwesome; font-style: normal; font-weight: normal; line-height: 1; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-size: 48px; position: absolute; top:0;left:0; color:#090; z-index: 99; }
+.file-item .progress { position: absolute; right: 4px; bottom: 4px; height: 22px; left: 4px; overflow: hidden; z-index: 15; margin: 0; padding: 0; border-radius: 0;background-color:rgba(0,0,0,.6) /*background: transparent;*/}
+/*.file-item .progress span { display: block; overflow: hidden; width: 0; height: 100%; background-color: rgba(221,17,68,.8); -webit-transition: width 200ms linear; -moz-transition: width 200ms linear; -o-transition: width 200ms linear; -ms-transition: width 200ms linear; transition: width 200ms linear; -webkit-animation: progressmove 2s linear infinite; -moz-animation: progressmove 2s linear infinite; -o-animation: progressmove 2s linear infinite; -ms-animation: progressmove 2s linear infinite; animation: progressmove 2s linear infinite; -webkit-transform: translateZ(0); }
+@-webkit-keyframes progressmove {  0% {
+ background-position: 0 0;
+}
+ 100% {
+ background-position: 17px 0;
+}
+}
+@-moz-keyframes progressmove {  0% {
+ background-position: 0 0;
+}
+ 100% {
+ background-position: 17px 0;
+}
+}
+@keyframes progressmove {  0% {
+ background-position: 0 0;
+}
+ 100% {
+ background-position: 17px 0;
+}
+}
+a.travis { position: relative; top: -4px; right: 15px; }*/

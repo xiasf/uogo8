@@ -1,0 +1,80 @@
+body{ font-size:12px; font-family:"Microsoft YaHei","寰蒋闆呴粦","瀹嬩綋", Arial, sans-serif; padding:0px; margin:0px; background:#fff; color:#555; line-height:26px;}
+body.pagewd{min-width: 1200px;}
+body.smallpage{min-width: 1000px;}
+div,form,img,ul,ol,li,dl,dt,dd,h1,h2,h3,h4,h5,h6,p,i,table,tr,td,th,fieldset,label,legend,button,input{ margin:0;padding:0;}
+ul,li{list-style:none;}
+a,img,a img{border:0px;}
+a{text-decoration:none;cursor:pointer; color:#555;}
+a:hover{text-decoration:underline; color:#fe7902;}
+input.text,select.text,textarea.text{outline:none; border:1px solid #e3e3e3; height:26px; line-height:26px; padding:3px 0px 3px 5px;font-size:12px; color:#555;} 
+textarea{ outline:none; resize:none; border:1px solid #e3e3e3; font-size:12px;}
+input.check{ vertical-align:middle; margin-right:2px;}
+img{ vertical-align:top;}
+.lt{float:left;}
+.rt{float:right;}
+.cl{ clear:both; height:0px;}
+.none{ display:none;}
+
+.fontcl1{ color:#00ad28;}
+.fontcl2{ color:#fe7902;}
+.pointcl{ color:#fd0202;}
+.graycl{ color:#999;}
+.mainwd{ width:1200px; margin:0px auto;min-width: 1200px;}
+.subwd{ width:1000px;margin:0px auto;}
+.colorbg{ background-color:#f3f3f3;}
+.mb10{ margin-bottom:10px;}
+.mb20{ margin-bottom:20px;}
+.underline{ border-bottom:1px solid #e3e3e3;}
+
+.hoverno a:hover{ text-decoration:none;}
+input.btn{text-decoration:none; cursor:pointer;}
+.overhid{ overflow:hidden;}
+.area{ background:#fff; border:1px solid #e3e3e3;}
+.pding{ padding:10px;}
+.tit{ font-size:14px; color:#555;}
+
+/*鎸夐挳鏍峰紡*/
+.btn_main_big{ width:100px; line-height:32px; background:#00ad28; font-size:16px; border:none;}
+.btn_main_sm{  width:80px;line-height:26px; background:#00ad28; font-size:14px;border:none; }
+.btn_sub_smler{ width:60px; line-height:20px; background:url(../images/btn_bg.jpg) center center repeat-x; font-size:12px;  border:1px solid #d36501;}
+.btn_sub_sm{ width:80px; line-height:26px;background:url(../images/btn_bg.jpg) center center repeat-x;  font-size:14px;   border:1px solid #d36501;}
+.btn_sub_big{ width:110px;line-height:36px;height:36px;background:url(../images/btn_bg.jpg) center center repeat-x;  font-size:16px;   border:1px solid #d36501; }
+.btn_sub_tuan{ width:130px;line-height:36px;height:36px;background:url(../images/btn_bg.jpg) center center repeat-x;  font-size:18px;  border:1px solid #d36501;}
+.btn_sub_apply{ width:100%;line-height:32px; height:36px;background:url(../images/btn_bg.jpg) center center repeat-x; font-size:18px;  border:1px solid #d36501;}
+.btn{ display:inline-block;opacity:1;cursor:pointer; text-align:center; color:#fff;border-radius:3px; outline:none;-webkit-appearance: none;}
+.btn:hover{opacity:0.9;filter:alpha(opacity=90); color:#fff; text-decoration:none;}
+/*鎸夐挳鏍峰紡*/
+
+/*鏍囬鏍峰紡*/
+h1{ font-size:24px; line-height:36px; color:#333; font-weight:normal;}
+h2{ font-size:18px; line-height:34px;color:#333;font-weight:normal;}
+h3{ font-size:16px; line-height:30px; color:#333;font-weight:normal;}
+/*鏍囬鏍峰紡*/
+
+/*ul鏍峰紡1*/
+ul.line_type li{ background:#fff; border:1px solid #e3e3e3; padding:3px; }
+ul.line_type li:hover{ border:1px solid #fe7902;}
+/*ul鏍峰紡1*/
+
+/*ul鏍峰紡2*/
+ul.block_type li{ background:#fff; border-bottom:1px solid #e3e3e3; padding:10px;}
+ul.block_type li:hover{ background:#f8f8f8;}
+/*ul鏍峰紡2*/
+
+/*鍥剧墖涓婄殑閫忔槑灞傛牱寮�*/
+.opacity_img{ position:relative;overflow:hidden;}
+.opacity_img p{position:absolute; left:0px; bottom:0px; height:30px; line-height:30px; overflow:hidden; width:94%;padding:0px 3%;}
+.opacity_img p.bg{ opacity:0.7; filter:alpha(opacity=70); background:#000;}
+.opacity_img p.text{ color:#fff; }
+/*鍥剧墖涓婄殑閫忔槑灞傛牱寮�*/
+
+/*椤电爜鏍峰紡寮€濮�*/
+.page{ text-align:center; overflow:hidden;}
+.page a,.page em{ font-style:normal;}
+.page strong,.page a:hover{ background:#fe7901; border:1px solid #d86100; color:#fff;}
+/*椤电爜鏍峰紡缁撴潫*/
+
+/*绛涢€夊垪琛ㄦ牱寮�*/
+.choose_option a{ display:inline-block; padding:0px 4px; height:22px; line-height:22px; margin:5px 20px 5px 0px;}
+.choose_option a.current,.choose_option a:hover{ background:#00ad28; color:#fff; text-decoration:none;}
+/*绛涢€夊垪琛ㄦ牱寮�*/

@@ -1,0 +1,166 @@
+<link rel="stylesheet" href="../skin/zb/css/common.min.css">
+<link rel="stylesheet" href="../skin/zb/css/zxcys.css">
+
+<figure>
+    <img src="http://img.to8to.com/wap/cys.jpg" alt="">
+</figure>
+
+<section style="background-color: #fff; padding: 10px 0;">
+    <div>
+        <form id="form_zb" action="">
+        <section class="baojiaforms">
+
+        	<ul class="clearfix">
+                <li>标题</li>
+                <li><input id="area" type="tel" name="title"></li>
+            </ul>
+
+            <ul class="clearfix">
+                <li>联系人</li>
+                <li><input id="area" type="tel" name="contact"></li>
+            </ul>
+
+            <ul class="clearfix">
+                <li>手机号码</li>
+                <li><input id="area" type="tel" name="mobile"></li>
+            </ul>
+
+            <ul class="clearfix">
+             <li>装修方式</li>
+                <li>
+                  <label for="zxtime" style="width:100%">
+                  	<select name="way_id" class="date needsclick">
+                  		<option value="19">全包</option>
+                  		<option value="1">半包</option>
+                  		<option value="2">清包</option>
+                  	</select>
+                  </label>
+                </li>            
+            </ul>
+
+            <ul class="clearfix">
+             <li>招标类型</li>
+                <li>
+                  <label for="zxtime" style="width:100%">
+                  	<select name="type_id" class="date needsclick">
+                  		<option value="1">公装</option>
+                  		<option value="2">家装</option>
+                  	</select>
+                  </label>
+                </li>            
+            </ul>
+
+            <ul class="clearfix">
+             <li>喜欢风格</li>
+                <li>
+                  <label for="zxtime" style="width:100%">
+                  	<select name="style_id" class="date needsclick">
+                  		<option value="3">欧美</option>
+                  		<option value="4">日韩</option>
+                  	</select>
+                  </label>
+                </li>            
+            </ul>
+
+            <ul class="clearfix">
+             <li>预算范围</li>
+                <li>
+                  <label for="zxtime" style="width:100%">
+                  	<select name="budget_id" class="date needsclick">
+                  		<option value="1">8-10万</option>
+                  		<option value="2">10-15万</option>
+                  		<option value="3">5-8万</option>
+                  		<option value="4">15万以上</option>
+                  		<option value="5">3万-5万</option>
+                  		<option value="6">3万以下</option>
+                  	</select>
+                  </label>
+                </li>            
+            </ul>
+
+            <ul class="clearfix">
+             <li>服务需求</li>
+                <li>
+                  <label for="zxtime" style="width:100%">
+                  	<select name="service_id" class="date needsclick">
+                  		<option value="1">免费报价</option>
+                  		<option value="2">免费设计</option>
+                  		<option value="3">免费量房</option>
+                  	</select>
+                  </label>
+                </li>            
+            </ul>
+
+            <ul class="clearfix">
+             <li>空间户型</li>
+                <li>
+                  <label for="zxtime" style="width:100%">
+                  	<select name="house_type_id" class="date needsclick">
+                  		<option value="1">二室一厅</option>
+                  		<option value="2">一室一厅</option>
+                  		<option value="3">三室两厅</option>
+                  	</select>
+                  </label>
+                </li>            
+            </ul>
+
+            <ul class="clearfix">
+                <li>房屋面积</li>
+                <li><input id="area" type="tel" name="house_mj"><span class="mm">m²</span></li>
+            </ul>
+
+            <ul class="clearfix">
+             <li>装修时间</li>
+                <li>
+                  <label for="zxtime" style="width:100%">
+                    <select name="zxtime" id="zxtime" data-msg="请选择您希望的装修时间" class="date needsclick">
+                    <option value="">您希望的装修时间</option>
+                    <option value="半个月内">半个月内</option>
+                    <option value="1个月">1个月</option>
+                    <option value="2个月">2个月</option>
+                    <option value="2个月以上">2个月以上</option>
+                    </select>
+                  </label>
+                </li>            
+            </ul>
+            
+            <ul class="clearfix">
+                <li>其它备注</li>
+                <li><input type="tel" name="comment" placeholder="其它备注，要求" id="phone"></li>
+            </ul>
+
+            <p id="error_play"></p>
+            <div class="green-btn">
+                <input type="button" onclick="checkform(this)" value="发布需求" id="zxd-form-submit">
+            </div>
+        </section>
+        </form>
+    </div>
+</section>
+
+<script>
+function checkform(button){
+	if(!$('input[name="title"]').val().trim()){
+		alert('请填写您的真实姓名');return;
+	}
+	if(!$('input[name="contact"]').val().trim()){
+		alert('请填写您的真实姓名');return;
+	}
+	if(!$('input[name="mobile"]').val().trim()){
+		alert('请填写您的真实手机号码');return;
+	}
+	if(!$('input[name="house_mj"]').val().trim()){
+		alert('请填写您的真实房屋面积');return;
+	}
+  $(button).val('发布中……');
+  $.post("{url:v_deco/zb_post_act}", $('#form_zb').serialize(), function(result){
+		if (result.status == 1) {
+	        alert(result.info);
+	        window.location.reload();
+	    } else {
+	        alert(result.info);
+	        window.location.reload();
+	    }
+  }, 'json');
+}
+</script>

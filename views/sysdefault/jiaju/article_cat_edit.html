@@ -1,0 +1,47 @@
+<div class="headbar">
+	<div class="position"><span>家居</span><span>></span><span>文章管理</span><span>></span><span>{if:isset($this->article_catRow['id'])}编辑{else:}添加{/if}分类</span></div>
+</div>
+<div class="content_box">
+	<div class="content form_content">
+		<form action='{url:/jiaju/article_cat_edit_act}' method='post' name='cat'>
+			<input type='hidden' name='id' value='' />
+			<table class="form_table">
+				<col width="150px" />
+				<col />
+		        <tr>
+		          <th>上级分类：</th>
+		          <td><select class="auto" name="parent_id" pattern="required" alt="请选择分类值">
+		              <option value='0'>顶级分类</option>
+						{query:name=jiaju_article_category items=$category}{/query}
+						{set:$category = category::unlimitedForLevel($category)}
+		              {foreach:items=$category}
+		              <option value='{$item['id']}'>{$item['html']}{$item['name']}</option>
+		              {/foreach}
+		            </select>
+		            <label>*选择文章所属分类（必填）</label></td>
+		        </tr>
+				<tr>
+					<th>名称：</th>
+					<td>
+						<input type='text' class='middle' name='name' value='' pattern='required' alt='名称不能为空' />
+						<label>*分类名称（必填）</label>
+					</td>
+				</tr>
+				<tr>
+					<th>排序：</th>
+					<td>
+						<input type='text' class='small' name='sort' value='99' pattern='^\d+$' alt='请填写一个数字' />
+					</td>
+				</tr>
+				<tr>
+					<th></th><td><button class='submit' type='submit'><span>确 定</span></button></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</div>
+
+<script type='text/javascript'>
+	var FromObj = new Form('cat');
+	FromObj.init({echo:JSON::encode($this->article_catRow)});
+</script>

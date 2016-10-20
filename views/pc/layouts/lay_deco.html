@@ -1,0 +1,120 @@
+{file:file/header_base}
+<link rel="stylesheet" href="../skin/global.css">
+</head><body class="narrow_1220">
+<div class="global_wrap clear">
+  <div class="header">
+    <div class="header_top">
+      <div class="header_top_center">
+        <div class="header_top_right">
+          <ul>
+            <li> {if:$this->user} <a href="{url:/ucenter/index}" class="htr_login" rel="nofollow">欢迎&nbsp;&nbsp;[{echo:$this->user['username']}]</a> <a href="{url:/simple/logout}" class="htr_reg" rel="nofollow">[退出]</a> {else:} <a href="{url:/simple/login?callback=$callback}" class="htr_login" rel="nofollow">请登录</a> <a href="{url:/simple/reg?callback=$callback}" class="htr_reg" rel="nofollow">免费注册</a> {/if} <span class="htr_line"></span> <a href="{url:v_deco/zb}" class="nav_fzlink" rel="nofollow">我要装修</a> <span class="htr_line"></span> <em>咨询热线：0713-8673-773 </em> <span class="htr_line"></span> <a href="#">设计本</a> <span class="htr_line"></span> <a href="#">新闻中心</a> <span class="htr_line"></span> <a href="#">产品百科</a> </li>
+          </ul>
+        </div>
+        <div class="header_top_left">
+          <ul>
+            <li> <em></em> <a href="/" rel="nofollow">您好。欢迎来到淘黄州!</a> </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="header_center">
+      <div class="header_center_container"> 
+        <!--公告-->
+        <div class="header_center_main"> <span class="hcc_logo"><a href="{url:/site/index}"><img alt="淘黄州首页" src="{if:$this->config[logo]}{webroot:$this->config[logo]}{else:}skin/logo.png{/if}" border="0"></a> </span>
+          <form action="{url:site/search_list}" method="get">
+            <div class="header_search">
+              <div class="header_select"> <a href="javascript:void(0)" class="header_select_sort"> <span> <em>家居商城</em> <b></b> </span> </a>
+                <ul style="display: none;">
+                  <li><a href="javascript:void(0)">效果图</a></li>
+                  <li><a href="javascript:void(0)">装修公司</a></li>
+                  <li><a href="javascript:void(0)">小区</a></li>
+                  <li><a href="javascript:void(0)">文章</a></li>
+                  <li><a href="javascript:void(0)">问答</a></li>
+                  <li><a href="javascript:void(0)">家居建材</a></li>
+                </ul>
+              </div>
+              <input type="text" class="header_search_input" name="word" placeholder="挑选您心仪的装修公司">
+              <input type="submit" class="header_search_submit" value="搜 索">
+            </div>
+          </form>
+          <!-- banner区域[[ -->
+          <div class="index_banner_s">
+            <ul class="banner_slider">
+              <li>{echo:Ad::show("页面顶部右边广告")}</li>
+            </ul>
+          </div>
+          <!-- banner区域]] --> 
+        </div>
+      </div>
+    </div>
+    <div class="header_bottom">
+      <div class="header_menu">
+        <ul>
+          <li class="on"> <a class="nav_fzlink" href="/">淘黄州首页</a> <b></b> </li>
+          <li class="has_secondMenu has_secondMenuXgt"> <a href="{url:v_deco/effectpic}"> <em class="menu_arrow_two"></em> <span>效果图</span> </a>
+            <dl>
+              <dd> <a href="{url:v_deco/effectpic}" searchtage="1_2_18_156">家居图册</a></dd>
+            </dl>
+            <b></b> </li>
+          <li class="has_secondMenu"> <a href="{url:v_deco/gonglve}" searchtage="1_3_18_158"> <em class="menu_arrow"></em> <span>学装修</span> </a>
+            <dl>
+              <dd><a href="{url:v_deco/gonglve}" searchtage="1_3_18_160">学装修</a></dd>
+            </dl>
+            <b></b> </li>
+          <!-- <li class="has_hotIcon"> <a class="nav_fzlink" href="{url:v_deco/tenders_list}">招标大厅</a> <em class="sjbj_hot"></em> <b></b> </li> -->
+
+                    <li class="has_secondMenu"> <a href="{url:v_deco/tenders_list}" searchtage="1_3_18_158"> <em class="menu_arrow"></em> <span>招标大厅</span> </a> <em class="sjbj_hot"></em>
+            <dl>
+              <dd><a href="{url:v_deco/tenders}" searchtage="1_3_18_160">发布需求</a></dd>
+            </dl>
+            <b></b> </li>
+
+          <li> <a class="nav_fzlink" href="{url:v_deco/company}">装修公司</a> <b></b> </li>
+          <li class="has_secondMenu"> <a href="{url:v_deco/mall}"> <em class="menu_arrow"></em> <span>家居商城</span> </a>
+            <dl>
+              <dd> <a href="{url:v_deco/mall}" searchtage="1_23_18_170">建材城</a> <a href="{url:v_deco/mall}" searchtage="1_23_18_171">家具城</a> <a href="{url:v_deco/mall}" rel="nofollow" searchtage="1_23_18_172">品牌特卖</a></dd>
+            </dl>
+            <b></b> </li>
+        </ul>
+        <div class="q_code"> <a href="http://www.to8to.com/apps/" class="q_code_applnk" rel="nofollow"></a>
+          <div class="q_code_layer"> <a href="#" class="qcode_lnk" rel="nofollow"> <span class="qcode_title">淘黄州手机版</span> <span class="qcode_img wech" title="淘黄州手机版"></span> </a></a> </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--头部结束--> 
+  {viewcontent} 
+  <!--尾部开始-->
+  <div class="footer" id="footerHeight"> 
+    <!--  <div class="footer_top">
+          <div class="footer_top_container">
+            <div class="ftc_left">
+              <ul class="ftcl_tab">
+                <li class="on"> <a href="javascript:void(0)">友情链接</a> </li>
+                <li> <a href="javascript:void(0)">热门城市</a> </li>
+                <li> <a href="javascript:void(0)">附近城市</a> </li>
+              </ul>
+              <div class="ftclt_content  on"> <a href="http://hg.tobosu.com/" target="_blank"> 黄冈装修网 </a> <a href="http://www.qybgjj.com.cn/" target="_blank"> 成都办公家具 </a> <a href="http://www.xdsdtzh.com/" target="_blank"> 无锡电梯装潢 </a> <a href="http://www.hrbqsj.cn/" target="_blank"> 哈尔滨除甲醛公司 </a> <a href="http://huanggang.lbx.cc/" target="_blank"> 黄冈免费发布信息 </a> <a href="http://hg.58fenlei.com/" target="_blank"> 黄冈58同城 </a> <a href="http://huanggang.tdzyw.com/" target="_blank"> 黄冈土地网 </a> <a href="http://huanggang.anjuke.com/" target="_blank"> 黄冈房产网 </a> <a href="http://hg.dadou.com/" target="_blank"> 黄冈大豆网 </a> <a href="http://www.tqshow.com/" target="_blank"> 专卖店设计 </a> <a href="http://huanggang.fangle.com/" target="_blank"> 黄冈房产网 </a> <a href="http://huanggang.gongjiao.com/" target="_blank"> 黄冈公交 </a> <a href="http://www.0713jzw.com/" target="_blank"> 麻城装修网 </a> <a href="http://news.ljlj.cc/" target="_blank"> 蓝景丽家资讯 </a> <a href="http://www.hdzs.com.cn/" target="_blank"> 办公室装修公司 </a> <a href="http://hg.bendibao.com/" target="_blank"> 黄冈本地宝 </a> <a href="http://huanggang.loupan.com/" target="_blank"> 黄冈房产网 </a> <a href="http://hg.273.cn/" target="_blank"> 黄冈二手车 </a> <a href="http://www.ttgdtt.com/" target="_blank"> 富阳下水道疏通 </a> <a href="http://www.0766stone.com/" target="_blank"> 云浮石材网 </a> <a href="http://huanggang.zx123.cn/" target="_blank"> 黄冈装修 </a> <a href="http://hg.99cfw.com/" target="_blank"> 黄冈厂房网 </a> <a href="http://www.zjaoyin.com/" target="_blank"> 除甲醛公司 </a> <a href="http://www.tlsanitaryware.com/" target="_blank"> 不锈钢浴室柜 </a> <a href="http://www.mudiao168.cn/" target="_blank"> 仿古家具厂家 </a> <a href="http://www.1000lou.com/" target="_blank"> 千楼网 </a> <a href="http://huanggang.huangye88.com/" target="_blank"> 黄冈信息网 </a> <a href="http://huanggang.jiwu.com/" target="_blank"> 黄冈买房 </a> <a href="http://www.sxmljjj.com/" target="_blank"> 定制整体衣柜 </a> <a href="http://www.xajcscw.com/" target="_blank"> 西安建材商城 </a> <a href="http://huanggang.bqqm.com/" target="_blank"> 黄冈便民网 </a> <a href="http://hg.lieju.com/" target="_blank"> 黄冈分类信息网 </a> <a href=" http://www.ah525j.com/" target="_blank"> 六安装修公司 </a> <a href=" http://hg.ssjzw.com" target="_blank"> 黄冈兼职网 </a> <a href="http://huanggang.hunlimama.com" target="_blank"> 黄冈婚纱摄影 </a> <a href="http://huanggang.zufang.com/" target="_blank"> 黄冈租房网 </a> <a href="http://www.jinlinshengda.com/" target="_blank"> 北京办公家具 </a> </div>
+              <div class="ftclt_content "> <a href="http://sz.to8to.com/" target="_blank"> 深圳装修 </a> <a href="http://bj.to8to.com/" target="_blank"> 北京装修 </a> <a href="http://sh.to8to.com/" target="_blank"> 上海装修 </a> <a href="http://gz.to8to.com/" target="_blank"> 广州装修 </a> <a href="http://cd.to8to.com/" target="_blank"> 成都装修 </a> <a href="http://hz.to8to.com/" target="_blank"> 杭州装修 </a> <a href="http://sy.to8to.com/" target="_blank"> 沈阳装修 </a> <a href="http://cq.to8to.com/" target="_blank"> 重庆装修 </a> <a href="http://tj.to8to.com/" target="_blank"> 天津装修 </a> <a href="http://wh.to8to.com/" target="_blank"> 武汉装修 </a> </div>
+              <div class="ftclt_content "> <a href="http://cq.to8to.com" target="_blank" title="重庆装修网"> 重庆装修 </a> <a href="http://xa.to8to.com" target="_blank" title="西安装修网"> 西安装修 </a> <a href="http://wh.to8to.com" target="_blank" title="武汉装修网"> 武汉装修 </a> <a href="http://cd.to8to.com" target="_blank" title="成都装修网"> 成都装修 </a> <a href="http://km.to8to.com" target="_blank" title="昆明装修网"> 昆明装修 </a> <a href="http://hf.to8to.com" target="_blank" title="合肥装修网"> 合肥装修 </a> <a href="http://lanzhou.to8to.com" target="_blank" title="兰州装修网"> 兰州装修 </a> <a href="http://ty.to8to.com" target="_blank" title="太原装修网"> 太原装修 </a> <a href="http://gy.to8to.com" target="_blank" title="贵阳装修网"> 贵阳装修 </a> <a href="http://cs.to8to.com" target="_blank" title="长沙装修网"> 长沙装修 </a> <a href="http://hhht.to8to.com" target="_blank" title="呼和浩特装修网"> 呼和浩特装修 </a> <a href="http://wlmq.to8to.com" target="_blank" title="乌鲁木齐装修网"> 乌鲁木齐装修 </a> <a href="http://zz.to8to.com" target="_blank" title="郑州装修网"> 郑州装修 </a> <a href="http://yinchuan.to8to.com" target="_blank" title="银川装修网"> 银川装修 </a> <a href="http://baotou.to8to.com" target="_blank" title="包头装修网"> 包头装修 </a> <a href="http://ny.to8to.com" target="_blank" title="南阳装修网"> 南阳装修 </a> <a href="http://ly.to8to.com" target="_blank" title="洛阳装修网"> 洛阳装修 </a> <a href="http://jz.to8to.com" target="_blank" title="焦作装修网"> 焦作装修 </a> <a href="http://luzhou.to8to.com" target="_blank" title="泸州装修网"> 泸州装修 </a> <a href="http://zigong.to8to.com" target="_blank" title="自贡装修网"> 自贡装修 </a> <a href="http://deyang.to8to.com" target="_blank" title="德阳装修网"> 德阳装修 </a> <a href="http://mianyang.to8to.com" target="_blank" title="绵阳装修网"> 绵阳装修 </a> <a href="http://yulin.to8to.com" target="_blank" title="榆林装修网"> 榆林装修 </a> <a href="http://yichang.to8to.com" target="_blank" title="宜昌装修网"> 宜昌装修 </a> <a href="http://xianyang.to8to.com" target="_blank" title="咸阳装修网"> 咸阳装修 </a> <a href="http://kaili.to8to.com" target="_blank" title="凯里装修网"> 凯里装修 </a> <a href="http://zhuzhou.to8to.com" target="_blank" title="株洲装修网"> 株洲装修 </a> <a href="http://kaifeng.to8to.com" target="_blank" title="开封装修网"> 开封装修 </a> <a href="http://xinyang.to8to.com" target="_blank" title="信阳装修网"> 信阳装修 </a> <a href="http://zunyi.to8to.com" target="_blank" title="遵义装修网"> 遵义装修 </a> <a href="http://shiyan.to8to.com" target="_blank" title="十堰装修网"> 十堰装修 </a> <a href="http://xiangyang.to8to.com" target="_blank" title="襄阳装修网"> 襄阳装修 </a> <a href="http://xiangtan.to8to.com" target="_blank" title="湘潭装修网"> 湘潭装修 </a> <a href="http://yueyang.to8to.com" target="_blank" title="岳阳装修网"> 岳阳装修 </a> <a href="http://hengyang.to8to.com" target="_blank" title="衡阳装修网"> 衡阳装修 </a> <a href="http://chuzhou.to8to.com" target="_blank" title="滁州装修网"> 滁州装修 </a> <a href="http://xinxiang.to8to.com" target="_blank" title="新乡装修网"> 新乡装修 </a> <a href="http://huainan.to8to.com" target="_blank" title="淮南装修网"> 淮南装修 </a> <a href="http://liupanshui.to8to.com" target="_blank" title="六盘水装修网"> 六盘水装修 </a> <a href="http://hanzhong.to8to.com" target="_blank" title="汉中装修网"> 汉中装修 </a> <a href="http://yongzhou.to8to.com" target="_blank" title="永州装修网"> 永州装修 </a> <a href="http://qujing.to8to.com" target="_blank" title="曲靖装修网"> 曲靖装修 </a> <a href="http://fuyang.to8to.com" target="_blank" title="阜阳装修网"> 阜阳装修 </a> <a href="http://liuan.to8to.com" target="_blank" title="六安装修网"> 六安装修 </a> <a href="http://bengbu.to8to.com" target="_blank" title="蚌埠装修网"> 蚌埠装修 </a> <a href="http://changde.to8to.com" target="_blank" title="常德装修网"> 常德装修 </a> <a href="http://jingmen.to8to.com" target="_blank" title="荆门装修网"> 荆门装修 </a> <a href="http://xining.to8to.com" target="_blank" title="西宁装修网"> 西宁装修 </a> <a href="http://meishan.to8to.com" target="_blank" title="眉山装修网"> 眉山装修 </a> <a href="http://ziyang.to8to.com" target="_blank" title="资阳装修网"> 资阳装修 </a> <a href="http://huangshi.to8to.com" target="_blank" title="黄石装修网"> 黄石装修 </a> <a href="http://baoji.to8to.com" target="_blank" title="宝鸡装修网"> 宝鸡装修 </a> <a href="http://tongren.to8to.com" target="_blank" title="铜仁装修网"> 铜仁装修 </a> <a href="http://guangan.to8to.com" target="_blank" title="广安装修网"> 广安装修 </a> <a href="http://puer.to8to.com" target="_blank" title="普洱装修网"> 普洱装修 </a> <a href="http://baoshan.to8to.com" target="_blank" title="保山装修网"> 保山装修 </a> <a href="http://xiaogan.to8to.com" target="_blank" title="孝感装修网"> 孝感装修 </a> <a href="http://datong.to8to.com" target="_blank" title="大同装修网"> 大同装修 </a> <a href="http://yiyang.to8to.com" target="_blank" title="益阳装修网"> 益阳装修 </a> <a href="http://chenzhou.to8to.com" target="_blank" title="郴州装修网"> 郴州装修 </a> <a href="http://huaihua.to8to.com" target="_blank" title="怀化装修网"> 怀化装修 </a> <a href="http://loudi.to8to.com" target="_blank" title="娄底装修网"> 娄底装修 </a> <a href="http://zhaoyang.to8to.com" target="_blank" title="邵阳装修网"> 邵阳装修 </a> <a href="http://zhangjiajie.to8to.com" target="_blank" title="张家界装修网"> 张家界装修 </a> <a href="http://xianning.to8to.com" target="_blank" title="咸宁装修网"> 咸宁装修 </a> <a href="http://sanmenxia.to8to.com" target="_blank" title="三门峡装修网"> 三门峡装修 </a> <a href="http://huanggang.to8to.com" target="_blank" title="黄冈装修网"> 黄冈装修 </a> <a href="http://zhoukou.to8to.com" target="_blank" title="周口装修网"> 周口装修 </a> <a href="http://shangqiu.to8to.com" target="_blank" title="商丘装修网"> 商丘装修 </a> <a href="http://nanchong.to8to.com" target="_blank" title="南充装修网"> 南充装修 </a> <a href="http://pds.to8to.com" target="_blank" title="平顶山装修网"> 平顶山装修 </a> <a href="http://chifeng.to8to.com" target="_blank" title="赤峰装修网"> 赤峰装修 </a> <a href="http://yibin.to8to.com" target="_blank" title="宜宾装修网"> 宜宾装修 </a> <a href="http://linfen.to8to.com" target="_blank" title="临汾装修网"> 临汾装修 </a> <a href="http://jinzhong.to8to.com" target="_blank" title="晋中装修网"> 晋中装修 </a> <a href="http://suining.to8to.com" target="_blank" title="遂宁装修网"> 遂宁装修 </a> <a href="http://puyang.to8to.com" target="_blank" title="濮阳装修网"> 濮阳装修 </a> <a href="http://maanshan.to8to.com" target="_blank" title="马鞍山装修网"> 马鞍山装修 </a> <a href="http://guangyuan.to8to.com" target="_blank" title="广元装修网"> 广元装修 </a> <a href="http://xuchang.to8to.com" target="_blank" title="许昌装修网"> 许昌装修 </a> <a href="http://bozhou.to8to.com" target="_blank" title="亳州装修网"> 亳州装修 </a> <a href="http://yuncheng.to8to.com" target="_blank" title="运城装修网"> 运城装修 </a> <a href="http://zhumadian.to8to.com" target="_blank" title="驻马店装修网"> 驻马店装修 </a> <a href="http://jingzhou.to8to.com" target="_blank" title="荆州装修网"> 荆州装修 </a> <a href="http://yuxi.to8to.com" target="_blank" title="玉溪装修网"> 玉溪装修 </a> <a href="http://leshan.to8to.com" target="_blank" title="乐山装修网"> 乐山装修 </a> <a href="http://changzhi.to8to.com" target="_blank" title="长治装修网"> 长治装修 </a> <a href="http://anshun.to8to.com" target="_blank" title="安顺装修网"> 安顺装修 </a> <a href="http://neijiang.to8to.com" target="_blank" title="内江装修网"> 内江装修 </a> <a href="http://tianshui.to8to.com" target="_blank" title="天水装修网"> 天水装修 </a> <a href="http://longnan.to8to.com" target="_blank" title="陇南装修网"> 陇南装修 </a> <a href="http://zhaotong.to8to.com" target="_blank" title="昭通装修网"> 昭通装修 </a> <a href="http://weinan.to8to.com" target="_blank" title="渭南装修网"> 渭南装修 </a> <a href="http://anyang.to8to.com" target="_blank" title="安阳装修网"> 安阳装修 </a> <a href="http://dazhou.to8to.com" target="_blank" title="达州装修网"> 达州装修 </a> <a href="http://ankang.to8to.com" target="_blank" title="安康装修网"> 安康装修 </a> <a href="http://ezhou.to8to.com" target="_blank" title="鄂州装修网"> 鄂州装修 </a> <a href="http://luohe.to8to.com" target="_blank" title="漯河装修网"> 漯河装修 </a> <a href="http://dali.to8to.com" target="_blank" title="大理装修网"> 大理装修 </a> <a href="http://hebi.to8to.com" target="_blank" title="鹤壁装修网"> 鹤壁装修 </a> <a href="http://chuxiong.to8to.com" target="_blank" title="楚雄装修网"> 楚雄装修 </a> <a href="http://hulunbeiershi.to8to.com" target="_blank" title="呼伦贝尔装修网"> 呼伦贝尔装修 </a> <a href="http://xishuangbanna.to8to.com" target="_blank" title="西双版纳装修网"> 西双版纳装修 </a> <a href="http://huaibei.to8to.com" target="_blank" title="淮北装修网"> 淮北装修 </a> </div>
+              <a rel="nofollow" href="http://wpa.qq.com/msgrd?V=1&amp;uin=895278840&amp;Site=-&amp;Menu=yes" target="_blank" class="join_link"> <span></span> 友链合作 </a> </div>
+            <div class="ftc_center">
+              <dl>
+                <dt>淘黄州找宝</dt>
+                <dd><img src="resx/100x100.jpg" border="0"></dd>
+              </dl>
+            </div>
+            <div class="ftc_right">
+              <dl>
+                <dt>淘黄州手机版</dt>
+                <dd><img src="resx/100x100wap.png" border="0"></dd>
+              </dl>
+            </div>
+          </div>
+        </div>-->
+    {file:file/footer}
+  </div>
+  <!--尾部结束--> 
+</div>
+</body>
+</html>

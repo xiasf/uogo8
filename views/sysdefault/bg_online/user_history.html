@@ -1,0 +1,33 @@
+<div class="headbar">
+	<div class="position"><span>网站</span><span>></span><span>浏览统计</span><span>></span><span>在线用户</span></div>
+</div>
+
+<div class="content">
+		<table class="list_table">
+			<col />
+			<tbody>
+				{set:$page= (isset($_GET['page'])&&(intval($_GET['page'])>0))?intval($_GET['page']):1;
+					$userKey = '\''.IFilter::act(IReq::get('userKey'),'text').'\'';
+				}
+				{query:name=browse where=userKey eq $userKey order=datetime desc page=$page pagesize=20}
+
+				{if:$item['userID']}
+					{query:name=user where=id eq $item[userID] id=$_u item=$u}
+					{set:$username = $u['username']}
+					{/query}
+				{/if}
+
+                {set:
+                $user = $item['userID']==0?"游客":"会员".$username}
+				<tr>
+					<td><a title="{$userKey}" href="{url://$item['userKey']}">{echo:$user}</a>(IP:{$item[userIP]})
+                    ({$item[ClientType]},{$item[ClientOS]},{$item[ClientBrowse]})于<b>{echo:ITime::tran(ITime::getTime($item['datetime']))}</b>进入本站，
+                    <b>{echo:ITime::tran(ITime::getTime($item['lastdate']))}</b>停留在
+                    <a href="{$item[userUrl]}" target="_blank">页面</a>，来源于<a href="{$item[userPreUrl]}/" target="_blank">源页面</a></td>
+				</tr>
+				{/query}
+			</tbody>
+		</table>
+</div>
+{$query->getPageBar()}
+

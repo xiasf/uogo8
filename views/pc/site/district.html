@@ -1,0 +1,317 @@
+{set:
+	$site_config=new Config('site_config');
+	$seo_data=array();
+	$seo_data['title']='商圈_'.$site_config->name;
+	$seo_data['keywords']=$site_config->index_seo_keywords;
+	$seo_data['description']=$site_config->index_seo_description;
+	seo::set($seo_data);
+} 
+	<script type='text/javascript' src='{theme:javascript/jquery.bxSlider/jquery.bxSlider.min.js}'></script>
+    <div class="wrapper_1180">
+  <ul>
+        <li><img src="{skin:images/district/district.jpg}"></li>
+      </ul>
+</div>
+{set:$sortIndex=0;}
+  {foreach:items=Api::run('getDistrictListTopIndex') item=$first}
+  {set:$sortIndex++;}
+  {set:$districtId=$first['id'];}
+<div class="floor wrapper_1180 clearfix" id="menu_item{$sortIndex}">
+  <div class="f-title">
+    <h3 class="name"><a href="{url:site/pro_list/?&dist=$first[id]}" target="_blank"><span>{$sortIndex}F</span>&nbsp;&nbsp;{$first[mainbuild]}</a> </h3>
+
+    <h3 class="more fr">恭喜{$first[name]}附近最新商家<a href="#">麦当劳</a>入驻淘黄州 </h3>
+  </div>
+  <div class="f-main clearfix">
+    <div class="f-side">
+      <div class="checkin-brand">
+        <div class="brand-img"> <a href="{url:site/pro_list/?&dist=$first[id]}"><img src="{url:$first[upload]}">
+          <div class="hover">
+            <h3>{$first[mainbuild]}</h3>
+            <p>{$first[description]}</p>
+          </div>
+          </a> 
+          <!--<a href="{url:site/pro_list/?&dist=$first[id]}" target="_blank" class="go-mod-link">进入{$first[mainbuild]}&gt;&gt;</a>--> </div>
+      </div>
+      <div class="fashion">
+        <div class="brands">
+          <div class="brand-item">
+     {set:$seller = new IModel('seller');$seller_id = $seller->query("district_id = $first[id]",'id');$num = count($seller_id);}
+    {set:$seller_list = array();}
+    {foreach:items=$seller_id item=$s}
+    {set:$seller_list[] = $s['id'];}
+    {/foreach}
+    {set:$a = implode(',', $seller_list);}
+    {set:$goods = new IModel('goods');$goods = $goods->getObj("seller_id in ($a)",'count(id) as num');$goods_num = $goods['num'];}
+            <dl>
+              <!--<dt>{$first[mainbuild]}商品在售 <a href="{url:site/seller/dist/$first[id]}">{$num}</a> 件</dt>-->
+              <dt>附近商家入驻 <a href="{url:site/seller/dist/$first[id]}">{$num}</a> 家</dt>
+              <dt>目前商品在售 <a href="{url:site/pro_list/?&dist=$first[id]}">{$goods_num}</a> 件 </dt>
+              <dd> <a href="{url:site/seller/dist/$first[id]}" target="_blank">附近店铺</a> <a href="{url:site/pro_list/?&dist=$first[id]}" target="_blank">附近商品</a> </dd>
+            </dl>
+            <!--  <ul>{foreach:items=Api::run('getDistrictBrandList',array('#district_id#',$districtId))}
+      {set:$tmpId=$item['id'];}
+      <li> <a href="{url:site/brand_zone/id/$tmpId}" target="_blank" class="logo-item">
+      <p class="logo-img"><img src="{url:$item[logo]}"  /> </p>
+      <p class="logo-name">{$item['name']}</p></a>
+      </li>
+      {/foreach}</ul> --> 
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="f-show-wrap clearfix">
+      <div class="show-body">
+        <div class="mod-f-top">
+          <div class="mod-center-box js-mod-slider"> 
+            <script type="text/javascript">jQuery(function(){bann_pic('mod-slider{$sortIndex}');});</script>
+            <div id="mod-slider{$sortIndex}" class="mod-slider">
+              <ul>
+                {foreach:items=Api::run('getadmanagegoodidDistrict',array('#district_id#',$districtId)) item=$second}
+                <li> <a href="{url:$second['link']}" class="overimg"> <img src="{url:$second['content']}" /> </a> </li>
+                {/foreach}
+              </ul>
+              <div class="btn"> {foreach:items=Api::run('getadmanagegoodidDistrict',array('#district_id#',$districtId)) item=$second} <span style="opacity: 0.4;">{$second[description]}</span> {/foreach} </div>
+            </div>
+          </div>
+          <div class="mod-right-box">
+            <h4>{$first[mainbuild]}推荐</h4>
+            <div class="mod-goods-list">
+              <ul>
+                {foreach:items=Api::run('getDistrictExtendListIndex',array('#district_id#',$first['id']),6)}
+                <li><a href="{url:/site/products/id/$item[id]}" target="_blank" class="logo-item">
+                  <p class="logo-img"> <img src="{url:/pic/thumb/img/$item[img]/w/110/h/70}" width="110" height="70" alt="{$item['name']}"></p>
+                  <p class="logo-name">{$item['name']}</p>
+                  <p class="logo-nums">￥{$item['sell_price']}</p>
+                  </a> </li>
+                {/foreach}
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="mod-f-bottom">
+          <div class="f-img-list">
+            <ul>
+              {foreach:items=Api::run('getadmanagegoodidDistrictH',array('#district_id#',$districtId)) item=$second}
+              <li> <a href="{url:$second['link']}"> <img src="{url:$second['content']}" /> </a></li>
+              {/foreach}
+            </ul>
+            <div class="clear"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--  <div class="mod-pro-list">
+    <ul>
+      <li class="mod-item"> <a title="[麦包包(M Plus)]甜蜜贝壳系列手提单肩斜挎包 粉红色" href="/tpl/mbb/site/products/id/10" class="pic" target="_blank"> <img src="/tpl/mbb/pic/thumb/img/upload@_@2015@_@06@_@15@_@20150615010219777.jpg/w/174/h/174" title="[麦包包(M Plus)]甜蜜贝壳系列手提单肩斜挎包 粉红色" width="174" height="174"> </a>
+        <div class="info"> <span class="title"><a href="/tpl/mbb/site/products/id/10" title="[麦包包(M Plus)]甜蜜贝壳系列手提单肩斜挎包 粉红色" target="_blank">[麦包包(M Plus)]甜蜜贝壳系列手提单肩斜挎包 粉红色</a></span> <span class="price">￥169.00 <s>￥358.00</s></span> </div>
+      </li>
+    </ul>
+  </div>--> 
+</div>
+{/foreach} 
+<!--左边直达楼层-->
+<div id="menu-lift-wrap">
+  <div id="menu-lift" class="animated fadeOutUp">
+    <ul>
+      {set:$sortIndex=0;}
+      {foreach:items=Api::run('getDistrictListTopIndex') item=$first}
+      {set:$sortIndex++;}
+      <li><a href="#menu_item{$sortIndex}"><em>{$sortIndex}F</em>{echo:substr($first['mainbuild'],0,15)}</a> </li>
+      {/foreach}
+    </ul>
+  </div>
+</div>
+<script type="text/javascript">
+
+
+
+function bann_roll(){
+	
+	var sWidth = $("#index_slide").height(); 
+	var len = $("#index_slide ol li").length;
+	var index = 0;
+	var picTimer;
+	
+	var btn = "<div class='btnBg'></div><div class='btn'>";
+	for(var i=0; i < len; i++) {
+		btn += "<span></span>";
+	}
+	btn += "</div><div class='btn_next'><div class='preNext pre'></div><div class='preNext next'></div></div>";
+	$("#index_slide").append(btn);
+	$("#index_slide .btnBg").css("opacity",0.5);
+	
+	$("#index_slide .btn span").css("opacity",0.4).mouseenter(function() {
+		index = $("#index_slide .btn span").index(this);
+		showPics(index);
+	}).eq(0).trigger("mouseenter");
+
+	$("#index_slide .preNext").css("opacity",0.4).hover(function() {
+		$(this).stop(true,false).animate({"opacity":"0.7"},300);
+	},function() {
+		$(this).stop(true,false).animate({"opacity":"0.4"},300);
+	});
+
+	$("#index_slide .pre").click(function() {
+		index -= 1;
+		if(index == -1) {index = len - 1;}
+		showPics(index);
+	});
+
+	$("#index_slide .next").click(function() {
+		index += 1;
+		if(index == len) {index = 0;}
+		showPics(index);
+	});
+	
+	$("#index_slide ol").css("height",sWidth * (len));
+	
+	$("#index_slide").hover(function() {
+		clearInterval(picTimer);
+	},function() {
+		picTimer = setInterval(function() {
+			showPics(index);
+			index++;
+			if(index == len) {index = 0;}
+		},4000);
+	}).trigger("mouseleave");
+	
+	function showPics(index) {
+		var nowLeft = -index*sWidth;
+		$("#index_slide ol").stop(true,false).animate({"top":nowLeft},300);
+		
+		$("#index_slide .btn span").stop(true,false).animate({"opacity":"0.4"},300).eq(index).stop(true,false).animate({"opacity":"1"},300); 
+	}
+	
+}
+
+//F2
+function bann_pic(sliderId){
+	
+	var sWidth = $("#"+sliderId).width(); 
+	var len = $("#"+sliderId+" ul li").length;
+	var index = 0;
+	var picTimer;
+	
+	$("#"+sliderId+" .btnBg").css("opacity",0.5);
+
+	$("#"+sliderId+" .btn span").css("opacity",0.4).mouseenter(function() {
+		index = $("#"+sliderId+" .btn span").index(this);
+		showPics(index);
+	}).eq(0).trigger("mouseenter");
+	
+	$("#"+sliderId+" .preNext").css("opacity",0.2).hover(function() {
+		$(this).stop(true,false).animate({"opacity":"0.5"},300);
+	},function() {
+		$(this).stop(true,false).animate({"opacity":"0.2"},300);
+	});
+
+	$("#"+sliderId+" .pre").click(function() {
+		index -= 1;
+		if(index == -1) {index = len - 1;}
+		showPics(index);
+	});
+	
+	$("#"+sliderId+" .next").click(function() {
+		index += 1;
+		if(index == len) {index = 0;}
+		showPics(index);
+	});
+	
+	$("#"+sliderId+" ul").css("width",sWidth * (len));
+	
+	$("#"+sliderId).hover(function() {
+		clearInterval(picTimer);
+	},function() {
+		picTimer = setInterval(function() {
+			showPics(index);
+			index++;
+			if(index == len) {index = 0;}
+		},3000);
+	}).trigger("mouseleave");
+	
+	function showPics(index) {
+		var nowLeft = -index*sWidth;
+		$("#"+sliderId+" ul").stop(true,false).animate({"left":nowLeft},300);
+		$("#"+sliderId+" .btn span").stop(true,false).animate({"opacity":"0.4"},300).eq(index).stop(true,false).animate({"opacity":"1"},300);
+	}
+
+}
+
+
+/*teb切换效果*/
+function cutover(id,etype){
+	var tabs = $("#"+id).find(".tabs");
+	var tabscon = $("#"+id).find(".tabscon");	
+	tabs.find("a").each(function(i,e){
+		if (etype=="1"){
+			$(e).hover(function(){
+				tabs.find("a").removeClass("on");
+				$(e).addClass("on");
+				tabscon.children("div").hide();
+				tabscon.children("div").eq(i).show();
+			});
+		}
+	});
+};
+
+//图片滚动
+$(document).ready(function(e) {
+	var $cur =1;
+    var $i =3;
+    var $len = $('.picbox>ul>li').length;
+    var $pages = Math.ceil($len / $i);
+    var $w = $('.roll_wrap').width();
+    var $photo_pic = $('.picbox');
+    var $prev = $('div.og_prev')
+    var $next = $('div.og_next');
+    $prev.click(function(){
+        if (!$photo_pic.is(':animated')){ 
+            if ($cur == 1){ 
+                $photo_pic.animate({
+                    left: '-=' + $w * ($pages - 1)
+                }, 500);
+                $cur = $pages; 
+            }else{ 
+                $photo_pic.animate({
+
+                    left: '+=' + $w
+                }, 500);
+                $cur--;
+            }
+        }
+    });
+    $next.click(function(){
+        if (!$photo_pic.is(':animated')) {
+            if ($cur == $pages) { 
+               	$photo_pic.animate({
+                    left:0
+                },500);
+                $cur = 1;
+            }else{
+                $photo_pic.animate({
+                    left: '-=' + $w
+                },500);
+                $cur++;
+            }
+        }
+    });	
+	
+	
+	
+	var $menuLift = $("#menu-lift");
+	$(window).scroll(function(){
+		if ($(window).scrollTop()>100){ 
+			if(!$menuLift.hasClass("fadeInDown")){
+				$menuLift.removeClass("fadeOutUp").addClass("fadeInDown"); 
+			}
+		} 
+		else{ 
+			if(!$menuLift.hasClass("fadeOutUp")){
+				$menuLift.removeClass("fadeInDown").addClass("fadeOutUp"); 
+			}
+		} 
+	});
+});
+</script>

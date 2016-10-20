@@ -1,0 +1,40 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>未使用消费券</h5>
+        </div>
+        <div class="ibox-content">
+          <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="8">
+            <thead>
+              <tr>
+                <th data-toggle="true">订单号</th>
+                <th>消费券</th>
+              </tr>
+            </thead>
+            <tbody>
+            
+            {set:$page= (isset($_GET['page'])&&(intval($_GET['page'])>0))?intval($_GET['page']):1;}
+            {set:$seller_id = $this->seller['seller_id'];}
+            {set:$shop_list = '('.join(',', $this->get_all_shop()).')'}
+            {set:$query = new IQuery("order as a,order_voucher as b");$query->page = "$page";$query->where = "a.seller_id in $shop_list and b.order_id = a.id and b.isused=0";$items = $query->find();}
+            {foreach:items=$items}
+            <tr>
+              <td><a href="{url:/seller/order_show/id/$item[order_no]}" title="订单详情">{$item['order_no']}</a></td>
+              <td>{$item['voucher']}</td>
+            </tr>
+            {/foreach}
+            </tbody>
+            
+            <tfoot>
+              <tr>
+                <td colspan="2">{$query->getPageBar()}</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

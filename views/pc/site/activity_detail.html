@@ -1,0 +1,165 @@
+{set:$first = $this->act_row;}
+{set:
+	$site_config=new Config('site_config');
+	$seo_data=array();
+	$seo_data['title']= $first['name'] . '_'.$site_config->name;
+	$seo_data['keywords']=$site_config->index_seo_keywords;
+	$seo_data['description']=$site_config->index_seo_description;
+	seo::set($seo_data);
+} 
+    <div class="wrapper_1180 zy_content">
+  <div class="hdsy_banner">
+        <div class="hdsy_flexslider">
+      <ul class="slides">
+            {foreach:items=Api::run('getadmanageid',array('#position_id#','21'),6) item=$second}
+            <li class="sy_hotgzLi flex-active-slide"><a href="{url:$second['link']}" title="购" target="_blank"><img width="1200" height="272" src="{url:/pic/thumb/img/$second[content]/w/1200/h/272}" draggable="false"></a></li>
+            {/foreach}
+          </ul>
+    </div>
+      </div>
+      <div class="hdsy_tab">
+        <ul>
+      <li class="hdsy_tabLi on"><a href="{url:site/activity/id/0}">最新活动</a></li>
+      {query:name=activity_cat order=sort asc,id desc}
+      <li class="hdsy_tabLi"><a href="{url:site/activity/id/$item[id]}">{$item[name]}</a></li>
+      {/query}
+    </ul>
+      </div>
+  <div class="spxq_xqgm">
+        <div class="left spxq_xqgm_l">
+      <h3> {$first['name']} </h3>
+      <div class="spxq_qg">
+            <div class="fl spxq_qg_l">
+          <div class="spxq_slider">
+                <ul class="slides">
+              <li class="sy_hotgzLi flex-active-slide"><img src="{url:$first['imglist']}" width="470" height="470" draggable="false"></li>
+            </ul>
+              </div>
+        </div>
+            <div class="fr spxq_qg_r hdxq_qg_r">
+          <div class="spxq_qgjgk">
+                <p class="spxq_xqjj hdxq_xqjj">{$first['smalldescribe']}</p>
+              </div>
+          <div class="spxq_qgjgk">
+                <p class="hdxq_p"><span class="detail_spxq_qg_tit">地址：</span>{$first[address]}</p>
+              </div>
+          <div class="spxq_qgjgk">
+                <p class="hdxq_p"><span class="detail_spxq_qg_tit">商家：</span>{query:name=seller where=id eq $first[seller_id] item=$seller}<a target="_blank" href="{url:site/home/id/$seller[id]}">{$seller[true_name]}</a>{/query}</p>
+              </div>
+          <div class="spxq_qgjgk"> <span class="detail_spxq_qg_tit">有效期</span>截止至 {echo:date('Y-m-d',strtotime($first[end_time]))}{set:$free_time = ITime::getDiffSec($first['end_time'])}
+                <span class="radius3 spxq_qgTime"><span class="spxq_qgTimezt spxq_qgTimejx">&nbsp;</span><span id="cd_hour_{$first['id']}">{echo:floor($free_time/3600);}</span>时<span id="cd_minute_{$first['id']}">{echo:floor(($free_time%3600)/60);}</span>分<span id="cd_second_{$first['id']}">{echo:$free_time%60;}</span>秒</span> </div>
+          <div class="spxq_qgjgk">
+                <div class="fl hdsy_Licj_l"><em class="radius100"></em>{$first['tel']}</div>
+              </div>
+          <div class="hdsy_Licj hdxq_Licj">
+                <div class="hdsy_Licj_r"><a class="hdsy_LicjA" href="javascript:$('.mask_box').show();"><em class="hdxq_LicjAem"></em>开始报名</a>
+                <span class="hdsy_LiP">&nbsp;&nbsp;<span class="hdsy_Libms">{query:name=activity_signup where=activity_id eq $first[id] fields=count(*) as amount}{$item['amount']}{/query}</span>人已报名</span></div>
+              </div>
+        </div>
+          </div>
+    </div>
+        <!--<div class="fr spxq_xqgm_r">
+      <div class="spxq_qgwx"><img width="120" height="120" src="/attachs/2015/12/29/56826257e3d9a.jpg">
+            <p>扫描商家微信</p>
+            <p>轻松购享优惠</p>
+          </div>
+      <div class="share bdsharebuttonbox spxq_qgFx bdshare-button-style0-16" data-tag="share_1" data-bd-bind="1454056548014"><a mini="act" class="spxq_qgFxA" href="/shop/favorites/shop_id/49.html"><em>&nbsp;</em>收藏本店</a></div>
+    </div>-->
+      </div>
+<!--  <div class="hdxq_tgList">
+        <div class="fl hdxq_tgList_l">
+      <div class="hdxq_tjj">
+            <div class="hdsy_LiT">[4店通用] 亲子家园 </div>
+            <p class="hdsy_LiP">仅售49.8元，价值510元产后熏蒸护理套餐！美丽辣妈，焦点之选！</p>
+          </div>
+      <div class="hdxq_ljct">3601人已抢购<a href="#" class="hdxq_ctAn" target="_blank">立即抢购</a></div>
+      <div class="hdxq_LiTime"> 有效期：至2019-05-27
+            <span class="radius3 spxq_qgTime" id="tuan"> <span class="spxq_qgTimezt spxq_qgTimejx">&nbsp;</span><span id="t_h">07</span>时 <span id="t_m">23</span>分 <span id="t_s">52</span>秒 </span> </div>
+    </div>
+        <div class="fr hdxq_tgList_r"><img width="639" height="293" src="#"></div>
+      </div>-->
+  <div class="hdxq_xqnr" style="border:1px solid #dbdbdb;">
+        <div class="hdxq_xqnrT">活动详情</div>
+       <div>{$first['describe']}</div>
+      </div>
+</div>
+<div class="mask_box dhPop_mask" style="display:none;">
+    <div class="dhPop" style="height: 300px; margintop: 16%;">
+        <h2><a style="    float: right;  margin-right: 11px;  cursor: pointer;" class="bao_closed">X</a>活动报名</h2>
+        <form name="hd_form" method="post" id="huodong_form">
+          <input type="hidden" name="id" class="dhInput" value="{$first['id']}">
+            <table cellpadding="0" cellspacing="0" width="100%">
+                <tbody><tr>
+                    <td align="right">联系人：</td>
+                    <td><input type="text" name="name" class="dhInput" value=""></td>
+                </tr>
+                <tr>
+                    <td align="right">手机号：</td>
+                    <td><input type="text" class="dhInput" name="mobile" value=""></td>
+                </tr>
+                <tr>
+                    <td align="right">人数：</td>
+                    <td>
+                        <select name="num" class="dhSelect">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right"></td>
+                    <td><input style="cursor: pointer; marginbottom: 20px;" class="subBtn" type="button" value="确认报名"></td>
+                </tr>
+            </tbody></table>
+        </form>
+    </div>
+</div>
+<script>
+$(function(){
+	var cd_timer = new countdown();
+	cd_timer.add({$first['id']});
+
+  $('.bao_closed').click(function(){
+    $('.mask_box').hide();
+  });
+
+  $('.subBtn').click(function(){
+    if (!$('input[name="name"]').val()) {
+      alert('联系人必填！');
+      return;
+    }
+
+    if (!$('input[name="mobile"]').val()) {
+      alert('手机号码必填！');
+      return;
+    }
+
+    $.ajax({
+      type: "POST",
+      dataType: "json",
+      url: '{url:/activity/activity_signup}',
+      data: $('#huodong_form').serialize(),
+      success: function (result) {
+          if (result.isError == false) {
+            alert(result.data);
+            $('.mask_box').hide();
+          } else {
+            alert(result.data);
+          }
+      },
+      error: function(result) {
+          alert("error:"+result.responseText);
+       }
+
+  });
+}); 
+});
+</script>

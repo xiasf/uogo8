@@ -1,0 +1,47 @@
+// 默认字体
+$font_family: '微软雅黑';
+//焦点图的高度
+$focus_img_top:30px;
+$focus_img_width:1000px;
+$focus_img_height:400px;
+//焦点图下方图标
+$focus_bottom_icon_mar:30px;
+$focus_bottom_icon_num:4;
+
+/*产品列表上方标题*/
+// &：下边距
+$topic_title_mar:30px;
+// &：高度
+$topic_title_hei:36px;
+
+/*热门话题*/
+// &：宽度
+$top_list_wid:1020px;
+// &:四幅图片的宽度
+$topic_item_wid:490px;
+// &：高度
+$topic_item_hei:320px;
+// &：边距
+$topic_item_mar:0 20px 20px 0;
+// &：阴影
+$topic_item_shadow:-1px 1px 2px #ccc;
+// &:efore高度
+$topic_efore_hei:100%;
+// &:efore宽度
+$topic_efore_wid:100px;
+// &:efore上定位
+$topic_efore_top:0;
+// &:efore左定位
+$topic_efore_left:-260px;
+
+/*品牌列表*/
+//&：下划线
+$shop_sort_tit_bor:1px #1a1a1a solid;
+//&：标题宽度
+$shop_sort_h2_wid:260px;
+//&：标题高度
+$shop_sort_h2_hei:40px;
+//&：标题字体大小
+$shop_sort_font_size:30px;
+//&：标题下划线
+$shop_sort_h2_bor:3px solid #000;

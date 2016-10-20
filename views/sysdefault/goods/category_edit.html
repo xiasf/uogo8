@@ -1,0 +1,99 @@
+{js:kindeditor}
+<div class="headbar">
+	<div class="position"><span>商品</span><span>></span><span>商品分类管理</span><span>></span><span>编辑分类</span></div>
+</div>
+<div class="content_box">
+	<div class="content form_content">
+		<form action="{url:/goods/category_save}" method="post">
+			<input name="id" value="" type="hidden" />
+			<table class="form_table" cellpadding="0" cellspacing="0">
+				<colgroup>
+					<col width="150px" />
+					<col />
+				</colgroup>
+
+				<tr>
+					<th>分类名称：</th>
+					<td>
+						<input class="normal" name="name" type="text" value="" pattern="required" alt="分类名称不能为空" /><label>* 必选项</label>
+					</td>
+				</tr>
+
+				<tr>
+					<th>分类频道</th>
+					<td>
+						<select name='channel_id'>
+							<option value="0">无频道</option>
+						{query:name=channel order=sort desc item=$channel}
+			                <option value="{$channel['id']}">{$channel['name']}</option>
+			            {/query}
+						</select>
+						<label>* 此分类的所属的频道ID</label>
+					</td>
+				</tr>
+
+
+				<tr>
+					<th>上级分类：</th>
+					<td>
+						<!--分类数据显示-->
+						<span id="__categoryBox" style="margin-bottom:8px"></span>
+						<script id="categoryButtonTemplate" type="text/html">
+						<ctrlArea>
+						<input type="hidden" value="<%=templateData['id']%>" name="parent_id" />
+						<button class="btn" type="button" onclick="return confirm('确定删除此分类？') ? $(this).parent().remove() : '';">
+							<span class="del"><%=templateData['name']%></span>
+						</button>
+						</ctrlArea>
+						</script>
+						<button class="btn" type="button" onclick="selectGoodsCategory('{url:/block/goods_category/type/radio}','parent_id')"><span class="add">设置分类</span></button>
+						<label>如果不选择上级分类，默认为顶级分类</label>
+					</td>
+				</tr>
+				<tr>
+					<th>首页是否显示：</th>
+					<td>
+						<label class='attr'><input name="indexvisibility" type="radio" value="1" checked="checked" /> 是 </label>
+						<label class='attr'><input name="indexvisibility" type="radio" value="0" /> 否 </label>
+					</td>
+				</tr>
+				<tr>
+					<th>全站是否显示：</th>
+					<td>
+						<label class='attr'><input name="visibility" type="radio" value="1" checked="checked" /> 是 </label>
+						<label class='attr'><input name="visibility" type="radio" value="0" /> 否 </label>
+					</td>
+				</tr>
+				<tr>
+					<th>排序：</th><td><input class="normal" name="sort" pattern='int' empty alt='排序必须是一个数字' type="text" value=""/></td>
+				</tr>
+				<tr>
+					<th>SEO标题：</th><td><input class="normal" name="title" type="text" value="" /></td>
+				</tr>
+				<tr>
+					<th>SEO关键词：</th><td><input class="normal" name="keywords" type="text" value="" /></td>
+				</tr>
+				<tr>
+					<th>SEO描述：</th><td><textarea name="descript" cols="" rows=""></textarea></td>
+				</tr>
+				<tr>
+					<td></td><td><button class="submit" type="submit"><span>确 定</span></button></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</div>
+
+<script type="text/javascript">
+$(function()
+{
+	var formObj = new Form();
+	formObj.init({echo:JSON::encode($this->categoryRow)});
+})
+//商品分类回填
+{if:isset($this->categoryRow['parent_id'])}
+{set:$categoryId = $this->categoryRow['parent_id']}
+{query:name=category items=$categoryData where=id in ($categoryId)}{/query}
+createGoodsCategory({echo:JSON::encode($categoryData)});
+{/if}
+</script>

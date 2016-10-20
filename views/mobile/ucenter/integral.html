@@ -1,0 +1,48 @@
+<style type="text/css">
+table{border-collapse: separate;border-spacing: 0;background-color: #f6f6f6;border-left: 1px solid #e9e9e9;border-top: 1px solid #e9e9e9;width: 100%;clear: both;margin-bottom: 27px;}
+thead{}
+th{height: 48px;line-height: 48px;vertical-align: middle;border-bottom: 1px solid #e9e9e9;border-right: 1px solid #e9e9e9;font-weight: bold; text-align:right;color: #555;background-color: #f6f6f6; }
+tr{line-height: 18px;}
+td{border-right: 1px solid #e9e9e9;border-bottom: 1px solid #e9e9e9;text-align: left; color: #666;padding-top: 9px;padding-bottom: 9px;line-height: 18px;vertical-align: middle;background-color: #fdfdfd;}
+tr:hover > td{background-color: #fff;}
+</style>
+
+<div class="pageContentWrapper">
+    <div class="user_menu_box">
+        <dl>
+        <dt><a href="{url:/ucenter/integral}" class="bvc6">我的积分</a></dt>
+        </dl>
+        <br>
+    </div>
+
+    <div class="final_sum">
+    您当前的积分：<b class="brown">{$this->memberRow['point']}</b>分<br/><br/><br/>
+    </div>
+    
+    <div class="cont">
+    <table class="list_table" width="100%" cellpadding="0" cellspacing="0">
+        <col width="80px" />
+        <col />
+        <thead><tr><th><div align="center">积分</div></th><th><div align="center">说明</div></th></tr></thead>
+        <tbody>
+            {set:$user_id = $this->user['user_id']}
+            {set:$page= (isset($_GET['page'])&&(intval($_GET['page'])>0))?intval($_GET['page']):1;}
+            {query: name=point_log where=user_id eq $user_id and $this->c_datetime id=$point_log page=$page}
+            <tr>
+                <td><div align="center">{$item['value']}分</div></td><td><span class="blue" style="padding:10px; display:block;">{$item['datetime']} {$item['intro']}</span></td>
+            </tr>
+            {/query}
+            <tr><td colspan='3'>{$point_log->getPageBar()}</td></tr>
+        </tbody>
+    </table>
+    </div>
+        
+	</div>
+</div>
+
+<script type="text/javascript">
+var FromObj = new Form('point_history');
+FromObj.init({
+	'history_time':'{$this->historyTime}'
+});
+</script>

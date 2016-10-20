@@ -1,0 +1,106 @@
+{js:my97date}
+<div class="headbar">
+	<div class="position"><span>招标</span><span>></span><span>楼盘管理</span><span>></span><span>{if:isset($this->zb_homeRow['id'])}编辑{else:}添加{/if}楼盘</span></div>
+</div>
+<div class="content_box">
+	<div class="content form_content">
+		<form action='{url:/bg_zhaobiao/zb_home_edit_act}' method='post' name='cat' enctype="multipart/form-data">
+			<input type='hidden' name='id' value='' />
+			<table class="form_table">
+				<col width="150px" />
+				<col />
+				<tr>
+					<th>名称：</th>
+					<td>
+						<input type='text' class='middle' name='name' value='' pattern='required' alt='名称不能为空' />
+						<label>*名称（必填）</label>
+					</td>
+				</tr>
+								<tr><th>项目图：</th><td><input type="file" name="img" class="middle w-300"><br /><br />
+{if:isset($this->zb_homeRow['img']) && $this->zb_homeRow['img']}
+              <p><a target="_blank" href="{webroot:}{$this->zb_homeRow['img']}"><img src='{webroot:}{$this->zb_homeRow['img']}' style='width:100px;height: 100100pxpx;border:1px solid #ccc' /></a></p>
+              {/if}
+
+				</td></tr>
+				<tr>
+					<th>手机号码：</th>
+					<td>
+						<input type='text' class='middle' name='mobile' value='' pattern='required' alt='手机号码不能为空' />
+						<label>*手机号码（必填）</label>
+					</td>
+				</tr>
+				<tr>
+					<th>地址：</th>
+					<td>
+						<input type='text' class='middle' name='area' value='' pattern='required' alt='面积不能为空' />
+						<label>*地址（必填）</label>
+					</td>
+				</tr>
+								<tr>
+					<th>占地面积：</th>
+					<td>
+						<input type='text' class='middle' name='zdmj' value='' pattern='required' alt='不能为空' />
+					</td>
+				</tr>
+												<tr>
+					<th>建筑面积：</th>
+					<td>
+						<input type='text' class='middle' name='jzmj' value='' pattern='required' alt='不能为空' />
+					</td>
+				</tr>
+																<tr>
+					<th>绿化率：</th>
+					<td>
+						<input type='text' class='middle' name='lhl' value='' pattern='required' alt='不能为空' />
+					</td>
+				</tr>
+																				<tr>
+					<th>容积率：</th>
+					<td>
+						<input type='text' class='middle' name='rjl' value='' pattern='required' alt='不能为空' />
+					</td>
+				</tr>
+																								<tr>
+					<th>开发商：</th>
+					<td>
+						<input type='text' class='middle' name='kfs' value='' pattern='required' alt='不能为空' />
+					</td>
+				</tr>
+																												<tr>
+					<th>物业公司：</th>
+					<td>
+						<input type='text' class='middle' name='wygs' value='' pattern='required' alt='不能为空' />
+					</td>
+				</tr>
+																																<tr>
+					<th>建筑类别：</th>
+					<td>
+						<input type='text' class='middle' name='jz_type' value='' pattern='required' alt='不能为空' />
+					</td>
+				</tr>
+				<tr>
+					<th>交房时间：</th>
+					<td>
+						<input type='text' name='time' class='Wdate' pattern='date' onFocus="WdatePicker({dateFmt:'yyyy-MM-dd'})"  alt='交房时间不能为空' />
+						<label>*交房时间（必填）</label>
+					</td>
+				</tr>
+				<tr>
+					<th>均价：</th>
+					<td>
+						<input type='text' class='middle' name='price' value='' pattern='required' alt='均价不能为空' />
+						<label>*均价（必填）</label>
+					</td>
+				</tr>
+				<tr>
+					<th></th><td><button class='submit' type='submit'><span>确 定</span></button></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</div>
+
+<script type='text/javascript'>
+	var FromObj = new Form('cat');
+	FromObj.init({echo:JSON::encode($this->zb_homeRow)});
+</script>

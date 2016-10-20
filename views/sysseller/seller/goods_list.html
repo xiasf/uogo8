@@ -1,0 +1,316 @@
+{set:$seller_id = $this->seller['seller_id'];$searchArray = Util::getUrlParam('search')}
+{set:$searchParam = http_build_query($searchArray)}
+{set:$condition = Util::search(IReq::get('search'));$where = $condition ? " and ".$condition : "";$join = isset($searchArray['search']['ce.category_id=']) ? " left join category_extend as ce on ce.goods_id = go.id " : ""}
+<div class="wrapper wrapper-content animated bounceInRight">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>商品库</h5>
+        </div>
+        <div class="ibox-content">
+          <div class="row">
+            <div class="col-sm-3"><form action="{url:/seller/goods_list}" method="get" name="form">
+              <select class="form-control input-s-sm inline" name="search[shop.id=]" id="shop">
+                <option value="0" selected>请选择店铺</option>
+                
+                
+                
+                
+                                {query:name=seller where=seller_user_id eq $seller_id}
+                
+                
+                
+                <option value="{$item[id]}">{$item['shopname']} - {if:$item[is_vis]==1}店铺已关闭{/if}</option>
+                
+                
+                
+                {/query}
+                                
+              
+              
+              
+              </select></form>
+            </div>
+            <div class="col-sm-6 m-b-xs">
+              <div class="input-group m-b">
+                <div class="input-group-btn"> <a class="btn btn-primary" href="{url:/seller/goods_edit}"><i class="fa fa-plus"></i>&nbsp;添加商品</a>
+                  <button tabindex="-1" data-toggle="modal" class="btn btn-outline btn-success" onClick="getcatList(this);" data-target="#modal-cat"><i class="fa fa-ellipsis-h"></i>&nbsp;设置分类</button>
+                  <button tabindex="-2" class="btn btn-outline btn-success" type="button" onclick="goods_del();"><i class="fa fa-minus-circle"></i>&nbsp;删除</button>
+                  <button tabindex="-3" class="btn btn-outline btn-success" type="button" onclick="goods_status(2);"><i class="fa fa-eye-slash"></i>&nbsp;下架</button>
+                  <button tabindex="-4" class="btn btn-outline btn-success" type="button" onclick="goods_status(3);"><i class="fa fa-check"></i>&nbsp;提交审核</button>
+                  <button data-toggle="dropdown" class="btn btn-success dropdown-toggle" type="button" aria-expanded="true">更多&nbsp;&nbsp;<span class="caret"></span> </button>
+                  <ul class="dropdown-menu">
+                    <li><a data-toggle="modal" href="#modal-search">高级搜索</a></li>
+                    <li class="divider"></li>
+                    <li><a href="javascript:void();" onclick="window.open('{url:/seller/goods_report/?$searchParam}');">导出Excel</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="input-group">
+                <input type="text" placeholder="请输入关键词" class="form-control">
+                <span class="input-group-btn">
+                <button type="button" class="btn btn-primary"> 搜索</button>
+                </span> </div>
+            </div>
+          </div>
+          <form action="{url:/seller/goods_del}" method="post" name="goodsForm" class="form-horizontal">
+            <div class="project-list">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th width="10"><input type="checkbox" onClick="window.selectAll('id[]',this.checked)"></th>
+                    <th width="70">排序</th>
+                    <th colspan="2">商品名字</th>
+                    <th width="180">店铺</th>
+                    <th width="80">分类</th>
+                    <th width="200">类目</th>
+                  </tr>
+                </thead>
+                <tbody>
+                
+                {foreach:items = $this->goodsHandle->find()}
+                {if:$item['sort']>700}{set:$item['sort']-=700}{/if}
+                <tr>
+                  <td><input name="id[]" type="checkbox" value="{$item['id']}" /></td>
+                  <td>{echo:goods_class::statusText($item['is_del'])}<br>
+                    <input class="form-control" type="text" value="{$item['sort']}" onchange="changeSort({$item['id']},this.value);" /></td>
+                  <td width="100"><img src='{url:/pic/thumb/img/$item[img]/w/100/h/100}' /></td>
+                  <td class="project-title"><a href="{url:/site/products/id/$item[id]}" target="_blank" title="{$item['name']}">{$item['name']}</a><br>
+                    <small>售价：<b class="text-danger">{$item['sell_price']}</b>&nbsp;元，库存：{$item['store_nums']}</small> <br>
+                    <br>
+                    <a href="{url:/seller/goods_edit/id/$item[id]}" class="btn btn-white btn-xs"><i class="fa fa-edit"></i>&nbsp;修改</a>&nbsp;&nbsp; <a href="javascript:delModel({link:'{url:/seller/goods_del/id/$item[id]}'})"  class="btn btn-white btn-xs"><i class="fa fa-times-circle"></i>&nbsp;删除</a>&nbsp;&nbsp; <a href="{url:/site/products/id/$item[id]}" class="btn btn-white btn-xs" target="_blank"><i class="fa fa-eye"></i>&nbsp;查看</a></td>
+                  <td><img src="{webroot:$item[logo]}" class="img-circle circle-border" onerror="this.src='{theme:img/shopnologo.png}'" alt="shop logo" width="64" height="64"><br>
+                    <a href="{url:seller/goods_list}?search%5Bshop.id%3D%5D={$item[shop_id]}">{$item[shopname]}</a><br>
+                    {if:$item[is_vis]==1}<span class="badge badge-danger">店铺已关闭</span>{/if}</td>
+                  <td> {query:name=seller_category_extend as sce join=left join seller_category as sc on sc.id eq sce.category_id fields=sc.name where=goods_id eq $item[id] item=$catData2}
+                    {echo:$catData2['name']}
+                    {/query}
+                    {echo:$category['name']} </td>
+                  <td>{set:$catName = array()}
+                    {query:name=category_extend as ce join=left join category as cd on cd.id eq ce.category_id fields=cd.name where=goods_id eq $item[id] item=$catData}
+                    {set:$catName[] = $catData['name']}
+                    {/query}
+                    <div class="faq-item tag-list"><span class="tag-item">{echo:join('</span>&nbsp;&nbsp;<span class="tag-item">',$catName)} </span></div></td>
+                  {set:if($item['sort'] >= 700) $item['sort'] -= 700} </tr>
+                {/foreach}
+                  </tbody>
+                
+                <tfoot>
+                  <tr>
+                    <td colspan="9">{$this->goodsHandle->getPageBar()}</td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <header>
+		<h3 class="tabs_involved">商品列表</h3>
+		<ul class="tabs">
+			<li><input type="button" class="alt_btn" onclick="filterResult();" value="检索" /></li>
+			<li><input type="button" class="alt_btn" onclick="window.location.href='{url:/seller/goods_edit}';" value="添加商品" /></li>
+			<li><input type="button" class="alt_btn" onclick="importCsvPacket();" value="CSV导入" /></li>
+			<li><input type="button" class="alt_btn" onclick="goodsCollect();" value="商品采集" /></li>
+			<li><input type="button" class="alt_btn" onclick="selectAll('id[]');" value="全选" /></li>
+			<li><input type="button" class="alt_btn" onclick="goods_del();" value="删除" /></li>
+			<li><input type="button" class="alt_btn" onclick="goods_status(2);" value="下架" /></li>
+			<li><input type="button" class="alt_btn" onclick="goods_status(3);" value="提交审核" /></li>
+			<li><input type="button" class="alt_btn" onclick="window.open('{url:/seller/goods_report/?$searchParam}');" value="导出Excel" /></li>
+		</ul>
+	</header> 
+    
+    <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading"> 所属分类 </div>
+                <div class="panel-body">
+                    <div class="col-sm-10">
+                        <select name="_goods_seller_category" class="form-control m-b">
+                            <option value='0'>不属于任何分类</option>
+                            {set:$id = $this->data['id'];
+                            $query = new IQuery("seller_category");
+                            if($id)$query->where = "id != $id and seller_id = $seller_id";
+                            else $query->where = "seller_id = $seller_id";
+                            $query->order = "sort desc";
+                            $q = $query->find();
+                            $q = category::unlimitedForLevel($q);}
+                            {foreach:items=$q}
+                                <option value='{$item['id']}'>{$item['html']}{$item['name']}</option>
+                            {/foreach}
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    -->
+<div id="modal-cat2" class="modal fade" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-12">
+            <h3 class="m-t-none m-b">设置商品分类</h3>
+            <p>请选择分类然后保存即可(⊙o⊙)</p>
+              <div class="form-group">
+                <label>店铺分类列表：</label>
+                 <select id="goods_seller_category" class="form-control m-b">
+                  <option value='0'>不属于任何分类</option>
+                  </select>
+              </div>
+              <div>
+                <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="button" onClick="send();"><strong>保存</strong> </button>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="modal-search" class="modal fade" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-12">
+            <h3 class="m-t-none m-b">高级搜索</h3>
+            <form action="{url:/seller/goods_list}" method="get" role="form">
+              <div class="form-group">
+                <label>商品名称：</label>
+                  <input name="search[like]" value="go.name" type="hidden" class="form-control" />
+                  <input name="search[likeValue]" value="" type="text" class="form-control" />
+              </div>
+                <fieldset>
+                  <label>商品名称</label>
+                  <input name="search[like]" value="go.name" type="hidden" />
+                  <input name="search[likeValue]" value="" type="text" />
+                </fieldset>
+                <fieldset>
+                  <label>商品货号</label>
+                  <input name="search[go.goods_no=]" value="" type="text" />
+                </fieldset>
+                <fieldset>
+                  <label>商品状态</label>
+                  <select name="search[go.is_del=]">
+                    <option value="">不限</option>
+                    <option value="0">上架</option>
+                    <option value="2">下架</option>
+                    <option value="3">待审</option>
+                  </select>
+                </fieldset>
+                <fieldset>
+                  <label>商品库存</label>
+                  <select name="search[go.store_nums]">
+                    <option value="">选择库存</option>
+                    <option value="<1">无货</option>
+                    <option value=">=1 and go.store_nums<10">低于10</option>
+                    <option value="<=100 and go.store_nums>=10">10-100</option>
+                    <option value=">=100">100以上</option>
+                  </select>
+                </fieldset>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+
+//删除
+function goods_del()
+{
+	var checkNum = $('input:checkbox[name="id[]"]:checked').length;
+	if(checkNum > 0)
+	{
+		$("form[name='goodsForm']").attr('action',"{url:/seller/goods_del}");
+		window.confirm('确定要删除所选中的商品吗？','formSubmit(\'goodsForm\')');
+	}
+	else
+	{
+		window.alert('请选择要删除的商品');
+		return false;
+	}
+}
+
+//商品状态修改
+function goods_status(is_del)
+{
+	var checkNum = $('input:checkbox[name="id[]"]:checked').length;
+	if(checkNum > 0)
+	{
+		var postUrl = "{url:/seller/goods_status/is_del/@is_del@}";
+		postUrl = postUrl.replace("@is_del@",is_del);
+		$("form[name='goodsForm']").attr('action',postUrl);
+		window.confirm('确定要修改所选中的商品吗？','formSubmit(\'goodsForm\')');
+	}
+	else
+	{
+		window.alert('请选择要修改的商品');
+		return false;
+	}
+}
+
+//修改排序
+function changeSort(gid,value)
+{
+	if(value<1){window.tips('排序值必须大于0的正整数');return;}
+	$.getJSON("{url:/seller/seller_modiy_sort_ajax}",{"id":gid,"sort":value});
+	window.tips("修改排序成功");
+}
+function getcatList(_t){
+	$(".modal").attr("id","no");
+	var shopid = $("#shop option:selected").val();
+	var checkNum = $('input:checkbox[name="id[]"]:checked').length;
+  if(shopid ==0){window.alert('请先选中店铺后可设置分类');return};
+	if(checkNum == 0){window.alert('请选择要修改的商品');return};
+	$(".modal").attr("id","modal-cat");
+	$("#goods_seller_category").empty(); 
+	$.getJSON('{url:seller/seller_cat_shop_getjson}',{id:shopid},function(data,status){
+		(data.length>0) && showallcat(data,'');
+	})
+
+}
+function send(){
+		var catid = $("#goods_seller_category option:selected").val(),post={};
+		post.goods = window.getArray("id[]","checkbox");
+		post.catid = catid;
+    post.shop_id = $("#shop option:selected").val();
+		$.post("{url:seller/goods_cat_update}",post,function(ret){
+			window.document.location.reload();
+		});
+		//console.log(window.JSON.stringify(post));
+	
+}
+function showallcat(menu_list, kg) {
+	for (var menu in menu_list) {
+		$('<option value="'+menu_list[menu].id+'">'+kg+'├&nbsp;'+menu_list[menu].name+'</option>').appendTo("#goods_seller_category");
+		if(menu_list[menu].children!=undefined){
+			showallcat(menu_list[menu].children,'&nbsp;&nbsp;'+kg);
+		}
+	}
+};
+
+$(document).ready(function(e) {
+    $("#shop").change(function(){
+		var shopid = $(this).val();
+		shopid>0 ? formSubmit("form"):(window.document.location.href='{url:seller/goods_list}');
+	});
+	
+	var searchData = {echo:JSON::encode($this->search)};
+	for(var index in searchData)
+	{
+		$('[name="search['+index+']"]').val(searchData[index]);
+	}
+
+});
+
+
+</script>

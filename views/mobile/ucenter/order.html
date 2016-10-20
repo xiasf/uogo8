@@ -1,0 +1,76 @@
+<style>
+	.button_s{
+		background: white;
+		padding: 10px;
+		border: 1px solid #e81a62;
+		border-radius: 15px;
+		margin-left: 25px;
+		line-height: 37px;
+	}
+	.clear_input{
+		padding: 0 9px;
+		
+	}
+</style>
+<section id="orderList" class="g_wrap"> {set:$user_id = $this->user['user_id'];$queryOrderList = Api::run('getOrderList',$user_id)}
+  {foreach:items = $queryOrderList->find()}
+  <div name="itemList" class="m_firm m_firm3">
+    <header>
+      <h4 class="f_fl"> {query:name=order_voucher where=order_id eq $item[id] limit=1 item=$voucher}
+        <dd>消费券：<em class="vou">{$voucher['voucher']}</em></dd>
+        {/query}</h4>
+      <span class="f_fr">{echo:Order_Class::orderStatusText(Order_Class::getOrderStatus($item))}</span> </header>
+    {query:name=order_goods as og join=left join goods as go on og.goods_id eq go.id where=order_id eq $item[id] field=og.*,go.point item=$good} 
+    <ul>
+      <li class="info f_clear list"> <a href="{url:/site/products/id/$good[id]}"> <img class="img f_fl " src="{webroot:$good[img]}"> </a>
+        <div class="cont f_fl">
+          <p><a href="{url:/site/products/id/$good[id]}">{$good['name']}</a></p>
+          <em> </em> </div>
+        <div class="cont2 f_fr"> <em>￥{$good['real_price']}</em>
+          <p>x{$good['goods_nums']}</p>
+        </div>
+      </li>
+    </ul>
+    {/query}
+    <p class="txt">共1件商品  合计：<span>{echo:$good['goods_nums']*$good['real_price']}</span>（含运费￥{$good['goods_weight']}）</p>
+    <div class="btn" style="min-height: 40px;">
+      <form action='{url:/ucenter/order_status}' method='post' onSubmit='return check()' name="orderForm">
+        <input type="hidden" name="order_id" value="{$item[id]}" />
+        {set:$orderStatus = Order_Class::getOrderStatus($item)}
+        {if:in_array($orderStatus,array(1,2))}
+        <a  href="{url:/block/doPay/order_id/$item[id]}" class="btn-1 button_s ">立即付款</a>
+        <input type="hidden" name='op' value='cancel' />
+        <input type="submit" class="button btn-1 button_s clear_input" value="取消订单";/>
+        {/if}
+        {if:in_array($orderStatus,array(4,11,3))}
+        <input type="hidden" name='op' value='confirm' />
+        <input type="submit" id="buttonn"  class="button btn-1 button_s clear_input" value="确认收货" />
+        <!--<a href="{url:/ucenter/freight/id/$this->order_info['freight']['freight_id']/code/$this->order_info['freight']['delivery_code']/order/$item['order_no']}" class="btn-1"/>快递跟踪</a>--> 
+        {/if}
+        
+        
+        {if:Order_Class::isRefundmentApply($this->order_info)}<!-- <a href="{url:/ucenter/refunds_edit/order_id/$this->order_info['order_id']}" class="btn-1"/>申请退款</a> -->{/if}
+        <a class="fk_cla button_s" href="{url:/ucenter/order_detail/id/$item[id]}">查看订单</a>
+      </form>
+       </div>
+  </div>
+  {/foreach}
+  <div>{$queryOrderList->getPageBar()}</div>
+</section>
+<link rel="stylesheet" href="../skin/mall/page_1.css">
+<link rel="stylesheet" href="../skin/user/css/pptm.css">
+<link rel="stylesheet" href="../skin/user/css/rem.css">
+<script>
+function check(){
+	layer.open({
+      content: '如果你没有收到货之前，确认收货会让你钱货两空<br />你确定需要这样做吗？',
+      btn: ['我已收到货', '我还没收到货'],
+      shadeClose: false,
+      yes: function(){
+         $('form[name=orderForm]').submit();
+         layer.closeAll();
+      }
+  });
+  return false;
+}
+</script>

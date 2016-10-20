@@ -1,0 +1,29 @@
+{set:$seller_id = $this->seller['seller_id']}
+<div class="wrapper wrapper-content">
+  <div class="row  animated bounceInDown">
+    <div class="alert alert-info">注意：添加商品需要先添加店铺。否则系统自动不予审核通过，
+    <a class="btn btn-warning btn-rounded" href="{url:seller/shop_edit}"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;添加店铺</a></div>
+  </div>
+  <div class="row animated bounceInLeft"> {query:name=seller where=seller_user_id eq $seller_id and is_del eq 0}
+    <div class="col-sm-6">
+      <div class="{echo:$item['is_lock']==0?'widget navy-bg ':'widget red-bg '} p-lg text-center "><!-- widget navy-bg-->
+        <div class="m-b-md">
+          <h2 class="font-bold no-margins"> {$item['shopname']} </h2>
+          <small>{echo:$item['is_lock']==0?'正常':'已锁定'}</small> </div>
+        <img src="{webroot:$item[logo]}" class="img-circle circle-border m-b-md" onerror="this.src='{theme:img/shopnologo.png}'" alt="shop logo" width="128" height="128">
+        <div> <span>0 商品</span>&nbsp;|&nbsp; <span>0 销量</span>&nbsp;|&nbsp; <span>0 关注者</span> </div>
+      </div>
+      {if:$item[is_vis]==1}<div class="pull-right"><span class="badge badge-danger">店铺已关闭</span></div>{/if}
+      <div class="widget-text-box">
+        <h4 class="media-heading"><i class="fa fa-tty"></i>&nbsp;&nbsp;{$item[mobile]}</h4>
+        <p><i class="fa fa-road"></i>&nbsp;&nbsp;{$item[addregion]}/{$item[address]}({$item[addressreference]})</p>
+        <!--yellow-bg--> 
+        <span class="text-left">
+        <a class="btn btn-sm btn-primary" href="{url:seller/shop_edit/id/$item[id]}"><i class="fa fa-heart"></i>&nbsp;&nbsp;编辑</a> &nbsp;&nbsp;
+        <a class="btn btn-sm btn-warning" href="{url:/site/home/id/$item[id]}" target="_blank"><i class="fa fa-desktop"></i></i>&nbsp;&nbsp;店铺首页</a> &nbsp;&nbsp;
+        <a class="btn btn-sm btn-success" href="{url:shopfitt/id/$item[id]}" target="_blank"><i class="fa fa-gavel"></i>&nbsp;&nbsp;装修</a> &nbsp;&nbsp;
+        <a class="btn btn-sm btn-danger" href="{url:seller/delivery/shop_id/$item[id]}"><i class="fa fa-truck"></i>&nbsp;&nbsp;物流配送</a> 
+        </span> </div>
+    </div>
+    {/query} </div>
+</div>

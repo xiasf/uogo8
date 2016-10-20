@@ -1,0 +1,38 @@
+<link rel="stylesheet" href="../skin/designer_works/css/common.min.css">
+<link rel="stylesheet" href="../skin/designer/css/companyDesignerInfo.min.css">
+<article style="    background-color: #fff;
+    padding-bottom: 10px;">
+    <header class="cpy-dsner-hd">
+        <figure class="cpy-dsner-wrap">
+            <img width="100" height="100" src="{webroot:$this->designer['logo']}" alt="{$this->designer['logo']}">
+        </figure>
+        <h2 class="cpy-dsner-name">{$this->designer['name']}<span>主案设计师</span></h2>
+    </header>
+    <section class="cpy-dsner-bd">
+        <h3 class="dsg-idea-hd">设计理念</h3>
+        <p class="dsg-idea-bd">{$this->designer['smalldescribe']}</p>
+
+        <h3 class="dsger-info-hd">个人介绍</h3>
+        <p class="dsger-info-bd">{$this->designer['design']}</p>
+
+        <ul class="dsger-productions">
+            {foreach:items=$this->designer_works}
+                                <li>
+                        <a href="{url:v_deco/designer_works/id/$item['id']}">
+                            <figure>
+                                <img src="{webroot:$item['logo']}">
+                                <figcaption>
+                                    <h4>{$item['name']}</h4>
+                                    <ul>
+                                        <li>{$item['style']}</li>
+                                          <li>{$item['area_size']}平米</li>
+                                          <li>{$item['price']}</li> 
+                                          <li>{$item['building']}</li>
+                                    </ul>
+                                </figcaption>
+                            </figure>
+                    </a></li>
+                    {/foreach}
+                </ul><a href="/sh/zs//case-display-c330243.html">
+    </a></section><a href="/sh/zs//case-display-c330243.html">
+</a></article>

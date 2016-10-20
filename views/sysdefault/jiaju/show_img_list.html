@@ -1,0 +1,91 @@
+<div class="headbar">
+	<div class="position"><span>家居建材</span><span>></span><span>装修效果图</span><span>></span><span>装修效果图列表</span></div>
+	<div class="operating">
+		<a href="javascript:void(0)" onclick="event_link('{url:/jiaju/show_img_edit}');"><button class="operating_btn" type="button"><span class="addition">添加图集</span></button></a>
+		<a href="javascript:void(0)" onclick="selectAll('id[]');"><button class="operating_btn" type="button"><span class="sel_all">全选</span></button></a>
+		<a href="javascript:void(0)" onclick="delModel();"><button class="operating_btn" type="button"><span class="delete">批量删除</span></button></a>
+	</div>
+	<div class="field">
+		<table class="list_table">
+			<col width="30px" />
+			<col width="300px" />
+			<col width="80px" />
+			<col width="120px" />
+			<col width="220px" />
+			<col width="80px" />
+			<col width="80px" />
+			<col width="80px" />
+			<col width="80px" />
+			<col width="80px" />
+			<col />
+			<thead>
+				<tr>
+					<th>选择</th>
+					<th>名称</th>
+					<th>图片数量</th>
+					<th>分类</th>
+					<th>装修公司名称</th>
+					<th>空间</th>
+					<th>局部</th>
+					<th>风格</th>
+					<th>颜色</th>
+					<th class="center">开启状态</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
+<div class="content">
+	<form name='jiaju_show_img' method='post' action='{url:/jiaju/show_img_del}'>
+		<table class="list_table">
+			<col width="30px" />
+			<col width="300px" />
+			<col width="80px" />
+			<col width="120px" />
+			<col width="220px" />
+			<col width="80px" />
+			<col width="80px" />
+			<col width="80px" />
+			<col width="80px" />
+			<col width="80px" />
+			<col />
+			<tbody>
+				{set:$space_type = array('其它', '客厅', '卧室', '餐厅', '厨房', '卫生间', '阳台', '书房', '玄关', '儿童房', '衣帽间', '花园')}
+				{set:$local_type = array('其它', '背景墙', '吊顶', '隔断', '窗帘', '飘窗', '榻榻米', '橱柜', '博古架', '阁楼', '隐形门', '吧台', '酒柜', '鞋柜', '衣柜', '窗户', '相片墙', '楼梯')}
+				{set:$style_type = array('其它', '简约', '现代', '中式', '欧式', '美式', '田园', '新古典', '混搭', '地中海', '东南亚', '日式', '宜家', '北欧', '简欧')}
+				{set:$color_type = array('其它', '白色', '米色', '黄色', '橙色', '红色', '粉色', '绿色', '蓝色', '紫色', '黑色', '咖啡色', '灰色', '彩色')}
+				<!-- {$page = IReq::get('page') ? IFilter::act(IReq::get('page'),'int') : 1;} -->
+				{set:$page= (isset($_GET['page'])&&(intval($_GET['page'])>0))?intval($_GET['page']):1;}
+				{query:name=jiaju_show_img order=sort asc, id desc id=$show_img page=$page}
+				<tr>
+					<td><input type='checkbox' name='id[]' value='{$item['id']}' /></td>
+					<td class="center">{$item['name']}</td>
+					<td class="center">{echo:count(explode(',', $item['img_list']))}</td>
+					<td class="center">
+					{query:name=jiaju_show_img_cat where=id eq $item[cat_id] item=$cat id=$id}
+						{$cat['name']}
+					{/query}
+					</td>
+					<td class="center">
+					{query:name=jiaju_company where=id eq $item[company] item=$company id=$a}
+					{$company['name']}
+					{/query}
+					</td>
+					<td class="center">{$space_type[$item['space_type']]}</td>
+					<td class="center">{$local_type[$item['local_type']]}</td>
+					<td class="center">{$style_type[$item['style_type']]}</td>
+					<td class="center">{$color_type[$item['color_type']]}</td>
+					<td class="center">{echo:$item['status']==1 ? '是':'否'}</td>
+					<td>
+						<a href='{url:/jiaju/show_img_edit/id/$item[id]}'><img class="operator" src="{skin:images/admin/icon_edit.gif}" alt="编辑" title="编辑" /></a>
+						<a href='javascript:void(0)' onclick="delModel({link:'{url:/jiaju/show_img_del/id/$item[id]}'});"><img class="operator" src="{skin:images/admin/icon_del.gif}" alt="删除" title="删除" /></a>
+					</td>
+				</tr>
+				{/query}
+			</tbody>
+		</table>
+		<!-- <div class="pagebar">{$show_img->getPageBar()}</div> -->
+	</form>
+</div>
+{$show_img->getPageBar()}

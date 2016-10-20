@@ -1,0 +1,115 @@
+<div class="headbar">
+	<div class="position"><span>商圈</span><span>></span><span>商圈管理</span><span>></span><span>商圈列表</span></div>
+
+	<div class="operating">
+
+		<a href="javascript:void(0);"><button class="operating_btn" type="button" onclick="window.location='{url:/district/district_edit}'"><span class="addition">添加商圈</span></button></a>
+		
+	</div>
+	<div class="field">
+		<table class="list_table">
+			<colgroup>
+				<col width="40px" />
+				<col width="220px" />
+				<col width="220px" />
+				<col width="80px" />
+				<col width="80px" />
+				<col width="55px" />
+				<col />
+			</colgroup>
+
+			<thead>
+				<tr>
+					<th class="center">ID</th>
+					<th>商圈名称</th>
+					<th>代表性建筑</th>
+					<th>商家数量</th>
+					<th>排序</th>
+					<th>可见性</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
+
+	<div class="content">
+		<table id="list_table" class="list_table">
+			<colgroup>
+				<col width="40px" />
+				<col width="220px" />
+				<col width="220px" />
+				<col width="80px" />
+				<col width="80px" />
+				<col width="55px" />
+				<col />
+			</colgroup>
+
+			<tbody>
+				{set:$page= (isset($_GET['page'])&&(intval($_GET['page'])>0))?intval($_GET['page']):1;}
+				{query: name=district where=$where order=sort asc page=$page pagesize=90}
+				<tr>
+					<td class="center">{$item['id']}</td>
+					<td title="{$item['name']}">{$item['name']}</td>
+					<td title="{$item['mainbuild']}"><img src="{webroot:$item['upload']}" width="40" height="40">&nbsp;{$item['mainbuild']}</td>
+					{set:$num = new IModel('seller');$num = $num->getObj("district_id = $item[id]",'count(id) as num');$num = $num['num']}
+					<td class="center">{$num}</td>
+					<td><input type="number" value="{$item['sort']}" class="tiny" onchange="changeSort({$item['id']},this);" /></td>
+					<td class="center">{if:$item['ishide']=='1'}可见{else:}已隐藏{/if}</td>
+					<td>
+						<a href="{url:/district/district_edit/id/$item[id]}"><img class="operator" src="{skin:images/admin/icon_edit.gif}" alt="修改" /></a>
+						<a href="javascript:void(0)" onclick="del_district({$item[id]})"><img id="operator_{$item[id]}" class="operator" src="{skin:images/admin/icon_del.gif}" alt="删除" /></a>
+					</td>
+				</tr>
+				{/query}
+			</tbody>
+		</table>
+	</div>
+	{$query->getPageBar()}
+
+<script>
+//修改排序
+function changeSort(gid,obj)
+{	
+var selectedValue = obj.value;
+$.getJSON(
+     "/district/ajax_sort",
+	 {"id":gid,"sort":selectedValue},
+     function(content) {
+		 if(content.result == 'succeed'){} else {alert("排序失败")}
+	}
+	)
+}
+
+//删除商圈
+function del_district(id)
+{
+	art.dialog(
+			{	icon:'question',
+				title:"提示",
+				content:'确定要删除？',
+				okVal:"确定",
+				cancelVal:"取消",
+			    ok:function()
+			    {
+			    	$.getJSON("/district/del",{"id":id},function(content) {
+			    		if(content.result == 'succeed')
+			    		{
+			    			art.dialog({
+								icon: 'succeed',
+							    content: '删除成功',
+							});
+			    		} else {
+							art.dialog({
+								icon: 'error',
+							    content: '删除失败',
+							});
+			    		}
+			    	});
+			    },
+			    cancel:function(){}
+			}
+	);
+}
+
+</script>

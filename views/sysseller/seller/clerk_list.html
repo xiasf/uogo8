@@ -1,0 +1,112 @@
+<div class="wrapper wrapper-content animated bounceInRight">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>店员列表</h5>
+        </div>
+        <div class="ibox-content">
+          <div class="row m-b-sm m-t-sm">
+            <!-- <div class="col-md-1"> <a class="btn btn-primary btn-sm" href="{url:/seller/regiment_edit}"><i class="fa fa-plus"></i>&nbsp;添加团购</a> </div> -->
+            <div class="col-md-11">
+              <div class="input-group">
+                <input type="text" placeholder="请输入名称" class="input-sm form-control">
+                <span class="input-group-btn">
+                <button type="button" class="btn btn-sm btn-primary"> 搜索</button>
+                </span> </div>
+            </div>
+          </div>
+<form action="{url:/seller/category_del}" method="post" name="ship_list">
+		<table class="table table-hover">
+			<colgroup>
+				<col width="40px" />
+				<col width="40px" />
+				<col width="40px" />
+				<col width="40px" />
+				<col width="40px" />
+				<col width="40px" />
+			</colgroup>
+
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>姓名</th>
+					<th>职位</th>
+					<th>是否客服</th>
+					<th>排序</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				{set:$page= (isset($_GET['page'])&&(intval($_GET['page'])>0))?intval($_GET['page']):1;}
+				{set:$seller_id = $this->seller['seller_id'];}
+				{set:$query = new IQuery("seller_clerk");$query->page = "$page";$query->where = "seller_id = $seller_id";$items = $query->find();}
+				{foreach:items=$items}
+				<tr>
+					<td>{$item['id']}</td>
+					<td>{$item['name']}</td>
+					<td>{$item['position']}</td>
+					<td>{echo:$item['is_ok'] ? '是' : '否'}</td>
+					<td><input class="tiny" type="number" value="{$item['sort']}" onchange="changeSort({$item['id']},this);" /></td>
+
+					<td><a href="{url:/seller/clerk_edit/id/$item[id]}" class="btn btn-white btn-sm"><i class="fa fa-edit"></i>&nbsp;编辑</a>&nbsp;&nbsp; <a href="javascript:void();" onClick="clerk_ajax_del({$item[id]})"  class="btn btn-white btn-sm"><i class="fa fa-times-circle"></i>&nbsp;删除</a></td>
+
+				</tr>
+				{/foreach}
+			</tbody>
+			            <tfoot>
+              <tr>
+                <td colspan="7">{$query->getPageBar()}</td>
+              </tr>
+            </tfoot>
+		</table>
+	</form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+
+function clerk_ajax_del(id) {
+	var t = art.dialog({
+				icon: 'question',
+				lock: true,
+				title: '提示',
+			    content: '确定要删除吗？',
+			    id: 'EF893L',
+			    ok: function () {
+			    	var a = this;
+			    	this.content('正在删除……');
+			    	$.getJSON("/seller/clerk_ajax_del",  {"id":id},
+					    function(content, a) {
+							 if(content.result == 'succeed'){
+							 	// a.content("删除成功！");
+							 	window.location.reload();
+							 } else {
+							 	// a.content("删除失败！")
+							 	alert('删除失败！');
+							 }
+						});
+			    	return false;
+			    },
+			    cancel: true
+			});
+}
+
+	//修改排序
+function changeSort(gid,obj)
+{	
+var selectedValue = obj.value;
+$.getJSON(
+     "/seller/clerk_ajax_sort",
+	 {"id":gid,"sort":selectedValue},
+     function(content) {
+		 if(content.result == 'succeed'){} else {alert("排序失败")}
+	}
+	)
+}
+</script>

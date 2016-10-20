@@ -1,0 +1,88 @@
+<div class="headbar">
+	<div class="position"><span>任务</span><span>></span><span>任务管理</span><span>></span><span>任务列表</span></div>
+	<div class="operating">
+		<a href="javascript:;"><button class="operating_btn" type="button" onclick="window.location='{url:/bg_task/task_edit}'"><span class="addition">添加任务</span></button></a>
+	</div>
+	<div class="field">
+		<table class="list_table">
+			<col width="50px" />
+			<col width="200px" />
+			<col width="300px" />
+			<col width="100px" />
+			<col width="100px" />
+			<col width="100px" />
+			<col width="100px" />
+			<col width="200px" />
+			<col />
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>任务模型</th>
+					<th>名称</th>
+					<th>参与人数</th>
+					<th>奖励</th>
+					<th>排序</th>
+					<th>状态</th>
+					<th>操作</th>
+					<th>描述</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
+<style>
+	.task_model {    background-color: #B9B9B9;
+    color: #fff;
+    padding: 2px;
+    text-shadow: none;}
+</style>
+<div class="content">
+	<table id="list_table" class="list_table">
+		<col width="50px" />
+		<col width="200px" />
+		<col width="300px" />
+		<col width="100px" />
+		<col width="100px" />
+		<col width="100px" />
+		<col width="100px" />
+		<col width="200px" />
+		<col />
+		<tbody>
+
+			{query: name=task order=is_lock asc, sort asc, id desc}
+			<tr>
+				<td>{$item['id']}</td>
+				<td>
+					{query:name=task_model where=id eq $item[model_id] item=$model}
+					<img src='{url:/pic/thumb/img/$model[logo]/w/100/h/100}' class='ico' />&nbsp;&nbsp;<span class="task_model">{$model['title']}</span>
+					{/query}
+				</td>
+				<td class="orange"><img style="width: 50px;border: 0;" src='{url:/pic/thumb/img/$item[logo]/w/100/h/100}' class='ico' />&nbsp;&nbsp;<b>{$item['title']}</b></td>
+				<td>{$item['participants_counts']}</td>
+				<td>{$item['rewards']}积分</td>
+				<td>
+					<input type="number" value="{$item['sort']}" class="tiny" onchange="changeSort({$item['id']},this);" />
+				</td>
+				<td>{if:$item['is_lock']==0}<span class="orange">启用</span>{else:}不启用{/if}</td>
+				<td><a href="{url:/bg_task/task_edit/id/$item[id]}"><img class="operator" src="{skin:images/admin/icon_edit.gif}" alt="修改" /></a><a href="javascript:void(0)" onclick="delModel({link:'{url:/bg_task/task_del/id/$item[id]}'})"><img class="operator" src="{skin:images/admin/icon_del.gif}" alt="删除" /></a></td>
+				<td class="orange">{$item['describe']}</td>
+			</tr>
+			{/query}
+		</tbody>
+	</table>
+</div>
+
+<script>
+//修改排序
+function changeSort(gid,obj)
+{
+	var selectedValue = obj.value;
+	$.getJSON(
+	     "/bg_task/ajax_task_sort",
+		 {"id":gid,"sort":selectedValue},
+	     function(content) {
+			 if(content.result == 'succeed'){} else {alert("排序失败")}
+		}
+	)
+}
+</script>

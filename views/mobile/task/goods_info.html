@@ -1,0 +1,147 @@
+{set:
+
+$user_info = Api::run('getMemberInfo', $this->user['user_id']);
+
+}
+
+
+<style type="text/css" media="screen">
+.u_tit{
+	background:white;
+}
+.fix_bottn{
+        display: block;
+    line-height: 50px;
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    font-size: 20px;
+    position: fixed;
+    bottom: 0;
+    z-index: 999;
+    background: red;
+    color: white;
+    left: 0;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#F99649), color-stop(100%,#ff6600));
+}
+.tit_img{
+    width:100%;
+}
+.goods_box{
+    position:relative;
+}
+.goods_box p{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.goods_title{
+    position:absolute;
+    width: 100%;
+    bottom:0;
+    background:rgba(0, 0, 0, .6);
+    line-height:35px;
+    text-align:center;
+    color:white;
+    font-size: 18px;
+    padding: 0 15px;
+}
+.goods_price{
+        display: block;
+    line-height: 48px;
+    height: 30px;
+    text-align: center;
+    padding-bottom: 48px;
+    font-size: 20px;
+    color: #888;
+    background-color: #FFF0F0;
+}
+.goods_price i{
+    color:#f74342;
+}
+.goods_info{
+        text-indent: 2em;
+    padding: 25px 15px 15px;
+    line-height: 21px;
+
+}
+span.goods_right {
+    text-align:center;
+ display:block;
+ line-height:35px;
+ font-size:18px;
+ background-color:rgb(255, 255, 255);
+ padding:5px;
+ border:1px solid #ECECEC;
+ margin:0 10px;
+ margin-top:16px;
+}
+span.goods_right i{
+    color: #f74342;
+}
+span.goods_state {
+    position: absolute;
+    bottom: 20%;
+    right: 10%;
+    display: block;
+    width: 80px;
+    height: 80px;
+    background: rgba(66, 66, 66, 0.69);
+    line-height: 64px;
+    text-align: center;
+    color: white;
+    border-radius: 50%;
+    border: 6px solid rgba(255, 255, 255, 0.62);
+    transform: rotate(25deg);
+    font-size: 20px;
+}
+.fix_bottn.no{
+    background: #828282;
+}
+</style>
+<div class="u_tit">
+<div class="goods_box">
+    <img src="{url:/pic/thumb/img/$goods_info[img]/w/303/h/303}" alt="" class="tit_img">
+    <p class="goods_title">{$goods_info['name']}</p>
+    {if:$goods_info['inventory']==0}<span class="goods_state">已抢完</span>{/if}
+</div>
+<span class="goods_right">已有<i>{$goods_info['sales']}</i>人兑换，剩余<i>{$goods_info['inventory']}</i>件</span>
+{if:$goods_info['limit_num']!=0}<span class="goods_right" style="color:red">每个用户限制兑换{$goods_info['limit_num']} 次</span>{else:}{/if}
+    <p class="goods_info">{$goods_info['describe']}</p>
+    <span class="goods_price">所需<i>{$goods_info['integral']}</i>积分，目前有<i>{$user_info['point']}</i>积分</span>
+    {if:$goods_info['inventory']==0}
+    <div class="fix_bottn no">已抢完</div>
+    {else:}
+    <div class="fix_bottn">点击兑换</div>
+    {/if}
+</div>
+<script type="text/javascript">
+// URL：{url:task/exchangeGoods} Method：post
+    $(function() {
+        var fix_bottn=$('.fix_bottn').not('.no');
+        if (fix_bottn)
+        fix_bottn.click(function(){
+            layer.open({
+                type: 0,
+                content: '你确定兑换么？需要扣除'+{$goods_info['integral']}+'积分',
+                btn: ['确定', '取消'],
+                yes: function(){
+                    $.post('{url:task/exchangeGoods}',{id:{$goods_info['id']}},function(result){
+                       if(typeof result.errCode != "undefined"){
+                            alert(result.errMsg);
+                        } else {
+                            layer.open({
+                                type: 0,
+                                time: 1,
+                                content: result.info,
+                                end: function(){
+                                    location.href="{url:task/order_list}";
+                                }
+                            });
+                        }
+                    },'json');
+                },
+            });
+        });
+    });
+</script>

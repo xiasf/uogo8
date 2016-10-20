@@ -1,0 +1,234 @@
+{set:$seller_id = $this->seller['seller_id']}
+<link href="../css/plugins/iCheck/custom.css" rel="stylesheet">
+<div class="wrapper wrapper-content animated bounceInRight">
+
+	<div class="row">
+
+	    <div class="col-sm-12">
+			<div class="ibox float-e-margins">
+			    <div class="ibox-title">
+			    	<h5>编辑促销活动</h5>
+			    </div>
+
+			    <div class="ibox-content">
+
+			    	<form name="ModelForm" action="{url:/seller/pro_rule_edit_act}" method="post" class="form-horizontal">
+			    		<input type="hidden" name="id" />
+
+			    		<div class="form-group">
+							<label class="col-sm-1 control-label">选择店铺</label>
+							<div class="col-sm-2">
+								<select class="form-control input-s-sm inline" name="shop_id" required id="shop_id">
+				                <option value="0" selected>请选择店铺</option>
+				                {query:name=seller where=seller_user_id eq $seller_id}
+				                <option value="{$item[id]}">{$item['shopname']}{if:$item[is_vis]==1}店铺已关闭{/if}</option>
+				                {/query}
+				              </select>
+							</div>
+							<span class="help-block m-b-none"><i class="fa fa-info-circle"></i>&nbsp;请选择店铺</span>
+						</div>
+						<div class="hr-line-dashed"></div>
+
+
+			    		<div class="form-group">
+							<label class="col-sm-1 control-label">活动名称</label>
+							<div class="col-sm-2">
+								<input name="name" class="normal form-control" type="text" required value="{$ship['ship_name']}" alt="发货点名称" />
+							</div>
+							<span class="help-block m-b-none"><i class="fa fa-info-circle"></i>&nbsp;活动名称</span>
+						</div>
+
+						<div class="hr-line-dashed"></div>
+						<div class="form-group">
+			              <label class="col-sm-1 control-label">活动时间</label>
+			              <div class="col-sm-6">
+			                <input type='text' placeholder="请填写开始日期" class="form-control layer-date" id="start" name='start_time' required>
+			                <input type='text' placeholder="请填写结束日期" class="form-control layer-date" id="end" name='end_time' required>
+			              </div>
+			                <span class="help-block m-b-none"><i class="fa fa-info-circle"></i>&nbsp;此活动的时间段</span>
+			            </div>
+						<div class="hr-line-dashed"></div>
+
+						<div class="form-group">
+							<label class="col-sm-1 control-label">活动规则</label>
+							<div class="col-sm-2">
+								<select class='auto normal form-control' name='award_type' required alt='请选择一种规则' onchange="change_rule(this.value);">
+									<option value=''>请选择</option>
+									<option value='1'>当购物车金额满 M 元时,优惠 N 元</option>
+									<option value='2'>当购物车金额满 M 元时,优惠 N% </option>
+									<option value='6'>当购物车金额满 M 元时,免运费</option>
+								</select>
+							</div>
+							<span class="help-block m-b-none"><i class="fa fa-info-circle"></i>&nbsp;选择一种活动规则</span>
+						</div>
+						<div class="box" id='rule_box' style='margin-top:10px'></div>
+						<div class="hr-line-dashed"></div>
+
+
+						<div class="form-group">
+							<label class="col-sm-1 control-label">购物车总金额条件</label>
+							<div class="col-sm-2">
+								<div class="input-group m-b"><span class="input-group-addon">¥</span>
+                                    <input type="text" class="form-control" name="condition"> <span class="input-group-addon">元</span>
+                                </div>
+							</div>
+							<span class="help-block m-b-none"><i class="fa fa-info-circle"></i>&nbsp;当购物车总金额达到所填写的现金额度时规则生效</span>
+						</div>
+						<div class="hr-line-dashed"></div>
+
+
+						<div class="form-group">
+							<label class="col-sm-1 control-label">活动介绍</label>
+							<div class="col-sm-2">
+								<!-- <input name="intro" class="normal form-control" type="text" required value="" alt="活动介绍" /> -->
+								<textarea name="intro" class="form-control" required></textarea>
+							</div>
+							<span class="help-block m-b-none"><i class="fa fa-info-circle"></i>&nbsp;活动介绍</span>
+						</div>
+						<div class="hr-line-dashed"></div>
+
+
+						<div class="form-group">
+							<label class="col-sm-1 control-label">允许参与人群</label>
+							<div class="col-sm-2">
+								<label class="control-label span4"><input type='checkbox' class="i-checks" name='group_all' value='all' onclick='select_all();' />全部</label>&nbsp;&nbsp;&nbsp;
+								{query:name=user_group}
+									<label class='attr'><input type='checkbox' class="i-checks" {if:in_array($item['id'],explode(',',$this->promotionRow['user_group']))}checked=checked{/if} name='user_group[]' value='{$item['id']}' />{$item['group_name']}</label>
+								{/query}
+							</div>
+							<span class="help-block m-b-none"><i class="fa fa-info-circle"></i>&nbsp;此活动允许参加的用户组</span>
+						</div>
+						<div class="hr-line-dashed"></div>
+
+
+
+						<div class="form-group">
+							<label class="col-sm-1 control-label">是否开启</label>
+							<div class="col-sm-2">
+								<label class="control-label span4"><input type="radio" class="i-checks" name="is_close" value="1" />是</label>&nbsp;&nbsp;&nbsp;
+								<label class="control-label"><input type="radio" class="i-checks" name="is_close" value="0" />否</label>
+							</div>
+							<span class="help-block m-b-none"><i class="fa fa-info-circle"></i>&nbsp;是否开启</span>
+						</div>
+						<div class="hr-line-dashed"></div>
+
+
+						<div class="form-actions">
+							<button type="submit" class="btn btn-primary">确 定</button>&nbsp;&nbsp;
+							<button type="reset" class="btn">重 置</button>
+						</div>
+
+			    	</form>
+
+			    </div>
+
+			</div>
+	    </div>
+
+	</div>
+
+</div>
+
+<script src="../js/plugins/iCheck/icheck.min.js"></script>
+<script src="js/plugins/validate/jquery.validate.min.js"></script> 
+<script src="js/plugins/validate/messages_zh.min.js"></script> 
+<script src="js/plugins/layer/laydate/laydate.js"></script> 
+<script src="js/packet/form.js"></script> 
+<script>
+    $(document).ready(function(){
+    	var start={elem:"#start",format:"YYYY-MM-DD hh:mm:ss",min:laydate.now(),max:"2099-06-16 23:59:59",istime:true,istoday:false,choose:function(datas){end.min=datas;end.start=datas}};
+		var end={elem:"#end",format:"YYYY-MM-DD hh:mm:ss",min:laydate.now(),max:"2099-06-16 23:59:59",istime:true,istoday:false,choose:function(datas){start.max=datas}};
+		laydate(start);laydate(end);
+		//表单验证
+		validator("#ModelForm");
+    	$(".i-checks").iCheck({checkboxClass:"icheckbox_square-green",radioClass:"iradio_square-green",})
+    });
+
+	//修改规则
+	function change_rule(selectVal)
+	{
+		//判断是否为真正的onchange事件
+		if(selectVal != $('#rule_box').data('index'))
+		{
+			$('#rule_box').data('index',selectVal);
+		}
+		else
+		{
+			return;
+		}
+
+		var html = '';
+		switch(selectVal)
+		{
+			case "1":
+			{
+				html = "<div class='form-group'><label class='col-sm-1 control-label'>优惠金额</label>"
+						+'<div class="col-sm-2">
+								<div class="input-group m-b"><span class="input-group-addon">¥</span>
+                                    <input type="text" class="form-control" name="award_value"> <span class="input-group-addon">元</span>
+                                </div>
+							</div>'
+							+'<span class="help-block m-b-none"><i class="fa fa-info-circle"></i>&nbsp;优惠的金额，从购物车总金额中减掉此部分金额</span>';
+			}
+			break;
+
+			case "2":
+			{
+				html = "<div class='form-group'><label class='col-sm-1 control-label'>优惠百分比</label>"
+						+'<div class="col-sm-2">
+								<div class="input-group m-b">
+                                    <input type="text" class="form-control" name="award_value"> <span class="input-group-addon">%</span>
+                                </div>
+							</div>'
+							+'<span class="help-block m-b-none"><i class="fa fa-info-circle"></i>&nbsp;优惠的百分比，从购物车总金额中的折扣百分比，如输入9则表示打9折</span>';
+			}
+			break;
+		}
+		$('#rule_box').html(html);
+		formObj.setValue('award_value',"{$this->promotionRow['award_value']}");
+	}
+
+	//选择参与人群
+	function select_all()
+	{
+		var is_checked = $('[name="group_all"]').attr('checked');
+		if(is_checked ==  "checked")
+		{
+			var checkedVal  = true;
+			var disabledVal = true;
+		}
+		else
+		{
+			var checkedVal  = false;
+			var disabledVal = false;
+		}
+
+		$('input:checkbox[name="user_group[]"]').each(
+			function(i)
+			{
+				$(this).attr('checked',checkedVal);
+				$(this).attr('disabled',disabledVal);
+			}
+		);
+	}
+
+	//表单回填
+	var formObj = new Form('ModelForm');
+
+	formObj.init
+	({
+		'id':'{$this->promotionRow['id']}',
+		'name':'{$this->promotionRow['name']}',
+		'start_time':'{$this->promotionRow['start_time']}',
+		'end_time':'{$this->promotionRow['end_time']}',
+		'user_group[]':'{echo:str_replace(",",";",$this->promotionRow['user_group']);}',
+		'group_all':"{$this->promotionRow['user_group']}",
+		'is_close':'{$this->promotionRow['is_close']}',
+		'condition':'{$this->promotionRow['condition']}',
+		'intro':'{$this->promotionRow['intro']}',
+		'shop_id':'{$this->promotionRow['seller_id']}',
+		'award_type':'{$this->promotionRow['award_type']}'
+	});
+
+	change_rule("{$this->promotionRow['award_type']}");
+</script>

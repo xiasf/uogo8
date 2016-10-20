@@ -1,0 +1,130 @@
+<style>
+.m_activity .item { 
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+   margin-bottom: 10px;
+   }
+.m_activity .img { display: block; }
+.m_activity a { position: relative; }
+.m_activity a span { position: absolute; left: 0px; right: 0px; bottom: 0px; background-color: rgba(0,0,0,.3); line-height: 26px; color: #fff }
+.sngo { display: block; padding: 20px 0; text-align: center; border-top: dotted 1px #eee; background-color: #f9f9f9 }
+nav ul.main-enter li { width: 33%; }
+.head_img { line-height: 40px; width: 100%; font-size: 16px; padding-left: 10px; background: #fff; }
+.head_img i { line-height: 30px; width: 100%; font-size: 15px; color: rgb(235,6,139); margin: 0 10px; }
+/* ................... */
+.m_headlines { height: 40px; background: #fff; margin-bottom: 0.15rem; border-top: 1px solid #eee; border-bottom: 1px solid #eee; overflow: hidden; display: flex; -webkit-box-flex: flex; display: -webkit-flex; }
+.m_headlines h3 { text-align: center; width: 80px; line-height: 30px; margin-top: 0.3rem; color: #000; border-right: 1px solid #eee; font-weight: bold; font-size: 1rem; }
+.m_headlines h3 em { background: #e81a62; color: #fff; padding: 0.01rem 0.08rem; border-radius: 4px; margin: 0 0.05rem; font-weight: bold; }
+.m_headlines ul { width: 68%; }
+.m_headlines ul li { font-size: 14px; height: 40px; line-height: 40px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }
+.m_headlines ul li a { color: #666; }
+.m_headlines ul li span { color: #e81a62; }
+.list-img { width: 100%; display: block; }
+.list-img a { float: left; width: 33.333333%; border-right: 1px solid #eee; box-sizing: border-box; }
+.list-img a.cheke { float: left; width: 25%; border-right: 1px solid #eee; box-sizing: border-box;margin-bottom:10px;}
+.list-img a img { width: 100%; height: auto; margin: 2px 0 0; }
+.list-img a.cheke img { width: 100%; height: auto; padding: 6px 10px 0; border-left: 1px dotted #e7e7e7; border-top: 1px dotted #e7e7e7; }
+.title_new { line-height: 50px; background: white; text-align: center; margin: 5px 0 0; font-size: 19px; font-weight: bold; }
+</style>
+<!--导航菜单-->
+<nav>
+
+<ul class="main-enter  clearfix">
+  <!--     <li>
+		<a class="click-point" href="{url:v_deco/malls}">
+		<span class="icon-pptm-enter"></span>
+		<h2>家居商城</h2>
+		</a>
+    </li> -->
+  <li> <a class="click-point" href="#"> <span class="icon-pptm-enter"></span>
+    <h2>合作项目</h2>
+    </a> </li>
+  <li  class="cheke"> <a class="click-point" href="{url:task/task_list}"> <span class="icon-pptm-enter"></span>
+    <h2>任务大厅</h2>
+    </a> </li>
+  <li> <a class="click-point" href="{url:task/goods_list}"> <span class="icon-pptm-enter"></span>
+    <h2>积分商城</h2>
+    </a> </li>
+</ul>
+</nav>
+<div class="swiper-container swiper-container-horizontal" id="swiper-container">
+  <div class="swiper-wrapper"> {foreach:items=Api::run('getadmanageid',array('#position_id#',24),30) item=$second}
+    <figure class="swiper-slide swiper-slide-prev"> <a href="{$second['link']}"> <img width="100%" height="auto" src="{url:$second['content']}" > </a> </figure>
+    {/foreach} </div>
+  <div class="swiper-pagination"></div>
+</div>
+
+<!--熊戬专区--> 
+<!-- <section id="seckillWarp" class="m_buyLimit bgfff">
+    <div class="u_tit u_tits">
+      <ul class="u_tit_ul">
+        <li> <a class="u_tit_ul_a" href="{url:site/special/commend_id/12}">
+          <h2>9.9包邮</h2>
+          </a> </li>
+        <li> <a class="u_tit_ul_a" href="{url:site/special/commend_id/13}">
+          <h2>19元专区</h2>
+          </a> </li>
+          <li> <a class="u_tit_ul_a" href="{url:site/special/commend_id/11}">
+          <h2>最新折扣</h2>
+          </a> </li>
+          <li> <a class="u_tit_ul_a" href="{url:site/special/commend_id/14}">
+          <h2>明日预告</h2>
+          </a> </li>
+      </ul>
+    </div>
+</section> -->
+
+<article class="m_headlines f_clear">
+  <h3 class="f_fl">热点<em>时事</em></h3>
+  <ul class="f_fl hots">
+    {query:name=jiaju_article where=FIND_IN_SET(2, commend) order=sort asc, id desc limit=5}
+    <li><a href="{url:v_deco/yezhu/id/$item['id']}"><span>【HOT】</span>{$item['title']}</a></li>
+    {/query}
+  </ul>
+</article>
+<div class="list-img"> <a href=""><img skip="skip" src="skin/index/img/9.9.jpg" alt=""></a> <a href=""><img skip="skip" src="skin/index/img/19.9.jpg" alt=""></a> <a href="{url:site/special/commend_id/11}"><img skip="skip" src="skin/index/img/new.jpg" alt=""></a>
+  <div class="clear"></div>
+  <p class="title_new">新特卖：每天更新</p>
+</div>
+<section class="m_activity g_wrap"> {query:name=commend_goods_category where=is_lock eq 0 order=is_top desc,sort asc,id desc}
+  <div class="item bgfff"> <a class="img" href="{url:site/venue/commend_id/$item['id']}"> <img src="{webroot:$item['banner']}" style="width: 100%;">
+    <p class="head_img">{$item['title']}</p>
+    </a>
+    <div class="list-img"> {query:name=commend_goods as co join=left join goods as go on co.goods_id eq go.id where=co.commend_id eq $item[id] and go.is_del eq 0 AND go.id is not null limit=4 fields=go.img,go.sell_price,go.name,go.id,go.market_price order=sort asc,id desc item=$goods_item id=$goods} <a class="cheke" href="{url:/site/products/id/$goods_item['id']}" class=""> <img src="{url:/pic/thumb/img/$goods_item[img]/w/303/h/303}" alt="正在加载"> 
+      <!-- <h3>{$goods_item['name']}</h3> --> 
+      <!-- <p>￥{$goods_item['sell_price']}</p> --> 
+      </a> {/query}
+      <div class="clear"></div>
+    </div>
+  </div>
+  {/query} </section>
+<link rel="stylesheet" type="text/css" href="skin/js/swiper/swiper.min.css">
+<link rel="stylesheet" type="text/css" href="skin/index/index.css">
+<script type="text/javascript" src="skin/js/swiper/swiper.min.js"></script>
+<script type="text/javascript" src="skin/js/zepto.fx.js"></script> 
+<script type="text/javascript">
+  function autoScroll(obj){
+    $(obj).animate({
+      'marginTop' : "-40px"
+    }, "slow", function(){
+      $(this).css({'marginTop' : "0px"}).children("li").eq(0).appendTo(this);
+    })
+  }
+
+$(function(){
+	var swiper = new Swiper('#swiper-container',{pagination: '.swiper-pagination',paginationClickable: true,autoplay:3000 });
+	var swiper = new Swiper('#swiper-container2',{pagination: '',paginationClickable: true,autoplay:3000 });
+	var mySwiper = new Swiper('.swiper-container2', {pagination:'.swip-nav-hd',paginationClickable: true,
+														paginationType : 'custom',
+														paginationCustomRender: function (swiper, current, total) {
+															if(!swiper.animating)$(".swip-nav-hd li").removeClass('active').eq(current-1).addClass('active'); 
+															//return false;
+														}
+	});
+	$('.seckillTime').downCount();
+
+
+setInterval('autoScroll(".hots")',2500);
+
+});
+</script>

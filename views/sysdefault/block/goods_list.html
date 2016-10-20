@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>商品列表</title>
+<link rel="stylesheet" href="{skin:css/admin.css}" />
+{js:jquery}{js:jqueryext}
+{js:dialog}
+<style>
+.content ul { }
+.content ul li { width: 128px; float: left; height: 162px; overflow: hidden;margin:0px;padding:3px 5px;border-bottom:dashed 1px #eee;border-right:dashed 1px #eee }
+.content ul li:hover{background-color:#fbe3cf}
+.content ul li p { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;margin:0;line-height:18px}
+.content ul li p span{color:#999;line-height:18px}
+</style>
+</head><body style="width:990px;height:600px">
+<div class="pop_win" style="width:100%;height:600px;overflow-y:scroll">
+  <div class="content">
+    <ul>
+      {if:$this->data}
+      {foreach:items = $this->data}
+      <li>
+        <p><img src="{webroot:$item[img]}" width="125px" height="105px" class="img_border" alt="{$item['name']}" /></p>
+        <p title="{$item['name']}">{$item['name']}</p>
+        <p title="{$item['name']}">
+          <label class='attr'>
+            <input type='{echo:($this->type == null) ? 'checkbox' : $this->
+            type}' name='id[]' value="{$item['goods_id']}" data='{echo:JSON::encode($item)}' />
+            {$item['goods_no']} </label>
+        </p>
+        <p>{if:isset($item['spec_array']) && $item['spec_array']}
+          <span>
+          {foreach:items=JSON::decode($item['spec_array']) item=$spec}
+          {$spec['name']}：
+          {if:$spec['type'] == 1}
+          {$spec['value']}
+          {else:} <img src="{webroot:$spec[value]}" width="15px" height="15px" class="spec_photo" /> {/if}
+          {/foreach}
+          </span>
+          {/if}</p>
+      </li>
+      {/foreach}
+      {else:}
+      <li>对不起，没有找到相关商品</li>
+      {/if}
+    </ul>
+    <div class="clear"></div>
+  </div>
+</div>
+</body>
+</html>

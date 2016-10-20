@@ -1,0 +1,110 @@
+<style type="text/css" media="screen">
+
+.u_tit{
+	background:white;
+}
+.u_tit ul.u_tit_ul{
+    display: box;
+    display: -webkit-box;
+    display: -moz-box;
+    box-align: center;
+    -webkit-box-align: center;
+    box-pack: center;
+    -webkit-box-pack: center;
+    height:auto;
+}
+.u_tit ul.u_tit_ul li{
+	-moz-box-flex: 1.0;
+    -webkit-box-flex: 1.0;
+    box-flex: 1.0;
+    border-bottom: #dedede solid 2px;
+    height:45px;
+    line-height:45px;
+}
+.u_tit ul.u_tit_ul li.cheke{
+	border-bottom: #ff464e solid 2px;
+
+}
+.u_tit ul.u_tit_ul a.u_tit_ul_a{
+	text-align:center;
+}
+.list{
+    background:white;
+}
+.list ul li{
+        height: 100px;
+    border-bottom: 1px dashed darkgrey;
+    padding-bottom: 9px;
+    position: relative;
+    overflow: hidden;
+}
+.list ul li img{
+    float: left;
+    padding: 5px;
+    height:95px;
+}
+.list ul li p{
+       display: block;
+    width: 70%;
+    line-height: 25px;
+    float: right;
+    padding-top: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.list ul li span{
+      display: block;
+    width: 70%;
+    float: right;
+    height: 33px;
+    line-height: 33px;
+}
+.title_mark{
+         width: 90px;
+    height: 25px;
+    text-align: center;
+    line-height: 25px;
+    position: absolute;
+    top: 6px;
+    right: -24px;
+    background: #009E00;
+    color: white;
+    transform: rotate(45deg);
+}
+</style>
+<div class="u_tit">
+      <ul class="u_tit_ul">
+        <li> <a class="u_tit_ul_a" href="{url:task/goods_list}">
+          <h2>所有商品</h2>
+          </a> </li>
+        <li class=" cheke"> <a class="u_tit_ul_a" href="{url:task/order_list}">
+          <h2>兑换记录</h2>
+          </a> </li>
+      </ul>
+        <!-- <time class="seckillTime" data-date="{echo:ITime::getTime('2016-06-29 10:00:00')}" data-endate="{echo:ITime::getTime('2016-06-30 18:00:00')}"></time> -->
+    </div>
+<div class="list">
+        <ul>
+         {foreach:items=$order_list}
+            <li>
+                <a href="#" style="display: block;">
+                    <img src="{url:/pic/thumb/img/$item[goods_img]/w/303/h/303}" alt="正在加载">
+                    <p>{$item['goods_name']}</p>
+                    <span style="line-height: 55px;">id：{$item['id']}</span>
+                    <span>兑换时间：{$item['create_time']}</span>
+                </a>
+                {if:$item['status']==0}<tit class="title_mark no" style="background:#FF8D00">待领取</tit>{else:}<tit class="title_mark">已领取</tit>{/if}
+            </li>
+            {/foreach}
+        </ul>
+        <div style="clear:both;"></div>
+        <script type="text/javascript">
+            $('.no').prev().click(function() {
+                layer.open({
+                    type: 0,
+                    content: '需要到淘黄洲公司来自提<br/>地址：西湖二路7号<br/>联系电话：187-7163-7285',
+                });
+            });
+        </script>
+</div>

@@ -1,0 +1,52 @@
+{set:$seo_data=array();$site_config=new Config('site_config');$site_config=$site_config->getInfo();}
+
+{set:$seo_data['title']=isset($site_config['name'])?$site_config['name']:""}
+{set:$seo_data['title']=$this->cat_row['name'].'_'.$seo_data['title'] }
+{set:seo::set($seo_data);}
+<div class="position"> <span>您当前的位置：</span> <a href="{url:}"> 首页</a> » {$this->cat_row['name']} </div>
+<div class="wrapper clearfix container_2">
+  <div class="help_left" id="div_menu">
+    <div class="help_nav_left" style="margin:0;"> {foreach:items=Api::run('getHelpCategoryLeft')}
+      <div class="help_btn"><a class="novice_btn_bottom" href="javascript:void(0)">{$item['name']}</a></div>
+      <ul class="con">
+        {foreach:items=Api::run('getHelpListByCatidAll',array('#cat_id#',$item['id'])) item=$help_row}
+        <li><a class="novice_btn_right" href="{url:/site/help/id/$help_row[id]}">{$help_row['name']}</a></li>
+        {/foreach}
+      </ul>
+      {/foreach} </div>
+  </div>
+  {set:$id=intval(IReq::get('id'));}
+  {set:$page= (isset($_GET['page'])&&(intval($_GET['page'])>0))?intval($_GET['page']):1;}
+  <div class="main f_r">
+    <div class="m_10">
+      <div class="helpRightTitle">{$this->cat_row['name']}</div>
+      <div class="cont">
+        <h5 class="list_title gray"> <span class="f_l">标题</span>发表时间 </h5>
+        {if:null === IReq::get('id')}
+        <ul class="newslist">
+          {set:$queryHelpList = Api::run('getHelpList')}
+          {foreach:items = $queryHelpList->find()}
+          <li><a href="{url:/site/help/id/$item[id]}">{$item['name']}</a><span>({echo:date('Y-m-d H:i:s',$item['dateline']);})</span></li>
+          {/foreach}
+        </ul>
+        {$queryHelpList->getPageBar();}
+        
+        {else:}
+        <ul class="newslist">
+          {set:$queryHelpList = Api::run('getHelpListByCatId',$id)}
+          {foreach:items = $queryHelpList->find()}
+          <li><a href="{url:/site/help/id/$item[id]}">{$item['name']}</a><span>({echo:date('Y-m-d H:i:s',$item['dateline']);})</span></li>
+          {/foreach}
+        </ul>
+        {$queryHelpList->getPageBar();}
+        {/if} </div>
+    </div>
+  </div>
+</div>
+<script type=text/javascript>
+$(document).ready(function(){
+	$("#div_menu .help_btn").click(function(){
+		$(this).next(".con").slideToggle(300).siblings(".con").slideUp("slow");
+	});
+});
+</script>

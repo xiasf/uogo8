@@ -1,0 +1,41 @@
+<div class="wrapper wrapper-content animated bounceInLeft">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>修改密码</h5>
+        </div>
+        <div class="ibox-content">
+          <form class="form-horizontal" action="{url:/seller/seller_add}" method="post" name="sellerForm" enctype='multipart/form-data'>
+          <input type="hidden" name="id" value="{$this->seller['seller_id']}">
+            <p>密码不可乱改哦。改错了可能会无法登陆(⊙o⊙)</p>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">登录名：</label>
+              <div class="col-sm-8">
+              <h2>{$this->seller['seller_name']}</h2>
+                
+                <span class="help-block m-b-none">您登陆时用到的用户名</span> </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">密码：</label>
+              <div class="col-sm-8">
+                <input type="password" name="password" placeholder="密码" class="form-control"><label class="tip">* 登录密码</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">确认密码：</label>
+              <div class="col-sm-8">
+                <input type="password" name="repassword" placeholder="密码" class="form-control"><label class="tip">* 重复确认密码</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-3 col-sm-8">
+                <button class="btn btn-sm btn-white" type="submit">提交</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

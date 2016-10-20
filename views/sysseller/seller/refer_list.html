@@ -1,0 +1,72 @@
+<div class="wrapper wrapper-content animated bounceInRight">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>咨询列表</h5>
+        </div>
+        <div class="ibox-content">
+          <div class="row m-b-sm m-t-sm">
+            <div class="col-md-11">
+              <div class="input-group">
+                <input type="text" placeholder="请输入名称" class="input-sm form-control">
+                <span class="input-group-btn">
+                <button type="button" class="btn btn-sm btn-primary"> 搜索</button>
+                </span> </div>
+            </div>
+          </div>
+
+
+          	<form action="{url:/seller/refer_del}" method="post" name="goodsForm">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th class="header"></th>
+					<th class="header">商品名字</th>
+					<th class="header">咨询人</th>
+					<th class="header">咨询时间</th>
+					<th class="header">回复人员</th>
+					<th class="header">回复时间</th>
+					<th class="header">操作</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				{foreach:items = $this->referObj->find()}
+			
+				<tr>
+					<td><input name="id[]" type="checkbox" value="{$item['id']}" /></td>
+					<td><a href="{url:/site/products/id/$item[goods_id]}" target="_blank" title="{$item['name']}">{$item['name']}</a></td>
+					<td>{if:isset($item['username'])}{$item['username']}{else:}非会员{/if}</td>
+					<td>{$item['time']}</td>
+					<td>{if:$item['admin_name']}{$item['admin_name']}{elseif:$item['seller_name']}{$item['seller_name']}{/if}</td>
+					<td>{$item['reply_time']}</td>
+
+					<td><a href="{url:/seller/refer_edit/id/$item[id]}" class="btn btn-white btn-sm"><i class="fa fa-comment-o"></i>&nbsp;回复咨询</a>&nbsp;&nbsp; <a href="javascript:delModel({link:'{url:/seller/refer_del/id/$item[id]}'})" class="btn btn-white btn-sm"><i class="fa fa-times-circle"></i>&nbsp;删除</a></td>
+
+				</tr>
+				{/foreach}
+			</tbody>
+
+			<tfoot>
+              <tr>
+                <td colspan="7">{$this->referObj->getPageBar()}</td>
+              </tr>
+            </tfoot>
+		</table>
+	</form>
+
+</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- <header>
+		<h3 class="tabs_involved">咨询列表</h3>
+		<ul class="tabs">
+			<li><input type="button" class="alt_btn" onclick="selectAll('id[]');" value="全选" /></li>
+			<li><input type="button" class="alt_btn" onclick="goods_del();" value="批量删除" /></li>
+		</ul>
+	</header> -->

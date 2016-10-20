@@ -1,0 +1,215 @@
+{set:$article_id = IFilter::act(IReq::get('id'),'int');}
+{set:$cat = $this->category_list[count($this->category_list)-1]}
+
+{query:name=jiaju_article_comment where=article_id eq $article_id fields=count(id) as n}{set:$comment = $item['n']}{/query}
+<section class="post-header bgfff">
+  <h1>{$this->article['title']}</h1>
+  <!--   <div class="data"> <span class="reply"><i class="icon icon-reply"></i><span id="replys">83</span></span> <span class="view"><i class="icon icon-view"></i><span id="views">71067</span></span> </div> --> 
+  <!--   <div class="handle"> <i class="icon icon-favor"></i> <i class="icon icon-share"> </i> <i class="split"></i> <a class="apply" id="applyJingHua" href="javascript:;">申请精华</a> <a class="only" href="#">只看楼主</a> <i class="split"></i> <a class="issue" target="_self" href="#">发新帖</a> </div> --> 
+</section>
+<section class="post-main">
+  <aside class="post-user"> 
+    <!--     <div class="brief"> <a class="name highlight" href="http://i.m.autohome.com.cn/5265908"> <abbr>西瓜宝马</abbr> <i class="icon icon-v"></i> <i class="mark-level">lv21</i> </a> <span class="grade"> <em><span class="grade">宝马5系论坛版主</span></em> </span> <i class="icon icon-arrow-bottom toggle-memberinfo"></i> 
+      <i class="icon icon-arrow-top"></i> 收起 
+    </div> --> 
+  </aside>
+  <section class="post-cont">
+    <header>
+      <time>发表于{$this->article['create_time']}</time>
+      <span class="floor">楼主</span> </header>
+    <section id="topicContentSection" class=""> <i class="icon-seal icon-seal-"></i> <i class="icon-seal icon-seal-"></i>
+      <h1 class="post-title">{$this->article['title']}</h1>
+      <div class="conttxt">
+        <div class="w740" contenteditable="false"> {$this->article['content']} </div>
+      </div>
+      <!-- <div class="post_editer">[ 本帖最后由 西瓜宝马 于
+        <time>2016-03-24 15:28:43</time>
+        编辑 ]</div> --> 
+    </section>
+    <footer>
+
+      <span id="btnRecommend" style="    position: absolute;
+    top: 7px;
+    right: 108px;
+    background-color: #2360CE;
+    padding: 7px;
+    font-size: 13px;
+    color: #fff;" data-id="{$article_id}"><i class="iconfont icon-praise"></i>顶&nbsp;<span>{$this->article['praise']}</span></span>
+
+     <span class="btn btn-highlight-orange replyto" data-id="{$article_id}" data-pid="0">回复楼主</span>
+      <div> <!-- <a class="report" href="#">举报</a> --> </div>
+    </footer>
+    <div class="recommend fn-mlr fn-mb" id="recommendJxWrap"> 
+    <h4 class="recommend-tt">推荐阅读</h4>
+    <ul class="recommend-bd" id="recommendJx">
+      {query:name=jiaju_article where=category_id eq $cat[id] and id neq $article_id order=id desc limit=6}
+      <li><a href="{url:v_deco/yezhu/id/$item['id']}">{$item['title']}</a></li>
+      {/query}
+    </ul>
+    </div>
+  </section>
+  <section id="reply-wrap"> {query:name=jiaju_article_comment where=article_id eq $article_id order=praise desc,id desc}
+    <section class="post-follow outer-section" data-time="20160325181843" data-id="807474856" data-memberid="11202397" data-delete="0" data-source="PC"> <a name="1"></a>
+      <section class="post-cont">
+        <header>
+
+
+          <div class="user"> <a class="avatar" href="javascript:void(0)">
+            <!-- <img src="http://x.autoimg.cn/space/images/head_30X30.gif" data-user="16137056"></a> <a class="name" href="javascript:void(0)" data-user-v="16137056"> -->
+              {if:$item['user_id']}
+              {set:$user = Api::run('getMemberInfo',$item['user_id'])}
+              {set:$u = new IQuery('user');$u->where='id =' . $item['user_id']; $u = $u->find();$head_ico = $u[0]['head_ico'];}
+              <img src="{webroot:$head_ico}" onerror="this.src='{theme:skin/user/images/user_ico.gif}'" alt="header" style="background-color:#fff">
+              {$user['true_name']}
+              {else:}
+              <img src="{theme:skin/user/images/user_ico.gif}" alt="header" style="background-color:#fff">
+              网友
+              {/if}
+          </a>
+            <time>{$item['comment_time']}</time>
+          </div>
+
+
+
+<!--           <a class="avatar" href="javascript:void(0)"><img skip="skip" src="/upload/image/2016/02/14/20160214120740518.jpg" alt="header" style="background-color:#fff">asdasd</a>
+
+          <h1> <a class="highlight" href="#">
+
+
+
+              {if:$item['user_id']}
+              {set:$user = Api::run('getMemberInfo',$item['user_id'])}
+              {set:$u = new IQuery('user');$u->where='id =' . $item['user_id']; $u = $u->find();$head_ico = $u[0]['head_ico'];}
+              {if:$head_ico}
+              <img src="{webroot:$head_ico}" alt="header" style="background-color:#fff">
+              {else:}
+              <img src="{theme:skin/user/images/user_ico.gif}" alt="header" style="background-color:#fff">
+              {/if}
+              {$user['true_name']}
+              {else:}
+              <img src="{theme:skin/user/images/user_ico.gif}" alt="header" style="background-color:#fff">
+              网友
+              {/if}
+</a> </h1> -->
+
+          <!-- <time>{$item['comment_time']}</time> -->
+          
+          <!-- <span class="floor">沙发</span> --> 
+        </header>
+        <section> {if:$item['pid']}
+          {query:name=jiaju_article_comment where=id eq $item[pid] item=$quote}
+          <div class="relyhf cont">
+            <div class="relyhfcon user">
+              <p> <a href="#" class="avatar" target="_self"> {if:$quote['user_id']}
+                {set:$user = Api::run('getMemberInfo',$quote['user_id'])}
+                {set:$u = new IQuery('user');$u->where='id =' . $quote['user_id']; $u = $u->find();$head_ico = $u[0]['head_ico'];}
+                <img src="{webroot:$head_ico}" onerror="this.src='{theme:skin/user/images/user_ico.gif}'" alt="header" style="background-color:#fff">
+                {$user['true_name']}
+                {else:}
+                <img src="{theme:skin/user/images/user_ico.gif}" alt="header" style="background-color:#fff">
+                网友
+                {/if} </a>&nbsp;{$quote['comment_time']} &nbsp;发表在 <a href="#" target="_self">&nbsp;主楼 </a> </p>
+              <p class="rrlycontxt"> {$quote['contents']} </p>
+            </div>
+          </div>
+          {/query}
+          {/if}
+          
+          {$item['contents']} </section>
+        <footer> <span class="praise" data-id="{$item['id']}"><i class="iconfont icon-praise"></i>赞&nbsp;<span>{$item['praise']}</span></span> <span class="btn btn-small btn-highlight-orange replyto" data-type="yy" data-pid="{$item['id']}">回复</span> </footer>
+      </section>
+    </section>
+    {/query} </section>
+</section>
+<div class="multiissue hide" id="form-mini-reply" data-form="from-replay-mini-load" data-replyid="50847786">
+  <div class="input">
+    <textarea class="input-textarea" name="content" data-bind="value:yycontent" placeholder="快速回复最多输入5000字"></textarea>
+  </div>
+  <div class="handle"> <span class="btn btn-small btn-highlight-orange btnSubmit">发表回复</span> </div>
+</div>
+
+<!--回复-->
+<link href="skin/bbs/bbs.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+wxshare.title = '{$this->article[title]}';
+wxshare.desc = '{echo:IFilter::replace($this->article[description])}';
+wxshare.imgUrl = '{url:$this->article[img]}';
+
+var pid = 0;
+  $(function(){
+
+  $('#btnRecommend').bind('click', function(){
+      var that = $(this);
+
+      if (that.is('.down')) return false;
+
+      var id = that.data('id');
+        $.getJSON("{url:v_deco/article_praise}", {id: id},
+          function (result) {
+              if (result.status == 1) {
+                that.find('span').html(parseInt(that.find('span').html()) + 1);
+              };
+			  alert(result.info);
+              that.addClass('down').unbind( "click");
+
+          },
+          function(result) {
+              alert("error:"+result.responseText);
+           }
+       );
+
+  });
+
+
+  $('.praise').click(function(){
+      that = $(this);
+      if (that.data('praise')) return;
+      var obj_id = $(this).data('id');
+      $.getJSON("{url:v_deco/article_comment_praise}",{id: obj_id},
+        function (result) {
+           if (result.status == 1) {
+              that.find('span').html(parseInt(that.find('span').html()) + 1);
+              that.data('praise',true);
+              alert(result.info);
+		   }
+        },
+        function(result) {
+            alert("error:"+result.responseText);
+         }
+     );
+
+  });
+
+
+    var multiissue = $('.multiissue');
+    
+    $('.replyto').on('click', function(){ 
+      pid = $(this).data('pid');
+      $(this).parent().after(multiissue.toggleClass('hide'));
+    });
+
+
+    $('.btnSubmit').on('click', function(){
+
+          var contents = $('textarea[name=content]').val();
+          var article_id = {$article_id};
+
+          if(!$.trim(contents)){
+            alert('请填写回复内容');return;
+          }
+
+        $(this).val('提交中……');
+        $.getJSON("{url:v_deco/article_comment_post}",{article_id: article_id, re_id: pid, contents: contents},
+            function (result) {
+                  alert([result.info,window.location.reload()]);
+            },
+             function(result) {
+                alert("error:"+result.responseText);
+             }
+        );
+
+
+    });
+
+  });
+</script>

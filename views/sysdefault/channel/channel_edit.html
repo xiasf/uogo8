@@ -1,0 +1,150 @@
+{js:my97date}
+{js:baidueditor}
+<style>
+.sellerSelected{position:relative; width: 320px;}
+.auto_list { position: absolute; top: 23px; left: 0px; width: 315px; padding: 6px 0; border: 2px solid #a4c6fd; border-top: 0; background-color: #fff; display: none;max-height:350px;overflow-y:auto }
+.auto_list li { height: 26px; padding: 0 10px; line-height: 26px; text-align: right; color: #878787 }
+.auto_list li a { float: left; color: #404040; text-decoration: none }
+.auto_list li a i{color:#B3B3B3; font-style: normal;}
+.auto_list li a strong{color:#F00}
+.auto_list li:hover { background-color: #fef0e5 }
+#sellerName{border:solid 1px #d2d2d2;}
+#sellerName p{margin-left:5px;font-size:14px;} 
+#sellerNamejt{width:0;height:0; border-left:5px solid transparent;border-right:5px solid transparent;border-top:5px solid #666;position:absolute;right:5px;top:11px;}
+</style><div class="headbar">
+	<div class="position"><span>></span><span>频道管理</span><span>></span><span>{if:isset($this->channelRow['id'])}编辑{else:}添加{/if}频道</span></div>
+</div>
+<div class="content_box">
+	<div class="content form_content">
+		<form action="{url:/channel/channel_edit_act}" method="post" name='channel_edit' callback="invalid_callback('rule_table');" enctype="multipart/form-data">
+			<input type='hidden' name='id' />
+			<table class="form_table" name="rule_table">
+				<col width="150px" />
+				<col />
+				<tr>
+					<th>频道名称：</th>
+					<td><input type='text' class='normal' name='name' pattern='required' alt='请填写频道名称' /><label>* 填写频道名称</label></td>
+				</tr>
+
+
+				<tr>
+					<th>选择分类：</th>
+					{query:name=category where=parent_id eq 0}
+					<td><label class="attr"><input name="category_list[]" type="checkbox" value="{$item['id']}">{$item['name']}</label></td>
+					{/query}
+				</tr>
+
+
+				<tr>
+					<th>是否开启：</th>
+					<td>
+						<label class='attr'><input type='radio' name='is_open' value='0' checked=checked />是</label>
+						<label class='attr'><input type='radio' name='is_open' value='1' />否</label>
+					</td>
+				</tr>
+
+				<tr>
+					<th>频道详细介绍：</th>
+					<td><textarea style="width:800px;height:200px;" name='describe' id="describe">{$this->channelRow['describe']}</textarea></td>
+				</tr>
+				<tr>
+					<th>排序：</th>
+					<td><input style="width:50px;" type='text' class='normal' name='sort' pattern='required' alt='请填写频道排序' /><label>* 填写频道排序</label></td>
+				</tr>
+				<tr>
+					<th></th>
+					<td><button class="submit" type='submit'><span>确 定</span></button></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</div>
+
+<script type='text/javascript'>
+$(function(){
+	//表单回填
+	var formObj = new Form('channel_edit');
+	{if:isset($this->channelRow)}
+		formObj.init({echo:JSON::encode($this->channelRow)});
+	{/if}
+
+  {if:isset($this->channelRow['category_list'])}
+	  formObj.setValue('category_list[]',"{echo:join(';',$this->channelRow['category_list'])}");
+  {/if}
+
+	//编辑器载入
+	UE.getEditor('describe');
+
+	//校验回调
+	function invalid_callback(nameVal)
+	{
+		if($('.invalid-text').length > 0)
+		{
+			var parentObj = $('.invalid-text:eq(0)').parents('[name="'+nameVal+'"]');
+			$('[name="'+nameVal+'"]').index(parentObj);
+			select_tab($('[name="'+nameVal+'"]').index(parentObj));
+			return false;
+		}
+		return true;
+	}
+
+	
+	$("#sellerName").click(function(e) {
+		if($(this).find("input:text").length>0)return;
+		$(this).empty();
+		$('<input>').appendTo(this).attr({
+			"type":"text",
+			"class":"middle",
+			"id":"seller_name"
+		}).bind({
+			keyup:function(){autoComplete('/goods/autoComplete_seller');}
+		});
+	    autoComplete('/goods/autoComplete_seller');
+    })
+
+});
+	//自动完成
+function autoComplete(ajaxUrl)
+{
+	var minLimit = 0;
+	var maxLimit = 10;
+	var keywords = $.trim($('#seller_name').val());
+
+	//输入的字数通过规定字数
+	if(keywords.length >= minLimit && keywords.length <= maxLimit)
+	{
+		$('.auto_list').html("<li>搜索中...</li>").show();
+		$.getJSON(ajaxUrl,{name:keywords},function(content){
+
+			//清空自动完成数据
+			//$('.auto_list').empty();
+			$('.auto_list').html('<li onclick="setSellerID(\'0\',\'平台自营\')"><a href="javascript:void(0)"><i>(0)</i>&nbsp;&nbsp;平台自营</a></li>');
+
+			if(content.isError == false)
+			{
+				for(var i=0; i < content.data.length; i++)
+				{
+					$('.auto_list').append('<li onclick="setSellerID(\''+content.data[i].id+'\',\''+content.data[i].true_name+'\')"><a href="javascript:void(0)"><i>('+
+					content.data[i].id + ")</i>&nbsp;&nbsp;"+
+					content.data[i].true_name.replace(keywords,"<strong>"+keywords+"</strong>")+'</a></li>');
+				}
+				$('.auto_list').show();
+			}
+			else
+			{
+				$('.auto_list').hide();
+			}
+		});
+	}
+	else
+	{
+		$('.auto_list').hide();
+	}
+}
+function setSellerID(id,name){	
+	$('input:hidden[name="seller_id"]').val(id)
+	$('#sellerName').html("<p>"+name+"</p>")
+	$('.auto_list').hide();
+}
+
+</script>

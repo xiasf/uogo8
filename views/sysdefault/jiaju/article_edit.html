@@ -1,0 +1,208 @@
+{js:webuploader}
+{js:baidueditor}
+<div class="headbar">
+  <div class="position"><span>家居</span><span>></span><span>文章管理</span><span>></span><span>{if:isset($this->articleRow['id'])}编辑{else:}添加{/if}文章</span></div>
+</div>
+<div class="content_box">
+  <div class="content form_content">
+    <form action='{url:/jiaju/article_edit_act}' method='post' name='article' enctype="multipart/form-data">
+      <table class="form_table">
+        <col width="150px" />
+        <col />
+        <input type='hidden' name='id' value="" />
+        <input type='hidden' name='relation_goods' value='{$this->relationStr}' />
+        <tr>
+          <th>分类：</th>
+          <td><select class="auto" name="category_id" pattern="required" alt="请选择分类值">
+              <option value=''>选择文章分类</option>
+              
+							{query:name=jiaju_article_category items=$category}{/query}
+							{set:$category = category::unlimitedForLevel($category)}
+              {foreach:items=$category}
+              
+              <option value='{$item['id']}'>{$item['html']}{$item['name']}</option>
+              
+              {/foreach}
+            
+            </select>
+            <label>*选择文章所属分类（必填）</label></td>
+        </tr>
+        <tr>
+          <th>标题：</th>
+          <td><input type='text' name='title' class='normal' value='' pattern='required' alt='标题不能为空' /></td>
+        </tr>
+        <tr>
+          <th>seo关键字：</th>
+          <td><input type='text' name='keyword' class='normal' value='' pattern='required' alt='seo关键字不能为空' /></td>
+        </tr>
+        <tr>
+          <th>主图：</th>
+          <td><input type='hidden' name='img' value="" />
+            <div class="alert alert-info">可上传多张图片，分辨率3000px以下，大小不得超过{echo:IUpload::getMaxSize()}</div>
+            <div id="filePicker">选择图片</div>
+            <ul class="uploader-list" id="fileList">
+            </ul>
+            
+            <!--图片模板--> 
+            <script type='text/html' id='picTemplate'>
+                    <%for(var item in picRoot)
+                    {%>
+                        <div class="file-item thumbnail file-item-done">
+                        <img src="{webroot:}<%=picRoot[item]%>" alt="<%=picRoot[item]%>">
+                        </div>
+                    <%}%>
+                </script></td>
+          
+          <!--           <td>
+            <input type="file" name="img" />
+                    {if:isset($this->articleRow['img']) && $this->articleRow['img']}
+                    <p><a target="_blank" href="{webroot:}{$this->articleRow['img']}"><img src='{webroot:}{$this->articleRow['img']}' style='width:100px;height: 100100pxpx;border:1px solid #ccc' /></a></p>
+                    {/if}
+          </td> --> 
+          
+        </tr>
+        <tr>
+          <th title="选填，可多选">标记：</th>
+          <td> 装修前：&nbsp;&nbsp;&nbsp;&nbsp;
+            <label class="attr">
+              <input name="tag[]" type="checkbox" value="16">
+              房产</label>
+            &nbsp;&nbsp;
+            <input name="tag[]" type="checkbox" value="1">
+            收房
+            </label>
+            &nbsp;&nbsp;
+            <label class="attr">
+              <input name="tag[]" type="checkbox" value="2">
+              设计</label>
+            &nbsp;&nbsp;
+            <label class="attr">
+              <input name="tag[]" type="checkbox" value="3">
+              预算</label>
+            &nbsp;&nbsp;
+            <label class="attr">
+              <input name="tag[]" type="checkbox" value="4">
+              合同</label>
+            &nbsp;&nbsp;
+            <hr />
+            装修中：&nbsp;&nbsp;&nbsp;&nbsp;
+            <label class="attr">
+              <input name="tag[]" type="checkbox" value="5">
+              拆改</label>
+            &nbsp;&nbsp;
+            <label class="attr">
+              <input name="tag[]" type="checkbox" value="6">
+              水电</label>
+            &nbsp;&nbsp;
+            <label class="attr">
+              <input name="tag[]" type="checkbox" value="9">
+              防水</label>
+            &nbsp;&nbsp;
+            <label class="attr">
+              <input name="tag[]" type="checkbox" value="10">
+              泥瓦</label>
+            &nbsp;&nbsp;
+            <label class="attr">
+              <input name="tag[]" type="checkbox" value="11">
+              木工</label>
+            &nbsp;&nbsp;
+            <label class="attr">
+              <input name="tag[]" type="checkbox" value="12">
+              油漆</label>
+            &nbsp;&nbsp;
+            <label class="attr">
+              <input name="tag[]" type="checkbox" value="13">
+              竣工</label>
+            &nbsp;&nbsp;
+            <hr />
+            装修后：&nbsp;&nbsp;&nbsp;&nbsp;
+            <label class="attr">
+              <input name="tag[]" type="checkbox" value="14">
+              软装</label>
+            &nbsp;&nbsp;
+            <label class="attr">
+              <input name="tag[]" type="checkbox" value="15">
+              入住</label>
+            &nbsp;&nbsp;
+            <hr />
+            其　它：&nbsp;&nbsp;&nbsp;&nbsp;
+            <label class="attr">
+              <input name="tag[]" type="checkbox" value="0">
+              其它</label>
+            &nbsp;&nbsp; </td>
+        </tr>
+        <tr>
+          <th>排序：</th>
+          <td><input type='text' class='small' name='sort' value='99' /></td>
+        </tr>
+        <tr>
+          <th>推荐：</th>
+          <td><label class="attr">
+              <input name="commend[]" type="checkbox" value="1">
+              头条</label>
+            &nbsp;&nbsp;
+            <label class="attr">
+              <input name="commend[]" type="checkbox" value="2">
+              时事</label>
+            &nbsp;&nbsp;
+            <label class="attr">
+              <input name="commend[]" type="checkbox" value="3">
+              精华</label></td>
+        </tr>
+        <tr>
+          <th valign="top">简要：</th>
+          <td><textarea id="description" name='description' style='width:95%;height:100px' pattern='required' alt='内容不能为空'>{echo:htmlspecialchars($this->articleRow['description'])}</textarea></td>
+        </tr>
+        <tr>
+          <th valign="top">内容：</th>
+          <td>
+           <textarea id="content" name='content' style='width:640px;height:400px'>{echo:htmlspecialchars($this->articleRow['content'])}</textarea>
+</td>
+        </tr>
+        
+          <th></th>
+          <td><button class='submit' type='submit'><span>确 定</span></button></td>
+        </tr>
+      </table>
+    </form>
+  </div>
+</div>
+<div style="width:620px;position:fixed;right:0;z-index:99999999;top:150px" id="wxeditor"><p style="background-color:#D7D7D7;line-height:25px;" onClick="zd()">折叠/展开</p>
+<iframe src="{url:plugins/wechateditor/wxeditor.html}" frameborder="0" height="520" width="100%"></iframe>
+</div>
+<script type='text/javascript'>
+function zd(){
+	$("#wxeditor").width($("#wxeditor").width()>100?50:620)
+}
+var editor=null;
+jQuery(function(){
+
+	var FromObj = new Form('article');
+	FromObj.init({echo:JSON::encode($this->articleRow)});
+
+  {if:isset($this->articleRow)}
+  FromObj.setValue('tag[]',"{echo:str_replace(',', ';', $this->articleRow['tag'])}");
+  FromObj.setValue('commend[]',"{echo:str_replace(',', ';', $this->articleRow['commend'])}");
+  {/if}
+
+
+    //商品图片的回填
+    {if:($this->articleRow['img'])}
+        var img = {echo:JSON::encode(explode(',', $this->articleRow['img']))};
+        var picHtml = template('picTemplate',{'picRoot':img});
+        $('#fileList').append(picHtml);
+    {/if}
+
+  $("#filePicker").uploader({
+    uploadurl:"{url:jiaju/show_img_upload}",
+    filelist:"#fileList",
+    uploaded:function(result){
+      $("input[name='img']").val(result.img)
+  }});
+
+
+	editor=UE.getEditor('content');
+});
+
+
+</script> 

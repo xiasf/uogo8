@@ -1,0 +1,107 @@
+{set:$ad_id = IFilter::act(IReq::get('ad_id'),'int')}
+<div class="headbar">
+	<div class="position"><span>工具</span><span>></span><span>区块管理</span><span>></span><span>区块列表</span></div>
+	<div class="operating">
+		<a href="javascript:void(0)" onclick="event_link('{url:/tools/ad_edit/aid/$ad_id}')"><button class="operating_btn" type="button"><span class="addition">添加区块</span></button></a>
+		<a href="javascript:void(0)" onclick="selectAll('id[]');"><button class="operating_btn" type="button"><span class="sel_all">全选</span></button></a>
+		<a href="javascript:void(0)" onclick="delModel();"><button class="operating_btn" type="button"><span class="delete">批量删除</span></button></a>
+	</div>
+	<div class="field">
+		<table class="list_table">
+			<col width="25px" />
+			<col />
+			<col width="70px" />
+			<col width="80px" />
+			<col width="120px" />
+			<col width="160px" />
+			<col width="70px" />
+			<col width="200px" />
+			<col width="80px" />
+			<thead>
+				<tr>
+					<th>选择</th>
+					<th>名称</th>
+					<th>显示类别</th>
+					<th>绑定分类</th>
+					<th>绑定商圈</th>
+					<th>区块位</th>
+					<th>排序</th>
+					<th>开始时间 ～ 结束时间</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
+<div class="content">
+	<form name='ad' method='post' action='{url:/tools/ad_del}'>
+		<table id="list_table" class="list_table">
+			<col width="25px" />
+			<col />
+			<col width="50px" />
+			<col width="70px" />
+			<col width="110px" />
+			<col width="160px" />
+			<col width="80px" />
+			<col width="200px" />
+			<col width="80px" />
+			<tbody>
+
+				{if:$ad_id}
+					{set: 
+                        $query = new IQuery("ad_manage as ad,ad_position as adp");
+                        $query->fields = "adp.name as adp_name,ad.*";
+                        $query->where = "ad.position_id = adp.id and adp.id = $ad_id";
+                        $query->order = "ad.sort ASC";$q = $query->find();
+                    }
+				{else:}
+					{set: 
+                        $query = new IQuery("ad_manage as ad,ad_position as adp");
+                        $query->fields = "adp.name as adp_name,ad.*";
+                        $query->where = "ad.position_id = adp.id";
+                        $query->order = "ad.sort ASC";
+                        $q = $query->find();
+                    }
+				{/if}
+			{query: name = district}
+				{set:$districtAll[$item['id']] = $item['name']}
+			{/query}
+			{query: name = category}
+				{set:$categoryAll[$item['id']] = $item['name']}
+			{/query}
+            {set:$categoryAll[0] = '未绑定'}
+            {set:$districtAll[0] = '未绑定'}
+				{foreach:items=$q}
+				<tr>
+					<td><input type='checkbox' name='id[]' value='{$item['id']}' /></td>
+					<td><a href='{url:/tools/ad_edit/id/$item[id]}' title="编辑">{$item['name']}</a></td>
+					<td>{echo:Ad::showType($item['type'])}</td>
+					<td class="center">{echo:$categoryAll[$item['goods_cat_id']]}</td>
+					<td class="center">{echo:$districtAll[$item['district_id']]}</td>
+					<td><a href="{url:tools/ad_list/ad_id/$item['position_id']}" title="查看所有区块 - {$item['adp_name']}">{$item['adp_name']}</a></td>
+					<td><input class="tiny" value="{$item['sort']}" type="number" onchange="changeSort({$item['id']},this);" /></td>
+					<td>{$item['start_time']} ～ {$item['end_time']} </td>
+					<td>
+						<a href='{url:/tools/ad_edit/id/$item[id]}'><img class="operator" src="{skin:images/admin/icon_edit.gif}" alt="编辑" title="编辑" /></a>
+						<a href='javascript:void(0)' onclick="delModel({link:'{url:/tools/ad_del/id/$item[id]}'});"><img class="operator" src="{skin:images/admin/icon_del.gif}" alt="删除" title="删除" /></a>
+					</td>
+				</tr>
+				{/foreach}
+			</tbody>
+		</table>
+	</form>
+</div>
+<script>
+	//修改排序
+	function changeSort(gid,obj)
+	{	
+	var selectedValue = obj.value;
+	$.getJSON(
+	     "/tools/ad_ajax_sort",
+		 {"id":gid,"sort":selectedValue},
+	     function(content) {
+			 if(content.result == 'succeed'){tips('排序完成');} else {alert("排序失败")}
+		}
+		)
+	}
+</script>

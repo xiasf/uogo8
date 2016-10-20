@@ -1,0 +1,264 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*博客首页*/
+#clsIframe{ position:absolute;}
+.blg_banner { height: 120px;min-width:980px; _width: 100%; background: url(http://img.to8to.com/decorate_gallery/images/png/blgindx_banner.png) center top no-repeat; margin: 0 auto; }
+.main_content { width: 980px; margin: 0 auto; overflow: hidden; margin-top: 20px; font-family: "Microsoft YaHei", 微软雅黑, "Microsoft JhengHei", 华文细黑, STHeiti, MingLiu; }
+.cpy_intro { height: 275px; overflow: hidden;}
+.video_part, .cpy_details { width: 490px; height: 275px; float: left; }
+.blog_main_r ul li a { display: block; }
+.cpy_details { display: block; }
+.video_part { background: #269785; }
+.cpy_grade { width: 143px; float: left; }
+.cpy_logo { width: 77px; height: 84px; background: url(http://img.to8to.com/decorate_gallery/images/gif/cpy_logo1.gif) no-repeat; margin: 15px 0 0 0px; padding-right: 55px; border-right: 1px solid #eee; }
+.grade_details { width: 256px; float: left; margin: 11px 0 0 40px; color: #999; }
+.ielt7 .grade_details{width: 200px; margin-left:20px;}
+.ct_dp_left { float: left;}
+.ct_dp_right { float: right;}
+.details_l, .amount_title ul li, .team_title ul li, .case_details ul li p, .cmt_title1 p, .cmt_star, .ask_ctn span, .ask_dtls { float: left; }
+.ask_dtls { word-wrap: break-word; width: 100%; }
+.score { font-size: 36px; width: 48px; height: 29px; line-height: 29px; color: #f26f20; font-family: "Futura-Std", "Microsoft YaHei", 微软雅黑, "Microsoft JhengHei", 华文细黑, STHeiti, MingLiu; }
+.sco_text { margin-top: 10px;}
+.scro_details { margin-left: 42px; }
+.scro_details{height: 99px;}
+.cpy_details_special   .scro_details{height: 112px;}
+.details_r { float: left; /*margin-left: 42px;*/ }
+.ielt7 .details_r { margin-left: 39px; }
+.details_r ul { margin-top: -5px; }
+.text_red, .text_blue { padding: 0 3px; background: #d43b1b; color: #fff; }
+.text_blue { background: #22ac57; }
+.text_red { background: #d43b1b; }
+.grade_num, .case_progress .case_unfinished, .intro_more, .case_name a { color: #333; }
+.intro_more{color: #999;}
+.support {height: 40px; margin-top: 10px; color: #999; line-height: 40px;border-width: 1px 0;border-style: solid;border-color: #eee;margin-left: 40px;width: 450px;overflow: hidden;}
+.support ul{width: 502px;}
+.support ul li { float: left; margin-right: 54px; display: inline; }
+.support em, .support a, .support1 em, .support1 a { float: left; color: #999; }
+.support a:hover, .support1 a:hover, .order_hotline .num1, .order_hotline .num2, .click_apply:hover, .intro_more:hover, .order_more:hover, .amtr_more:hover, .case_name a:hover { color: #f36f20; }
+.support_bg1, .support_bg1a { width: 23px; height: 21px; margin-top: 10px; margin-right: 5px; }
+.askqst_ctn .ask_ctn .ask_bg, .askqst_ctn_last .ask_ctn .ask_bg, .comment_datails1 .off, .comment_datails1 .on, .case_progress .off, .case_progress .on, .attention_num em, .phone_icon, .support1 .support_bg1, .support_bg3, .support1 .support_bg2, .support_bg2, .support_text1:hover em, .support .support_text2:hover em, .support1 .support_text2:hover em, .support_text3:hover em, .support_bg1, .support_bg1a, .support_bg2a, .support_bg3c, .support_bg2b, .support .support_text4:hover em, .support1 .support_text4:hover em, .support1 .support_bg4, .support_bg4 { background: url(http://img.to8to.com/decorate_gallery/images/gif/zgs_blog.gif) no-repeat; }
+.support_text1:hover em { background-position: 0 -21px; }
+.support .support_text2:hover em { background-position: -23px -22px; }
+.support1 .support_text2:hover em { background-position: -23px -22px; }
+.support .support_text4:hover em { background-position: -67px -22px; }
+.support1 .support_text4:hover em { background-position: -67px -22px; }
+.support_text3:hover em { background-position: -43px -22px; }
+.support_bg3 { background-position: -43px 0; }
+.support_bg2 { background-position: -23px -0; }
+.support_bg4 { background-position: -64px -0; }
+.support1 .support_bg2 { background-position: -23px 0; }
+.support1 .support_bg4 { background-position: -64px 0; }
+.support_bg2b { margin-right: 5px; }
+.support_bg3 { width: 21px; height: 21px; margin-top: 10px; margin-right: 5px; }
+.support_bg2, .support_bg2a, .support_bg2b, .support_bg3c, .support_bg4 { width: 20px; height: 20px; margin-top: 10px; margin-right: 5px; }
+.cpy_text {height: 73px; margin: 10px 0 0 40px; }
+.cpy_details1 .cpy_text{margin-top: 5px;}
+.cpy_text p.intro_text { color: #999 }
+.intro_title { font-size: 14px; color: #333; }
+.order_free, .grade_details1, .sco_text1, .amount_title .plan_num1, .order_more, .row1 .owner, .row2 .acreage, .finish_place span { color: #999; }
+.ielt7 .grade_details1{float: left; width: 200px}
+.order_more { line-height: 16px; float: right; margin-top: 17px; }
+/*.design_plan .order_more,.design_team .order_more,.construct_case .order_more,.comment .order_more{line-height:51px;margin-left:805px;}*/
+.order_free .order_btn { width: 144px; height: 38px; border: 0 none; cursor: pointer; background: #f36f20; color: #fff; float: left; font-family: "Microsoft YaHei", 微软雅黑, "Microsoft JhengHei", 华文细黑, STHeiti, MingLiu; }
+.order_free input.order_btn:hover { background-color: #e7691e }
+.order_free { margin: 0 0 0 40px;}
+.ielt8 .order_free{margin:1px 0 0 20px;}
+.scro_details1 {height: 139px; margin: 20px 0 0 35px; }
+.ielt7 .scro_details1 { margin: 20px 0 0 0px; }
+.cpy_details1 { width: 490px; height: 275px; float: left; display: none; }
+.support1 { width: 210px; color: #999; border-right: 1px solid #e8e8e8; float: left; }
+.ielt7 .cpy_details1 { width: 480px; height: 275px; float: left; overflow: hidden}
+.ielt7 .support1 { margin-left: 20px; }
+.support1 ul { margin-top: -15px; }
+.ielt7 .support1 ul { margin-top: -10px; }
+.ielt7 .support1 ul li { margin-top: 10px; }
+.support1 ul li {width: 148px; height: 32px; margin-top: 15px; line-height: 32px; }
+.support1 .support_bg1 { width: 23px; height: 21px; margin-top: 5px; margin-left: 15px; }
+.support1 .support_bg2, .support1 .support_bg3, .support1 .support_bg2, .support1 .support_bg3, .support1 .support_bg4 { width: 20px; height: 20px; margin-top: 10px; margin-left: 15px; margin-top: 5px; }
+.score_dtls { margin-left: 55px; display: inline-block; }
+.score1 { font-size: 36px; width: 48px; height: 29px; line-height: 29px; color: #f26f20; }
+.details_r1 { float: left; margin-left: 55px; margin-top: 10px; }
+.details_r1 a,.details_r a{color: #666}
+.ielt7 .details_r1 { float: left; margin-left: 28px; margin-top: 12px; }
+.details_r1 dl dt,.details_r dl dt{height: 16px; color: #666; line-height: 16px; font-size: 14px;margin-bottom:20px;}
+.details_r dl dt{margin-bottom:15px;}
+.details_r1 dl dd,.details_r dl dd{margin-bottom:9px; height: 14px}
+.details_r1 dl dd span,.details_r dl dd span{float: left; height: 14px; line-height: 14px; color: #999; margin-right:10px; display: inline}
+i.ystar_1,i.ystar_2,i.ystar_3{width:12px; height: 12px;margin-right:3px;float: left;margin-top:1px;display: inline}
+i.ystar_1{background-position:-144px -103px }
+i.ystar_2{background-position:-157px -103px }
+i.ystar_3{background-position:-131px -103px }
+.details_r1 dl dd b,.details_r dl dd b{float:left; height: 14px; line-height: 14px; font-weight: normal; margin-left:6px;}
+.details_r1 ul li, .intro_text, .details_r ul li { margin-top: 5px; }
+.order_hotline { float: left; height: 38px;font-size: 12px;background-color: #f8f8f8;padding: 0 7px;line-height: 38px;width: 292px;white-space: nowrap;overflow: hidden;text-overflow:ellipsis;}
+.order_hotline .txt1 { color: #666; font-size: 14px; }
+.amount_house { height: 355px; padding: 50px 0; overflow: hidden; }
+.apply { height: 20px; line-height: 20px; margin-top: 8px; }
+.amount_l { float: left; width: 676px; }
+.amount_l .team_title {border-bottom: none; padding-bottom: 17px; overflow: hidden;}
+.ielt8 .team_title {position: relative;}
+.amount_title { height: 18px; line-height: 18px; }
+.r_title { line-height: 43px; height: 35px; padding-bottom: 12px; overflow: hidden;}
+.ielt7 .r_title { line-height: 67px; height: 60px; }
+.free_amount { font-size: 24px; color: #333; padding-right: 10px; border-right: 1px solid #eee; }
+.amount_l .team_title a.click_apply {color:#999;margin-left: 5px; line-height: 32px; }
+.amount_l .team_title a.click_apply:hover, .amount_l .team_title a.click_apply:hover span { color: #f25618 }
+.ielt8 .team_title .order_more{position: absolute;right: 0;}
+.gt_green { font-family: "宋体"; color: #01af63; margin-left: 5px; }
+.ielt7 .team_title .gt_green { margin: 6px 0 0 5px; }
+.gt_gray { font-family: "宋体"; margin-left: 5px; }
+/* .amout_list {overflow: hidden; }
+.ielt7 .amout_list { margin-top: -25px; }
+.amout_list a {color: #666; display: block;padding-left: 10px;}
+.team_title .fix_r { float: right; }
+.amout_list a:hover {background: #f8f8f8; }
+.amt_title {border-bottom: 1px solid #eee;border-top: 1px solid #eee;color: #999;margin-bottom: 10px;padding-left: 10px;}
+.amout_list .amt_list1 {cursor: pointer; }
+.amout_list ul li { float: left; width: 132px; height: 31px; float: left; line-height: 30px; }
+.amout_list .amt_title li{height: auto;padding: 20px 0 10px;line-height: 16px;} */
+.amout_list {border: 1px solid #eee;overflow: hidden;}
+.amout_list a {border-bottom: 1px dotted #e6e6e6;color: #666;display: block;height: 49px;}
+.amout_list a:last-child {border-bottom: medium none;height: 50px;}
+.team_title .fix_r {float: right;}
+.amout_list a:hover {background: none repeat scroll 0 0 #f8f8f8;border-bottom: 0 none;height: 50px;}
+.amt_title {background: none repeat scroll 0 0 #f8f8f8;border-bottom: 1px solid #eee;font-size: 16px;}
+.amout_list .amt_list1 {cursor: pointer;}
+.amout_list ul li {float: left;height: 50px;line-height: 50px;text-align: center;width: 132px;}
+.amount_r { float: left; width: 282px; overflow: hidden; margin-left: 22px; }
+.ielt7 .amount_r { margin-top: -8px; }
+.amtr_more { color: #999; float: right; line-height: 51px; }
+.ielt7 .amtr_more { line-height: 78px; }
+.title_txt { float: left; color: #333; font-size: 24px; }
+.amount_r .active_bg1 { background: url(http://img.to8to.com/decorate_gallery/images/gif/active_bg0.gif) no-repeat; width: 282px; height: 300px; overflow: hidden; margin-top: 6px; }
+.ielt7 .amount_r .active_bg1 { background: url(http://img.to8to.com/decorate_gallery/images/gif/active_bg0.gif) no-repeat; width: 282px; height: 300px; overflow: hidden; margin-top: -12px; }
+/**无优惠时***/
+.amount_r .noprivilege { background: url(http://img.to8to.com/decorate_gallery/images/gif/active_bg2.gif) no-repeat; width: 282px; height: 300px; overflow: hidden; margin-top: 6px; }
+.ielt7 .amount_r .noprivilege { background: url(http://img.to8to.com/decorate_gallery/images/gif/active_bg2.gif) no-repeat; width: 282px; height: 300px; overflow: hidden; margin-top: -12px; }
+.act_title { font-size: 20px; color: #fff;font-weight: bold; text-align: center; margin-top: 35px; width: 282px;white-space: nowrap;text-overflow:ellipsis;overflow: hidden;}
+.validity { text-align: center; color: #fff; }
+.download_after { color: #aee2c0; text-align: center; }
+.downto_phone { display: block; width: 83px; height: 30px; background: #fff; margin: 15px auto; font-size: 14px; color: #f36f20; text-decoration: none; line-height: 30px; padding-left: 34px; position: relative; }
+.act_details { background: url(http://img.to8to.com/decorate_gallery/images/png/actapr_bg1.png) no-repeat; _background: url(http://img.to8to.com/decorate_gallery/images/gif/actapr_bg1.gif) no-repeat; width: 240px; height: 110px; margin: 10px auto; overflow: hidden; }
+.phone_icon { width: 14px; height: 19px; display: block; position: absolute; left: 14px; top: 5px; background-position: -84px 0; }
+.act_details p { margin: 30px 15px 0 29px; width: 194px; }
+.blog_main_r { /* margin-top: -17px;  */}
+.ielt7 .blog_main_r {/*  margin-top: -35px;  */}
+.blog_main_r ul { margin-left: -20px; margin-top: -5px;width:1005px;}
+.blog_main_r ul li { float: left; width: 315px;margin-left: 20px; margin-top: 20px; position: relative; }
+.ielt7 .blog_main_r ul li { margin-left: 15px; }
+.blog_main_r img { vertical-align: middle; }
+/*.blog_main_r .img_titlebg { width: 315px; height: 35px; background: #000; position: absolute; bottom: 0; left: 0; z-index: 0; opacity: .75; filter: alpha(opacity=75); }
+.blog_main_r .img_explain { width: 295px; position: absolute; left: 10px; bottom: 8px; }*/
+.blog_main_r .exp{padding: 12px 15px;background-color: #f8f8f8;color: #999;}
+.blog_main_r .exp_t{font-size: 14px;color: #333;}
+.blog_main_r .exp_b span{float: left;}
+.blog_main_r .exp_b em{/* float: right; */ display: inline-block; width: 1px;height: 12px;background-color: #d8d8d8;overflow: hidden;margin: 3px 10px 0;*display: inline;*zoom:1;vertical-align: -2px;*vertical-align: middle;}
+.blog_main_r .exp_b .exp_date{float: right;}
+.design_plan { overflow: hidden; margin-top:0; }
+.design_plan .team_title { margin-top: 5px;border-bottom: none;padding-bottom: 0;}
+.diary_details1 { margin-top: 12px; padding-bottom: 30px; border-bottom: 1px dotted #e8e8e8; }
+.diary_details2, .diary_details3 { padding: 22px 0 30px 0; border-bottom: 1px dotted #e8e8e8; }
+.team_title .plan_num1 { color: #ccc;}
+.team_title .pl_num1{overflow: hidden; margin-top: 8px;line-height: 12px; /* display: inline */ }
+.design_team { margin-top: 52px; padding-bottom: 25px; }
+.team_title {border-bottom: 1px solid #eee; padding-bottom: 13px;overflow: hidden; }
+.team_title .team_txt { font-size: 24px; color: #333; }
+.diary_nscribe { float: right; margin-right: -10px; line-height: 15px; margin-top: 65px; color: #999; }
+.ielt7 .diary_nscribe { line-height: 15px; height: 15px; }
+.diary_nscribe span { float: left; margin-right: 10px; }
+.attention_num em { display: block; width: 12px; height: 9px; background-position: 138px 0; float: left; margin: 3px 5px 0 0; }
+.attention_num { padding-left: 20px; border-left: 1px solid #e8e8e8; }
+.cmplt { padding-right: 10px; color: #be895f; }
+.designer_pic1 { width: 100px; height: 100px; }
+
+.design_team .team_list { margin-top: 23px; }
+.narrow_980 .design_team .team_list { overflow: hidden; width: 980px }
+.designer_cov { width: 100px; height: 100px; background: url(http://img.to8to.com/decorate_gallery/images/gif/disigner_bg.gif?v=201409241743) no-repeat; position: absolute; left: 0; top: 0; opacity: .75; filter: alpha(opacity=75); display: none }
+.design_team .team_list .job_title a { display: block; color: #999; margin-top: 4px; }
+.design_team .team_list ul { margin-right: -80px; }
+.design_team .team_list ul li { width: 100px; float: left; margin-right: 75px; position: relative;padding-bottom: 15px;}
+.design_team .team_list ul li p { text-align: center; }
+.design_team .team_list ul li .designer_name1 a {display: block; color: #333; margin-top: 7px; }
+.cov_text { color: #fff; position: absolute; left: 0; top: 0; cursor: pointer; display: none ; width: 100px; height: 100px;font-family:  "Microsoft YaHei", 微软雅黑, "Microsoft JhengHei", 华文细黑, STHeiti, MingLiu; }
+.cov_text span{float: left; width: 100px; text-align: center; text-overflow:ellipsis; white-space: nowrap; overflow: hidden; height: 14px; position: relative; top:36px; line-height: 14px; font-weight: bold}
+.cov_text em{float: left; width: 100px; height: 20px;text-align: center; text-overflow:ellipsis; white-space: nowrap; overflow: hidden; position: relative; top: 44px; line-height: 20px; font-size: 18px;}
+.cov_num { font-size: 18px; }
+.cov_text a { color: #fff; display: block; text-align: center; }
+
+.diary_icon { width: 60px; float: left; margin-top: 6px; }
+.member_name1 { color: #999; text-align: center; }
+.diary_text { float: left; margin-left: 60px; }
+.diary .plan_num1 { color: #999; font-size: 18px; line-height: 40px; }
+.diary_title { font-size: 20px; color: #333; display: block; }
+.diary_title:hover { color: #f25618; }
+.diary_num { color: #999; font-size: 12px; }
+.write_details { width: 768px; margin-top: 13px; word-wrap: break-word; }
+.diary_img { margin-top: 20px; width: 860px; }
+.diary_img ul { margin-right: -10px; float: left; }
+.diary_img ul li { float: left; width: 80px; height: 80px; margin-right: 10px; }
+.construct_case {  margin-top: 8px;  }
+.construct_case .case_list{margin-top: -1px;}
+.construct_case .case_list_item{padding: 30px 0;border-top: 1px dotted #e8e8e8;}
+
+.bottom_line { padding-bottom: 40px; border-bottom: 1px solid #eee; width: 430px; }
+.ielt7 .bottom_line { padding-bottom: 35px; }
+.case_main1 { background: #f8f8f8; margin-top: 15px; height: 230px; }
+.comment {margin-top: 52px; }
+.ielt7 .comment .team_title, .ielt7 .design_team .team_title, .ielt7 .qution_ask .team_title { padding-bottom: 0px; }
+.cmt_details{}
+.cmt_details ul li {padding: 20px 0; border-top: 1px dotted #eee;margin-top: -1px;}
+.cmt_details .memb_head1 { float: left; width: 117px;padding-right: 15px;overflow: hidden;white-space: nowrap;text-overflow:ellipsis;}
+.cmt_details .memb_head1 .shade { position: absolute; top: 0; left: 0; width: 50px; height: 50px; background: url(http://img.to8to.com/decorate_gallery/images/png/shade-50.png); _background: url(http://img.to8to.com/decorate_gallery/images/gif/shade-50.gif); }
+.comment_datails1 { float: left; width: 848px; overflow: hidden; }
+.memb_name {color: #be895f;display: block;}
+.comment_datails1 .oth { margin-right: 20px;}
+.cmt_stage { margin-right: 30px;width: 65px;}
+.cmt_judge{margin-right: 30px;color: #999;}
+.chg_color { color: #be895f; }
+/*.cmt_title1{margin-right:-20px;}*/
+.sheji_scro span, .severce_scro span { float: left; margin-right: 8px;display: inline;color: #999;}
+.comment_datails1 .on { background-position: -98px 0; }
+.comment_datails1 .off { background-position: -111px 0; }
+.sheji_scro em, .severce_scro em { float: left;display: inline; width: 12px; height: 12px; margin-top: 2px;margin-left: 3px; cursor: pointer; }
+.cmt_content { margin-top: 10px; line-height: 20px; white-space: normal; word-wrap: break-word;overflow: hidden; }
+
+.finish_place{}
+.finish_place span{display: block;margin-top: 2px;}
+.plot_name{color: #01af63;display: block;width: 117px;white-space: nowrap;overflow: hidden;text-overflow:ellipsis;}
+.plot_name:hover{color: #f36f20;}
+
+.plot_time {font-family: 'Arial';color: #999;margin-top: 10px;}
+.qution_ask { margin-top: 50px;padding-bottom: 40px; }
+.askqst_ctn {padding: 15px 0; border-top: 1px dotted #eee;margin-top: -1px;}
+.askqst_ctn .ask_ctn .ask_bg, .askqst_ctn_last .ask_ctn .ask_bg { width: 14px; height: 14px; background-position: -123px 0; margin: 3px 5px 0 0; }
+.askqst_ctn .ask_ctn .ask_bg { float: left; }
+.askqst_ctn .ask_ctn .ask_chge, .askqst_ctn_last .ask_ctn .ask_chge { color: #01af63; float: left; }
+.askqst_ctn .awr_ctn, .askqst_ctn_last .awr_ctn { margin-top: 8px; float: left; width: 100%; }
+.ask_ctn .ask_timer, .askqst_ctn_last .ask_timer { float: right; color: #999; }
+.ask_ctn .answer_ctn{color: #333;}
+.vertical_bar { background-color: #e8e8e8; display: inline-block; width: 1px; height: 17px; margin: 0 5px; position: relative; bottom: -2px; }
+.askqst_ctn_last { margin-top: 16px; }
+.best_answer { color: #be895f;margin-left: 5px;}
+.best_answer .zgs_ico_best{margin-top: 3px;}
+.edit_header_pic { width: 980px; margin: 0 auto; text-align: right; }
+.edit_header_pic .editImg { border: 1px solid #ccc; float: right; font-family: "Microsoft YaHei", 微软雅黑, "Microsoft JhengHei", 华文细黑, STHeiti, MingLiu; font-size: 12px; height: 30px; line-height: 30px; margin-top: 32px; background: none repeat scroll 0 0 #fff; }
+.edit_header_pic .editImg a { background: url("/img/front_end/bg/zgs_bg.gif") no-repeat scroll 10px 8px rgba(0, 0, 0, 0); color: #666; float: left; display: block; padding-right: 30px; padding-left: 35px; text-decoration: none; }
+.cpy_details, .cpy_details1 { display: block; }
+.cpy_details_special{margin-top: -10px;}
+.cpy_details_special  .details_r dl dd{margin-bottom: 6px;}
+.score { width: 51px; }
+.amount_r .active_bg3 { background: url(/img/front_end/bg/active_bg1.gif) no-repeat; width: 282px; height: 300px; overflow: hidden; margin-top: 6px; }
+.amount_r .active_bg3 .act_details{background: url(http://img.to8to.com/decorate_gallery/images/png/actapr_bg0.png) no-repeat; _background: url(http://img.to8to.com/decorate_gallery/images/gif/actapr_bg0.gif) no-repeat;}
+.amount_r .active_bg3  .download_after{color: #fff;}
+.ielt7 .amount_r .active_bg3 { background: url(/img/front_end/bg/active_bg1.gif) no-repeat; width: 282px; height: 300px; overflow: hidden; margin-top: -12px; }
+.downto_black { color: #666; display: block; width: 82px; height: 30px; background: #fff; margin: 15px auto; font-size: 14px; text-decoration: none; line-height: 30px; padding-left: 35px; position: relative; }
+.designer_pic1 img { width: 100px; height: 100px; }
+.case_pics li img { width: 230px; height: 230px; }
+.memb_head1 img { width: 50px; height: 50px; border-radius: 25px;}
+.blog_main_r img { width: 315px; height: 220px; }
+/* 修复部分 */
+.grade_num { display: inline-block; width: 18px; text-align: left; }
+.comment .order_more {margin-left: 0; float: right; }
+.video_part p.note { position: absolute; top: 167px; left: 119px; font-size: 27px; display: none }
+.noFlash { position: relative; width: 490px; height: 275px; }

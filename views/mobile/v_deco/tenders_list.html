@@ -1,0 +1,34 @@
+{set:
+
+    $from = array('TZX' => '招标', 'ZXB' => '装修保', 'TBJ' => '报价', 'TLF' => '量房', 'TSJ' => '设计', 'TJC' => '建材');
+    $budget = array('', '8-10万', '10-15万', '5-8万', '15万以上', '3万-5万', '3万以下');
+    $way = array('', '半包', '清包', 19 => '全包');
+}
+
+<!-- <link rel="stylesheet" type="text/css" href="skin/tenders_list/css/common.min.css"> -->
+<link rel="stylesheet" type="text/css" href="skin/tenders_list/css/zxzb-list.css">
+
+<section class="zxzb-list-wrap">
+    <ul class="zxzb-list">
+        {set:$page = IReq::get('page') ? IFilter::act(IReq::get('page'),'int') : 1}
+        {query:name=zhaobiao order=id desc page=$page}
+                        <li class="zxzb-item">
+                    <time class="zxzb-item-left">
+                        <span class="zxzb-item-month">竞标数</span>
+                        <span class="zxzb-item-day">{$item['looks']}</span>
+                    </time>
+                    <a class="zxzb-item-right" href="{url:v_deco/zb_detail/id/$item['id']}">
+                        <h2 class="zxzb-item-title text-over-hidden">{$item['title']}</h2>
+                        <ul class="zxzb-item-info">
+                                                            <li class="text-over-hidden">项目类型：{$from[$item['from']]}</li>
+                                                                                        <li class="text-over-hidden">装修类型：{$way[$item['way_id']]}</li>
+                                                                                        <li class="text-over-hidden">面积：{$item['house_mj']}㎡</li>
+                                                    </ul>
+                    </a>
+                </li>
+                {/query}
+    </ul>
+
+    <div class="pagebar">{$query->getPageBar()}</div>
+    
+</section>

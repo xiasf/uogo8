@@ -1,0 +1,69 @@
+{file:file/nav}
+<!--主内容-->
+<style type="text/css">
+  .bottom{
+    width:100%;
+    height:auto;
+    background:white;
+    border:1px solid #eee;
+  }
+  .bottom ul{
+    border-top:1px solid #cacaca;
+  }
+  .bottom ul li{
+        width: 50%;
+    float: left;
+    text-align: center;
+    line-height: 31px;
+  }
+  .bottom ul li:nth-child(2n){
+    border-bottom:1px solid #cacaca;
+    border-left:1px solid #cacaca;
+  }
+  .bottom ul li:nth-child(n){
+    border-bottom:1px solid #cacaca;
+  }
+</style>
+<div class="index_page" id="indexPage">
+  <section>{viewcontent}</section>
+  <div class="top-sct user-feedback tb-half-pixel hide">
+  	<a href="#" rel="nofollow">
+    <h3>用户反馈</h3>
+    <p>使用过程中您有什么意见或建议欢迎提出</p>
+    <span class="icon-more"></span>
+  	</a> 
+  </div>
+  <div class="top-sct site-info footerDesc tb-half-pixel" style="text-indent: 0em;line-height: 1.7em; ">
+  		
+       <span style="float:left;width:30%">
+  		<img style="width: 100%;" src="../skin/index/itaohz.jpg">
+  	</span>
+<span class="clearfix">请关注公众号【淘黄州】（itaohz）获取低价、品质、实惠的商品特卖信息，提供本地最低价优质的商品服务！(按住不动扫描二维码)</span>
+
+  </div>
+
+
+
+<div class="bottom">
+  <ul>
+    {query:name=user fields=count(id) as countNums }<li>今日注册：{$item['countNums']}人</li>{/query}
+    {query:name=user fields=count(id) as countNums }<li>会员总数：{echo:$item['countNums']+15000}人</li>{/query}
+    {query:name=browse_online fields=count(userID) as num}<li>今日访问：{echo:$item['num']+6000}人</li>{/query}
+    {query:name=browse_online fields=count(userID) as num}<li>当前在线：{echo:$item['num']+565}人</li>{/query}
+  </ul>
+  <div class="clear"></div> 
+</div>
+
+  <div class="top-sct top-sct-zxrx bottom-half-pixel"> 
+  	<a href="tel:15871815678">
+  		<span class="span-info">咨询热线：</span>
+  		<i class="icon-tel-green"></i>
+  		<span class="span-tel">187-7163-7285</span>
+  	</a>
+  </div>
+</div>
+<!--主内容结束-->
+{file:file/foot}
+</body>
+</html>
+

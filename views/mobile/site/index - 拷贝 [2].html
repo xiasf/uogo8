@@ -1,0 +1,470 @@
+<!-- 幻灯片开始foreach:items=$this->index_slide -->
+
+<!--<div id="focus" class="focus">
+  <div class="hd">
+    <ul>
+    </ul>
+  </div>
+  <div class="bd">
+    <ul>
+      {foreach:items=Api::run('getadmanageid',array('#position_id#',17),30) item=$second}
+      <li><a href="{$second['link']}"><img src="{url:$second['content']}" width="588"  height="auto" /></a></li>
+      {/foreach}
+    </ul>
+  </div>
+</div>
+<script type='text/javascript' src='{theme:javascript/TouchSlide.1.1.js}'></script> 
+<script>
+     TouchSlide({ 
+          slideCell:"#focus",
+          titCell:".hd ul", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
+          mainCell:".bd ul", 
+          effect:"leftLoop", 
+          autoPlay:true,//自动播放
+          autoPage:true //自动分页
+        });
+</script> 
+
+
+<ul class="nav">
+  <li> <a href="{url:v_deco/company}">
+    <div class="ico_5"></div>
+    <p>装修公司</p>
+    </a> </li>
+  <li> <a href="{url:v_deco/mall}">
+    <div class="ico_6"></div>
+    <p>家居商城</p>
+    </a> </li>
+  <li> <a href="{url:v_deco/zxbj}">
+    <div class="ico_9"></div>
+    <p>装修报价</p>
+    </a> </li>
+  <li> <a href="{url:v_deco/gonglve}">
+    <div class="ico_11"></div>
+    <p>学装修</p>
+    </a> </li>
+  <li> <a href="#">
+    <div class="ico_12"></div>
+    <p>线下活动</p>
+    </a> </li>
+</ul>-->
+
+<div class="swiper-container swiper-container-horizontal">
+  <div class="swiper-wrapper"> {foreach:items=Api::run('getadmanageid',array('#position_id#',17),30) item=$second}
+    <figure class="swiper-slide swiper-slide-prev"> <a href="{$second['link']}"> <img width="100%" height="auto" src="{url:$second['content']}"> </a> </figure>
+    {/foreach} </div>
+  <!-- 如果需要分页器 -->
+  <div class="swiper-pagination"><span class="swiper-pagination-bullet"></span><span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span><span class="swiper-pagination-bullet"></span></div>
+</div>
+<section>
+  <ul class="main-enter bottom-half-pixel clearfix">
+    <li> <a class="click-point" data-point="2_1_1_1" href="#"> <span class="icon-zxtuku-enter"></span>
+      <h2>装修图库</h2>
+      </a> </li>
+    <li> <a class="click-point" data-point="2_1_1_5" href="{url:v_deco/gonglve}"> <span class="icon-zxgl-enter"></span>
+      <h2>装修攻略</h2>
+      </a> </li>
+    <li> <a class="click-point" data-point="2_1_1_4" href="{url:v_deco/company}"> <span class="icon-zxgx-enter"></span>
+      <h2>装修公司</h2>
+      </a> </li>
+    <li> <a class="click-point" data-point="2_1_1_7" href="{url:v_deco/mall}"> <span class="icon-pptm-enter"></span>
+      <h2>家居商城</h2>
+      </a> </li>
+    <li> <a class="click-point" data-point="2_1_1_3" href="#"> <span class="icon-hxsj-enter"><em>免费</em></span>
+      <h2>户型设计</h2>
+      </a> </li>
+    <li> <a class="click-point" data-point="2_1_1_2" href="{url:v_deco/zxbj}"> <span class="icon-zxbj-enter"><em>免费</em></span>
+      <h2>装修报价</h2>
+      </a> </li>
+  </ul>
+</section>
+
+<!--<div class="salid_list">
+  <ul>
+    <li><a href="{url:/simple/cart}" class="lis2"></a></li>
+    <li><a href="{url:/ucenter/favorite}" class="lis3"></a></li>
+    <li><a href="{url:/ucenter/order}" class="lis1"></a></li>
+    <li><a href="{url:/ucenter/index}" class="lis4"></a></li>
+  </ul>
+</div>--> 
+
+<!-- <div class="time_qg_ad_box">
+    <div class="title">推荐品牌</div>
+    <div class="index_brand">
+        <ul>
+        
+        </ul>
+    </div>
+</div> --> 
+
+<!--<div class="time_qg_ad_box">
+  <div class="title">限时抢购</div>
+  <div class="qg_sid">
+    <ul>
+      {foreach:items=Api::run('getPromotionList',5)}
+      {set:$free_time = ITime::getDiffSec($item['end_time'])}
+      {set:$countNumsItem[] = $item['p_id'];}
+      <li> {set:$tmpGoodsId=$item['goods_id'];$tmpPId=$item['p_id'];} <a href="{url:/site/products/id/$tmpGoodsId/promo/time/active_id/$tmpPId}" class="djs_box">
+        <p class="countdown"><b class="cd_hour" id='cd_hour_{$item['p_id']}'>{echo:floor($free_time/3600);}</b>时<b id='cd_minute_{$item['p_id']}'>{echo:floor(($free_time%3600)/60);}</b>分<b id='cd_second_{$item['p_id']}'>{echo:$free_time%60;}</b>秒</p>
+        <img src="{url:/pic/thumb/img/$item[img]/w/350/h/350}" alt="{$item['name']}" title="{$item['name']}" /> </a>
+        <div class="award_value_box">
+          <p class="pro_title"><a href="{url:/site/products/id/$tmpGoodsId/promo/time/active_id/$tmpPId}">{$item['name']}</a></p>
+          <p class="light_gray">￥{$item['award_value']}</p>
+        </div>
+      </li>
+      {/foreach}
+    </ul>
+  </div>
+</div>-->
+<div class="ads"><a href="#"><img src="{skin:}/wapads/1.jpg"></a></div>
+<!--品牌团-->
+<header class="sct-hd sct-hd-mfsj bottom-half-pixel">
+  <h1>快速查找商家</h1>
+</header>
+<div class="time_qg_ad_box">
+  <div class="index_brand">{foreach:items=Api::run('getadmanageid',array('#position_id#',16),5) item=$second}
+    <ul>
+      <li> <a href="{$second['link']}" class="lists_tit"> <img src="{url:$second['content']}" /> </a> </li>
+    </ul>
+    {/foreach}
+    <div class="clear"></div>
+  </div>
+</div>
+<div class="ads"><a href="#"><img src="{skin:}/wapads/2.jpg"></a></div>
+<!--装修公司-->
+<header class="sct-hd sct-hd-mfsj bottom-half-pixel">
+  <h1>快速查找装修公司</h1>
+</header>
+<div class="time_qg_ad_box">
+  <div class="index_brand"> {query:name=jiaju_company where=status eq 1 limit=5}
+    <ul>
+      <li style="    text-align: center;"> <a href="#" class="lists_tit"><img style="    width: 80%;
+    margin: 10px auto;
+    border-radius: 50%;
+    border: 1px gainsboro solid;" src="{webroot:$item['logo']}" />
+        <p style="    width: 80%;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    /* text-overflow: ellipsis; */
+    margin: 0 auto;
+    font-size: 15px;">{$item['name']}</p>
+        </a> </li>
+    </ul>
+    {/query}
+    <div class="clear"></div>
+  </div>
+</div>
+<div class="top-sct top-sct-xgt">
+  <header class="sct-hd sct-hd-zxxg bottom-half-pixel">
+    <h1>装修效果图</h1>
+    <ul class="swip-nav-hd xgt-swip-nav-hd" data-body="swipXgtBd">
+      <li class="active"><span>空间</span></li>
+      <li class=""><span>局部</span></li>
+      <li class=""><span>风格</span></li>
+    </ul>
+  </header>
+</div>
+<div class="top-sct top-sct-xgt" id="leftTabBox2">
+  <div class="hd"> </div>
+  <div class="sct-bd sct-bd-xgt sct-bd-pd swipe bd">
+    <ul class="xgt-list clearfix">
+      {query:name=jiaju_show_img where=space_type eq 1 item=$space limit=1}
+      {set:$space['img'] = current(explode(',', $space['img_list']));}
+      <li> <a class="page-container" href="{url:v_deco/effectpic?space=1}">
+        <div class="page-wrap"> <img src="{webroot:$space['img']}" class="lazy" alt="60㎡以下" width="290" height="290" style="display: block;">
+          <footer>
+            <p>客厅</p>
+          </footer>
+        </div>
+        </a> </li>
+      {/query}
+      {query:name=jiaju_show_img where=space_type eq 2 item=$space limit=1}
+      {set:$space['img'] = current(explode(',', $space['img_list']));}
+      <li> <a class="page-container" href="{url:v_deco/effectpic?space=1}">
+        <div class="page-wrap"> <img src="{webroot:$space['img']}" class="lazy" alt="60㎡以下" width="290" height="290" style="display: block;">
+          <footer>
+            <p>卧室</p>
+          </footer>
+        </div>
+        </a> </li>
+      {/query}
+      {query:name=jiaju_show_img where=space_type eq 3 item=$space limit=1}
+      {set:$space['img'] = current(explode(',', $space['img_list']));}
+      <li> <a class="page-container" href="{url:v_deco/effectpic?space=1}">
+        <div class="page-wrap"> <img src="{webroot:$space['img']}" class="lazy" alt="60㎡以下" width="290" height="290" style="display: block;">
+          <footer>
+            <p>餐厅</p>
+          </footer>
+        </div>
+        </a> </li>
+      {/query}
+      {query:name=jiaju_show_img where=space_type eq 4 item=$space limit=1}
+      {set:$space['img'] = current(explode(',', $space['img_list']));}
+      <li> <a class="page-container" href="{url:v_deco/effectpic?space=1}">
+        <div class="page-wrap"> <img src="{webroot:$space['img']}" class="lazy" alt="60㎡以下" width="290" height="290" style="display: block;">
+          <footer>
+            <p>儿童房</p>
+          </footer>
+        </div>
+        </a> </li>
+      {/query}
+    </ul>
+    <ul class="xgt-list clearfix">
+      {query:name=jiaju_show_img where=local_type eq 1 item=$local limit=1}
+      {set:$local['img'] = current(explode(',', $local['img_list']));}
+      <li> <a class="page-container" href="{url:v_deco/effectpic?space=1}">
+        <div class="page-wrap"> <img src="{webroot:$local['img']}" class="lazy" alt="60㎡以下" width="290" height="290" style="display: block;">
+          <footer>
+            <p>榻榻米</p>
+          </footer>
+        </div>
+        </a> </li>
+      {/query}
+      {query:name=jiaju_show_img where=local_type eq 2 item=$local limit=1}
+      {set:$local['img'] = current(explode(',', $local['img_list']));}
+      <li> <a class="page-container" href="{url:v_deco/effectpic?space=1}">
+        <div class="page-wrap"> <img src="{webroot:$local['img']}" class="lazy" alt="60㎡以下" width="290" height="290" style="display: block;">
+          <footer>
+            <p>鞋柜</p>
+          </footer>
+        </div>
+        </a> </li>
+      {/query}
+      {query:name=jiaju_show_img where=local_type eq 3 item=$local limit=1}
+      {set:$local['img'] = current(explode(',', $local['img_list']));}
+      <li> <a class="page-container" href="{url:v_deco/effectpic?space=1}">
+        <div class="page-wrap"> <img src="{webroot:$local['img']}" class="lazy" alt="60㎡以下" width="290" height="290" style="display: block;">
+          <footer>
+            <p>飘窗</p>
+          </footer>
+        </div>
+        </a> </li>
+      {/query}
+      {query:name=jiaju_show_img where=local_type eq 4 item=$local limit=1}
+      {set:$local['img'] = current(explode(',', $local['img_list']));}
+      <li> <a class="page-container" href="{url:v_deco/effectpic?space=1}">
+        <div class="page-wrap"> <img src="{webroot:$local['img']}" class="lazy" alt="60㎡以下" width="290" height="290" style="display: block;">
+          <footer>
+            <p>吊顶</p>
+          </footer>
+        </div>
+        </a> </li>
+      {/query}
+    </ul>
+    <ul class="xgt-list clearfix">
+      {query:name=jiaju_show_img where=style_type eq 1 item=$style limit=1}
+      {set:$style['img'] = current(explode(',', $style['img_list']));}
+      <li> <a class="page-container" href="{url:v_deco/effectpic?space=1}">
+        <div class="page-wrap"> <img src="{webroot:$style['img']}" class="lazy" alt="60㎡以下" width="290" height="290" style="display: block;">
+          <footer>
+            <p>小户型</p>
+          </footer>
+        </div>
+        </a> </li>
+      {/query}
+      {query:name=jiaju_show_img where=style_type eq 2 item=$style limit=1}
+      {set:$style['img'] = current(explode(',', $style['img_list']));}
+      <li> <a class="page-container" href="{url:v_deco/effectpic?space=1}">
+        <div class="page-wrap"> <img src="{webroot:$style['img']}" class="lazy" alt="60㎡以下" width="290" height="290" style="display: block;">
+          <footer>
+            <p>复式</p>
+          </footer>
+        </div>
+        </a> </li>
+      {/query}
+      {query:name=jiaju_show_img where=style_type eq 3 item=$style limit=1}
+      {set:$style['img'] = current(explode(',', $style['img_list']));}
+      <li> <a class="page-container" href="{url:v_deco/effectpic?space=1}">
+        <div class="page-wrap"> <img src="{webroot:$style['img']}" class="lazy" alt="60㎡以下" width="290" height="290" style="display: block;">
+          <footer>
+            <p>别墅</p>
+          </footer>
+        </div>
+        </a> </li>
+      {/query}
+      {query:name=jiaju_show_img where=style_type eq 4 item=$style limit=1}
+      {set:$style['img'] = current(explode(',', $style['img_list']));}
+      <li> <a class="page-container" href="{url:v_deco/effectpic?space=1}">
+        <div class="page-wrap"> <img src="{webroot:$style['img']}" class="lazy" alt="60㎡以下" width="290" height="290" style="display: block;">
+          <footer>
+            <p>公寓</p>
+          </footer>
+        </div>
+        </a> </li>
+      {/query}
+    </ul>
+  </div>
+</div>
+<script type="text/javascript">TouchSlide({ slideCell:"#leftTabBox2" });</script>
+<div class="ads"><a href="#"><img src="{skin:}/wapads/3.jpg"></a></div>
+<!--分类循环-->
+<header class="sct-hd">
+  <h1>黄冈家居特卖集中营</h1>
+</header>
+{foreach:items=Api::run('getCategoryListTopIndex') item=$first }
+<div class="time_qg_ad_box">
+  <div class="title"><span class="icon"></span>{$first['name']}</div>
+  <div class="qg_sid"> {foreach:items=Api::run('getCategoryExtendList',array('#categroy_id#',$first['id']),4)}
+    <ul>
+      <li> <a href="{url:/site/products/id/$item[id]}" title="{$item['name']}" class="lists_tit"> <img src="{url:/pic/thumb/img/$item[img]/w/350/h/350}" title="{$item['name']}" alt="{$item['name']}" width="170" height="170" /> </a>
+        <div class="award_value_box">
+          <p class="pro_title"><a href="{url:/site/products/id/$item[id]}">{$item['name']}</a></p>
+          <p class="light_gray"><a href="{url:/site/products/id/$item[id]}">查看</a>￥{$item['sell_price']}</p>
+        </div>
+      </li>
+    </ul>
+    {/foreach}
+    <div class="clear"></div>
+  </div>
+  <div class="btn"><a href="{url:/site/pro_list/cat/$first[id]}">更多{$first['name']}</a></div>
+</div>
+{/foreach} 
+<!--装修早知道-->
+<div class="top-sct top-sct-zxzzd">
+  <header class="sct-hd sct-hd-zxzzd bottom-half-pixel">
+    <h1>装修早知道</h1>
+  </header>
+  <div class="sct-bd sct-bd-pd sct-zxzzd">
+    <div class="zxzzd-items">
+      <div class="zxzzd-item"> <a class="click-point" data-point="2_1_2_1" href="#">
+        <h3>装修流程</h3>
+        <p>让菜鸟变专家</p>
+        <img alt="装修流程" src="{skin:}/wap/zxzzd-show01.png" style="display: block;"> </a> </div>
+      <div class="zxzzd-item"> <a class="click-point" data-point="2_1_2_2" href="#">
+        <h3>装修风水</h3>
+        <p>和霉运说拜拜</p>
+        <img alt="装修风水" src="{skin:}/wap/zxzzd-show02.png" style="display: block;"> </a> </div>
+      <div class="zxzzd-item"> <a class="click-point" data-point="2_1_2_3" href="#">
+        <h3>选材手册</h3>
+        <p>家居建材知识库</p>
+        <img alt="选材手册" src="{skin:}/wap/zxzzd-show03.png" class="lazy" style="display: block;"> </a> </div>
+      <div class="zxzzd-item"> <a class="click-point" data-point="2_1_2_4" href="#">
+        <h3>家居百科</h3>
+        <p>让求知更简单</p>
+        <img alt="家居百科" src="{skin:}/wap/zxzzd-show04.png" style="display: block;"> </a> </div>
+    </div>
+    <!-- zxzzd-items end --> 
+    
+  </div>
+</div>
+<div class="ads"><a href="#"><img src="{skin:}/wapads/4.jpg"></a></div>
+
+<!--装修效果图-->
+<div class="top-sct top-sct-xgt">
+  <header class="sct-hd sct-hd-zxxg bottom-half-pixel">
+    <h1>装修效果图</h1>
+    <ul class="swip-nav-hd xgt-swip-nav-hd">
+      <li class="active"><span>空间</span></li>
+      <li><span>局部</span></li>
+      <li><span>户型</span></li>
+      <li><span>风格</span></li>
+    </ul>
+  </header>
+  <div class="sct-bd sct-bd-xgt sct-bd-pd swipe">
+    <div class="swipe_wrap swipe-xgt">
+      <div data-index="0">
+        <ul class="xgt-list">
+          <li> <a href="#"> <img src="{skin:}/wap/idx-xgt-kj-1.jpg" class="lazy" alt="60㎡以下" >
+            <footer>
+              <p>客厅</p>
+            </footer>
+            </a> </li>
+          <li> <a href="#"> <img src="{skin:}/wap/idx-xgt-kj-2.jpg" class="lazy" alt="60㎡以下" >
+            <footer>
+              <p>卧室</p>
+            </footer>
+            </a> </li>
+          <li> <a href="#"> <img src="{skin:}/wap/idx-xgt-kj-3.jpg" class="lazy" alt="60㎡以下" >
+            <footer>
+              <p>餐厅</p>
+            </footer>
+            </a> </li>
+          <li> <a href="#"> <img src="{skin:}/wap/idx-xgt-kj-4.jpg" class="lazy" alt="60㎡以下" >
+            <footer>
+              <p>儿童房</p>
+            </footer>
+            </a> </li>
+          <div class="clear"></div>
+        </ul>
+      </div>
+      <!-- end 空间 --> 
+      
+      <!-- end 局部 --> 
+      
+      <!-- end 户型 --> 
+      
+      <!-- end 风格 --> 
+    </div>
+  </div>
+</div>
+<div class="ads"><a href="#"><img src="{skin:}/wapads/5.jpg"></a></div>
+<!--帮您找装修-->
+<div class="top-sct top-sct-mfsj bottom-half-pixel">
+  <header class="sct-hd sct-hd-mfsj bottom-half-pixel">
+    <h1>帮你找装修</h1>
+  </header>
+  <div class="sct-bd">
+    <form class="mfsj-from" action="/zb/post">
+      <input class="row mfsj-name" name="chenghu" type="text" placeholder="您的称呼">
+      <input class="row mfsj-tel" id="phone" name="phone" type="tel" placeholder="手机号码">
+      <div class="row mfsj-area-row">
+        <input class="mfsj-area" name="oarea" type="tel" placeholder="房屋面积">
+        <span>㎡</span></div>
+      <div class="row add-downs">
+        <select class="mfsj-cost needsclick" name="zxys">
+          <option value="">装修预算</option>
+          <option value="3-5万">3-5万</option>
+          <option value="5-8万">5-8万</option>
+          <option value="8-12万">8-12万</option>
+          <option value="12-18万">12-18万</option>
+          <option value="18-25万">18-25万</option>
+          <option value="25-30万">25-30万</option>
+          <option value="30万以上">30万以上</option>
+        </select>
+      </div>
+      <div class="row mfsj-submit">预约免费设计</div>
+      <div class="mfsj-info"><i class="icon-info"></i>
+        <div>我们承诺：淘黄州提供该项<em>免费服务，绝不产生任何费用</em>，为了您的利益以及我们的口碑，您的隐私将被严格保密。</div>
+      </div>
+    </form>
+  </div>
+</div>
+</div>
+<div class="ads"><a href="#"><img src="{skin:}/wapads/6.jpg"></a></div>
+<div class="top-sct top-sct-zxhq bottom-half-pixel">
+  <header class="sct-hd sct-hd-zxhq decorationTitle bottom-half-pixel">
+    <h1>黄冈装饰行情</h1>
+  </header>
+  <div class="sct-bd sct-bd-pd">
+    <div class="situation-box">
+      <div class="situation-box-item"> <a class="click-point" data-point="2_1_3_2" href="#"> <img src="{skin:}/wap/zshq-show02.jpg" class="lazy" alt="装修设计" style="display: inline;"> <span>黄冈装修设计</span> </a>
+        <div> <a href="#">
+          <h3>解析别墅巴洛克装修风格</h3>
+          <p>黄冈装修设计师导语：巴洛克风格更多使用了现代装饰手法与大量的现代材料，来凸显业主所追求的绚丽，惬意的贵族般生活。同样，在装修材料使用上也不同于传统欧式格调，而是舍弃了大量繁杂的机理，简化了线条。更注重...</p>
+          </a> </div>
+      </div>
+      <div class="situation-box-item"> <a class="click-point" data-point="2_1_3_3" href="#"> <img src="{skin:}/wap/zshq-show03.jpg" class="lazy" alt="装修报价" style="display: inline;"> <span>黄冈装修报价</span> </a>
+        <div> <a href="#">
+          <h3>黄冈市黄州区民政局地址</h3>
+          <p>我们的国家在不断的进步，所以我们的生活也是越来越好，国家给我们的福利也是越来越多。如今负责社会福利发放的一般都是民政局，所以民政局对于我们来说还是比较重要的一个地方。我们领取结婚证的时候也是需要去民政...</p>
+          </a> </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="top-sct site-info footerDesc tb-half-pixel"> 淘黄州家具生活网致力于为广大业主提供透明、保障、省心的装修服务！了解黄冈装修公司排名，获取黄冈装修报价、装修预算就上淘黄州 </div>
+<div class="ads"><a href="#"><img src="{skin:}/wapads/7.jpg"></a></div>
+<script type="text/javascript">
+
+
+$("#userhome").html('<a href="#menu-left" class="icn_home"></a>');
+jQuery(function(){
+	var cd_timer = new countdown();
+	{if:isset($countNumsItem) && $countNumsItem}
+	{foreach:items = $countNumsItem}
+		cd_timer.add({$item});
+	{/foreach}
+	{/if}
+});
+</script>

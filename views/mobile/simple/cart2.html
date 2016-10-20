@@ -1,0 +1,304 @@
+<!-- {set:if ($this === IWeb::$app->getController()) echo "baby";} -->
+
+<section class="m_payment g_wrap" {if:empty($this->promotion)}style="display:none"{/if}>
+  <p class="alertBoxContent"> <strong class="f14">恭喜，您的订单已经满足了以下优惠活动！</strong><br/>
+    {foreach:items = $this->promotion}
+    {$item['plan']}，{$item['info']}
+    {/foreach} </p>
+</section>
+<form action='{url:/simple/cart3}' method='post' name='order_form'>
+
+
+<!--支付方式 开始-->
+<section class="m_payment g_wrap">
+<ul>
+  {set:$paymentList=Api::run('getPaymentList');}
+    {foreach:items = $paymentList}
+    {set:$paymentPrice = CountSum::getGoodsPaymentPrice($item['id'],$this->sum);}
+    
+    <li class="pay_{$item[class_name]}" style="background-image:url({webroot:plugins/$item[logo]})">
+    <p class="payItems" data-id="{$item['id']}">
+    <em>{$item['name']}</em><span>手续费：￥{$paymentPrice}</span>
+        {if:$this->user}
+        {set:$user_id = $this->user['user_id'];$user = Api::run('getMemberInfo',$user_id)}
+        {if:$item['id'] == 1}
+            <span>余额：<strong class="red">{$user['balance']}元</strong> </span>
+            	{/if}
+        {/if}
+    </p>
+    </li>
+    {/foreach}
+    </ul>
+</section>
+<!--支付方式 结束--> 
+<!--地址管理 开始--> 
+{if:$this->addressList}
+<section class="m_address g_wrap"> 
+  <!--<a  href="javascript:void(0)"><i class="u_ico1 ico"></i><span>请添加收货地址</span></a>--> 
+  {foreach:items=$this->addressList}
+  <p onclick='addressSelected({echo:JSON::encode($item)});'><span>{$item['accept_name']}({$item['mobile']})</span>{$item['address']}</p>
+  {/foreach} </section>
+{/if}
+<section class="m_address2 g_wrap">
+  <h3>收货地址（请如实详细填写，否则货物不能送达）</h3>
+  <div class="form_address">
+    <p>
+      <input type="text" maxlength="5" placeholder="收货人真实姓名" name="accept_name" class="input" value="" />
+    </p>
+    <p>
+      <input type="number" maxlength="15" placeholder="收货人真实手机号" name="mobile" class="input" value="" />
+    </p>
+    <p>
+      <input readonly type="text" value="湖北省/黄冈市/黄州区" name="addregion" id="citypicker" class="input citypicker">
+    </p>
+    <p>
+      <input type="text" placeholder="详细地址" class="input" maxlength="50" name="address" value="" />
+    </p>
+  </div>
+</section>
+<!--地址管理 结束--> 
+<!--订单开始-->
+<section class="g_wrap"> {foreach:items = $this->goodsList}
+  <div class="u_goods">
+  <h3 class="product-list">{$item['shopname']}</h3>
+  <ul class="goodsitem" data-count="{$item['count']}" data-productid="{$item['product_id']}"  data-goodid="{$item['goods_id']}">
+    <li class="clearfix">
+			<!--<a href="{url:/site/products/id/$item[goods_id]}">-->
+			<img src="{webroot:}{echo:Thumb::get($item['img'],80,80)}">
+			
+			<!--</a>-->
+      <h4 class="itemname">{$item['name']}</h4>
+      <p>{if:isset($item['spec_array'])}
+       {set:$spec_array=Block::show_spec($item['spec_array']);}
+        {foreach:items=$spec_array item=$specValue key=$specName}
+        {$specName}：{$specValue} &nbsp&nbsp
+        {/foreach}
+      {/if}&nbsp;</p> <em class="f_fl">￥<i class="unitPrice" id="goods_sum_{$item['id']}">{$item['sell_price']}</i></em> <span class="num f_fr" name="num" data-num="1"
+>x{$item['count']}</span>
+      <div class='data' style='display:none'> <span name='cities'></span> <span name="stock">37</span> <span name="cashCoupons" ></span> <span name="subtotal">234.00</span> </div>
+    </li>
+  </ul>
+  <div class="total clearfix">
+    <div class="f_fr"> <span>小计：<em>￥<b id='final_sum
+  </div>'>{echo:number_format($item['sum'], 2, '.', '');}</b></em></span> <span name="shopexpresstotals" data-price="" style="display:none"></span> </div>
+  </div>
+  {/foreach} </section>
+<!--配送-->
+<section class="g_wrap">
+  <div class="u_goods">
+<!--     <div class="mode clearfix" name="deliveryinfo">
+      <h4 class="f_fl">配送方式</h4>
+      <a class="u_click f_fr" href="javascript:void(0)"  name="expressinfo" data-fee="0"> 免运费 </a> <span style="display:none;" class="tb_skin_right" name="shopexpresstotals" data-price="0"></span> 
+    </div> -->
+    <div class="remarks">
+      <input type="text" placeholder="订单备注，若需要延迟发货，请备注具体日期，限50字" maxlength="50" name="message">
+    </div>
+  </div>
+</section>
+
+<!-- 商城现金券 -->
+
+<section class="g_wrap">
+  <ul class="m_cash j_tog">
+    <li id="couponWrap">
+      <p><span>优惠劵：暂无优惠劵</span></p>
+      <a class="u_click u_click2"><i class="u_arr u_arr1"></i></a> </li>
+  </ul>
+</section>
+
+<!-- 商城发票 -->
+
+<section class="g_wrap" style="display:none">
+<div class="m_invoice">
+<h4 class="f_clear"> <em class="f_fl">发票</em>
+  <label class="u_ckb2 f_fr">
+    <input id="invoiceSwitch" type="checkbox">
+    <span class="ico"><i></i></span> </label>
+</h4>
+<div id="invoiceBox" class="box" style="display:none;">
+<div name="invoiceContent">
+  <p> <em>抬头</em>
+    <input id="billCompanyIpt" class="text pl28" name="invoiceTitle" value="" maxlength="50" type="text" placeholder="请输入发票抬头">
+  </p>
+</div>
+</div>
+</div>
+</section>
+<section class="g_wrap">
+  <ul class="m_settle">
+    <li> <span class="f_fl">商品总额</span> <em class="f_fr">￥<i id="totalAmount">{echo:number_format($this->final_sum, 2, '.', '');}</i></em> </li>
+    <li> <span class="f_fl">运费总计</span> <em class="f_fr">￥<i id="express">0.00</i></em> </li>
+    <li> <span class="f_fl">活动优惠</span> <em class="f_fr">-￥<i id="discount">0.00</i></em> <span id="fullCut" style="display:none;">0.00</span> </li>
+    <li> <span class="f_fl">实付总额</span> <em class="f_fr">￥<i id="totalPrice">{echo:number_format($this->final_sum, 2, '.', '');}</i></em> </li>
+  </ul>
+</section>
+<!--页面底部-->
+<footer class="m_order clearfix">
+  <input type='hidden' name='delivery_id' value='3' />
+  <input type='hidden' name='accept_time' value='任意' />
+  <input type='hidden' name='timeKey' value='{echo:time()}' />
+  <input type='hidden' name='direct_gid' value='{$this->gid}' />
+  <input type='hidden' name='direct_type' value='{$this->type}' />
+  <input type='hidden' name='direct_num' value='{$this->num}' />
+  <input type='hidden' name='direct_promo' value='{$this->promo}' />
+  <input type='hidden' name='direct_active_id' value='{$this->active_id}' />
+  <input name="payment" type="hidden" value="0">
+  <span class="f_fl"  >实付总额：￥<i id="totalPriceBar">{echo:number_format($this->final_sum, 2, '.', '');}</i></span> <a href="javascript:;" class="f_fl" id="submit_order"  href="javascript:;">提交订单</a> </footer>
+ 
+<!--  <div class="wrap_box">
+    <h3><span class="orange">订单附言</span></h3>
+    <div id='address_often'>
+      <textarea name="message" class="normal" id="messageShowBox"></textarea>
+    </div>
+  </div>
+  <div class="wrap_box">
+    <h3><span class="orange">商品清单</span></h3>
+    <div class="cart_list"> {foreach:items = $this->goodsList}
+      <div class="prsd_pic">
+        <div class="cart_box_pic" id="deliveryFeeBox_{$item['goods_id']}_{$item['product_id']}_{$item['count']}">
+          <p> <em><img src="{webroot:}{echo:Thumb::get($item['img'],80,80)}" width="80px" height="80px" alt="{$item['name']}" title="{$item['name']}" /></em> <a href="{url:/site/products/id/$item[goods_id]}">{$item['name']}<b>￥{$item['sell_price']} x {$item['count']}</b></a> </p>
+        </div>
+        <dl class="sxcb">
+          <span> <u>小计：<b class="red2">￥<b class="red2" id="goods_sum_{$item['id']}">{$item['sum']}</b></b></u> </span>
+        </dl>
+      </div>
+      {/foreach} </div>
+  </div>
+  <div class="proReduce"> 运费总计：<b id='delivery_fee_show'>0</b> </div>
+  <div class="final_sum"> <b class="f14">应付总额：<span class="red2">￥<b id='final_sum'>{$this->final_sum}</b></span>元</b> </div>
+  <div class="BottomFieldWrapper">
+    <input type="submit" value="提交订单" class="loginButton">
+  </div>-->
+</form>
+<link rel="stylesheet" type="text/css" href="skin/mall/page_1.css">
+<script src="../skin/js/citypicker/city.picker.min.js"></script> 
+<script type="text/javascript">
+
+function get_delivery(callback)
+{
+  // var province = $('[name="province"]').val();
+  // var delivery = $('[name="delivery_id"]:checked').val();
+
+  if ($('input[name=addregion]').val().indexOf('黄州') != -1) {
+      delivery = 3;
+      $('input[name=delivery_id]').val(3);
+  } else {
+    delivery = 1;
+    $('input[name=delivery_id]').val(1);
+  }
+
+  var addregion = $('[name="addregion"]').val();
+
+  province = addregion.split('/')[0];
+
+  if(!province || !delivery)
+  {
+    return;
+  }
+
+  var goodsId   = [];
+  var productId = [];
+  var num       = [];
+  $('.goodsitem').each(function(i)
+  {
+    // var idValue = $(this).attr('id');
+    // var dataArray = idValue.split("_");
+
+    goodsId.push($(this).data('goodid'));
+    productId.push($(this).data('productid'));
+    num.push($(this).data('count'));
+  });
+
+  $.getJSON("{url:/block/order_delivery}",{"province":province,"distribution":delivery,"goodsId":goodsId,"productId":productId,"num":num},function(content){
+    //地区无法送达
+    if(content.if_delivery == 1)
+    {
+      $("#deliveryPrice").html('您选择地区部分商品无法送达');
+      alert('您选择地区部分商品无法送达');
+    }
+    else
+    {
+
+      callback(content);
+      // $("#deliveryPrice").html('￥'+content.price);
+      // orderFormInstance.protectPrice  = parseFloat(content.protect_price);
+      // orderFormInstance.deliveryPrice = parseFloat(content.price);
+      // orderFormInstance.doAccount();
+    }
+  });
+}
+
+function addressSelected(data){
+	$("input[name='accept_name']").val(data.accept_name);
+	$("input[name='mobile']").val(data.mobile);
+	$("input[name='address']").val(data.address);
+	//$("#citypicker").citypicker("destroy");
+	$("input[name='addregion']").val(data.addregion || "湖北省/黄冈市/黄州区");
+	//$("#citypicker").citypicker();
+	
+}
+$(function(){
+	$(".payItems").click(function(){
+		$(this).parent().parent().find(".payItems").removeClass("selected");$(this).addClass("selected");$("input[name='payment']").val($(this).data("id"));
+	});
+  $(".payItems").click();
+	$("#submit_order").click(function(){
+		if(parseInt($.trim($("input[name='payment']").val()))==0){
+			alert("请选择支付方式")
+			return;
+		};
+		if($.trim($("input[name='accept_name']").val().length)==0){
+			alert("请填写收货人姓名")
+			return;
+		};
+		if($.trim($("input[name='mobile']").val().length)==0){
+			alert("请填写收货人联系电话")
+			return;
+		};
+		if($.trim($("input[name='addregion']").val().length)==0){
+			alert("请填写收货人地区")
+			return;
+		};
+
+                if($.trim($("input[name='address']").val().length)==0){
+            alert("请填写详细收货地址")
+            return;
+        };
+
+
+    loadding();
+    get_delivery(function(content){
+        layer.closeAll();
+        $("#express").html(content.price);
+        var p = parseFloat($("#totalAmount").html())+parseFloat($("#express").html())-parseFloat($("#discount").html());
+        $("#totalPrice").html(p);
+        $("#totalPriceBar").html(p);
+
+        var str = '你的收货地址：<br />'+$("input[name='addregion']").val()+$("input[name='address']").val()+'<br />运费：￥'+content.price+'元<br />实付总额：￥'+p+'(含运费)<br />确认购买吗？';
+
+        layer.open({
+          content: str,
+          btn: ['确定购买', '不买了'],
+          shadeClose: false,
+          yes: function(){
+             $("form[name='order_form']").submit();
+             layer.closeAll();
+          }
+        });
+
+    });
+
+		// $("form[name='order_form']").submit();
+	});
+	/*$.getLocation(function(json){
+		$("#city-picker").citypicker("destroy");
+		var addregion = json.province+"/"+json.city+"/"+json.region;
+		$("input[name='addregion']").val(addregion || "湖北省/黄冈市/黄州区");
+		$("#city-picker").citypicker();
+		$("input[name='address']").val(json.address)
+	})*/
+
+	
+})
+
+</script>

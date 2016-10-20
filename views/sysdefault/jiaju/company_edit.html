@@ -1,0 +1,94 @@
+<div class="headbar">
+	<div class="position"><span>家居建材</span><span>></span><span>装修公司</span><span>></span><span>{if:isset($this->show_img_catRow['id'])}编辑{else:}添加{/if}装修公司</span></div>
+</div>
+<div class="content_box">
+	<div class="content form_content">
+		<form action="{url:/jiaju/company_edit_act}" method="post" name='company_edit' callback="invalid_callback('rule_table');" enctype="multipart/form-data">
+			<input type='hidden' name='id' />
+			<table class="form_table" name="rule_table">
+				<col width="150px" />
+				<col />
+				<tr>
+					<th>公司名称：</th>
+					<td><input type='text' class='normal' name='name' pattern='required' alt='请填写公司名称' /><label>* 填写公司名称</label></td>
+				</tr>
+
+				<tr>
+            <th>所属账号：</th>
+            <td>
+              <select class="auto" name="seller_user_id">
+                {query:name=seller_user where=user_type eq 1}
+                <option value="{$item['id']}">{$item['seller_name']}</option>
+                {/query}
+              </select>
+            </td>
+          </tr>
+
+				<tr>
+					<th>公司地址：</th>
+					<td><input type='text' class='normal' name='address' pattern='required' alt='请填写公司地址' /><label>* 填写公司地址</label></td>
+				</tr>
+
+				<tr>
+					<th>手机号码：</th>
+					<td><input type='text' class='normal' name='mobile' pattern='required' alt='手机号码' /><label>* 手机号码</label></td>
+				</tr>
+
+				<tr>
+					<th>logo：</th>
+					<td>
+						<input type="file" name="logo" />
+			              {if:isset($this->companyRow['logo']) && $this->companyRow['logo']}
+			              <p><a target="_blank" href="{webroot:}{$this->companyRow['logo']}"><img src='{webroot:}{$this->companyRow['logo']}' style='width:100px;height: 100100pxpx;border:1px solid #ccc' /></a></p>
+			              {/if}
+					</td>
+                </tr>
+
+				<tr>
+					<th>简介：</th>
+					<td><textarea name='smalldescribe' class='textarea'>{$this->companyRow['smalldescribe']}</textarea></td>
+				</tr>
+				<tr>
+					<th>详细描述：</th>
+					<td><textarea style="width:600px;height:150px;" name='describe' id="describe">{$this->companyRow['describe']}</textarea></td>
+				</tr>
+				<tr>
+					<th>星级：</th>
+					<td>
+						<label class='attr'><input type='radio' name='star' value='1' checked />一星</label>
+						<label class='attr'><input type='radio' name='star' value='2' />二星</label>
+						<label class='attr'><input type='radio' name='star' value='3' />三星</label>
+						<label class='attr'><input type='radio' name='star' value='4' />四星</label>
+						<label class='attr'><input type='radio' name='star' value='5' />五星</label>
+					</td>
+				</tr>
+				<tr>
+					<th>是否开启：</th>
+					<td>
+						<label class='attr'><input type='radio' name='status' value='1' checked=checked />是</label>
+						<label class='attr'><input type='radio' name='status' value='0' />否</label>
+					</td>
+				</tr>
+				<tr>
+					<th>排序：</th>
+					<td><input style="width:50px;" type='text' class='normal' name='sort' value="99" pattern='required' alt='请填写活动排序' /><label>* 填写活动排序</label></td>
+				</tr>
+
+				<tr>
+					<th></th>
+					<td><button class="submit" type='submit'><span>确 定</span></button></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</div>
+
+<script type='text/javascript'>
+$(function(){
+	//表单回填
+	var formObj = new Form('company_edit');
+	{if:isset($this->companyRow)}
+		formObj.init({echo:JSON::encode($this->companyRow)});
+	{/if}
+});
+</script>

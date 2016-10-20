@@ -1,0 +1,121 @@
+<style type="text/css" media="screen">
+.list a.buy-link-a{
+	display:block;
+	width:50%;
+	float:left;
+	padding: 10px 3%;
+	background:white; 
+	border-left:1px solid #eee;
+	border-bottom: 1px solid #eee;
+}
+.list a.buy-link-a h3{
+	text-align:left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height:25px;
+}
+.list a.buy-link-a p{
+	float:left;
+	line-height:27px;
+	color: #e81a62;
+    font-weight: 600;
+}
+.list a.buy-link-a del{
+	float:left;
+	line-height:27px;
+	margin-left:5px;
+	color:#636363;
+}
+.list a.buy-link-a img{
+	width:100%;
+}
+.u_tit{
+	background:white;
+}
+.u_tit ul.u_tit_ul{
+    display: box;
+    display: -webkit-box;
+    display: -moz-box;
+    box-align: center;
+    -webkit-box-align: center;
+    box-pack: center;
+    -webkit-box-pack: center;
+    height:auto;
+}
+.u_tit ul.u_tit_ul li{
+	-moz-box-flex: 1.0;
+    -webkit-box-flex: 1.0;
+    box-flex: 1.0;
+    border-bottom: #dedede solid 2px;
+    height:45px;
+    line-height:45px;
+}
+.u_tit ul.u_tit_ul li.cheke{
+	border-bottom: #ff464e solid 2px; 
+
+}
+.u_tit ul.u_tit_ul a.u_tit_ul_a{
+	text-align:center;
+}
+.sales_box{
+	position:relative;
+}
+span.sales {
+    text-align: center;
+    width: 100%;
+    color: rgb(49, 212, 204);
+    height: 25px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,.6);
+    line-height: 25px;
+    font-size: 13px;
+}
+span.goods_state {
+    height: 80px;
+    width: 80px;
+    position: absolute;
+    display: block;
+    background: rgba(0, 0, 0, 0.72);
+    color: white;
+    border-radius: 50%;
+    line-height: 80px;
+    text-align: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+</style>
+
+<div class="u_tit">
+      <ul class="u_tit_ul">
+        <li class=" cheke"> <a class="u_tit_ul_a" href="{url:task/goods_list}">
+          <h2>所有商品</h2>
+          </a> </li>
+        <li> <a class="u_tit_ul_a" href="{url:task/order_list}">
+          <h2>兑换记录</h2>
+          </a> </li>
+          <li> <a class="u_tit_ul_a" href="{url:task/task_list}">
+          <h2>任务大厅</h2>
+          </a> </li>
+      </ul>
+        <!-- <time class="seckillTime" data-date="{echo:ITime::getTime('2016-06-29 10:00:00')}" data-endate="{echo:ITime::getTime('2016-06-30 18:00:00')}"></time> -->
+    </div>
+<div class="list">
+    {foreach:items=$goods_list}
+        <a href="{url:/task/goods_info/id/$item['id']}" class="buy-link-a">
+        	<div class="sales_box">
+        		<img src="{url:/pic/thumb/img/$item[img]/w/303/h/303}" alt="正在加载">
+				<span class="sales">已有{$item['sales']}人兑换</span>
+				{if:$item['inventory']==0}<span class="goods_state">已抢完</span>{/if}
+        	</div>
+            <h3>{$item['name']}</h3>
+            <p>所需{$item['integral']}积分</p>
+            <!-- <del>原价：{$item['market_price']}</del> -->
+        </a>
+    {/foreach}
+</div>

@@ -1,0 +1,72 @@
+<style>
+	.ht_right {    background-color: #E7E7E7;}
+	.list_table th {height: 30px;}
+	.list_table tr {height: 30px;}
+	.list_table .orange{    background-color: #39C169;
+    color: #fff;
+    font-size: 12px;
+    padding: 5px;
+    border-radius: 5px;
+    }
+    
+</style>
+
+<div class="ht_right">
+	<div class="order">
+		
+		<ul class="evaluation">
+					{set:$queryEvaluationList = Api::run('getUcenterEvaluation',$this->user['user_id'],0)}
+					{foreach:items = $queryEvaluationList->find()}
+					<li class="box_li">
+					<div class="info_num">订单编号:<a href="{url:/ucenter/order_detail/id/$item[order_id]}">{$item['order_no']}</a></div>
+					{query:name=goods where=id eq $item[goods_id] item=$goods} 
+					
+					
+
+					
+				      <div class="info_list">
+				      	<a href="{url:/site/products/id/$goods[id]}">
+								<img skip="skip" class="f_fl" style="border-radius:0;min-height: 30px;min-width: 30px;" src="{webroot:$goods[img]}">
+								<h4 class="lin_p">{$goods['name']}</h4>
+							</a>
+						<a class="info_text" href="{url:/site/comments/id/$item[id]}">发表评价</a>
+				      </div>
+				      
+				    {/query}
+					
+					</li>
+					{/foreach}
+				
+				
+				<tfoot><tr><td colspan="4">{$queryEvaluationList->getPageBar()}</td></tr></tfoot>
+				
+		</ul>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

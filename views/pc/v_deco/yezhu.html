@@ -1,0 +1,180 @@
+<link rel="stylesheet" href="../skin/yezhu/css/xzx_details.css">
+<div class="container clear">
+<div class="yezhu-zxcs-content-left">
+        <div class="yezhu-zxcs-content-main">
+                <h2 class="yezhu-zxcs-content-title">{$this->article['title']}</h2>
+                <div class="yezhu-zxcs-content-small-desc">
+                    <div class="yezhu-zxcs-content-small-desc-left">{$this->article['create_time']}&nbsp;&nbsp;&nbsp;&nbsp;来源：<a href="/" class="yezhu-zxcs-page-nav-link">淘黄州小编</a></div>
+                    <div class="yezhu-zxcs-content-small-desc-center">
+                        <div class="desc-right-share-txt">分享：</div>
+                        <!-- Baidu Button BEGIN -->
+                        <div class="bdsharebuttonbox bdshare-button-style0-16" data-tag="share_1" data-bd-bind="1458972597047">
+                            <a href="#" class="bds_more" data-cmd="more"></a>
+                            <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+                            <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+                            <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+                            <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+                            <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+                        </div>
+                            <!-- Baidu Button END -->
+                    </div>
+                    <div class="yezhu-zxcs-content-small-desc-right">
+                        <div class="yezhu-zxcs-scbw">
+                          <a href="javascript:void(0)" onclick="collection(17380,2,105,105101)">
+                            <em></em>
+                            <span>收藏本文</span>
+                         </a>
+                        </div>
+                        <div class="yezhu-zxcs-ysjk">
+                          <a href="javascript:;">
+                            <em></em>
+                            <span>发送到手机</span>
+                          </a>
+                          <div class="yezhu-zxcscode-article">
+                          <p class="yezhu-zxcscode-txt">
+                                <b>微信</b>  手机看本文
+                                <span class="p1">  更多装修流程、装修风水随时看</span>
+                           </p>
+                            <img style="width:20px;height:20px" data-src="http://www.to8to.com/api/weixin/run.php?action=createSQrcode&amp;url=http://m.to8to.com/yezhu/v17380.html" src="http://img.to8to.com/to8to_img/icon/loading.gif?v=1456928932" run="0" alt="">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                
+                <div class="yezhu-zxcs-content">
+
+                          {if:$this->article['description']}
+        <blockquote style="    margin: 20px;font-size: 13px;padding: 10px;background-color: #F9F9F9;border-left: 3px #36BB0A solid;color: #666;">{$this->article['description']}</blockquote>
+        {/if}
+
+
+                  {$this->article['content']}
+
+
+                  <div class="yezhu-zxcs-page-up">
+                    {set:$id = IFilter::act(IReq::get('id'),'int');}
+                        <span class="yezhu-zxcs-page-last">上一篇：{query:name=jiaju_article where=id g $id order=sort asc,id asc limit=1}<a href="{url:v_deco/yezhu/id/$item['id']}">{$item['title']}</a>{/query}{if:!$item}到顶了，没有了哦{/if}</span>
+                        <span class="yezhu-zxcs-page-next">下一篇：{query:name=jiaju_article where=id l $id order=sort asc,id desc limit=1 item=$b}<a href="{url:v_deco/yezhu/id/$b['id']}" class="next_page">{$b['title']}</a>{/query}{if:!$b}见底了，没有了哦{/if}</span>
+                    </div>
+
+
+                            {set:$article_id = IFilter::act(IReq::get('id'),'int');}
+
+  <section id="Reply" class="news-comment fn-mt">
+    <h3 class="tab"> <span class="item activate">评论<em>(<span data-reply-count="0">{query:name=jiaju_article_comment where=article_id eq $article_id fields=count(id) as n}{$item['n']}{/query}</span>)</em></span> </h3>
+    <div class="comment-publish fn-mlr" id="CurrentReply">
+      <div class="input-comment" reply-form="0">
+        <form class="mfsj-from" id="zb_form">
+        <input type="hidden" name="article_id" value="{$article_id}">
+        <textarea style="    width: 80%;
+    height: 100px;
+    border-color: #F1950B;" id="form-c" name="contents" placeholder="请输入内容" reply-content="0"></textarea>
+        <input style="    width: 19%;
+    border: 0;
+    height: 100px;
+    float: right;
+    background-color: #178820;
+    color: #fff;
+    font-size: 17px;
+    border-radius: 10px;
+    cursor: pointer;" type="button" onclick="checkform(this)" reply-submit="0" value="发表评论">
+      </form>
+        <i class="load"></i> </div>
+    </div>
+
+
+    <div class="hottest" id="hotreply">
+      <!-- <div class="sticky"><em class="mark-hottest">热门评论</em></div> -->
+      <ul class="list-comment" id="hotreplylist">
+        {query:name=jiaju_article_comment where=article_id eq $article_id order=id desc}
+
+        <li style="    border-bottom: 1px #EAEAEA dashed;
+    margin: 10px 0;">
+          <div class="user"> <a class="avatar" href="javascript:void(0)"><img src="http://x.autoimg.cn/space/images/head_30X30.gif" data-user="16137056"></a> <a class="name" href="javascript:void(0)" data-user-v="16137056">网友&nbsp;&nbsp;</a>
+            <time>{$item['comment_time']}</time>
+          </div>
+          <div class="cont">
+            <p>{$item['contents']}</p>
+          </div>
+          <!-- <div class="handle"> <span class="reply" reply-id="53597330"><i class="iconfont icon-comment"></i>回复</span> <i class="split"></i> <span class="praise" reply-up="53597330"><i class="iconfont icon-praise"></i><span reply-upnum="499">499</span></span> <i class="split"></i> <a class="report" href="http://jubao.m.autohome.com.cn/ComplaintMain/CreateCom?cfgId=15&amp;appId=1000&amp;objId=53597330&amp;subObjId=1&amp;BizShowName=%E4%B8%BE%E6%8A%A5&amp;AccusedMId=16137056&amp;AccuseMName=undefined&amp;url=http%3A%2F%2Fm.autohome.com.cn%2Fnews%2F201603%2F886492.html%23pvareaid%3D100260">举报</a> </div> -->
+          <!-- <div class="comment-publish input-comment small fn-hide" reply-form="53597330" data-id="53597330"></div> -->
+        </li>
+        {/query}
+
+      </ul>
+    </div>
+
+<!--     <div class="newest">
+      <div class="sticky"><em class="mark-newest">最新评论</em></div>
+      <ul class="list-comment" id="ReplyList">
+        <li>
+          <div class="user"> <a class="avatar" href="http://i.m.autohome.com.cn/22727010"><img src="http://i1.autoimg.cn/album/userheaders/2015/11/13/f38fc81b-13c7-4e9b-8cb1-08efed7c144a_30X30.jpg"></a> <a class="name" href="http://i.m.autohome.com.cn/22727010" data-user-v="22727010">小狗追我跑</a>
+            <time>46秒前</time>
+          </div>
+          <div class="cont">
+            <p>这告诉我们矩阵屎大灯并不贵</p>
+          </div>
+          <div class="handle"> <span class="reply" reply-id="53598234"><i class="iconfont icon-comment"></i>回复</span> <i class="split"></i> <span class="praise" reply-up="53598234"><i class="iconfont icon-praise"></i><span reply-upnum="0"></span></span> <i class="split"></i> <a class="report" href="http://jubao.m.autohome.com.cn/ComplaintMain/CreateCom?cfgId=15&amp;appId=1000&amp;objId=53598234&amp;subObjId=1&amp;BizShowName=%E4%B8%BE%E6%8A%A5&amp;AccusedMId=22727010&amp;AccuseMName=%E5%B0%8F%E7%8B%97%E8%BF%BD%E6%88%91%E8%B7%91&amp;url=http%3A%2F%2Fm.autohome.com.cn%2Fnews%2F201603%2F886492.html%23pvareaid%3D100260">举报</a> </div>
+          <div class="comment-publish input-comment small fn-hide" reply-form="53598234" data-id="53598234"></div>
+        </li>
+        <li>
+          <div class="user"> <a class="avatar" href="http://i.m.autohome.com.cn/8661483"><img src="http://i1.autoimg.cn/album/userheaders/2015/2/27/8e793d70-8ce0-4a43-a7e6-d407d49b8661_30X30.jpg"></a> <a class="name" href="http://i.m.autohome.com.cn/8661483" data-user-v="8661483">东都一少</a>
+            <time>46秒前</time>
+          </div>
+          <div class="cont">
+            <div class="quote" id="ranswer-53598232">
+              <div class="user"> <a class="avatar" href="http://i.m.autohome.com.cn/12995762"><img src="http://x.autoimg.cn/space/images/head_30X30.gif" data-user="12995762"></a> <a class="name" href="http://i.m.autohome.com.cn/12995762" data-user-v="12995762">稳着点啊</a> </div>
+              <div class="cont">
+                <p>荣威550更多的靠罗孚的技术</p>
+              </div>
+            </div>
+            <p>这个1.8的发动机还真跟大众没关系，是罗孚的技术，MG6的底盘和发动机是最后的罗孚啦！</p>
+          </div>
+          <div class="handle"> <span class="reply" reply-id="53598232"><i class="iconfont icon-comment"></i>回复</span> <i class="split"></i> <span class="praise" reply-up="53598232"><i class="iconfont icon-praise"></i><span reply-upnum="0"></span></span> <i class="split"></i> <a class="report" href="http://jubao.m.autohome.com.cn/ComplaintMain/CreateCom?cfgId=15&amp;appId=1000&amp;objId=53598232&amp;subObjId=1&amp;BizShowName=%E4%B8%BE%E6%8A%A5&amp;AccusedMId=8661483&amp;AccuseMName=%E4%B8%9C%E9%83%BD%E4%B8%80%E5%B0%91&amp;url=http%3A%2F%2Fm.autohome.com.cn%2Fnews%2F201603%2F886492.html%23pvareaid%3D100260">举报</a> </div>
+          <div class="comment-publish input-comment small fn-hide" reply-form="53598232" data-id="53598232"></div>
+        </li>
+      </ul>
+      <div id="ReplyMove"><a class="btn" href="/Article/reply/886492" id="ShowAll">查看所有评论<i class="iconfont icon-arrow-right"></i></a></div>
+    </div> -->
+
+    <!-- <div class="content-null fn-hide" data-reply-null="true">还没有评论哦，快来抢沙发</div> -->
+    
+  </section>
+
+
+                </div>
+        </div>
+        </div>
+      </div>
+
+
+
+<script>
+  function checkform(button){
+  if(!$('#form-c').val().trim()){
+    alert('请填写评论内容');return;
+  }
+
+  $(button).val('提交中……');
+  $.ajax({
+      type: "POST",
+      dataType: "json",
+      url: "{url:v_deco/article_comment_post}",
+      data: $('#zb_form').serialize(),
+      success: function (result) {
+          if (result.status == 1) {
+            alert(result.info);
+            window.location.reload();
+          } else {
+            alert(result.info);
+            window.location.reload();
+          }
+      },
+      error: function(result) {
+          alert("error:"+result.responseText);
+       }
+  });
+
+  return false 
+}
+</script>

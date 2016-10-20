@@ -1,0 +1,107 @@
+<!-- 幻灯片开始foreach:items=$this->index_slide -->
+
+<div class="swiper-container swiper-container-horizontal">
+  <div class="swiper-wrapper"> {foreach:items=Api::run('getadmanageid',array('#position_id#',17),30) item=$second}
+    <figure class="swiper-slide swiper-slide-prev"> <a href="{$second['link']}"> <img width="100%" height="auto" src="{url:$second['content']}"> </a> </figure>
+    {/foreach} </div>
+  <div class="swiper-pagination"></div>
+</div>
+
+<!-- 幻灯片结束 -->
+
+<section class="g_wrap"></section>
+
+<!--页面导航区-->
+<nav class="m_nav">
+  <ul>
+    <li><a href="{url:site/category}"><i class="u_ico ico5"></i>分类查询</a></li>
+    <li><a href="{url:v_deco/mall_temai}"><i class="u_ico ico7"></i>品牌特卖</a></li>
+    <li><a href="{url:v_deco/seckill}"><i class="u_ico ico8"></i>限时抢购</a></li>
+    <li><a href="{url:simple/cart}"><i class="u_ico ico6"></i>购物车</a></li>
+  </ul>
+</nav>
+<article class="m_headlines f_clear">
+  <h3 class="f_fl">好货上<em>头条</em></h3>
+  <ul class="f_fl">
+    <li> <a href="#"><span>【HOT】</span>阳春特卖</a> </li>
+    <li> <a href="#"><span>【抢购】</span>新春家居惠，最高可减300元</a> </li>
+    <li> <a href="#"><span>【实惠】</span>厨房用品专场</a> </li>
+    <li> <a href="#"><span>【HOT】</span>阳春特卖</a> </li>
+  </ul>
+</article>
+<!--限时抢购区--> 
+<!--<section id="seckillWarp" class="m_buyLimit">
+  <div class="u_tit">
+    <h3>限时抢购</h3>
+    <time><em>0</em><em>0</em><span>:</span><em>5</em><em>1</em><span>:</span><em>3</em><em>7</em><span class="cur">距开始</span></time>
+    <a class="trailer" href="/mall/seckill">下期预告<span class="arr"></span></a> </div>
+  <div class="list"> <a href="http://m.to8to.com/mall/temai/20374.html" class="buy-link-img"> <img src="http://pic.to8to.com/tumall/2015/08/14/cefef4893bc6af2470f5c0f908de11a8_303x303M.jpg" alt="miaosha">
+    <p>￥598</p>
+    <em>1.9折</em> </a> <a href="http://m.to8to.com/mall/temai/20531.html" class="buy-link-img"> <img src="http://pic.to8to.com/tumall/2015/11/17/43f9299671117d323ec891338e4d08dd_303x303M.jpg" alt="miaosha">
+    <p>￥728</p>
+    <em>2.7折</em> </a> <a href="http://m.to8to.com/mall/temai/15559.html" class="buy-link-img"> <img src="http://pic.to8to.com/tumall/2015/08/19/c4f144fdeb0e36398aac5f77381e67e2_303x303M.jpg" alt="miaosha">
+    <p>￥399</p>
+    <em>5.1折</em> </a> </div>
+</section>--> 
+<!-- 本周推荐 --> 
+{set:$XCGS=Api::run('getadmanagegoodidXCGS',array('#position_id#','22'),6)}
+<section class="m_tsale2 f_mb">
+  <header class="u_tit">
+    <h3>本周推荐</h3>
+  </header>
+  <div class="inner"><!-- <a href="#" class="ad"><img src="{url:$XCGS[0][content]}"></a>
+    <div class="list"> <a href="@"> <img src="{url:$XCGS[1][content]}" alt=""> </a> <a href="#"> <img src="{url:$XCGS[2][content]}" alt=""> </a> </div>-->
+    <div class="list-img f_clear"> <a href="#"> <img src="{webroot:$XCGS[3][content]}" alt=""> </a> <a href="#"> <img src="{webroot:$XCGS[4][content]}" alt=""> </a> <a href="#"> <img src="{webroot:$XCGS[5][content]}" alt=""> </a> </div>
+  </div>
+</section>
+
+<!--<section class="m_tsale2 f_mb">
+  <header class="u_tit">
+    <h3>品牌团</h3>
+  </header>
+  <div class="inner">
+    <div class="list-img f_clear"> {foreach:items=Api::run('getBrandList',18)}
+      {set:$tmpId=$item['id'];}
+      <li> <a href="#"> <img style="display:inline;" src="{url:/pic/thumb/img/$item[logo]/w/140/h/90}" alt="{$item['name']}" /> </a> </li>
+      {/foreach} </div>
+  </div>
+</section>--> 
+<!--<section class="m_tsale">
+  <div class="u_tit">
+    <h3>精品市场</h3>
+     <a class="trailer" href="/mall/shop/temai">更多<span class="arr"></span></a> 
+  </div>
+  <div class="special"> 
+   <li class="one"> <a href="javascript:;"> <img style="display:inline;" src="{skin:images/549_6035 (2).jpg}" class="lazy" height="160" width="240" /> </a></li> 
+    {foreach:items=Api::run('getadmanageid',array('#position_id#','12'),4) item=$second} <a href="{url:$second['link']}" target="_blank"><img style="display:inline;" src="{url:/pic/thumb/img/$second[content]/w/240/h/160}" class="lazy" /></a> {/foreach} </div>
+</section>--> 
+<!-- 分类循环 2016-3-19 14:52:12 --> 
+{foreach:items=Api::run('getCategoryListTopIndex') item=$first}
+<section class="m_floor {if:(0 == $key % 2)} m_floor2{/if}">
+  <div class="u_tit">
+    <h3>{$first['name']}</h3>
+    <a class="trailer" href="{url:/site/pro_list/cat/$first['id']}">更多<span class="arr"></span></a> </div>
+  <div class="inner"> {foreach:items=Api::run('getCategoryExtendList',array('#categroy_id#',$first['id']),21)} <a href="{url:/site/products/id/$item[id]}">
+    <p><strong>{$item['name']}</strong>
+    <em>￥{$item['sell_price']}</em>
+    </p>
+    <img src="{url:/pic/thumb/img/$item[img]/w/400/h/400}">
+    </a> {/foreach} </div>
+  <!--  {if:$ad}
+  <div class="advert"> <a href="#"><img src="http://pic.to8to.com/hot/620_7457.jpg?t=1458291881" alt=""></a> </div>
+  {/if}
+--> </section>
+{/foreach}
+<link rel="stylesheet" href="../skin/mall/page_1.css">
+<link rel="stylesheet" href="../skin/user/css/rem.css">
+<link rel="stylesheet" type="text/css" href="skin/js/swiper/swiper.min.css">
+<script type="text/javascript" src="skin/js/swiper/swiper.min.js"></script> 
+<script type="text/javascript">
+            
+$(function(){
+	var swiper = new Swiper('.swiper-container',{pagination: '.swiper-pagination',paginationClickable: true ,autoplay:3000});
+	setInterval(function(){  
+	  //$(".m_headlines ul").animate({marginTop : "-20px"  },200,function(){$(this).css({marginTop : "0px"}).find("li:first").appendTo(this);  })  
+	},2500);
+});
+</script>

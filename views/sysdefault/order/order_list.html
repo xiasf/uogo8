@@ -1,0 +1,291 @@
+{js:my97date}
+
+<div class="headbar">
+	<div class="position">订单<span>></span><span>订单管理</span><span>></span><span>订单列表</span></div>
+	<div class="operating">
+		<a href="javascript:void(0);"><button class="operating_btn" type="button" onclick="window.location='{url:/order/order_edit}'"><span class="addition">添加订单</span></button></a>
+		<a href="javascript:void(0);" onclick="selectAll('id[]')"><button class="operating_btn" type="button"><span class="sel_all">全选</span></button></a>
+		<a href="javascript:void(0);" onclick="delModel({form:'orderForm'})"><button class="operating_btn" type="button"><span class="delete">批量删除</span></button></a>
+		<a href="javascript:void(0);" onclick="$('#orderForm').attr('action','{url:/order/expresswaybill_template}');$('#orderForm').submit();"><button class="operating_btn"><span class="export">批量打印快递单</span></button></a>
+		<a href="javascript:void(0);"><button class="operating_btn" onclick="location.href='{url:/order/print_template}'"><span class="export">单据模板</span></button></a>
+		<a href="javascript:void(0);"><button class="operating_btn" type="button" onclick="location.href='{url:/order/order_recycle_list}'"><span class="recycle">回收站</span></button></a>
+		<a href="javascript:void(0);" onclick="$('form[name=orderForm]').attr('target', '_blank');$('#orderForm').attr('action','{url:/order/merge_template}');$('#orderForm').submit();"><button class="operating_btn" ><span class="export">打印购物清单</span></button></a>
+		<a href="javascript:void(0);" onclick="$('form[name=orderForm]').attr('target', '_blank');$('#orderForm').attr('action','{url:/order/pick_template}');$('#orderForm').submit();"><button class="operating_btn" ><span class="export">打印配货清单</span></button></a>
+
+		<a href="javascript:void(0);" onclick="$('form[name=orderForm]').attr('target', '_blank');$('#orderForm').attr('action','{url:/order/merge_template2}');$('#orderForm').submit();"><button class="operating_btn" ><span class="export">合并购配打印</span></button></a>
+	</div>
+	<div class="searchbar">
+		<form action="{url:/}" method="get" name="order_list">
+			<input type='hidden' name='controller' value='order' />
+			<input type='hidden' name='action' value='order_list' />
+			<select name="search[seller_id]" class="auto">
+				<option value="">选择类型</option>
+				<option value="0">平台自营</option>
+				{query:name=seller where=is_del eq 0}
+				<option value="{$item['id']}">{$item['shopname']}</option>
+				{/query}
+			</select>
+
+			<select name="search[pay_status]" class="auto">
+				<option value="">选择支付状态</option>
+				<option value="0">未支付</option>
+				<option value="1">已支付</option>
+			</select>
+
+			<select name="search[distribution_status]" class="auto">
+				<option value="">选择发货状态</option>
+				<option value="0">未发货</option>
+				<option value="1">已发货</option>
+				<option value="2">部分发货</option>
+			</select>
+
+			<select name="search[status]" class="auto">
+				<option value="">选择订单状态</option>
+				<option value="1">新订单</option>
+				<option value="2">确认订单</option>
+				<option value="3">取消订单</option>
+				<option value="4">作废订单</option>
+				<option value="5">完成订单</option>
+				<option value="6">退款</option>
+				<option value="7">部分退款</option>
+			</select>
+
+			<select class="auto" name="search[name]">
+				<option value="">选择订单条件</option>
+				<option value="accept_name">收件人姓名</option>
+				<option value="mobile">收件人手机号码</option>
+				<option value="shop_name">店铺名称</option>
+				<option value="goods_name">商品名称</option>
+				<option value="order_no">订单号</option>
+				<option value="voucher">消费券</option>
+			</select>
+
+			<input class="small" name="search[keywords]" type="text" value="" />
+
+			&nbsp;&nbsp;选择时间:
+			<input type='text' name='search[start_time]' class='Wdate small' onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" /> ～
+			<input type='text' name='search[end_time]' class='Wdate small' onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" />
+			&nbsp;&nbsp;排序:
+			<select class="auto" name="search[sorting]">
+				<option value="1">正序</option>
+				<option value="2">倒序</option>
+			</select>
+
+			<button class="btn" type="submit"  onclick='changeAction(false)'><span class="sel">筛 选</span></button>
+			<button class="btn" onclick='changeAction(true)'><span class="sel">导出Excel</span></button>
+		</form>
+	</div>
+</div>
+
+<form name="orderForm" id="orderForm" action="{url:/order/order_del}" method="post">
+	<div class="content">
+		<table class="list_table">
+			<colgroup>
+				<col width="25px" />
+				<col width="450px" />
+				<col width="155px" />
+				<col width="55px" />
+				<col width="55px" />
+				<col width="55px" />
+				<col width="60px" />
+				<col width="50px" />
+				<col width="90px" />
+				<col width="160px" />
+				<col width="135px" />
+				<col width="100px" />
+				<col width="auto" />
+				<col width="130" />
+			</colgroup>
+
+			<thead>
+				<tr>
+					<th>选择</th>
+					<th>订单信息</th>
+					<th>消费券</th>
+					<th>收货人</th>
+					<th>支付状态</th>
+					<th>发货状态</th>
+					<th>配送方式</th>
+					<th>打印</th>
+					<th>支付方式</th>
+					<th>账号</th>
+					<th>下单时间</th>
+					<th>管理员备注</th>
+					<th>用户备注</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<!-- {set:$this->orderHandle->find()} -->
+				<!-- {echo:$this->orderHandle->getsql();} -->
+				{foreach:items = $this->orderHandle->find()}
+				{set:$voucher['voucher'] = '';}
+				<tr>
+					<td><input name="id[]" type="checkbox" value="{$item['id']}" /></td>
+					<td title="{$item['order_no']}">
+						<b name="orderStatusColor{$item['status']}" class="f12">订单号：{$item['order_no']}</b>
+						<br/>
+					{query:name=order_goods where=order_id eq $item[id] item=$json}
+						{set:$goods = JSON::decode($json['goods_array'])}
+		                <p title="货号：{$goods['goodsno']}&#13;规格：{$goods['value']}" class="gray">{$goods['name']}&nbsp;&nbsp;({$json['goods_nums']}件)</p>
+		            {/query}
+
+					</td>
+<td>
+	{query:name=order_voucher where=order_id eq $item[id] item=$voucher limit=1}
+({echo:$voucher['voucher'] ? ($voucher['isused'] ? '√' : '-') : ''})
+
+                {$voucher['voucher']}
+            {/query}</td>
+					<td title="{$item['accept_name']}">{$item['accept_name']}</td>
+					<td name="payStatusColor{$item['pay_status']}">{echo:Order_Class::getOrderPayStatusText($item)}</td>
+					<td name="disStatusColor{$item['distribution_status']}"><p onclick="deliver({$item['id']})">{echo:Order_Class::getOrderDistributionStatusText($item)}</p onclick="deliver()"></td>
+					<td title="{$item['distribute_name']}">{$item['distribute_name']}</td>
+					<td>
+						<!-- <span class="prt" title="购物清单打印" onclick="window.open('{url:/order/shop_template/id/$item[id]}');">购</span>
+						<span class="prt" title="配货单打印" onclick="window.open('{url:/order/pick_template/id/$item[id]}');">配</span> -->
+						<!-- <span class="prt" title="联合打印" onclick="window.open('{url:/order/merge_template/id/$item[id]}');">合</span>
+						<span class="prt" title="快递单打印" onclick="window.open('{url:/order/expresswaybill_template/id/$item[id]}');">递</span> -->
+
+						{set:
+							$a = $item['merge_print_state']==0 ? 'prt' : 'prted';
+							$b = $item['pick_print_state']==0 ? 'prt' : 'prted';
+						}
+						{if:$item['pay_status'] == 1}
+						<span class="{$a}" title="购物清单打印状态，灰色为已打印" onclick="window.open('{url:/order/merge_template/id/$item[id]}');">购</span>
+						<span class="{$b}" title="配货清单打印状态，灰色为已打印" onclick="window.open('{url:/order/pick_template/id/$item[id]}');">配</span>
+						{/if}
+
+					</td>
+					<td>{$item['payment_name']}</td>
+					<td>{echo:$item['username']=='' ? '游客' : $item['username']}</td>
+					<td title="{$item['create_time']}">{$item['create_time']}</td>
+					<td><a href="javascript:note_edit({$item['id']});" id="note{$item['id']}">{$item['note']}</a></td>
+					<td><a href="javascript:note_edit({$item['id']});" id="postscript{$item['id']}">{$item['postscript']}</a></td>
+					<td>
+						<a href="{url:/order/order_show/id/$item[id]}"><img class="operator" src="{skin:images/admin/icon_check.gif}" title="查看" /></a>
+						{if:Order_class::getOrderStatus($item) < 3}
+						<a href="{url:/order/order_edit/id/$item[id]}"><img class="operator" src="{skin:images/admin/icon_edit.gif}" title="编辑"/></a>
+						{/if}
+						<a href="javascript:void(0)" onclick="delModel({link:'{url:/order/order_del/id/$item[id]}'})" ><img class="operator" src="{skin:images/admin/icon_del.gif}" title="删除"/></a>
+
+						{if:$item['seller_id']}
+						<a href="{url:/site/home/id/$item[seller_id]}" target="_blank"><img src="{skin:images/admin/seller_ico.png}" /></a>
+						{/if}
+					</td>
+				</tr>
+				{/foreach}
+			</tbody>
+		</table>
+	</div>
+	{$this->orderHandle->getPageBar()}
+</form>
+
+
+<script type='text/javascript'>
+//DOM加载结束
+$(function(){
+	var searchData = {echo:JSON::encode($this->search)};
+	for(var index in searchData)
+	{
+		$('[name="search['+index+']"]').val(searchData[index]);
+	}
+
+	//高亮色彩
+	$('[name="payStatusColor1"]').addClass('green');
+	$('[name="disStatusColor1"]').addClass('green');
+	$('[name="orderStatusColor3"]').addClass('red');
+	$('[name="orderStatusColor4"]').addClass('red');
+	$('[name="orderStatusColor5"]').addClass('green');
+
+});
+
+//发货
+function deliver(id)
+{
+	var tempUrl = '{url:/order/order_deliver/id/@id@}';
+	tempUrl     = tempUrl.replace('@id@',id);
+
+	var deliv = art.dialog.open(tempUrl,{
+		id:'deliver',
+	    title: '订单id:{$id}【发货】',
+	    cancelVal:'关闭',
+		okVal:'发货',
+	    ok:function(iframeWin, topWin){
+	    	var checkedNums = $(iframeWin.document).find('[name="sendgoods[]"]:checked').length;
+	    	if(checkedNums == 0)
+	    	{
+	    		alert('请选择要发货的商品');
+	    		return false;
+	    	}
+	    	var isResult = iframeWin.document.forms[0].onsubmit();
+	    	if(isResult != false)
+	    	{
+	    		iframeWin.document.forms[0].submit();
+	    	}
+	    	return false;
+	    },
+	    cancel:function (){
+	    	return true;
+		}
+	});
+}
+
+//执行回调处理
+function actionCallback(msg)
+{
+	msg ? alert(msg) : window.location.reload();
+	window.setTimeout(function()
+	{
+		var list = art.dialog.list;
+		for (var i in list)
+		{
+		    list[i].close();
+		};
+	},2500);
+}
+
+function changeAction(excel)
+{
+	if (excel){
+		$("input[name=\"action\"]").val("order_report");
+		$("form[name=\"order_list\"]").attr("target", "_blank");
+	}else{
+		$("input[name=\"action\"]").val("order_list");
+		$("form[name=\"order_list\"]").attr("target", "_self");
+	}
+}
+
+function note_edit(order_id)
+{
+	var note = $('#note'+order_id);
+	var postscript = $('#postscript'+order_id);
+
+submitUrl    = "http://www.itaohz.com/order/note_edit_update";
+freshArea    = "priceText";
+var templateHtml = '<h5>管理员备注：</h5><textarea name="note" rows="8" cols="100">'+note.html()+'</textarea><br />'+'<h5>用户备注：</h5><textarea name="postscript" rows="8" cols="100">'+postscript.html()+'</textarea>';
+art.dialog(
+{
+title: '改备注',
+okVal:"保存",
+    content: templateHtml,
+    ok:function(iframeWin)
+    {
+    $.post(submitUrl,{order_id:order_id,note:$('textarea[name=note]').val(),postscript:$('textarea[name=postscript]').val()},function(content)
+    {
+    if(content.result == 'success')
+    {
+    	note.html(content.data.note);
+    	postscript.html(content.data.postscript);
+    }
+    else
+    {
+    alert(content.data);
+    }
+    }, 'json');
+    }
+});
+}
+
+</script>

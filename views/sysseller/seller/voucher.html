@@ -1,0 +1,134 @@
+<style>
+.v { line-height: 50px; font-size: 36px; height: 60px; letter-spacing: 4px; padding: 0 10px; color: #F63; }
+</style>
+<div class="wrapper wrapper-content">
+  <div class="row animated bounceInRight">
+    <div class="col-sm-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>验证消费券</h5>
+        </div>
+        <div class="ibox-content">
+        <div class="alert alert-warning">提示：请顾客提供消费券凭证。输入上面验证后即可消费，消费券标准长度15位</div>
+          <form class="form-horizontal m-t" id="commentForm">
+            <div class="form-group">
+              <label class="col-sm-3 control-label">消费券：</label>
+              <div class="col-md-6">
+                <input id="voucher" name="voucher" minlength="15" maxlength="15" type="text" class="form-control input-lg m-b v">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-4 col-sm-offset-3">
+                <button class="btn btn-primary " type="button" name="vc"><i class="fa fa-check"></i>&nbsp;开始验证</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="row animated bounceInLeft">
+    <div class="col-sm-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+          <h5>已使用的消费券</h5>
+        </div>
+        {set:$page= (isset($_GET['page'])&&(intval($_GET['page'])>0))?intval($_GET['page']):1;}
+        <!-- {set:$seller_id = $this->seller['seller_id'];} -->
+        {set:$shop_list = '('.join(',',($this->get_all_shop())).')';}
+        {set:$query = new IQuery("order as a,order_voucher as b");$query->page = "$page";$query->where = "a.seller_id in $shop_list and b.order_id = a.id and b.isused = 1";$items = $query->find();}
+        <div class="ibox-content">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>商品</th>
+                <th>消费券</th>
+                <th>使用时间</th>
+              </tr>
+            </thead>
+            <tbody>
+            
+            {foreach:items=$items}
+            {set:$query = new IQuery("order_goods as a,order as b");
+            $query->limit = 1;
+            $query->where = "a.order_id = b.id and b.id = $item[order_id]";
+            $value = current($query->find());
+            $name = JSON::decode($value['goods_array']);
+            $name['name'];
+            }
+            <tr>
+              <td>1</td>
+              <td>商品：{$name['name']}【{$value['real_amount']}元】<br>
+                订单号：<a href="{url:/seller/order_show/id/$item[order_no]}" title="订单详情">{$item['order_no']}</a><br>
+                客户姓名：{$item['accept_name']}<br>
+                联系电话：{$item['mobile']}</td>
+              <td><span class="label label-success label-lg">{$item['voucher']}</span></td>
+              <td>{$item['usetime']}</td>
+            </tr>
+            {/foreach}
+              </tbody>
+            
+          </table>
+          <!--$query->getPageBar()--> 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type='text/javascript'>
+
+jQuery(function($){
+	
+	$('input[name="voucher"]').on('keyup paste', function() {  
+		var currentVal = $.trim($(this).val()).replace(/\ +/g,"");
+		(currentVal.length>14) && VoucherCheck(currentVal);
+		//console.log(currentVal.length);
+	});
+	$('button[name="vc"]').bind("click",btnVoucherCheck);  
+ 
+	function btnVoucherCheck(){
+		var currentVal = $.trim($('input[name="voucher"]').val()).replace(/\ +/g,"");
+		(currentVal.length==15)?VoucherCheck(currentVal):window.tips('请输入15位长度的消费券');  
+	}
+	function VoucherCheck(voucher){
+	var input = $('input[name="voucher"]').attr('disabled',true);
+	 $.ajax({
+		type: "POST",
+		dataType: "json",
+		url: "{url:/seller/vouchercheck}",
+		data: {"voucher":voucher},
+		success: function (result) {
+			if(result.ok=='yes'){
+				var list = '该消费券下面有 '+result.message.length+' 件商品，你确定要使用吗？<br>';
+				$(result.message).each(function(index, element) {
+					list += (index + 1)+"."+element.name+"("+element.real_price+"元/"+element.goods_nums+"件)<br>";
+				});
+				
+				top.layer.confirm(list, {
+					btn: ['开始使用','取消'], //按钮
+					shade: false //不显示遮罩
+				}, function(){
+					$.getJSON(
+							"{url:/seller/voucherused}",
+							{"voucher":voucher},
+							function(index) {
+									window.document.location.reload();
+									window.tips('该消费券已成功使用');
+							}
+					);
+				});
+				
+			}else{window.tips(result.message)};
+			input.removeAttr('disabled');
+		},
+		error: function(result) {
+			  alert("error:"+result.responseText);
+		}
+	});
+
+}
+}); 	
+       
+</script>

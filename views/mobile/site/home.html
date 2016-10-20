@@ -1,0 +1,175 @@
+{set:$seller_id = IFilter::act(IReq::get('id'),'int')}
+{set:$sellerRow=Api::run('getSellerInfo',$seller_id)}
+{if:!$sellerRow}
+{set:IError::show(403,'商户信息不存在')}
+{/if}
+<style type="text/css">
+  .title_main{
+    width:100%;
+    height:170px;
+    background-color: rgba(250, 95, 60, 1);
+    position:relative;
+  }
+.title_body_bottom{
+    width:100%;
+    height:70px;
+    background:white;
+    border:rgba(228, 228, 228, 1) solid 1px;
+    border-top:none;
+    position:absolute;
+    bottom:0;
+}
+.title_body_face{
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    background:rgba(250, 95, 60, 1);
+    border:2px solid white;
+    position: absolute;
+    left: 5px;
+    top: -50%;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.67);
+}
+.title_body_face img{
+   display:block;
+   width:100%;
+   height:100%;
+    border-radius:50%;
+}
+.title_main h2 {
+    color: white;
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    line-height: 50px;
+    margin-left: 100px;
+    padding-top: 20px;
+}
+.title_main span.title_span{
+    color: white;
+}
+.title_main span.title_code{
+    margin-left: 120px;
+}
+.title_main span.title_the{
+    margin-left: 20px;
+}
+.title_body_bottom span{
+    display: block;
+    width: 25%;
+    float: right;
+    line-height: 18px;
+    text-align: center;
+    margin: 15px 0;
+    border-right:rgba(228, 228, 228, 1) solid 1px;
+}
+.title_body_bottom span a{
+    display:block;
+}
+.title_body_bottom span:nth-of-type(1){
+    border-right:none;
+}
+.title_body_bottom span:nth-of-type(1) a{
+     width: 70px;
+    line-height: 35px;
+    background-color: rgba(250, 95, 60, 1);
+    border-radius: 5px;
+    display: block;
+    color: white;
+    margin: 0 auto;
+}
+.bg_fix{
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    z-index:999;
+    display:none;
+}
+.gb_bod{
+    position:absolute;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    background:rgba(0, 0, 0, .6);
+}
+.bg_fix img{
+    width:100%;
+}
+</style>
+<section id="scrollLoadContent" class="g_wrap f_clear">
+  <div class="m_dateils f_mb" id="j_dateils">
+    <div class="title_main" >
+            <h2>淘黄州微店</h2>
+            <span class="title_code title_span">二维码</span>
+            <span class="title_the title_span">收藏店铺</span>
+        <div class="title_body_bottom">
+            <div class="title_body_face">
+                <img src="{$sellerRow['logo']}" onerror="this.src='{theme:skin/home/img/logo.png}'"/>
+            </div>
+            <span><a href="javascript:vido(0)" id="share">分享店铺</a></span>
+            <span>188<a href="">销量</a></span>
+            <span>5<a href="">商品</a></span>
+        </div>
+        <div class="bg_fix">
+            <div class="gb_bod"></div>
+            <img src="{theme:skin/home/img/fenxiang.png}" alt="">
+        </div>
+      <!-- <div class="yui3-u-1-1 kros_title">
+        <h1>{$sellerRow['true_name']}</h1>
+        <div class="shop_info" style="    text-align: center;
+    padding: 10px;
+    background-color: #49B71B;
+    color: #fff;
+    line-height: 23px;">
+          <p> 销量：{echo:statistics::sellCountSeller($sellerRow['id'])} 件 </p>
+          <p> 电话：{$sellerRow['mobile']}</p>
+          <p>
+          <p class="address_">商家：{$sellerRow['shopname']}{$sellerRow['address']}{$sellerRow[addressreference]}</p>
+          </p>
+        </div> -->
+      </div>
+      {set:$goodsObj = search_goods::find(array('seller_id' => $seller_id));$resultData = $goodsObj->find();}
+      {if:$resultData} 
+      <!-- {$goodsObj->getsql()} -->
+      <div class="time_qg_ad_box">
+        <div class="qg_sid"> {foreach:items=$resultData} <a class="contlist" href="{url:/site/products/id/$item[id]}"> <img src="{url:/pic/thumb/img/$item[img]/w/350/h/350}">
+          <p>{echo:mb_substr($item['name'],0,20,"UTF-8")}</p>
+          {set:$e = ($item['sell_price'] / $item['market_price'])*10}
+          <em>￥{$item['sell_price']}&nbsp;<i>{echo:number_format($e,1)}折</i></em><em class="original">原价：￥{$item['market_price']}</em> <span>已售{$item['sale']}件</span> </a> 
+          
+          <!-- 		    <ul>
+		      <li> <a href="{url:/site/products/id/$item[id]}" title="{$item['name']}" class="lists_tit"> <img src="{url:/pic/thumb/img/$item[img]/w/350/h/350}" title="{$item['name']}" alt="{$item['name']}" width="170px" height="170px" /> </a>
+		        <div class="award_value_box">
+		          <p class="pro_title"><a href="{url:/site/products/id/$item[id]}">{$item['name']}</a></p>
+		          <p class="light_gray"><a href="{url:/site/products/id/$item[id]}">查看</a>￥{$item['sell_price']}</p>
+		        </div>
+		      </li>
+		    </ul> --> 
+          {/foreach}
+          <div class="clear"></div>
+        </div>
+      </div>
+      {$goodsObj->getPageBar()}
+      
+      {else:}
+      <p class="display_list mt_10" style='margin-top:50px;margin-bottom:50px'> <strong class="gray f14">对不起，没有找到相关商品</strong> </p>
+      {/if} </div>
+  </div>
+  </div>
+</section>
+<script type="text/javascript">
+    var bg_fix = $('.bg_fix')
+    $('#share').click(function(){
+        bg_fix.toggle()
+    });
+    bg_fix.click(function(){
+        $(this).toggle()
+    });
+</script>
+<link rel="stylesheet" href="../skin/mall/page_1.css">
+<link rel="stylesheet" href="../skin/user/css/pptm.css">
+<link rel="stylesheet" href="../skin/user/css/rem.css">

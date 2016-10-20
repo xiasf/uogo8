@@ -1,0 +1,89 @@
+{set:
+	$seo_data=array();
+	$site_config=new Config('site_config');
+	$seo_data['title']=$this->articleRow['title'];
+	$seo_data['title'].="_".$site_config->name;
+	$seo_data['keywords']=$this->articleRow['keywords'];
+	$seo_data['description']=$this->articleRow['description'];
+	seo::set($seo_data);
+}
+<style>
+.ranklist dd{padding:5px 5px 15px 5px;background-color:#fff}
+.ranklist dd p{line-height:35px;border-bottom:dashed 1px #F90;overflow:hidden;;/* 内容超出宽度时隐藏超出部分的内容 */
+text-overflow:ellipsis;;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+white-space:nowrap;/* 不换行 */ font-size:14px}
+.ranklist dd .cateLazy{border:solid 1px #333;border-radius:5px;}
+</style>
+<script src="/runtime/_systemjs/baidueditor/ueditor.parse.min.js"></script>
+<!--<div class="position"> <span>您当前的位置：</span> <a href="{url:}"> 首页</a> » <a href="{url:/site/article}">小城故事</a> » {$this->articleRow['title']} </div>-->
+<div class="wrapper clearfix container_2">
+<div class="box m_10"><img src="{skin:images/xiaochenggushi.jpg}" border="0"></div>
+	<div class="sidebar f_r" style="width:280px;">
+<!--		<div class="box m_10">
+			<div class="title">热卖商品</div>
+			<div class="content">
+			  <ul class="ranklist">
+
+				{foreach:items=Api::run('getCommendHot',5)}
+				<li class='current'><a href="{url:/site/products/id/$item[id]}"><img src="{url:/pic/thumb/img/$item[img]/w/58/h/58}" width="58" height="58" alt="{$item['name']}" /></a><a title="{$item['name']}" class="p_name" href="{url:/site/products/id/$item[id]}">{$item['name']}</a><b>￥{$item['sell_price']}</b></li>
+				{/foreach}
+			  </ul>
+			</div>
+		</div>-->
+
+		<div class="box m_10">
+			<div class="title">小城故事</div>
+			<div class="content">
+			  <ul class="ranklist">
+              {query:name=ad_manage where=position_id eq 14 limit=0,20}
+                {set:$tmpId=$item[id];}<dd><a href="{$item[link]}"> <img class="cateLazy" src="{url:$item[content]}" width="100%" /> </a>
+                <a href="{$item[link]}" title="{$item[description]}"><p>{$item[description]}</p></a></dd> {/query}
+			  </ul>
+			</div>
+		</div>
+		{echo:Ad::show(10)}
+	</div>
+	<div class="main">
+		<div class="box m_10">
+			<!--<div class="title2">商城资讯</div>-->
+			<div class="cont">
+				<div class="c_box">
+					<h2>{$this->articleRow['title']}</h2>
+					<div class="partake_bar clearfix">
+						<span class="f_r"></span>发布日期：{$this->articleRow['create_time']}
+					</div>
+					<div class="m_10" style="height:1px;overflow:hidden;border-top:solid 1px #eee"></div>
+					<div class="textcontent" id="textcontent">
+						{$this->articleRow['content']}
+					</div>
+				</div>
+			</div>
+		</div>
+		{if:!empty($this->relationList)}
+		<div class="box m_10">
+			<div class="title2 m_10">相关商品</div>
+			<div class="parts clearfix">
+				<ul class="prolist">
+					{foreach:items = $this->relationList}
+					<li>
+						<a href="{url:/site/products/id/$item[id]}"><img width="98" height="106" src="{url:/pic/thumb/img/$item[img]/w/98/h/106}" alt="{$item['name']}"></a>
+						<p class="pro_title"><a href="{url:/site/products/id/$item[id]}">{$item['name']}</a></p>
+						<p class="brown"><b>￥{$item['sell_price']}</b></p>
+					</li>
+					{/foreach}
+				</ul>
+			</div>
+		</div>
+		{/if}
+	</div>
+</div>
+    <script type='text/javascript'>
+$(function()
+{
+	//应用内容背景
+	//$('#textcontent p').data('myid');
+uParse('#textcontent', {
+    rootPath: '../'})
+
+});
+</script>

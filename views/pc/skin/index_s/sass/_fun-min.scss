@@ -1,0 +1,5 @@
+@mixin css3($code,$val){
+	-webkit-#{$code}:$val;
+    -ms-#{$code}:$val;
+    #{$code}:$val;
+}

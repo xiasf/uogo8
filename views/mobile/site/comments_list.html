@@ -1,0 +1,46 @@
+{set:$comment_total=$this->data['comment_total'];}
+{set:$average_point=$this->data['average_point'];}
+{set:$id=intval(IReq::get('id'));}
+{set:$item=Api::run('getGoodsInfo',array("#id#",$id))}
+{if:!$item}
+{set:IError::show(403,'商品信息不存在')}
+{/if}
+<style>
+  span.grade i {
+    display: inline-block;
+    height: 15px;
+    background: url(http://www.itaohz.com/views/pc/skin/default/images/front/grade_bg.gif) 0 2px no-repeat;
+}
+span.grade {
+    display: inline-block;
+    width: 70px;
+    height: 15px;
+    background: url(http://www.itaohz.com/views/pc/skin/default/images/front/grade_bg.gif) 0 -16px no-repeat;
+}
+</style>
+<main id="commentWrap" class="g_wrap m_comments m_usercomm scrollLoad"><!-- g_wrap m_comments m_usercomm -->
+  {if:!$comment_total}
+  <section class="stat f_clear">暂时还没有评价</section>
+  {else:}
+  <section class="stat f_clear">
+    <h3 class="f_fl">总评价:</h3>
+    <p style="margin-top:16px ;"><span class="grade"><i style="width:{echo:Common::gradeWidth($average_point)}px"></i></span>{$average_point}分</span> </section>
+    {foreach:items=$this->data['comment_list'] key=$key item=$item}
+  <section class="list list-2">
+    <header class="head f_clear">
+     <img class="f_fl img" src="{webroot:$item[head_ico]}" onerror="this.src='{theme:skin/user/images/user_ico.gif}'">
+      <h5>匿名用户</h5>
+      <p class="clearfix"><b>评分：</b><span class="grade"><i style="width:{echo:Common::gradeWidth($item['point'])}px"></i></span><span class="light_gray">{$dateline}</span><label></label>
+<span class="f_fr">{$item['comment_time']}&nbsp;&nbsp;</span>
+
+      </p>
+    <p class="text">{echo:$item['contents']?:'TA比较懒，一个字都没有打，系统默认好评。'}</p>
+
+    </header>
+  </section>
+{/foreach}
+{$this->comment_query->getPageBar()}
+  {/if}
+</main>
+<link rel="stylesheet" type="text/css" href="skin/mall/page_1.css">
+<link rel="stylesheet" type="text/css" href="skin/user/css/rem.css">

@@ -1,0 +1,85 @@
+<div class="Product_info">
+  <div class="content_ly">
+    <ul class="saleinfos">
+      <em>规格参数</em> {if:isset($brand) && $brand}
+      <li>品牌：{$brand}</li>
+      {/if}
+      
+      {if:isset($weight) && $weight}
+      <li>商品毛重：
+        <label id="data_weight">{$weight}</label>
+      </li>
+      {/if}
+      
+      {if:isset($unit) && $unit}
+      <li>单位：{$unit}</li>
+      {/if}
+      
+      {if:isset($up_time) && $up_time}
+      <li>上架时间：{$up_time}</li>
+      {/if}
+      
+      {if:($attribute)}
+      {foreach:items=$attribute}
+      <li>{$item['name']}：{$item['attribute_value']}</li>
+      {/foreach}
+      {/if} <br/>
+      {if:isset($bestow)} <em>使用方法</em> {$bestow}
+      {/if} <em>产品详情</em>
+    </ul>
+    {if:isset($content)}
+    <div id="products_content">{$content}</div>
+    {else:}
+    暂无详情数据
+    {/if}
+    
+    {if:($photo)}
+    {foreach:items=$photo} <img src='{url:$item[img]}'/> {/foreach}
+    {/if}
+    <ul class="saleinfos">
+      <em>产品评价&nbsp;&nbsp;&nbsp;<i>已有<b class="red2">{echo:$comments}</b>条</i></em>
+    </ul>
+    <div id='commentBox'></div>
+    
+    <!--评论JS模板--> 
+    <script type='text/html' id='commentRowTemplate'>
+            <%var widthPoint = 14 * point;%>
+            <dl class="itemComment">
+                <dd class="itemCommentlef">
+                    <a href="javascript:void(0)">
+                        <img src="{webroot:<%=head_ico%>}" width="70px" height="70px" onerror="this.src='{skin:images/user_ico.gif}'" />
+                        <span><%=username%></span>
+                    </a>
+                </dd>
+                <dd class="itemCommentInfo">
+                    <p class="pitemScore">
+                        <span class="grade"><i style="width:<%=widthPoint%>px"></i></span>
+                        <span class="light_gray"><%=comment_time%></span>
+                    </p>
+                    <span class="cont"><%=contents%></span>
+                </dd>
+            </dl>
+        </script> 
+    <a href="{url:/site/comments_list}" target="_blank" class="itemCommentAll">查看全部评价 &gt;</a> </div>
+</div>
+<script type="text/javascript">
+comment_ajax();
+function comment_ajax(page){
+	if(!page && $.trim($('#commentBox').text()))
+	{
+		return;
+	}
+	page = page ? page : 1;
+	var url = '{url:/site/comment_ajax/page/@page@/goods_id/$id}';
+	url = url.replace("@page@",page);
+	$.getJSON(url,function(json){
+		//清空评论数据
+		$('#commentBox').empty();
+
+		for(var item in json.data){
+			var commentHtml = template.render('commentRowTemplate',json.data[item]);
+			$('#commentBox').append(commentHtml);
+		}
+	});
+}
+</script> 

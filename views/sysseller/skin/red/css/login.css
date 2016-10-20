@@ -1,0 +1,19 @@
+
+* { padding: 0; margin: 0; }
+html, body, button, input, select, textarea { font: 12px/1.5 "Microsoft YaHei", 微软雅黑, \9ed1\4f53, \5b8b\4f53, "Microsoft JhengHei", 华文细黑, STHeiti, MingLiu; color: #666; outline: none; }
+html { background-image: url(../images/login/body.png); background-repeat: no-repeat; background-position: center top; }
+html, body { width:1180px; overflow: hidden;margin:0 auto }
+.container{  background-color: rgba(255,255,255,0.8); margin-top: 200px; margin-left: 700px; padding:30px 50px; border: 1px solid #f2f2f2;
+ -webkit-box-shadow:inset 0 0 10px #ccc;  
+  -moz-box-shadow:inset 0 0 10px #ccc;  
+  box-shadow:inset 0 0 10px #ccc; }
+.btn-block { display: block; width: 97%; }
+.btn-info { color: #fff; background-color: #5bc0de; border-color: #46b8da; }
+.btn { display: inline-block; padding: 6px 12px; margin-bottom: 0; font-size: 14px; font-weight: 400; line-height: 1.42857143; text-align: center; white-space: nowrap; vertical-align: middle; -ms-touch-action: manipulation; touch-action: manipulation; cursor: pointer; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; background-image: none; border: 1px solid transparent; border-radius: 4px; }
+.btn-success { color: #fff; background-color: #5cb85c; border-color: #4cae4c; }
+.form-control { display: block; width: 90%; padding: 6px 12px;margin:10px 0; font-size: 14px; line-height: 1.42857143; color: #555; background-color: #fff; background-image: none; border: 1px solid #ccc; border-radius: 4px;}
+.form-group{margin:10px 0}
+.title{ font-size: 16px; font-weight: bold; }
+.link{margin-top:20px;}
+.link a{margin-right:20px}
+footer{ color: #000; position: fixed; bottom: 0px; width:100%;height:300px;line-height:300px}

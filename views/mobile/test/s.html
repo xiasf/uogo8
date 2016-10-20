@@ -1,0 +1,8 @@
+<?php
+
+if ($this === IWeb::$app->getController())
+	echo "模板中相同";
+// print_r(IWeb::$app->getController()->user);
+// var_dump(IWeb::$app->getController());
+var_dump(IWeb::$app->getController()->user);
+?>

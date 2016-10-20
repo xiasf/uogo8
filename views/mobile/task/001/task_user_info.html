@@ -1,0 +1,388 @@
+{set:
+
+$user_info = Api::run('getMemberInfo', $this->user['user_id']);
+
+}
+<style>
+.task_box{
+	background:rgb(245,60,70);
+	border:none;
+	border-bottom: 1px #D63C46 solid;
+}
+.task_tit_box{
+    position: relative;
+    display: block;
+    width: 100%;
+    border-bottom: 2px #D63C46 solid;
+    -webkit-box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.64);
+    color: #fff;
+    text-align: center;
+}
+.task_tit_box img.task_box_bg{
+	display: block;
+	width: 100%;
+	box-shadow: none;
+}
+.task_tit_box img.task_box_face{
+	display: block;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 2px solid white;
+    position: absolute;
+    bottom: -35px;
+    left: 50%;
+    margin-left: -35px;
+    -webkit-box-shadow: 0 1px 2px 1px #292929;
+    border: rgba(0, 0, 0, 0.3) solid 3px;
+    z-index: 2;
+	}
+	.task_win {
+    position: relative;
+    height: 156px;
+    background-color: #fff;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 60px;
+    -webkit-box-shadow: 1px 2px 5px #272727;
+
+	overflow:hidden;
+}
+
+.task_top_right{
+	display: block;
+    width: 100px;
+    height: 28px;
+    line-height: 28px;
+    float: right;
+    text-align: center;
+    background-color: #27CE79;
+    transform: rotate(45deg);
+    color: #fff;
+    position: absolute;
+    right: -31px;
+    top: 4px;
+    font-size: 12px;
+}
+.task_por {
+    position: absolute;
+    top: 36px;
+    left: 50%;
+    margin-left: -42%;
+    width: 84%;
+    text-align: center;
+}
+.task_info {
+    padding: 10px 20px;
+    background-color: #fff;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 30px;
+    margin-bottom: 19px;
+    position: relative;
+    -webkit-box-shadow: 1px 2px 5px #272727;
+    border:none;
+}
+.task_info h1 {
+    line-height: 30px;
+    display: block;
+    background-color: #D63C46;
+    padding: 0 5px;
+    font-size: 15px;
+    color: #fff;
+    border-radius: 5px;
+    font-family: '微软雅黑';
+    margin: 0 auto;
+    width: 102px;
+    text-align: center;
+}
+.task_info p {
+    line-height: 22px;
+    color: #6B6B6B;
+    margin: 14px;
+}
+.task_info span.nu {
+    margin:10px 0; 
+    font-size: 17px;
+    line-height: 23px;
+    padding: 10px 0;
+    display: block;
+    text-align: center;
+    background-color: rgba(214, 214, 214, 0.53);
+    height: 41px;
+    color: #D63C46;
+    border: 1px #CCCCCC solid;
+    float: none;
+}
+.task_info span.zx a {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    margin-left: -50%;
+    display: block;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    background: #FFF100;
+    border: 1px solid #EEE;
+    color: white;
+    text-align: center;
+    font-size: 24px;
+    z-index: 999;
+    color: #F53C46;
+    border-radius: 0;
+}
+.bg_fx {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: none;
+    z-index: 999;
+}
+
+.task_log {
+	    position: absolute;
+    bottom: 0;
+    margin: 0 auto;
+    right: 0;
+    display: block;
+    width: 100px;
+    left: 0;
+    height: 22px;
+    line-height: 22px;
+    background-color: rgb(245, 60, 70);
+    text-align: center;
+    color: #FFFFFF;
+    border-radius: 10px 10px 0 0;
+    font-size: 12px;
+}
+.fix_bg{
+	position:fixed;
+	z-index:1000;
+	background: rgba(0, 0, 0, 0.8);
+	width:100%;
+	height:100%;
+	left:0;
+	top:0;
+	display:none;
+}
+.fix_bg_p{
+	color:white;
+	line-height:30px;
+	text-align:center;
+}
+.op_state,.no{
+	    display: block;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: green;
+    line-height: 30px;
+    margin-top: 7px;
+    margin-right:5px;
+    float:right;
+}
+.no{
+	background:gold;
+}
+.task_por span.task_por_span {
+    line-height: 50px;
+}
+</style>
+<div class="task_box">
+  <div class="task_tit_box" >
+    <div style="
+    bottom: 0;
+    position: absolute;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.53);
+    width: 100%;
+    height: 80px;
+    z-index: 1;
+    font-size: 18px;
+    line-height: 48px;
+    text-shadow: 2px 2px 5px #000;
+    letter-spacing: 1px;
+">{$title}</div>
+    <img class="task_box_bg" src="{webroot:$banner}"> <img class="task_box_face" src="{webroot:$logo}" > </div>
+  <div class="task_win"> {if:$status==1}
+    <div class="task_top_right">已完成</div>
+    {elseif:$status==2}
+    <div class="task_top_right" style="background: red">失败</div>
+    {/if}
+    <div class="task_por"> <span class="task_fin">坚持了：<i></i>天</span> <span class="task_the">还要坚持：<i></i>天</span>
+      <div class="p_bar">
+        <div class="p_bar_purple"></div>
+      </div>
+      <span class="task_por_span">当前进度：<i></i></span> </div>
+    <span class="task_log">分享记录</span> </div>
+  <div class="fix_bg"> </div>
+  <div class="task_info">
+    <h1>活动描述</h1>
+    <p> {$describe} </p>
+    <h1>活动规则</h1>
+    <p> {$rule} </p>
+    <span class="nu">{if:$status==1}已获得{$rewards}积分快去兑换奖品吧{elseif:$status==2}任务执行失败{elseif:$status==0}完成任务奖励{$rewards}积分{/if}</span> <span class="nu">我当前有{$user_info['point']}积分</span> <a style="    display: block;
+    width: 80%;
+    text-align: center;
+    background-color: #27CE79;
+    padding: 11px 10px;
+    margin: 20px auto 0;
+    color: white;" href="{url:task/goods_list}">前往积分商城</a>
+    <div class="clear"></div>
+    <span class="zx"><a href="javascript:void(0)" id="rec_task">开始转发</a></span>
+    <div class="bg_fx">
+      <div class="fx_bg_box"></div>
+      <img src="skin/task/images/fenxiang.png" alt=""> </div>
+  </div>
+  <script>
+
+    var wxshare_ap = {
+		title:"转发给指定的用户视为无效",
+		desc:"请转发到朋友圈或者其它地方",
+		link:"{$param['url']}",
+		imgUrl:"{url:$logo}",
+		success: function(){
+			tips("本次转发无效，提示：请转发到朋友圈或其它地方才可以生效")
+		},
+		cancel: function(){
+
+		}
+	}; 
+		wxshare = {
+			title:"{echo:IFilter::replace($param['title'])}",
+			desc:"{echo:IFilter::replace($param['describe'])}",
+			link:"{$param['url']}",
+			imgUrl:"{url:$logo}",
+			success: function(){
+				
+			},
+			cancel: function(){
+				
+			}
+		}; 
+		
+	$(function(){
+		var rec_task_url  = "{url:task/getTaskProgress}";
+		var TaskStatus    = "{url:task/getTaskStatus}";
+		var touchTaskUrl  = "{url:task/touchTask}";
+		console.log(touchTaskUrl)
+		var getTaskUserParticipateUrl = "{url:task/getTaskUserParticipate}";
+
+		var task_id       = "{$id}";
+		var user_task_id  = "{$user_task_id}";
+		var task_por	  = $('.p_bar_purple');
+		var task_fin	  = $('.task_fin').find('i');
+		var task_the	  = $('.task_the').find('i');
+		var task_por_span = $('.task_por_span').find('i');
+		var task_int	  = $('.nu').find('i');
+		var botn 		  = $('#rec_task');
+		var bg_fx		  = $('.bg_fx');
+		var thisUrl=location.href;
+		console.log(rec_task_url)
+		$.getJSON(rec_task_url + '?' + Math.random(), {id:task_id, user_task_id:user_task_id}, function(result){
+			if(typeof result.errCode != "undefined"){
+					alert(result.errMsg);
+				} else {
+				layer.open({
+				    type: 0,
+				    time: 2,
+				    content: result[2]
+			  	});
+				task_fin.text(result[0]);
+				task_the.text(result[1] - result[0]);
+				task_por.css('width', (result[0] / result[1]) * 100 + '%');
+				task_por_span.text(((result[0] / result[1]) * 100).toFixed(2) + '%');
+			}
+		});
+		$.getJSON(TaskStatus + '?' + Math.random(), {id:task_id, user_task_id:user_task_id}, function(result){
+			if(typeof result.errCode != "undefined"){
+					alert(result.errMsg);
+				} else {
+				if (result['status'] == 0) {
+					botn.text('转发到朋友圈');
+					botn.click(function () {
+						bg_fx.toggle();
+					});
+					bg_fx.click(function ( ) {
+						$(this).toggle();
+					});
+				} else if (result['status'] == 1) {
+					botn.text(result['info']);
+					botn.css({'background':'#27CE79','color':'#fff'});
+				} else if (result['status'] == 2) {
+					botn.text(result['info']);
+					botn.css({'background':'#27CE79','color':'#fff'});
+				} else {
+					botn.text('未知错误');
+					botn.css('background', '#red');
+				}
+			}
+		});
+
+			wxshare.success =  function(){
+				$.post(touchTaskUrl,{id:task_id, user_task_id:user_task_id}, function(result){
+					if(typeof result.errCode != "undefined"){
+						layer.open({
+							type: 0,
+							time: 2,
+							content: result.errMsg
+						});
+					} else {
+						layer.open({
+							type: 0,
+							time: 2,
+							content: result.info,
+							end:function () {
+								if (2 == result.status)
+									location.href=thisUrl;
+							}
+						});
+					}
+					//console.log(bg_fx);
+					bg_fx.hide();
+				}, 'json');
+			}
+			wxshare.cancel = function(){
+				bg_fx.hide();
+			}
+
+
+		var fix_bg= $('.fix_bg');
+		fix_bg.click(function() {
+			$(this).toggle()
+			$(this).text('')
+		});
+		$('.task_log').click(function() {
+			loadding();
+			$.getJSON(getTaskUserParticipateUrl + '?' + Math.random(), {id:task_id, user_task_id:user_task_id}, function(result){
+				top.layer.closeAll();
+				if(typeof result.errCode != "undefined"){
+						alert(result.errMsg);
+					} else {
+					if (0 == result.length) {
+						tips('还没有分享记录哦');
+						return ;
+					}
+					fix_bg.toggle();
+					var num=1;
+					for (var i in result) {
+						var s = '';
+						if (0 == result[i]['status']) {
+							s = '<span class="op_state"></span>';
+						} else {
+							s = '<span class="op_state no"></span><br />';
+							num=1;
+						}
+						fix_bg.append('<p class="fix_bg_p">&nbsp;&nbsp;第'+num+'天&nbsp;&nbsp;&nbsp;分享时间：'+result[i]['share_time']+s+'</p>');
+						num++;
+					}
+				}
+			})
+		});
+
+	});
+	</script> 
+</div>

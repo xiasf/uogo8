@@ -1,0 +1,124 @@
+{set:$user_id = $this->user['user_id'];}
+{set:$user = Api::run('getMemberInfo',$user_id)}
+{set:$statistics = Api::run('getMemberTongJi',$user_id)}
+{set:$msgObj = new Mess($user_id);$msgNum = $msgObj->needReadNum()}
+{set:$propIds = trim($user['prop'],',');$propIds = $propIds ? $propIds : 0}
+{set:$propData = Api::run('getPropTongJi',$propIds)}
+{set:
+
+$user_info = Api::run('getMemberInfo', $this->user['user_id']);
+
+}
+<section class="g_wrap m_my">
+  <header class="headerbanner">
+    <figure> <img src="skin/user/images/userbg_02.jpg" width="100%" height="auto" alt="bg">
+      <figcaption> <img src="{webroot:$this->user['head_ico']}" onerror="this.src='{theme:skin/user/images/user_ico.gif}'" alt="header" style="background-color:#fff">
+        <h1>{$this->user['true_name']}</h1>
+        <h1>{$this->user['username']}</h1>
+        <h2> <span> 
+          <!-- 总额：<b>￥{$statistics['amount']}</b>&nbsp;&nbsp;&nbsp; --> 
+          余额：<b>￥{$user['balance']}</b> </span>&nbsp;&nbsp;&nbsp;<span>积分：<b>{$user_info['point']}</b></span> </h2>
+      </figcaption>
+    </figure>
+  </header>
+  <div class="m_myorder">
+<div class="whole" style="height:auto;line-height:2em;padding:10px 5px">
+
+       <span style="float:left;width:30%;padding-right:10px">
+  		<img style="width: 100%;" src="../skin/index/wxgroup_1.jpg">
+  		<em style="text-align: center;display: block;margin-top:5px">按住扫描</em>
+  	</span>
+<span class="clearfix">
+请加入微信【淘黄州抢购群】获取最新、实惠的信息。不定期发放购物券，优惠券、代金券、免单活动等。快来吧，就差你咯！</span>
+
+
+</div>
+ <a href="{url:ucenter/order}" class="whole">
+    <h1><span class="u_ico1 ico"></span>全部订单<em style="margin-left:10px;font-size:1.2em"><i>{$statistics['num']}</i></em></h1>
+    <i class="u_arr u_arr1"></i></a>
+    <ul class="f_clear">
+      {set:$countUserWaitPay = statistics::countUserWaitPay($user_id)}
+      <li> <a href="{url:ucenter/order/i/2}"><span class="u_ico1 ico1">{if:$countUserWaitPay}<em><i>{$countUserWaitPay}</i></em>{/if}</span>
+        <h2>待付款</h2>
+        </a> </li>
+      {set:$countUserDelivery = statistics::countUserDelivery($user_id);}
+      <li> <a href="{url:ucenter/order/i/1}"><span class="u_ico1 ico2">{if:$countUserDelivery}<em><i>{$countUserDelivery}</i></em>{/if}</span>
+        <h2>待发货</h2>
+        </a> </li>
+      {set:$countUserWaitCommit = statistics::countUserWaitCommit($user_id)}
+      <li> <a href="{url:ucenter/order/i/4}"><span class="u_ico1 ico3">{if:$countUserWaitCommit}<em><i>{$countUserWaitCommit}</i></em>{/if}</span>
+        <h2>待收货</h2>
+        </a> </li>
+            <li> <a href="{url:ucenter/evaluation}"><span class="u_ico1 ico4"><em><i>{echo:statistics::countUserWaitComment($user_id)}</i></em></span>
+        <h2>待评价</h2>
+        </a> </li> 
+      {set:$countUserRefund = statistics::countUserRefund($user_id)}
+      <li> <a href="{url:ucenter/order/i/6}"><span class="u_ico1 ico5">{if:$countUserRefund}<em><i>{$countUserRefund}</i></em>{/if}</span>
+        <h2>退款</h2>
+        </a> </li>
+    </ul>
+  </div>
+  <div class="m_menu"> <a href="{url:simple/cart}"> <span class="u_ico1 ico3"></span>
+    <h3>我的购物车</h3>
+    <i class="u_arr u_arr1"></i> </a> 
+    <!--         <a href="javascript:void(0)" onclick="openZoosUrl('chatwin','&amp;e=');return false;" id="LR_User_Icon_static">
+            <span class="u_ico1 ico4"></span>
+            <h3>联系客服</h3>
+            <i class="u_arr u_arr1"></i>
+        </a> --> 
+  </div>
+  <div class="m_menu"> <a href="#"> <span class="u_ico1 ico1"></span>
+    <h3>我的优惠券</h3>
+    <i class="u_arr u_arr1"></i> </a>
+	</div>
+	<div class="m_menu"> <a href="#">
+		<span class="u_ico1 ico1"></span>
+		<h3>我的消费券</h3>
+    <i class="u_arr u_arr1"></i></a>
+	</div>
+  <div class="m_menu"> <a href="{url:/ucenter/online_recharge}"> <span class="u_ico1 ico2"></span>
+    <h3>在线充值</h3>
+    <i class="u_arr u_arr1"></i> </a> </div>
+  <div class="m_menu"><a href="{url:/ucenter/favorite}" > <span class="u_ico1 ico5"></span>
+    <h3>我的收藏</h3>
+    <i class="u_arr u_arr1"></i> </a> </div>
+  <div class="m_menu"><a href="{url:/ucenter/address}" > <span class="u_ico1 ico6"></span>
+    <h3>收货地址</h3>
+    <i class="u_arr u_arr1"></i> </a> </div>
+
+      <div class="m_menu"><a href="{url:/ucenter/my_comments}" > <span class="u_ico1 ico7"></span>
+    <h3>商品评价&nbsp;&nbsp;({echo:statistics::countUserWaitComment($user_id, 1)})</h3>
+    <i class="u_arr u_arr1"></i> </a> </div>
+    
+    <div class="m_menu"><a href="{url:/task/task_list}" > <span class="u_ico1 ico10"></span>
+    <h3>我的任务</h3>
+    <i class="u_arr u_arr1"></i> </a> </div>
+
+      <div class="m_menu"><a href="{url:/ucenter/comments_list}" > <span class="u_ico1 ico8"></span>
+    <h3>资讯评论</h3>
+    <i class="u_arr u_arr1"></i> </a> </div>
+
+  <div class="m_menu"> <!-- <a href="{url:/ucenter/message}"> <span class="u_ico1 ico4"></span>
+    <h3>站内消息<em><i>{$msgNum}</i></em></h3>
+ <i class="u_arr u_arr1"></i> </a>--> <a href="{url:/ucenter/info}" > <span class="u_ico1 ico9"></span>
+    <h3>个人资料</h3>
+    <i class="u_arr u_arr1"></i> </a> </div><!--<a href="{url:/ucenter/integral}" > <span class="u_ico1 ico4"></span>
+    <h3>我的积分<b class="red">{$user['point']}</b></h3> 
+    <i class="u_arr u_arr1"></i> </a>--> 
+    <div class="m_menu"><a href="{url:/ucenter/password}" > <span class="u_ico1 ico10"></span>
+    <h3>修改密码</h3>
+    <i class="u_arr u_arr1"></i> </a> </div>
+
+      <div class="m_menu"><a href="{url:/ucenter/zhaobiao_list}" > <span class="u_ico1 ico11"></span>
+    <h3>我招过的标</h3>
+    <i class="u_arr u_arr1"></i> </a> </div>
+
+  <a href="javascript:submit_passwordfind(this);" class="u_btn1">退出</a> </section>
+<script type="text/javascript">
+    function submit_passwordfind(){
+        location.href="{url:/simple/logout}";
+    }
+</script>
+<link rel="stylesheet" href="../skin/mall/page_1.css">
+<link rel="stylesheet" href="../skin/user/css/pptm.css">
+<link rel="stylesheet" href="../skin/user/css/rem.css">

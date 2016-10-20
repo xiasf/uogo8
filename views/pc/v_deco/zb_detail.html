@@ -1,0 +1,346 @@
+{set:
+
+    $from = array('TZX' => '招标', 'ZXB' => '装修保', 'TBJ' => '报价', 'TLF' => '量房', 'TSJ' => '设计', 'TJC' => '建材');
+    $budget = array('', '8-10万', '10-15万', '5-8万', '15万以上', '3万-5万', '3万以下');
+    $way = array('', '半包', '清包', 19 => '全包');
+}
+
+<link rel="stylesheet" type="text/css" href="skin/tenders/css/public.css">
+<link rel="stylesheet" type="text/css" href="skin/tenders/css/style.css">
+<link rel="stylesheet" type="text/css" href="skin/tenders/css/append.css">
+
+<link rel="stylesheet" type="text/css" href="skin/zb_detail/css/zb_show_style.css">
+<div class="container" style="margin-top: 20px;">
+<div id="show_left" style="padding-bottom: 20px;">
+<div class="lf_show_con">
+    <div class="li_div_show">
+        <p style="line-height: 23px;">招标数</p>
+        <p style="    margin-top: 8px;
+    color: red;"><b class="pointcl">{$this->zhaobiao['looks']}</b><span>位</span></p>
+    </div>
+    <h2><a href="#">{$this->zhaobiao['title']}</a><span class="ico_list tender_ing" style="    display: inline-block;
+    background: url(http://sh.fz.jhcms.cn/themes/default/static/images/icolist.png) no-repeat;
+    margin: 0px 2px;
+    vertical-align: middle;
+    font-size: 12px;
+    color: #fff;
+    text-align: center;
+    width: 55px;
+    height: 20px;
+    line-height: 18px;
+    background-position: -264px -120px;">火热招标</span></h2>
+    <p style="    margin-top: 20px;
+    color: #999;"><span>发布者：淘黄州用户</span></p>
+    <table cellpadding="0" cellspacing="0">
+        <tbody><tr>
+            <th class="th_bg">项目类型</th>
+            <th>{$from[$this->zhaobiao['from']]}</th>
+            <th class="th_bg">所在楼盘</th>
+            <th>
+                {set:$home_id = $this->zhaobiao['home_id'];}
+                {query:name=zhaobiao_home where=id eq $home_id item=$home}
+                {$home['name']}
+                {/query}
+            </th>
+        </tr>
+        <tr>
+            <!--<th class="th_bg">装修预算</th>
+            <th>{$budget[$this->zhaobiao['budget_id']]}</th>-->
+             <th class="th_bg">建筑面积</th>
+            <th>{$this->zhaobiao['house_mj']}㎡</th>
+            <th class="th_bg">装修类型</th>
+            <th>{$way[$this->zhaobiao['way_id']]}</th>
+        </tr>
+        <tr>
+            <th class="th_bg">发布时间</th>
+            <th>{$this->zhaobiao['create_time']}</th>
+            <th class="th_bg">联系人</th>
+            <th>{$this->zhaobiao['contact']}</th>
+        </tr>
+        <tr>
+            
+            <th class="th_bg">联系电话</th>
+            <th>{$this->zhaobiao['mobile']}</th>
+        </tr>
+        <tr>
+            <th rowspan="1" class="th_bg" style=" width:90px; height:104px;">户型图</th>
+            <td colspan="5" class="text_td">
+
+
+{if:isset($this->zhaobiao['img']) && $this->zhaobiao['img']}
+              <p><a target="_blank" href="{webroot:}{$this->zhaobiao['img']}"><img src='{webroot:}{$this->zhaobiao['img']}' style='width:100px;height: 100px;border:1px solid #ccc' /></a></p>
+              {/if}
+
+            </td>
+        </tr>
+        <tr>
+            <th rowspan="1" class="th_bg" style=" width:90px; height:104px;">招标要求</th>
+            <td colspan="5" class="text_td">{$this->zhaobiao['comment']}</td>
+        </tr>
+    </tbody></table>
+</div>
+
+<a style="    display: none;
+    width: 90%;
+    line-height: 40px;
+    margin: 10px auto;
+    height: 40px;
+    text-align: center;
+    background: #f26f20;
+    color: #fff;
+    font-size: 14px;" href="{url:/seller/zhaobiao_jinbiao/zhaobiao_id/$this->zhaobiao[id]}" class="btn btn-primary btn-sm">参与竞标</a>
+
+
+
+<div class="tenders_zb_form pding rt"  style="width: 100%;">
+    <form id="form_jb" action="" method="post">
+        <table>
+            <tbody>
+                <tr>
+                    <td class="title">
+                        店名
+                    </td>
+                    <td colspan="3">
+                        <input name="shop_name" type="text" class="text all">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">
+                        <font class="pointcl">
+                            *
+                        </font>
+                        您的姓名
+                    </td>
+                    <td style="width: 200px;"colspan="1">
+                        <input type="text" name="contact" class="text long" placeholder="请输入您的姓名">
+                    </td>
+                    <td class="title" style="width: 70px;">
+                        <font class="pointcl">
+                            *
+                        </font>
+                        	联系电话
+                    </td>
+                    <td colspan="3">
+                        <input type="text" name="mobile" class="text long" placeholder="请输入您的联系方式">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">
+                        详细地址
+                    </td>
+                    <td colspan="3">
+                        <input name="addr" type="text" class="text all">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">
+                    	报价
+                    </td>
+                    <td colspan="3">
+                        <input name="baojia" type="text" class="text all">
+                    </td>
+                </tr>
+                <tr>
+                	<td colspan="2"></td>
+                    <td colspan="3"><input class="btn_sub_tuan btn" type="submit" value="竞标" style="margin-left: -65px;"></td>
+                </tr>
+                
+            </tbody>
+        </table>
+    </form>
+</div>
+
+<script>
+    $("#form_jb").submit(function(){
+        if (!$('#form_jb input[name="shop_name"]').val().trim()) {
+          alert('店名必填！');
+          return false;
+        }
+        if (!$('#form_jb input[name="contact"]').val().trim()) {
+          alert('姓名必填！');
+          return false;
+        }
+        if (!$('#form_jb input[name="mobile"]').val().trim()) {
+          alert('手机号码必填！');
+          return false;
+        }
+        if (!$('#form_jb input[name="addr"]').val().trim()) {
+          alert('地址必填！');
+          return false;
+        }
+        if (!$('#form_jb input[name="baojia"]').val().trim()) {
+          alert('报价必填！');
+          return false;
+        }
+
+        $.post("{url:/v_deco/zhaobiao_jinbiao2/zhaobiao_id/$this->zhaobiao[id]}", $('#form_jb').serialize(), function (result) {
+            if (result.result == 'succeed') {
+                alert(result.message);
+                window.location.reload();
+            } else {
+                alert(result.message);
+            }
+        }, 'json');
+        return false;
+    });
+</script>
+
+
+{if:$home['name']}
+<div class="starlight">
+    <h2><span class="text_h2"><a href="#" >{$home['name']}简介</a></span><span style="float:right; font-size:12px; font-weight:normal;"></span></h2>
+    <div class="fmc_header">
+        <div class="fmc_header_img fl">
+            <a href="#" ><img src="{url:/pic/thumb/img/$home['img']/w/230/h/173}" height="173" width="229"></a>
+        </div>
+        <div class="fmc_header_content fl">
+            <dl>
+                <dt>竣工时间：</dt>
+                <dd>{$home['time']}</dd>
+                <dt>建筑类别：</dt>
+                <dd>{$home['jz_type']}</dd>
+                <dt>占地面积：</dt>
+                <dd>{$home['zdmj']}</dd>
+                <dt>建筑面积：</dt>
+                <dd>{$home['jzmj']}</dd>
+                <dt>开发商：</dt>
+                <dd>{$home['kfs']}</dd>
+                <dt>物业公司：</dt>
+                <dd>{$home['wygs']}</dd>
+                <dt>楼盘地址：</dt>
+                <dd>{$home['area']}</dd>
+            </dl>
+        </div>
+        <div class="fmc_header_content f2">
+            <dl>
+                <dt>房价：</dt>
+                <dd>{$home['price']}</dd>
+                <dt>绿化率：</dt>
+                <dd>{$home['lhl']}</dd>
+                <dt>容积率:</dt>
+                <dd>{$home['rjl']}</dd>
+            </dl>
+        </div>
+    </div>
+</div>
+{/if}
+
+<div class="information">
+    <h2><span class="text_h2">竞标记录</span></h2>
+    <table class="tr_hd">
+        <tbody>
+        <tr class="">
+            <th class="col1">公司名称</th>
+            <th class="col1">报价</th>
+            <th class="col2">竞标时间</th>
+        </tr>
+        </tbody>
+    </table>
+    <div class="design_table" id="scrolldiv">
+        <div id="scrolldiv1">
+            <table class="tr_hd">
+                <tbody>
+                    {query:name=zhaobiao_log2 where=zhaobiao_id eq $this->zhaobiao['id'] item=$good} 
+                               <tr>
+                    <td class="col1"><a href="javascript:void(0);">{$good['shop_name']}</a></td>
+                    <td class="col1">{$good['baojia']}</td> 
+                    <td class="col2">{$good['create_time']}</td>
+                </tr>
+    {/query}
+                                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="information">
+    <h2><span class="text_h2">相关招标信息</span></h2>
+    <table class="tr_hd">
+        <tbody>
+        <tr class="">
+            <th class="col1">名称</th>
+            <th class="col2">装修类型</th>
+            <th class="col3">建筑面积</th>
+            <!--<th class="col4">装修预算</th>-->
+        </tr>
+        </tbody>
+    </table>
+    <div class="design_table" id="scrolldiv">
+        <div id="scrolldiv1">
+            <table class="tr_hd">
+                <tbody>
+                    {query:name=zhaobiao where=id neq $this->zhaobiao['id'] limit=5}
+                               <tr>
+                    <td class="col1"><a href="{url:v_deco/zb_detail/id/$item['id']}">{$item['title']}</a></td>
+                    <td class="col2">{$way[$item['way_id']]}</td>
+                    <td class="col3">{$item['house_mj']}㎡</td>
+                    <!--<td class="col4">{$budget[$item['budget_id']]}</td>-->
+                </tr>
+                {/query}
+                                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="zgs_cl_right">
+    <div class="zgs_clr_zsm">
+        <span class="zcf_title">免费申请装修服务</span>
+        <span class="zcf_title_ext">优质装修公司免费帮您出方案</span>
+        <form class="mod_form" id="infoForm">
+            <input name="ptag" type="hidden" value="1_4_2_4">
+            <ul>
+                <li>
+                    <input type="text" name="chenghu" class="yourname">
+                    <label>您的称呼</label>
+                </li>
+                <li>
+                    <input type="text" name="phone" class="youriphone">
+                    <label>手机号码</label>
+                </li>
+                <li>
+                    <select class="province" name="User_Shen" id="User_Shen" onchange="changeProvince('User_Shen','User_City','User_Town');">
+                        
+                    <option value="">省/市</option><option value="安徽">A 安徽</option><option value="北京">B 北京</option><option value="重庆">C 重庆</option><option value="福建">F 福建</option><option value="广西">G 广西</option><option value="贵州">G 贵州</option><option value="广东">G 广东</option><option value="甘肃">G 甘肃</option><option value="海南">H 海南</option><option value="湖北">H 湖北</option><option value="黑龙江">H 黑龙江</option><option value="河南">H 河南</option><option value="河北">H 河北</option><option value="湖南">H 湖南</option><option value="江苏">J 江苏</option><option value="吉林">J 吉林</option><option value="江西">J 江西</option><option value="辽宁">L 辽宁</option><option value="内蒙古">N 内蒙古</option><option value="宁夏">N 宁夏</option><option value="澳门">O 澳门</option><option value="青海">Q 青海</option><option value="四川">S 四川</option><option value="陕西">S 陕西</option><option value="上海">S 上海</option><option value="山东">S 山东</option><option value="山西">S 山西</option><option value="台湾">T 台湾</option><option value="天津">T 天津</option><option value="西藏">X 西藏</option><option value="香港">X 香港</option><option value="新疆">X 新疆</option><option value="云南">Y 云南</option><option value="浙江">Z 浙江</option></select>
+                    <select class="city" name="User_City" id="User_City" onchange="changeTown('User_Shen','User_City','User_Town');">
+                        <option value="">市/地区</option>
+                    </select>
+                    <div style="display:none;">
+                        <select class="langSelect" id="User_Town" name="User_Town">
+                            <option>县/区</option>
+                        </select>
+                    </div>
+                </li>
+            </ul>
+            <input type="submit" submit_type="ajax_select3" value="免费帮您推荐1-3家公司" class="zcz_btn">
+        </form>
+    </div>
+    <div class="zgs_clr_fc">
+        <span class="zcf_title">在淘黄州找装修公司，<br>比任何渠道便宜20%以上；<br>施工质量严格监管，高于行业标准。</span>
+        <ul>
+            <li>
+                <span class="zcf_kxy"></span>
+                <b>不懂装修注意事项？</b>
+                <em>淘黄州300名家装顾问.免费一对一帮你解疑惑。</em>
+            </li>
+            <li>
+                <span class="zcf_bfa"></span>
+                <b>不懂验房和装修验收？</b>
+                <em>200名专业监理免费帮你做5次验收，1次突击检查。</em>
+            </li>
+            <li>
+                <span class="zcf_bbj"></span>
+                <b>怕装修猫腻、偷工减料？</b>
+                <em>"五星服务"、"四标规范"免费帮你做把控。</em>
+            </li>
+            <li>
+                <span class="zcf_bbz"></span>
+                <b>怕给了钱，质量没保障？</b>
+                <em>"装修保"免费帮你保障，满意了才付装修款。</em>
+            </li>
+        </ul>
+        <input type="button" value="享受省心的装修服务" class="zcz_btn" onclick="freeBooking({toid:0,s_source:75, ptag:'1_5_1_13'},1);">
+    </div>
+</div>
+</div>

@@ -1,0 +1,353 @@
+{set:$article_id = IFilter::act(IReq::get('id'),'int');}
+{set:$cat = $this->category_list[count($this->category_list)-1]}
+
+{query:name=jiaju_article_comment where=article_id eq $article_id fields=count(id) as n}{set:$comment = $item['n']}{/query}
+  
+<section class="zx-wrap zxxc-wrap">
+  <section class="detailFr_msg">
+    <h2>{$this->article['title']}</h2>
+    <p class="timeslink">
+      <time>{$this->article['create_time']}</time>
+      &nbsp; <em>浏览量：{$this->article['visit']}</em></p>
+    <div class="crumbs"><a href="/">首页</a> {foreach:items=$this->category_list}&gt;<a href="{url:v_deco/article_list/cid/$item['id']}">{$item['name']}</a> {/foreach} </div>
+    {if:$this->article['description']}
+    <blockquote>{$this->article['description']}</blockquote>
+    {/if}
+    <article class="collapse" id="bodycontent"> {$this->article['content']} </article>
+	<div class="collapseBtn">点击查看全部内容</div>
+    <div class="center pt30"> {if:$this->article_praise} <span class="subBtn" id="btnRecommend" data-id="{$article_id}" title="推荐"> {else:} <span class="subBtn down" id="btnRecommend" data-id="{$article_id}" title="推荐"> {/if}
+      <div> <span id="recommend_count1"> {$this->article['praise']} </span> </div>
+      </span> </div>
+    <div class="SNSbar f-16 c-999 mt-10 mb-10 cl"> <span><i class="iconpic iconpic-comment"></i>{$comment}</span> <span style="margin-left:20px"><i class="iconpic iconpic-zan"></i> <span id="recommend_count1">{$this->article['praise']}</span> </span> <span style="margin-left:20px"><i class="iconpic iconpic-view"></i>&nbsp;{$this->article['visit']}</span> </div>
+  </section>
+  <section class="hot-word">
+    <h1>热门推荐</h1>
+    <ul>
+      {query:name=jiaju_article where=category_id eq $cat[id] and id neq $article_id order=id desc limit=5}
+      <li><a href="{url:v_deco/yezhu/id/$item['id']}" class="zxzs-set zxzs-bj" dataptag="2_9_2_1" rel="nofollow">{$item['title']}</a> {if:$key == 0} <em>new</em> {/if} </li>
+      {/query}
+    </ul>
+  </section>
+  <!--     <section class="detailFr xgtj_line">
+      <header>
+        <h2>相关推荐</h2>
+      </header>
+      <ul>
+        <li><a href="#">镁光m4固件升级详细图文教程</a></li>
+        <li><a href="#">索尼cw16的价格是多少？索尼cw16全面剖析评测</a></li>
+        <li><a href="#">联想昭阳e41g怎么样？</a></li>
+        <li><a href="#">索尼t11笔记本怎么样？索尼t11笔记本深度评测</a></li>
+        <li><a href="#">联想昭阳e255详细评测  联想昭阳e255多少钱？</a></li>
+      </ul>
+    </section> -->
+  <section> <a id="passinto" class="module zxzs-set" dataptag="2_3_7_125" href="{url:v_deco/article_list/cid/$cat['id']}" rel="nofollow">进入{$cat['name']}</a> </section>
+  <!--<section class="shareto-wrap">
+    <h2 class="shareto-label">分享到：
+      <ul class="shareFr bdsharebuttonbox  bdshare-button-style0-16" data-tag="share_1" data-bd-bind="1458877062494">
+        <li><a href="javascript:void(0)" class="bds_tsina" data-cmd="tsina" target="_self"></a></li>
+        <li><a href="javascript:void(0)" class="bds_tqq " data-cmd="tqq" target="_self"></a></li>
+        <li><a href="javascript:void(0)" class="bds_qzone" data-cmd="qzone" target="_self"></a></li>
+        <li><a href="javascript:void(0)" class="bds_sqq" data-cmd="sqq" target="_self"></a></li>
+      </ul>
+    </h2>
+  </section>-->
+  <section class="zx-wtg-wrap"> <i class="zx-wtg-logo"></i>
+    <h2>关注淘黄州微信，领装修大礼包</h2>
+    <p>打开微信，关注微信号：<em>itaohz</em></p>
+  </section>
+  {foreach:items=Api::run('getadmanagernd',array('#position_id#',17),1) item=$ads}
+  <section><a href="{$ads['link']}"><img width="100%" heigth="auto" src="{url:$ads[content]}"></a></section>
+  {/foreach}
+  <section id="Reply" class="news-comment">
+    <h3 class="tab"> <span class="item activate">评论<em>(<span>{$comment}</span>)</em></span> </h3>
+    <div class="comment-publish fn-mlr" >
+      <div class="input-comment">
+          <div contenteditable="true" class="commentInput" id="CurrentReply" placeholder="快来说两句呗"></div>
+          <div class="emoji_btn">插入表情</div>
+          <div class="commentSubmit" id="commentSubmit">发表评论</div>
+        </div>
+    </div>
+    <div class="hottest" id="hotreply">
+      <div class="sticky"><em class="mark-hottest">热门评论</em></div>
+      <ul class='list-comment' id='hotreplylist'></ul>
+      <div class="content-null">还没有评论哦，快来抢沙发</div>
+      </div>
+
+    <!--     <div class="newest">
+      <div class="sticky"><em class="mark-newest">最新评论</em></div>
+      <ul class="list-comment" id="ReplyList">
+        <li>
+          <div class="user"> <a class="avatar" href="http://i.m.autohome.com.cn/22727010"><img src="http://i1.autoimg.cn/album/userheaders/2015/11/13/f38fc81b-13c7-4e9b-8cb1-08efed7c144a_30X30.jpg"></a> <a class="name" href="http://i.m.autohome.com.cn/22727010" data-user-v="22727010">小狗追我跑</a>
+            <time>46秒前</time>
+          </div>
+          <div class="cont">
+            <p>这告诉我们矩阵屎大灯并不贵</p>
+          </div>
+          <div class="handle"> <span class="reply" reply-id="53598234"><i class="iconfont icon-comment"></i>回复</span> <i class="split"></i> <span class="praise" reply-up="53598234"><i class="iconfont icon-praise"></i><span reply-upnum="0"></span></span> <i class="split"></i> <a class="report" href="http://jubao.m.autohome.com.cn/ComplaintMain/CreateCom?cfgId=15&amp;appId=1000&amp;objId=53598234&amp;subObjId=1&amp;BizShowName=%E4%B8%BE%E6%8A%A5&amp;AccusedMId=22727010&amp;AccuseMName=%E5%B0%8F%E7%8B%97%E8%BF%BD%E6%88%91%E8%B7%91&amp;url=http%3A%2F%2Fm.autohome.com.cn%2Fnews%2F201603%2F886492.html%23pvareaid%3D100260">举报</a> </div>
+          <div class="comment-publish input-comment small fn-hide" reply-form="53598234" data-id="53598234"></div>
+        </li>
+        <li>
+          <div class="user"> <a class="avatar" href="http://i.m.autohome.com.cn/8661483"><img src="http://i1.autoimg.cn/album/userheaders/2015/2/27/8e793d70-8ce0-4a43-a7e6-d407d49b8661_30X30.jpg"></a> <a class="name" href="http://i.m.autohome.com.cn/8661483" data-user-v="8661483">东都一少</a>
+            <time>46秒前</time>
+          </div>
+          <div class="cont">
+            <div class="quote" id="ranswer-53598232">
+              <div class="user"> <a class="avatar" href="http://i.m.autohome.com.cn/12995762"><img src="http://x.autoimg.cn/space/images/head_30X30.gif" data-user="12995762"></a> <a class="name" href="http://i.m.autohome.com.cn/12995762" data-user-v="12995762">稳着点啊</a> </div>
+              <div class="cont">
+                <p>荣威550更多的靠罗孚的技术</p>
+              </div>
+            </div>
+            <p>这个1.8的发动机还真跟大众没关系，是罗孚的技术，MG6的底盘和发动机是最后的罗孚啦！</p>
+          </div>
+          <div class="handle"> <span class="reply" reply-id="53598232"><i class="iconfont icon-comment"></i>回复</span> <i class="split"></i> <span class="praise" reply-up="53598232"><i class="iconfont icon-praise"></i><span reply-upnum="0"></span></span> <i class="split"></i> <a class="report" href="http://jubao.m.autohome.com.cn/ComplaintMain/CreateCom?cfgId=15&amp;appId=1000&amp;objId=53598232&amp;subObjId=1&amp;BizShowName=%E4%B8%BE%E6%8A%A5&amp;AccusedMId=8661483&amp;AccuseMName=%E4%B8%9C%E9%83%BD%E4%B8%80%E5%B0%91&amp;url=http%3A%2F%2Fm.autohome.com.cn%2Fnews%2F201603%2F886492.html%23pvareaid%3D100260">举报</a> </div>
+          <div class="comment-publish input-comment small fn-hide" reply-form="53598232" data-id="53598232"></div>
+        </li>
+      </ul>
+      <div id="ReplyMove"><a class="btn" href="/Article/reply/886492" id="ShowAll">查看所有评论<i class="iconfont icon-arrow-right"></i></a></div>
+    </div> 
+    
+    //<img src="{url:}'+ cmt.head_ico +'" class="userico" onerror=this.src="{theme:skin/user/images/user_ico.gif}">
+    --> 
+    
+    <!-- <div class="content-null">还没有评论哦，快来抢沙发</div> --> 
+    <div class="comment-reload">刷新评论数据</div>
+  </section>
+</section>
+<link rel="stylesheet" href="../skin/yezhu/css/zxgl-new.min.css">
+<script src="skin/js/emoji/jquery.emoji.min.js"></script>
+<script type="text/javascript">
+
+wxshare.title = '{$this->article[title]}';
+wxshare.desc = '{echo:IFilter::replace($this->article[description])}';
+wxshare.imgUrl = '{url:$this->article[img]}';
+
+
+
+var commentWrap = $("#hotreplylist");
+var commentQuote = function(cmt){
+		var elem = $("<div class='quote' id='quote"+cmt.id+"' data-pre='1'></div>");
+		if(cmt.true_name==null)cmt.true_name= '淘黄州网友'+cmt.user_id;
+		elem.append('<div class="user"> <em class="name">'+cmt.true_name+
+		'</em><time>'+ cmt.comment_time +'</time><pre>1</pre></div>');
+		$('<div class="cont"></div>').appendTo(elem).append(cmt.contents);
+		var str = '<div class="handle"> <span class="reply"><i class="iconfont icon-comment"></i>回复</span><span class="praise" data-id="'+ cmt.id+
+		'">赞&nbsp;<span>'+ cmt.praise+'</span></span> </div>'+
+		'<div class="comment-publish input-comment small" style="display: none;">'+
+		'  <div class="commentInput" placeholder="来说两句吧" contenteditable="true"></div><div class="emoji_btn">插入表情</div>'+
+		'  <div class="commentSubmit reCommentSubmit"  data-re_id="'+ cmt.id+'">回复</div>'+
+		'</div>'
+		elem.append(str);
+		return elem;
+};
+function commentTree(comment_list) {
+	var FindQuote,NewQuote; 
+	for (var comment in comment_list) {
+		FindQuote = $('#quote'+comment_list[comment].re_id);
+		NewQuote = commentQuote(comment_list[comment]);
+		if(FindQuote.length!=0){
+			FindQuote.find(".handle,.input-comment,.userico").remove();
+			FindQuotePre = parseFloat(FindQuote.data("pre"))+1;
+			NewQuote.data("pre",FindQuotePre);
+			NewQuote.find("pre").text(parseFloat(FindQuotePre));
+			NewQuote.prepend(FindQuote);
+		}
+		commentWrap.append(NewQuote);
+		
+		if(comment_list[comment].lv !== undefined){
+			commentTree(comment_list[comment].lv);
+		};
+	}
+};
+function HTMLEncode(s) {
+            if (s.length == 0) { return ''; }
+            //chrome首次回车后产生的div处理
+            s = s.replace(/(\S+?)<div[^>]*?>/gi, '$1\n');
+            //ie、chrome回车处理
+            s = s.replace(/<(p|div)[^>]*?>/gi, '');
+            s = s.replace(/<\/(p|div)>/gi, '\n');
+            //firefox回车处理
+            s = s.replace(/<br>/gi, '\n');
+            //去掉html标签
+            //s = s.replace(/<[^>]*?>/ig, '');
+            // s = s.replace(/\n+/gi, '\n');
+            //去掉首尾空白字符
+            s = s.replace(/^\s*|\s*$/g, '');
+            return s;
+}
+function readCommentList(){
+	commentWrap.empty();
+	$.getJSON("{url:v_deco/acticle_comment_sourec/id/$article_id}",function(data){
+		//console.log(data.length);
+		commentTree(data);
+		data.length !=0 && $(".content-null").remove()
+	})
+}
+$(function(){
+	$("#bodycontent").find("img").each(function(index, element) {
+        $(this).attr("height","auto").css("height","auto");
+    });
+	
+	readCommentList()
+	$(".comment-reload").click(function(){window.loadding();readCommentList();window.tips("刷新成功")})
+	commentWrap.on('click','.reply',function(){
+		$(this).parent().next().toggle();
+	});
+	$(".collapseBtn").click(function(e) {
+        $(".collapse").removeClass("collapse");
+		$(this).remove();
+    });
+	//赞文章
+   $('#btnRecommend').on('click', function(){
+      var that = $(this),obj_id = that.data('id');
+        $.getJSON("{url:v_deco/article_praise}",{id: obj_id},
+          function (result) {
+              if (result.status == 1) {$('#recommend_count1').html(parseInt($('#recommend_count1').html()) + 1);tips("赞 +1");} 
+              that.addClass('down').off( "click");
+			  
+         });
+  });
+
+//顶贴
+  commentWrap.on('click','.praise',function(){
+    var that = $(this),obj_id = $(this).data('id');window.loadding();
+      $.getJSON("{url:v_deco/article_comment_praise}",{id: obj_id},
+      function (result) {
+          if (result.status == 1) {
+            that.find('span').html(parseInt(that.find('span').html()) + 1);
+            tips(result.info);
+			that.off("click")
+          };
+      });
+  });
+
+//回复评论
+  commentWrap.on('click','.reCommentSubmit',function(){
+	
+	var postData = {};
+    postData.contents = HTMLEncode($(this).prev().prev().html());
+    postData.re_id = $(this).data("re_id");
+    postData.article_id = {$article_id};
+
+    if(!postData.contents){
+      alert('请填写你想说的话');return;
+    };window.loadding();
+      $.getJSON("{url:v_deco/article_comment_post}",postData,
+      function (result) {
+		  window.tips(result.info);readCommentList()
+      }
+      );
+
+  });
+  //发表评论
+  $("#commentSubmit").on("click",function(){
+	  var reval = {contents:HTMLEncode($('#CurrentReply').html()),article_id:{$article_id}};
+	  if(!reval.contents){alert('请填写你想说的话');return false;};window.loadding();
+	  $.getJSON("{url:v_deco/article_comment_post}",reval,
+		  function (result) {
+			  window.tips(result.info);
+			  readCommentList()
+		  }
+	  );
+  })
+	//应用表情插件  
+	$.emoji({
+		btn:".emoji_btn",
+		input:".commentInput",
+		icons: [
+				{
+					name: "小黄脸",
+					path: "{theme:skin/js/emoji/img/qq}/",
+					maxNum: 130,
+					file: ".gif"
+				},
+				{
+					name: "陌陌",
+					path: "{theme:skin/js/emoji/img/momo}/",
+					maxNum: 63,
+					file: ".png"
+				},
+				{
+					name: "小纯洁",
+					path: "{theme:skin/js/emoji/img/xcj}/",
+					maxNum: 94,
+					file: ".gif"
+				},
+				{
+					name: "告白爱",
+					path: "{theme:skin/js/emoji/img/gb}/",
+					maxNum: 52,
+					file: ".gif"
+				},
+				{
+					name: "屌丝妹",
+					path: "{theme:skin/js/emoji/img/ds}/",
+					maxNum: 92,
+					file: ".gif"
+				},
+				{
+					name: "喵尼美",
+					path: "{theme:skin/js/emoji/img/mnm}/",
+					maxNum: 49,
+					file: ".jpg"
+				},
+				{
+					name: "刘尼美",
+					path: "{theme:skin/js/emoji/img/nnm}/",
+					maxNum: 50,
+					file: ".jpg"
+				},
+				{
+					name: "李尼美",
+					path: "{theme:skin/js/emoji/img/lnm}/",
+					maxNum: 54,
+					file: ".jpg"
+				},
+				{
+					name: "王尼玛",
+					path: "{theme:skin/js/emoji/img/wnm}/",
+					maxNum: 80,
+					file: ".jpg"
+				}
+
+		]
+		
+	});
+	//动态更新
+	
+/*	var source;
+    //初始化调用方法
+    function init(){
+        var url="{url:v_deco/acticle_comment_sourec}";
+        
+            source=new EventSource(url);
+            try{
+                source.onopen=function(event){
+                    p("连接已经建立，状态号："+this.readyState);
+                }
+                source.onmessage=function(event){
+                    p('客户端收到服务器推送的数据是：'+event.data);
+                }
+                source.onerro=function(event){
+                        p("出错，信息状态号是："+this.readyState);
+                }
+            }catch(err){
+                alert('出错啦，错误信息：'+err.message);
+            }
+    
+    }
+    //退出方法，关闭EventSource
+    function quit(){
+        p("已经成功退出啦！");
+        source.close();
+        source=null;
+    }
+    //信息输出方法
+    function p(msg){
+		console.log(msg)
+        //document.getElementById("msg").innerHTML+="<br/>"+msg;
+    }
+	init();*/
+});
+
+
+</script>

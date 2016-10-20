@@ -1,0 +1,55 @@
+{js:kindeditor}
+<div class="headbar">
+	<div class="position"><span>商品</span><span>></span><span>品牌管理</span><span>></span><span>{if:isset($category['id'])}编辑{else:}添加{/if}分类</span></div>
+</div>
+<div class="content_box">
+	<div class="content form_content">
+		<form action="{url:/brand/category_save}" method="post" name="brandForm">
+			<input name="id" value="" type="hidden" />
+			<table class="form_table">
+				<col width="150px" />
+				<col />
+				<tr>
+					<th>分类名称：</th>
+					<td>
+						<input class="normal" name="name" type="text" value="" pattern="required" alt="分类名称不能为空" /><label>*</label>
+					</td>
+				</tr>
+				<tr>
+					<th>所属商品分类：</th>
+					<td>
+						<span id="__categoryBox" style="margin-bottom:8px"></span>
+
+						<!--分类数据显示-->
+						<script id="categoryButtonTemplate" type="text/html">
+						<ctrlArea>
+						<input type="hidden" value="<%=templateData['id']%>" name="goods_category_id" />
+						<button class="btn" type="button" onclick="return confirm('确定删除此分类？') ? $(this).parent().remove() : '';">
+							<span class="del"><%=templateData['name']%></span>
+						</button>
+						</ctrlArea>
+						</script>
+
+						<button class="btn" type="button" onclick="selectGoodsCategory('{url:/block/goods_category/type/radio}','goods_category_id')"><span class="add">设置分类</span></button>
+					</td>
+				</tr>
+				<tr>
+					<td></td><td><button class="submit" type="submit"><span>确 定</span></button></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</div>
+
+<script type="text/javascript">
+//表单回填
+var formObj = new Form('brandForm');
+formObj.init({echo:JSON::encode($this->catRow)});
+
+//商品分类回填
+{if:isset($this->catRow['goods_category_id'])}
+{set:$categoryId = $this->catRow['goods_category_id']}
+{query:name=category items=$categoryData where=id in ($categoryId)}{/query}
+createGoodsCategory({echo:JSON::encode($categoryData)});
+{/if}
+</script>

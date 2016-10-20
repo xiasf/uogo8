@@ -1,0 +1,21 @@
+<link rel="stylesheet" href="../skin/yezhu/css/zxgl-new.min.css">
+<link rel="stylesheet" href="../skin/yezhu/css/zxask-v4.css">
+<section class="zx-list-wrap xcsc-list-wrap">
+<section class="zx_notebook zx_notebook2">
+        <ul class="xzx_select_book">
+        	{query:name=zhaobiao}
+                <li style="padding-left: 0;">
+                    <a href="{url:v_deco/zb_detail/id/$item['id']}" class="clearfix">
+                        <div>
+                            <h2>{$item['title']}</h2>
+                            <p>{$item['create_time']}</p>
+                            <p>浏览：{$item['views']}</p>
+                            <p>预算：{$item['budget']}</p>
+                        </div>
+                    </a>
+                </li>
+            {/query}
+        </ul>
+            {$this->getPageBar}
+    </section>
+</section>

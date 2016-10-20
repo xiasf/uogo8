@@ -1,0 +1,76 @@
+{set:$siteConfigObj = new Config("site_config");$site_config = $siteConfigObj->getInfo();}
+<div class="headbar">
+  <div class="position"><span>系统</span><span>></span><span>第三方平台</span><span>></span><span>短信平台</span></div>
+</div>
+<div class="content_box">
+  <div class="content form_content">
+    <form action="#" method="post" name='sms_conf'>
+      <table class="form_table">
+        <colgroup>
+        <col width="150px" />
+        <col />
+        </colgroup>
+        <tr>
+          <th>说明：</th>
+          <td> 立即接入短信平台！让您的客户把握第一手商城咨询和订单动态
+            <p>商城所用的短信内容模板在 "/classes/smstemplate.php" 文件中，尽量用原始的短信模板，否则会导致短信发送延迟等问题</p>
+            <p>如果想关闭某个短信发送环节，可以直接把相应方法的返回值设置为空</p></td>
+        </tr>
+        <tr>
+          <th>短信平台：</th>
+          <td><select name="sms_platform" class="normal">
+              <option value="haiyan">HY短信平台</option>
+              <option value="zhutong">ZT短信平台</option>
+              <option value="yunpian">YP云片网络短信平台</option>
+            </select></td>
+        </tr>
+        <tr>
+          <th>商户ID：</th>
+          <td><input type='text' class='normal' name='sms_userid' alt='' />
+            <label>购买后分配的
+              <用户ID>
+            </label></td>
+        </tr>
+        <tr>
+          <th>用户名：</th>
+          <td><input type='text' class='normal' name='sms_username' pattern='required' alt='' />
+            <label>购买后分配的
+              <用户帐号>
+            </label></td>
+        </tr>
+        <tr>
+          <th>密码：</th>
+          <td><input type='text' class='normal' name='sms_pwd' pattern='required' alt='' />
+            <label>购买后分配的
+              <用户账号密码>
+            </label></td>
+        </tr>
+        <tr>
+          <th></th>
+          <td><button type='button' class="submit" onclick="submitConfig();"><span>保 存</span></button></td>
+        </tr>
+      </table>
+    </form>
+  </div>
+</div>
+<script type='text/javascript'>
+jQuery(function()
+{
+	var formobj = new Form('sms_conf');
+	formobj.init({echo:JSON::encode($site_config)});
+});
+
+//ajax提交信息
+function submitConfig()
+{
+	var sendData = {};
+	$('select,input[name^="sms_"]').each(function()
+	{
+		sendData[$(this).attr('name')] = $(this).val();
+	});
+	$.post("{url:/system/save_conf}",sendData,function(content)
+	{
+		alert('保存成功');
+	});
+}
+</script>

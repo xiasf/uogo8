@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>{echo:$this->config[title].$this->config[name]}</title>
+<meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" />
+<meta content="telphone=no, email=no" name="format-detection" />
+<meta name="author" contect="Itaohz James" />
+<meta name="applicable-device" content="mobile">
+<meta name="apple-mobile-web-app-title" content="{echo:$this->config[name]}">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<!-- UC强制全屏 -->  
+<meta name="full-screen" content="yes">  
+<!-- QQ强制全屏 -->  
+<meta name="x5-fullscreen" content="true">  
+<link rel="apple-touch-startup-image" href="skin/startup.png" />
+<link rel="apple-touch-icon-precomposed" href="skin/iphone.png">
+<link rel="icon" href="skin/iphone.png"> 
+<link rel="canonical" href="{echo:$this->config[url]}">
+<link rel="stylesheet" type="text/css" href="skin/common.min.css">
+<script type="text/javascript" src="skin/js/zepto.min.js"></script>
+<!--<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />-->
+</head> 
+<body> 
+<!-- 通用头部 --> 
+{if:$this->config[action]!=''}
+<header id="dt-hd2" class="navstyle1">
+  <nav class="login-heads"><i class="icon header-nav" id="nav"></i><i class="icon icon-arr"></i><p id="back">返回</p></nav>
+  <!--  <span class="location-wrap"><a href="/">{echo:$this->config[title].$this->config[name]}</a></span>-->
+  <nav class="login-heads-frame"><i class="icon icon-house" id="home"></i><i class="refresh" id="refresh"></i></nav>
+  <nav class="dt-hd-nav"><i class="icon-dt-hd clickNav-wrap"></i></nav>
+</header>
+{else:}
+<header id="dt-hd" class="navstyle2"> <a class="icon-logo-index goIndex" href="{url:/}" id="goIndex"></a>
+  <span> {if:$this->user} <a href="{url:/ucenter/index}">欢迎您,{echo:$this->user['true_name']}</a>{else:} <a href="{url:/simple/login}" class="log">登录 </a>&nbsp;| <a href="{url:/simple/reg?callback=/}" class="reg">注册</a> {/if}</span>
+  <nav class="login-heads-frame"> <a href="{url:ucenter/index}" style="margin-right:30px;"><span class="login-heads-top" id="addhovers"></span></a> </nav>
+  <!--右边导航按钮-->
+  <nav class="dt-hd-nav clickNav-wrap"> <i class="icon-dt-hd"></i> </nav>
+</header>
+{/if} 
+<!--通用搜索菜单-->
+<div id="dt-hd-navs-wrap" class="hide dt-hd-navs-wrap">
+  <div class="xgt-search-wrap">
+    <form action="{url:/site/search_list}" method="get">
+      <div class="input-append">
+        <input type="search" name="word" placeholder="输入商品名称">
+        <i class="icon-clear"></i>
+        <button type="submit" class="add-on">搜索</button>
+      </div>
+    </form>
+  </div>
+  <ul class="dt-hd-navs">
+    <li> <a class="goIndex" href="/site/index"> <i class="icon-navf0"></i>
+      <p>首页</p>
+      </a> </li>
+    <li> <a class="click-point"  href="{url:v_deco/effectpic}"> <i class="icon-navf1"></i>
+      <p>效果图</p>
+      </a> </li>
+    <!--      <li> <a class="click-point" data-point="2_1_1_2" href="/yezhu/zxbj.php?from=144"> <i class="icon-navf2"></i>
+        <p>装修报价</p>
+        </a> </li>
+      <li> <a class="click-point" data-point="2_1_1_2" href="/bj/zb/index2.html"> <i class="icon-navf3"></i>
+        <p>户型设计</p>
+        </a> </li>
+-->
+    <li> <a class="click-point city-update-left" href="{url:v_deco/company}"> <i class="icon-navf4"></i>
+      <p>装修公司</p>
+      </a> </li>
+    <!--      <li> <a class="click-point" data-point="2_1_1_4" href="/company/zxb.php"> <i class="icon-navf6"></i>
+        <p>装修保</p>
+        </a> </li>
+-->
+    <li> <a class="click-point" href="{url:v_deco/gonglve}"> <i class="icon-navf5"></i>
+      <p>学装修</p>
+      </a> </li>
+    <li> <a class="click-point" href="{url:v_deco/malls}"> <i class="icon-navf8"></i>
+      <p>家居城</p>
+      </a> </li>
+    <li> <a class="click-point" href="{url:v_deco/mall_temai}"> <i class="icon-navf9"></i>
+      <p>品牌特卖</p>
+      </a> </li>
+  </ul>
+</div>
+<script type="text/javascript">
+$(function(){
+	$('.clickNav-wrap').click(function(e){$("#dt-hd-navs-wrap").toggleClass('hide')});
+	$("#refresh").click(function(e){
+		window.document.location.reload();
+	});
+	$("#back").click(function(e) {
+        window.history.length>1?(history.go(-1)):(window.document.location.href='{echo:$this->config[url]}'); 
+    });
+	$("#home").click(function(e) {
+        window.document.location.href='{echo:$this->config[url]}';
+    });
+    if(window.history.length<=1)$("#back").append("首页"); 
+	$("#nav").click(function(e) {
+        $('#navsub').toggleClass('hide');$(this).toggleClass('active')
+    }); 
+
+})
+var wxshare = {
+		title:"{echo:$this->config[title].$this->config[name]}",
+		desc:"{echo:$this->config[seo_desc]}",
+		link:"{echo:IUrl::getUrl()}",
+		imgUrl:"{theme:skin/wxshare.png}",
+		success: function () { 
+			// 用户确认分享后执行的回调函数
+		},
+		cancel: function () { 
+			// 用户取消分享后执行的回调函数
+		}
+},wx=null;
+
+</script> 

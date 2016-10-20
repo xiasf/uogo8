@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link rel="stylesheet" href="{skin:css/admin.css}" />
+{set:$siteConfig = new Config("site_config");}
+{js:jquery}
+{js:jqueryext}
+{js:dialog}
+<script src="http://open.web.meitu.com/sources/xiuxiu.js" type="text/javascript"></script>
+</head>
+<body style="width:620px;height:410px;">
+<div class="pop_win">
+	<div class="content"  style="height:410px;"><div id="altContent">前台头像上传程序</div>
+<!--		<form action="{echo:IFilter::act(IReq::get('callback'),'url')}" method='post' enctype='multipart/form-data'>
+        
+			<table class='form_table'>
+				<colgroup>
+					<col width="120px" />
+					<col />
+				</colgroup>
+
+				<tr>
+					<td id="altContent">选择图片文件：</td>
+					<!--<td><input type='file' class='file' name='attach' /></td>
+				</tr>
+			</table>
+		</form>-->
+	</div>
+</div>
+</body>
+<script>
+$(document).ready(function(){
+
+  /*第1个参数是加载编辑器div容器，第2个参数是编辑器类型，第3个参数是div容器宽，第4个参数是div容器高*/
+  xiuxiu.embedSWF("altContent",5,"100%","100%");
+  //修改为您自己的图片上传接口
+  xiuxiu.setUploadURL("{echo:$siteConfig->url}/{echo:IFilter::act(IReq::get('callback'),'url')}");
+  xiuxiu.setUploadType(2);
+  xiuxiu.setUploadDataFieldName("attach");
+  xiuxiu.onInit = function ()
+  {
+    //xiuxiu.loadPhoto($("#user_ico_img").attr("src"));//修改为要处理的图片url
+  }
+  xiuxiu.onUploadResponse = function (data)
+  {
+    //alert("上传响应" + data); //可以开启调试
+	var content = eval(data);
+	//alert(user_ico_data.data);
+	if(user_ico_data.isError == true)
+	{
+		alert(user_ico_data.message);
+	}
+	else
+	{
+		//alert(user_ico_data.data)
+		parent.$('#user_ico_img').attr('src',user_ico_data.data);
+	}
+	parent.art.dialog({id:'user_ico'}).close();
+  }
+xiuxiu.onDebug = function (data)
+{
+	alert("错误响应" + data);
+}
+});
+
+
+</script> 
+</html>

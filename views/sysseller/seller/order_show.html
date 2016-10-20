@@ -1,0 +1,432 @@
+{set:$seller_id = $this->seller['seller_id']}
+
+<div class="wrapper wrapper-content animated bounceInRight">
+	    <div class="row">
+            <div class="col-sm-12">
+                <div class="tabs-container">
+
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#tab-1" aria-expanded="true">基本信息</a></li>
+                        <li class=""><a data-toggle="tab" href="#tab-2" aria-expanded="false">收退款记录</a></li>
+						<li class=""><a data-toggle="tab" href="#tab-3" aria-expanded="false">发货记录</a></li>
+						<li class=""><a data-toggle="tab" href="#tab-4" aria-expanded="false">订单备注</a></li>
+						<li class=""><a data-toggle="tab" href="#tab-5" aria-expanded="false">订单日志</a></li>
+						<li class=""><a data-toggle="tab" href="#tab-6" aria-expanded="false">订单附言</a></li>
+
+                    </ul>
+
+                    <div class="tab-content">
+                        <div id="tab-1" class="tab-pane active">
+                            <div class="panel-body">
+			                    <div class="ibox float-e-margins">
+				                    <h2>订单信息</h2>
+				                    <div class="ibox-content">
+				                        {set:$orderInstance = new Order_Class();$orderRow = $orderInstance->getOrderShow($id)}
+										<table class="table table-bordered">
+											<tbody>
+												<tr>
+													<th>订单号:</th><td>{$order_no}</td>
+												</tr>
+												<tr>
+													<th>消费券:</th>
+
+													<td>
+														{query:name=order_voucher where=order_id eq $id item=$voucher}
+														{/query}
+                										{echo:$voucher['voucher'] ? ($voucher['isused'] ? $voucher['voucher']."<span class='badge badge-primary'>已使用</span>" : $voucher['voucher']."<span class='badge badge-danger'>未使用</span>") : '未付款无消费券'}
+                									</td>
+
+												</tr>
+												<tr>
+													<th>当前状态:</th><td>{echo:order_class::orderStatusText(order_class::getOrderStatus($orderRow))}</td>
+												</tr>
+												<tr>
+													<th>支付状态:</th><td>{echo:order_class::getOrderPayStatusText($orderRow)}</td>
+												</tr>
+												<tr>
+													<th>配送状态:</th><td>{echo:order_class::getOrderDistributionStatusText($orderRow)}</td>
+												</tr>
+												<tr>
+													<th>订单类型:</th><td>{echo:order_class::getOrderTypeText($orderRow)}</td>
+												</tr>
+												<tr>
+													<th>平台货款结算:</th><td>{if:$is_checkout == 1}已结算{else:}未结算{/if}</td>
+												</tr>
+											</tbody>
+										</table>
+				                    </div>
+				                </div>
+
+				                <div class="ibox float-e-margins">
+				                    <h2>订单详情</h2>
+				                    <div class="ibox-content">
+										<table class="table table-bordered">
+
+											<thead>
+												<tr>
+													<th>商品名称</th>
+													<th>商品原价</th>
+													<th>实际价格</th>
+													<th>商品数量</th>
+													<th>配送方式</th>
+												</tr>
+											</thead>
+
+											<tbody>
+												{query:name=order_goods where=order_id eq $order_id}
+												<tr>
+													<td>
+														{set:$goodsRow = JSON::decode($item['goods_array'])}
+														<a href="{url:/site/products/id/$item['goods_id']}" target="_blank">{$goodsRow['name']} &nbsp;&nbsp; {$goodsRow['value']}</a>
+													</td>
+													<td>￥{$item['goods_price']}</td>
+													<td>￥{$item['real_price']}</td>
+													<td>{$item['goods_nums']}</td>
+													<td>
+														{echo:Order_Class::goodsSendStatus($item['is_send'])}
+														{if:$item['delivery_id']}
+														<input class="alt_btn" type="button" onclick="freightLine({$item['delivery_id']})" value="快递跟踪" />
+														{/if}
+													</td>
+												</tr>
+												{/query}
+											</tbody>
+										</table>
+				                    </div>
+				                </div>
+
+				                <div class="ibox float-e-margins">
+				                    <h2>订单金额明细</h2>
+				                    <div class="ibox-content">
+				                        <table class="table table-bordered">
+											<tbody>
+												<tr>
+													<th>商品总额:</th><td>￥{$payable_amount}</td>
+												</tr>
+												<tr>
+													<th>配送费用:</th><td>￥{$real_freight}</td>
+												</tr>
+												<tr>
+													<th>保价费用:</th><td>￥{$insured}</td>
+												</tr>
+												<tr>
+													<th>税金:</th><td>￥{$taxes}</td>
+												</tr>
+												{if:isset($prop) && $prop}
+												<tr>
+													<th>代金券:</th><td>{query:name=prop where=id eq $prop}{$item['value']}{/query}</td>
+												</tr>
+												{/if}
+												<tr>
+													<th>优惠总额:</th><td>￥{$promotions}</td>
+												</tr>
+												<tr>
+													<th>增加或减少金额:</th>
+													<td>
+														￥
+														{if:Order_class::getOrderStatus($orderRow) < 3}
+														<input type='text' value='{$discount}' class='tiny' onchange='updateDiscount();' name='discount' />
+														{else:}
+														{$discount}
+														{/if}
+														<label class='tip'>折扣用" - ",涨价用" + "</label>
+													</td>
+												</tr>
+												<tr>
+													<th>订单总额:</th><td>￥<span id="orderAmount">{$order_amount}</span></td>
+												</tr>
+												<tr>
+													<th>已支付金额:</th><td>{query:name=collection_doc where=order_id eq $order_id and if_del eq 0 fields=amount}￥{$item['amount']}{/query}</td>
+												</tr>
+											</tbody>
+										</table>
+				                    </div>
+				                </div>
+
+				                <div class="ibox float-e-margins">
+				                    <h2>支付和配送信息</h2>
+				                    <div class="ibox-content">
+				                        <table class="table table-bordered">
+
+											<tbody>
+												<tr>
+													<th>配送方式:</th><td>{$delivery}</td>
+												</tr>
+
+												{if:$takeself}
+												<tr>
+													<th>自提地址:</th>
+													<td>
+														{$takeself['province_str']}
+														{$takeself['city_str']}
+														{$takeself['area_str']}
+														{$takeself['address']}
+													</td>
+												</tr>
+												<tr>
+													<th>自提联系方式:</th>
+													<td>
+														座机：{$takeself['phone']} &nbsp;&nbsp;
+														手机：{$takeself['mobile']}
+													</td>
+												</tr>
+												{/if}
+
+												<tr>
+													<th>商品重量:</th><td>{$goods_weight} g</td>
+												</tr>
+												<tr>
+													<th>支付方式:</th><td>{$payment}</td>
+												</tr>
+												<tr>
+													<th>是否开票:</th><td>{if:$invoice==0}否{else:}是{/if}</td>
+												</tr>
+												<tr>
+													<th>发票抬头:</th><td>{$invoice_title}</td>
+												</tr>
+												<tr>
+													<th>可得积分:</th><td>{$point}</td>
+												</tr>
+											</tbody>
+										</table>
+				                    </div>
+				                </div>
+
+				                <div class="ibox float-e-margins">
+				                    <h2>收货人信息</h2>
+				                    <div class="ibox-content">
+				                        <table class="table table-bordered">
+											<tbody>
+												<tr>
+													<th>发货日期:</th><td>{$send_time}</td>
+												</tr>
+												<tr>
+													<th>姓名:</th><td>{$accept_name}</td>
+												</tr>
+												<tr>
+													<th>手机 :</th><td>{$mobile}</td>
+												</tr>
+												<tr>
+													<th>地区:</th><td>{$area_addr}</td>
+												</tr>
+												<tr>
+													<th>地址:</th><td>{$address}</td>
+												</tr>
+												<tr>
+													<th>邮编:</th><td>{$postcode}</td>
+												</tr>
+												<tr>
+													<th>送货时间:</th><td>{$accept_time}</td>
+												</tr>
+											</tbody>
+										</table>
+				                    </div>
+				                </div>
+                            </div>
+                        </div>
+
+                        <div id="tab-2" class="tab-pane">
+                            <div class="panel-body">
+			                    <div class="ibox float-e-margins">
+				                    <h2>收款单据</h2>
+				                    <div class="ibox-content">
+										<table class="table table-bordered">
+											<tbody>
+												{query: name=collection_doc as c join=left join payment as p on c.payment_id eq p.id where=c.order_id eq $order_id items=$collectionData fields=c.*,p.name}
+												<tr>
+													<th>付款时间：</th><td>{$item['time']}</td>
+												</tr>
+												<tr>
+													<th>金额：</th><td>{$item['amount']}</td>
+												</tr>
+												<tr>
+													<th>支付方式：</th><td>{$item['name']}</td>
+												</tr>
+												<tr>
+													<th>付款备注：</th><td>{$item['note']}</td>
+												</tr>
+												<tr>
+													<th>状态：</th><td>{if:$item['pay_status']==0}准备中{else:}支付完成{/if}</td>
+												</tr>
+												{/query}
+											</tbody>
+										</table>
+				                    </div>
+				                </div>
+
+				                <div class="ibox float-e-margins">
+				                    <h2>退款单据</h2>
+				                    <div class="ibox-content">
+										<table class="table table-bordered">
+											<tbody>
+												{query: name=refundment_doc where=order_id eq $order_id items=$refundmentData}
+												<tr>
+													<th>退款商品：</th>
+													<td>
+														{query:name=order_goods where=id in ($item[order_goods_id]) item=$orderGoodsItem}
+														{set:$goods = JSON::decode($orderGoodsItem['goods_array'])}
+														<p><a href="{url:/site/products/id/$orderGoodsItem['goods_id']}" target="_blank" title="{$goods['name']}">{$goods['name']} X {$orderGoodsItem['goods_nums']} </a></p>
+														{/query}
+													</td>
+												</tr>
+												<tr>
+													<th>退款金额：</th><td>{$item['amount']}</td>
+												</tr>
+												<tr>
+													<th>申请时间：</th><td>{$item['time']}</td>
+												</tr>
+												<tr>
+													<th>状态：</th><td>{echo:Order_Class::refundmentText($item['pay_status'])}</td>
+												</tr>
+												<tr>
+													<th>退款理由：</th><td>{$item['content']}</td>
+												</tr>
+												<tr><th colspan="2"></th></tr>
+												{/query}
+											</tbody>
+										</table>
+				                    </div>
+				                </div>
+
+                            </div>
+                        </div>
+
+                        <div id="tab-3" class="tab-pane">
+                            <div class="panel-body">
+				                <div class="ibox float-e-margins">
+				                    <div class="ibox-content">
+										<table class="table table-bordered">
+											<thead>
+												<tr>
+													<th>配送时间</th>
+													<th>配送方式</th>
+													<th>物流公司</th>
+													<th>物流单号</th>
+													<th>收件人</th>
+													<th>备注</th>
+												</tr>
+											</thead>
+											<tbody>
+												{query: name=delivery_doc as c join=left join delivery as p on c.delivery_type eq p.id fields=c.*,p.name as pname where=c.order_id eq $order_id order=id desc items=$deliveryData}
+												<tr>
+													<td>{$item['time']}</td>
+													<td>{$item['pname']}</td>
+													<td>{query:name=freight_company where=id eq $item[freight_id] item=$tempFreight}{$tempFreight['freight_name']}{/query}</td>
+													<td>{$item['delivery_code']}</td>
+													<td>{$item['name']}</td>
+													<td>{$item['note']}</td>
+												</tr>
+												{/query}
+											</tbody>
+										</table>
+				                    </div>
+				                </div>
+                            </div>
+                        </div>
+
+                        <div id="tab-4" class="tab-pane">
+                            <div class="panel-body">
+                            	<h2>订单备注</h2>
+				                <div class="ibox float-e-margins">
+				                    <div class="ibox-content">
+										<div class="box">{$note}</div>
+				                    </div>
+				                </div>
+                            </div>
+                        </div>
+
+                        <div id="tab-5" class="tab-pane">
+                            <div class="panel-body">
+				                <div class="ibox float-e-margins">
+				                	<h2>订单日志</h2>
+				                    <div class="ibox-content">
+										<table class="table table-bordered">
+											<thead>
+												<tr>
+													<th>时间</th>
+													<th>操作人</th>
+													<th>动作</th>
+													<th>结果</th>
+													<th>备注</th>
+												</tr>
+											</thead>
+											<tbody>
+												{query: name=order_log as ol where=ol.order_id eq $order_id order=id desc}
+												<tr>
+													<td>{$item['addtime']}</td>
+													<td>{$item['user']}</td>
+													<td>{$item['action']}</td>
+													<td>{$item['result']}</td>
+													<td>{$item['note']}</td>
+												</tr>
+												{/query}
+											</tbody>
+										</table>
+				                    </div>
+				                </div>
+                            </div>
+                        </div>
+
+                        <div id="tab-6" class="tab-pane">
+                            <div class="panel-body">
+                            	<h2>订单附言</h2>
+				                <div class="ibox float-e-margins">
+				                    <div class="ibox-content">
+										<div class="box">{$postscript}</div>
+				                    </div>
+				                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</div>
+
+<script type='text/javascript'>
+
+var pay_status = '{$pay_status}';
+
+// //DOM加载完毕后运行
+// $(function()
+// {
+// 	select_tab(1);
+// });
+
+// //选择当前Tab
+// function select_tab(curr_tab)
+// {
+// 	$("div.module_content").hide();
+// 	$("#tab-"+curr_tab).show();
+// 	$("ul[name=menu1] > li").removeClass('active');
+// 	$('#li_'+curr_tab).addClass('active');
+// }
+
+//快递跟踪
+function freightLine(doc_id)
+{
+	var urlVal = "{url:/block/freight/id/@id@}";
+	urlVal = urlVal.replace("@id@",doc_id);
+	art.dialog.open(urlVal,{title:'轨迹查询'});
+}
+
+//修改订单价格
+function updateDiscount()
+{
+	var order_id = {$id};
+	var discount = $('input[name="discount"]').val();
+	$.getJSON("{url:/seller/order_discount}",{'order_id':order_id,'discount':discount},function(json)
+	{
+		if(json.result == true)
+		{
+			tips('价格修改成功');
+			$('#orderAmount').text(json.orderAmount);
+			$('#orderAmount').addClass("red");
+			return;
+		}
+		tips('价格修改失败');
+	});
+}
+</script>

@@ -1,0 +1,334 @@
+{set:
+	$site_config=new Config('site_config');
+	$seo_data=array();
+	$seo_data['title']=$site_config->name;
+	$seo_data['title'].=$site_config->index_seo_title;
+	$seo_data['keywords']=$site_config->index_seo_keywords;
+	$seo_data['description']=$site_config->index_seo_description;
+	seo::set($seo_data);
+}
+<style>#div_allsort{display:block !important}</style>
+    <div class="banner" id="banner_box">
+  <div class="banner_right_content">
+        <div class="content1"> {echo:Ad::show("首页幻灯片右边新鲜购")} </div>
+        <div class="content2">
+      <dl>
+            <dt>淘黄州快讯</dt>
+            <!--            	{foreach:items=Api::run('getArtList',5)}
+				{set:$tmpId=$item['id'];}
+				<dd><a href="{url:/site/article_detail/id/$tmpId}">{echo:Article::showTitle($item['title'],$item['color'],$item['style'])}</a></dd>
+				{/foreach}--> 
+            {foreach:items=Api::run('getAnnouncementList',5)}
+            {set:$tmpId=$item['id'];}
+            <dd><a href="{url:/site/notice_detail/id/$tmpId}">{$item['title']}</a></dd>
+            {/foreach}
+          </dl>
+    </div>
+      </div>
+  <div class="img_wrap">
+        <div id="banner_opts"> {if:$this->index_slide}
+      <ul>
+            {foreach:items=$this->index_slide}
+            <li><a href="{url:$item[url]}" target="_blank"><img src="{url:/pic/thumb/img/$item[img]/w/780/h/400}"></a> </li>
+            {/foreach}
+          </ul>
+      {/if} </div>
+      </div>
+</div>
+    <div class="wrapper_1180"> 
+  <!--公告开始-->
+  <div class="brand_list_box">
+        <ul style="background-color:#FFFAF7;padding:5px;font-size:18px;text-align:center;color:#F93">
+      <li style="padding:10px 0;"><img src="{skin:images/tonggao.png}"> &nbsp;&nbsp;<b>淘黄州提示：</b>商品暂时不提供在线购买。稍后将正式开放购买。开放日期敬请期待！</li>
+    </ul>
+      </div>
+  <!--公告结束--> 
+  <!--今日特卖开始-->
+  <div class="brand_list_box">
+        <ul class="brand_list">
+      <li class="one"> <a href="javascript:;"> <img style="display:inline;" src="{skin:images/549_6035.jpg}" class="lazy" height="160" width="240" /> </a></li>
+      {foreach:items=Api::run('getadmanageid',array('#position_id#','12'),4) item=$second}
+      <li> <a href="{url:$second['link']}" target="_blank"><img style="display:inline;" src="{url:/pic/thumb/img/$second[content]/w/240/h/160}" class="lazy" height="160" width="240" /></a> </li>
+      {/foreach}
+    </ul>
+      </div>
+  <!--今日特卖结束--> 
+  <!--抢购开始-->
+  <div class="brand_qg_box" id="menu_item0">
+        <div class="brand-top"><span class="fr"><a class="more">更多&nbsp;&gt;</a></span>限时抢购<span>&nbsp;&nbsp;爆款疯抢，不容错过&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>2016-03-08 准时开抢</i></span> </div>
+        <div class="brand_qg_list">
+      <ul>
+            {foreach:items=Api::run('getPromotionList',5)}
+            {set:$free_time = ITime::getDiffSec($item['end_time'])}
+            {set:$countNumsItem[] = $item['p_id'];}{set:$tmpGoodsId=$item['goods_id'];$tmpPId=$item['p_id'];}
+            <li> <a href="{url:/site/products_time/id/$tmpGoodsId/active_id/$tmpPId}"><img src="{url:/pic/thumb/img/$item[img]/w/260/h/260}" width="260" height="260" alt="{$item['name']}" title="{$item['name']}"> </a>
+          <p class="countdown">倒计时：<b class="cd_hour" id="cd_hour_{$item['p_id']}">{echo:floor($free_time/3600);}</b>时<b id="cd_minute_{$item['p_id']}">{echo:floor(($free_time%3600)/60);}</b>分<b id="cd_second_{$item['p_id']}">{echo:$free_time%60;}</b>秒</p>
+          <div class="award_value_box">
+                <p class="pro_title"><a href="{url:/site/products_time/id/$tmpGoodsId/active_id/$tmpPId}">{$item['name']}</a></p>
+                <p class="light_gray"><b>￥{$item['award_value']}</b><span></span><del>市场价￥{$item['sell_price']}</del></p>
+                <div class="lj_buy"><a href="{url:/site/products_time/id/$tmpGoodsId/active_id/$tmpPId}">立即<br>
+                  抢购</a></div>
+              </div>
+        </li>
+            {/foreach}
+          </ul>
+    </div>
+      </div>
+  <img src="https://mp.weixin.qq.com/cgi-bin/verifycode?username=thz-zb&r=1454290693082">
+  <!--抢购结束--> 
+  
+  {set:$sortIndex=0;}
+  {foreach:items=Api::run('getCategoryListTopIndex') item=$first}
+  {set:$sortIndex++;}
+  {set:$clasdId=$first['id'];}
+  <div class="index_list_buy mtb20 bg_color{$sortIndex}" id="menu_item{$sortIndex}"> 
+        
+        <!--通栏头部开始-->
+        <div class="border1 clear">
+      <div class="title_nav"> {foreach:items=Api::run('getadmanagegoodidFor',array('#goods_cat_id#',$clasdId)) item=$item} <a href="{url:$item[link]}" class="brand">{$item[content]}</a> {/foreach} <a href="{url:/site/pro_list/cat/$first[id]}" target="_blank">更多&nbsp;&gt;</a> </div>
+      <h5 class="fl"><a href="{url:/site/pro_list/cat/$first[id]}" class="f_c_fff textShadow1"> <span class="fs24">{$sortIndex}F</span><span>{$first[name]}</span> </a> </h5>
+    </div>
+        <!--通栏头结束--> 
+        <!--主体内容开始-->
+        <div class="content clear">
+      <div class="sec1">
+            <div class="sec1_div1"> {foreach:items=Api::run('getCategoryByParentid',array('#parent_id#',$first['id']),0) item=$second} <a href="{url:/site/pro_list/cat/$second[id]}" target="_blank"><span>{$second['name']}</span></a>{/foreach} </div>
+            <div class="sec1_div2">{foreach:items=Api::run('getadmanagegoodid',array('#goods_cat_id#',$clasdId)) item=$second} <a href="{url:$second['link']}" target="_blank"> <img style="display: inline;" src="{url:$second['content']}" class="lazy" height="160" width="196" />
+              <div class="buying">&nbsp;</div>
+              </a>{/foreach} </div>
+          </div>
+      <div class="sec2 "> 
+            <script type="text/javascript">jQuery(function(){ad_roll('ad{$sortIndex}'); });</script>
+            <div class="index_banner" id="ad{$sortIndex}"> <a href="javascript:;" class="bLeft"><span class="banner_arrow">上一张</span></a> <a href="javascript:;" class="bRight"><span class="banner_arrow">下一张</span></a>
+          <ul class="banner_slider">
+                {foreach:items=Api::run('getadmanagegoodidTwo',array('#goods_cat_id#',$clasdId)) item=$second}
+                <li> <a href="{url:$second['link']}" target="_blank"> <img style="display:inline;" src="{url:$second['content']}" class="lazy" height="400" width="358" /> </a> </li>
+                {/foreach}
+              </ul>
+        </div>
+          </div>
+      <div class="sec3">
+            <ul class="clear">
+          {foreach:items=Api::run('getCategoryExtendListIndex',array('#categroy_id#',$first['id']),6)}
+          <li> <a href="{url:/site/products/id/$item[id]}" target="_blank"> <img style="display:inline;" src="{url:/pic/thumb/img/$item[img]/w/185/h/140}" alt="{$item['name']}" class="lazy" height="140" width="185" />
+            <p class="title">{$item['name']}</p>
+            <p class="nums">&nbsp;<em>去看看</em>￥<span>{$item['sell_price']}</span> </p>
+            </a> </li>
+          {/foreach}
+        </ul>
+          </div>
+    </div>
+        <!--主体内容结束--> 
+      </div>
+  <!--通栏广告开始--> 
+  
+  {foreach:items=Api::run('getadmanagegoodidThree',array('#goods_cat_id#',$clasdId)) item=$second} <a href="{url:$second['link']}" target="_blank"> <img style="display: inline;" src="{webroot:$second['content']}" class="lazy" height="110" width="1180" /></a> {/foreach}
+  {/foreach} 
+  <!--通栏广告结束--> 
+  <!--    <h2 class="index_logo_title" id="menu_item8">品牌团</h2>
+  <div class="fr title_nav"> <a href="{url:/site/pro_list/cat/$first[id]}" target="_blank">更多<span class="f_song">&nbsp;&gt;</span></a></div>
+-->
+  <div class="index_logo">
+        <ul class="logo_list">
+      {foreach:items=Api::run('getBrandList',16)}
+      {set:$tmpId=$item['id'];}
+      <li> <a href="{url:/site/brand_zone/id/$tmpId}" target="_blank"> <img style="display:inline;" src="{url:$item[logo]}" class="lazy" height="45" width="94" /> </a> </li>
+      {/foreach}
+    </ul>
+      </div>
+  <!--推荐好店开始-->
+  <!--<div class="index_list_buy bg_color4 mtb20" id="menu_item10"> 
+        <div class="border1 clear">
+      <h5 class="fl"> <a href="#" class="f_c_fff"> <span class="f_arial fs24">4F</span><span>名店推荐</span> </a> </h5>
+      <div class="fr title_nav"> </div>
+    </div>
+        <div class="content clear">
+      <ul class="fameshop_list">
+                {foreach:items=Api::run('getCategoryExtendListIndex',array('#categroy_id#',$first['id']),6)}
+            <li>
+          <div class="tuan_item tuan_item_border">
+                <div class="tuan_img"> <a href="{url:/site/products/id/$item[id]}" class="img"><img src="{url:/pic/thumb/img/$item[img]/w/275/h/275}"></a> </div>
+                <div class="tuan_name"> <a href="{url:/site/products/id/$item[id]}">{$item['name']}</a> </div>
+                <div class="tuan_brief"> <a href="{url:/site/products/id/$item[id]}"> 仅售12.9元！价值16元的榴莲酥1份，4个，提供免费WiFi。 </a> </div>
+                <div class="tuan_price"> <span class="current_price"><i>¥</i>{$item['sell_price']}</span> <span class="origin_price">门店价：¥{$item['sell_price']}</span> </div>
+                <div class="tuan_extra">
+              <div class="sale_count"> 已售<span>10</span> </div>
+              <div class="sale_review"> <span class="review_count"><i>0</i>人点评</span> </div>
+            </div>
+              </div>
+        </li>{/foreach}
+          </ul>
+    </div>
+      </div>-->
+  <!--推荐好店结束--> 
+  <!--小城故事开始-->
+  <div class="index_list_buy bg_color5 mtb20" id="menu_item11"> 
+        <!--通栏头部开始-->
+        <div class="border1 clear">
+      <h5 class="fl"> <a href="#" class="f_c_fff"> <span class="f_arial fs24">4F</span><span>小城故事</span> </a> </h5>
+      <div class="fr title_nav"> <!--<a href="{url:/site/pro_list/cat/$first[id]}" target="_blank">更多<span class="f_song">&nbsp;&gt;</span></a>--> </div>
+    </div>
+        <!--通栏头结束--> 
+        <!--主体内容开始-->
+        <div class="content clear">
+      <ul class="banner_xcgs">
+            {foreach:items=Api::run('getadmanagegoodidXCGS') item=$second}
+            <li> <a href="{$second['link']}" target="_blank"> <img style="display:inline;" src="{url:$second['content']}" class="lazy" height="258" width="380" /> </a> <a href="{$second['link']}">{$second['description']}</a></li>
+            {/foreach}
+          </ul>
+    </div>
+        <!--主体内容结束--> 
+      </div>
+  <!--小城故事结束--> 
+</div>
+    <!--左边直达楼层-->
+    <div id="menu-lift-wrap">
+  <div id="menu-lift" class="animated fadeOutUp">
+        <ul>
+      <li><a href="#menu_item0"><em>1F</em>抢购</a> </li>
+      <li> <a href="#menu_item1"><em>2F</em>特色</a> </li>
+      <li> <a href="#menu_item2"><em>3F</em>促销</a> </li>
+      <li> <a href="#menu_item3"><em>4F</em>土特产</a> </li>
+      <li> <a href="#menu_item10"><em>5F</em>名店</a> </li>
+      <li> <a href="#menu_item11"><em>6F</em>小城</a> </li>
+    </ul>
+      </div>
+</div>
+    <script type="text/javascript">
+//焦点图
+$(function(){
+	var sw = 0,banner = $("#banner_opts"),bannerBtn = $("<div>").addClass("btn").appendTo(banner),bannerImg = banner.find("ul>li");;
+	for(var i=0; i < bannerImg.length; i++) {$("<span>").html("<b>&nbsp;</b>").attr("id",i).appendTo(bannerBtn).mouseover(function(){sw = parseInt($(this).attr("id"));myShow(sw);})}
+	//alert(bannerImg.length+'sdfdsf')
+
+	function myShow(i){
+		bannerBtn.children("span").eq(i).addClass("cur").siblings("span").removeClass("cur");
+		bannerImg.eq(i).stop(true,true).fadeIn(300).siblings("li").fadeOut(300);
+	}
+	//滑入停止动画，滑出开始动画
+	banner.hover(function(){
+		if(myTime){clearInterval(myTime);}
+	},function(){
+		myTime = setInterval(function(){
+		  myShow(sw);sw++;if(sw==bannerImg.length){sw=0;}
+		} , 3000);
+	});
+
+	//自动开始
+	var myTime = setInterval(function(){
+	   myShow(sw)
+	   sw++;
+	   if(sw==bannerImg.length){sw=0;}
+	} , 3000);
+
+	var $menuLift = $("#menu-lift");
+	$(window).scroll(function(){
+		if ($(window).scrollTop()>500){ 
+			if(!$menuLift.hasClass("fadeInDown")){
+				$menuLift.removeClass("fadeOutUp").addClass("fadeInDown"); 
+			}
+		} 
+		else{ 
+			if(!$menuLift.hasClass("fadeOutUp")){
+				$menuLift.removeClass("fadeInDown").addClass("fadeOutUp"); 
+			}
+		} 
+	});
+
+
+	//email订阅 事件绑定
+/*	var tmpObj = $('input:text[name="orderinfo"]');
+	var defaultText = tmpObj.val();
+	tmpObj.bind({
+		focus:function(){checkInput($(this),defaultText);},
+		blur :function(){checkInput($(this),defaultText);}
+	});*/
+
+	//显示抢购倒计时
+	var cd_timer = new countdown();
+	{if:isset($countNumsItem) && $countNumsItem}
+	{foreach:items = $countNumsItem}
+		cd_timer.add({$item});
+	{/foreach}
+	{/if}
+
+	//首页商品变色
+/*	var colorArray = ['green','yellow','purple'];
+	$('div[name="showGoods"]').each(function(i)
+	{
+		$(this).addClass(colorArray[i%colorArray.length]);
+	});*/
+});
+function ad_roll(sliderId){
+	var sWidth = $("#"+sliderId).width(); 
+	var len = $("#"+sliderId+" ul li").length;
+	var index = 0;
+	var picTimer;
+	
+	var btn = "<div class='banner_indexing'>";
+	for(var i=0; i < len; i++) {
+		btn += "<span></span>";
+	}
+	
+	btn += "</div>";
+	$("#"+sliderId).append(btn);
+	
+	$("#"+sliderId+" .banner_indexing span").css("opacity",1).click(function() {
+		index = $("#"+sliderId+" .banner_indexing span").index(this);
+		showPics(index);
+	}).eq(0).trigger("click");
+	
+	
+	$("#"+sliderId+" .bLeft").click(function() {
+		index -= 1;
+		if(index == -1) {index = len - 1;}
+		showPics(index);
+	});
+	
+	$("#"+sliderId+" .bRight").click(function() {
+		index += 1;
+		if(index == len) {index = 0;}
+		showPics(index);
+	});
+	
+	$("#"+sliderId+" ul").css("width",sWidth * (len));
+	
+	$("#"+sliderId).hover(function() {
+		clearInterval(picTimer);
+	},function() {
+		picTimer = setInterval(function() {
+			showPics(index);
+			index++;
+			if(index == len) {index = 0;}
+		},5000);
+	}).trigger("mouseleave");
+	
+	function showPics(index) {
+		var nowLeft = -index*sWidth;
+		$("#"+sliderId+" ul").stop(true,false).animate({"left":nowLeft},300);
+		$("#"+sliderId+" .banner_indexing span").stop(true,false).animate({"opacity":"1"},300).eq(index).stop(true,false).animate({"opacity":"0.6"},300);
+	}
+
+}
+//电子邮件订阅
+/*function orderinfo()
+{
+	var email = $('[name="orderinfo"]').val();
+	if(email == '')
+	{
+		alert('请填写正确的email地址');
+	}
+	else
+	{
+		$.getJSON('{url:/site/email_registry}',{email:email},function(content){
+			if(content.isError == false)
+			{
+				alert('订阅成功');
+				$('[name="orderinfo"]').val('');
+			}
+			else
+				alert(content.message);
+		});
+	}
+}*/
+</script>

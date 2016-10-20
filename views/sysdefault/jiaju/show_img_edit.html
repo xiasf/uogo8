@@ -1,0 +1,209 @@
+<script type='text/javascript' src="{theme:javascript/jquery.sortable.js}"></script>
+
+
+{js:webuploader}
+<div class="headbar">
+  <div class="position"><span>家居建材</span><span>></span><span>装修效果图</span><span>></span><span>{if:isset($this->show_imgRow['id'])}编辑{else:}添加{/if}装修效果图</span></div>
+</div>
+<div class="content_box">
+  <div class="content form_content">
+    <form action='{url:/jiaju/show_img_edit_act}' method='post' name='show_img'>
+      <table class="form_table">
+        <col width="150px" />
+        <col />
+        <input type='hidden' name='id' value="" />
+        <input type='hidden' name='relation_goods' value='{$this->relationStr}' />
+        <tr>
+          <th>分类：</th>
+          <td><select class="auto" name="cat_id" pattern="required" alt="请选择分类值">
+              <option value=''>请选择装修效果图分类</option>
+              
+              
+							{query:name=jiaju_show_img_cat order=sort asc}
+							
+              
+              <option value='{$item['id']}'>{$item['name']}</option>
+              
+              
+							{/query}
+						
+            
+            </select>
+            <label>*选择装修效果图所属分类（必填）</label></td>
+        </tr>
+        <tr>
+          <th>标题：</th>
+          <td><input type='text' name='name' class='normal' value='' pattern='required' alt='标题不能为空' /></td>
+        </tr>
+        <tr>
+          <th>产品相册：</th>
+          <input type='hidden' name="img_list" value="" />
+          <td><div class="alert alert-info">可上传多张图片，分辨率3000px以下，大小不得超过{echo:IUpload::getMaxSize()}</div>
+            <div id="filePicker">选择图片</div>
+            <ul class="uploader-list" id="fileList"></ul>
+            
+            <!--图片模板--> 
+            <script type='text/html' id='picTemplate'>
+                    <%for(var item in picRoot)
+                    {%>
+                        <li class="file-item thumbnail file-item-done">
+                        <img src="{webroot:}<%=picRoot[item]%>" alt="<%=picRoot[item]%>">
+                        </li>
+                    <%}%>
+                </script></td>
+        </tr>
+        <tr>
+          <th>装修公司：</th>
+          <td><select class="auto" name="company" pattern="required" alt="公司">
+              <option value="0" selected>请选择装修公司</option>
+              
+              {query:name=jiaju_company}
+              
+              <option value="{$item[id]}">{$item['name']}</option>
+              
+              {/query}
+            
+            </select></td>
+        </tr>
+        <tr>
+          <th>空间：</th>
+          <td><select class="auto" name="space_type" pattern="required" alt="空间">
+              <option value='1'>客厅</option>
+              <option value='2'>卧室</option>
+              <option value='3'>餐厅</option>
+              <option value='4'>厨房</option>
+              <option value='5'>卫生间</option>
+              <option value='6'>阳台</option>
+              <option value='7'>书房</option>
+              <option value='8'>玄关</option>
+              <option value='9'>儿童房</option>
+              <option value='10'>衣帽间</option>
+              <option value='11'>花园</option>
+              <option value='0'>其它</option>
+            </select></td>
+        </tr>
+        <tr>
+          <th>局部：</th>
+          <td><select class="auto" name="local_type" pattern="required" alt="局部">
+              <option value='1'>背景墙</option>
+              <option value='2'>吊顶</option>
+              <option value='3'>隔断</option>
+              <option value='4'>窗帘</option>
+              <option value='5'>飘窗</option>
+              <option value='6'>榻榻米</option>
+              <option value='7'>橱柜</option>
+              <option value='8'>博古架</option>
+              <option value='9'>阁楼</option>
+              <option value='10'>隐形门</option>
+              <option value='11'>吧台</option>
+              <option value='12'>酒柜</option>
+              <option value='13'>鞋柜</option>
+              <option value='14'>衣柜</option>
+              <option value='15'>窗户</option>
+              <option value='16'>相片墙</option>
+              <option value='17'>楼梯</option>
+              <option value='0'>其它</option>
+            </select></td>
+        </tr>
+        <tr>
+          <th>风格：</th>
+          <td><select class="auto" name="style_type" pattern="required" alt="风格">
+              <option value='1'>简约</option>
+              <option value='2'>现代</option>
+              <option value='3'>中式</option>
+              <option value='4'>欧式</option>
+              <option value='5'>美式</option>
+              <option value='6'>田园</option>
+              <option value='7'>新古典</option>
+              <option value='8'>混搭</option>
+              <option value='9'>地中海</option>
+              <option value='10'>东南亚</option>
+              <option value='11'>日式</option>
+              <option value='12'>宜家</option>
+              <option value='13'>北欧</option>
+              <option value='14'>简欧</option>
+              <option value='0'>其它</option>
+            </select></td>
+        </tr>
+        <tr>
+          <th>颜色：</th>
+          <td><select class="auto" name="color_type" pattern="required" alt="空间">
+              <option value='1'>白色</option>
+              <option value='2'>米色</option>
+              <option value='3'>黄色</option>
+              <option value='4'>橙色</option>
+              <option value='5'>红色</option>
+              <option value='6'>粉色</option>
+              <option value='7'>绿色</option>
+              <option value='8'>蓝色</option>
+              <option value='9'>紫色</option>
+              <option value='10'>黑色</option>
+              <option value='11'>咖啡色</option>
+              <option value='12'>灰色</option>
+              <option value='13'>彩色</option>
+              <option value='0'>其它</option>
+            </select></td>
+        </tr>
+        <tr>
+          <th>是否发布：</th>
+          <td><label class='attr'>
+              <input type='radio' name='status' value='1' checked=checked />
+              是</label>
+            <label class='attr'>
+              <input type='radio' name='status' value='0' />
+              否</label></td>
+        </tr>
+        <tr>
+        <tr>
+          <th>排序：</th>
+          <td><input type='text' class='small' name='sort' value='99' /></td>
+        </tr>
+        <tr>
+          <th></th>
+          <td><button class='submit' type='submit'><span>确 定</span></button></td>
+        </tr>
+      </table>
+    </form>
+  </div>
+</div>
+<script type='text/javascript'>
+var arr = [];
+jQuery(function(){
+
+	var FromObj = new Form('show_img');
+	FromObj.init({echo:JSON::encode($this->show_imgRow)});
+  
+
+    //商品图片的回填
+    {if:($this->show_imgRow['img_list'])}
+        var img_list = {echo:JSON::encode(explode(',', $this->show_imgRow['img_list']))};
+        var picHtml = template('picTemplate',{'picRoot':img_list});
+        $('#fileList').append(picHtml);
+    {/if}
+
+    if ($('#fileList li').length > 0) {
+      $('#fileList').sortable().bind('sortupdate', function() {
+      // $('#msg').html('position changed').fadeIn(false).delay(false).fadeOut(false);
+
+      var list = [];
+      $('#fileList li img').each(function(i,item){
+          list.push($(item).attr('alt'));
+      });
+      $("input[name='img_list']").val(list.join(','));
+
+    });
+
+    }
+
+
+    $("#filePicker").uploader({
+		uploadurl:"{url:jiaju/show_img_upload}",
+		filelist:"#fileList",
+    isone: false,
+		uploaded:function(result){
+      arr.push(result.img);
+			$("input[name='img_list']").val(arr.join(','));
+	}});
+});
+
+</script> 
