@@ -178,6 +178,17 @@ return array(
 			'order'=>'sort asc,id desc'
 		)
 	),
+	//根据分类ID列表（1,3,……）取首页推荐商品列表
+	'getCategoryExtendListNewIndex' => array(
+		'query' => array(
+			'name' => 'commend_goods as co',
+			'join' => 'left join goods as go on co.goods_id = go.id left join category_extend as cat on cat.goods_id = go.id',
+			'where' => 'co.commend_id = 7 and go.is_del = 0 and cat.category_id in (#categroy_id#)',
+			'fields' => 'distinct go.img,go.sell_price,go.name,go.id,go.market_price',
+			'limit'=>'6',
+			'order'=>'sort asc,id desc'
+		)
+	),
 	//根据分类ID取首页推荐商品列表
 	'getCategoryExtendListIndex' => array(
 		'query' => array(
@@ -189,7 +200,7 @@ return array(
 			'order'=>'sort asc,id desc'
 		)
 	),
-	//根据分类ID取首页推荐商品列表
+	//根据分类ID取首页热销商品列表
 	'getCategoryExtendListIndex6' => array(
 		'query' => array(
 			'name' => 'commend_goods as co',
