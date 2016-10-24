@@ -752,7 +752,7 @@
             <ul class="tabs-nav">
                 {foreach:items=Api::run('getCategoryByParentid',array('#parent_id#',$first['id']),4) item=$second}
                 <li class="tabs-selected"> <i class="arrow"></i>
-                    <h3><a href="{url:/site/pro_list/cat/$second[id]}" target="_blank">{$second['name']}</a></h3>
+                    <a href="{url:/site/pro_list/cat/$second[id]}" target="_blank"><h3>{$second['name']}</h3></a>
                 </li>
                 {/foreach}
             </ul>
