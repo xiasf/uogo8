@@ -230,6 +230,7 @@ class Menu
             	'/tools/seo_sitemaps' => '网站搜索地图',
 			)
 		),
+       /*
 		'家居建材'=>array(
    			'装修效果图'=>array(
    				'/jiaju/show_img_list'=> '效果图库',
@@ -259,6 +260,7 @@ class Menu
    				'/bg_zhaobiao/zb_list'=> '招标列表',
    			),
 		),
+		*/
 		'任务' => array(
 			'任务管理' => array(
 				'/bg_task/task_list' => '任务列表',
