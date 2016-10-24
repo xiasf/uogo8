@@ -761,7 +761,7 @@
             {foreach:items=$catList item=$cat}
             <div class="tabs-panel middle-goods-list {if:$key > 0}tabs-hide{/if}">
                 <ul>
-                    {foreach:items=Api::run('getCategoryExtendListNewIndex',array('#categroy_id#', goods_class::catChild($cat['id'])),2)}
+                    {foreach:items=Api::run('getCategoryExtendListNewIndex',array('#categroy_id#', goods_class::catChild($cat['id'])),8)}
                     <li style="opacity: 0.9;">
                         <dl>
                             <dt class="goods-name">
