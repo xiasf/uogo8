@@ -759,7 +759,7 @@
             <!-- 对应的二级分类（包括所有的子分类）下面的商品（最大数量8个商品） -->
             <div class="tabs-panel middle-goods-list ">
                 <ul>
-                    {foreach:items=Api::run('getCategoryExtendListIndex',array('#categroy_id#',$first['id']),0)}
+                    {foreach:items=Api::run('getCategoryExtendListNewIndex',array('#categroy_id#', goods_class::catChild($first['id'])),8)}
                     <li style="opacity: 0.9;">
                         <dl>
                             <dt class="goods-name">
