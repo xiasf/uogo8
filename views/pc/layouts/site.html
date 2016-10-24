@@ -579,166 +579,52 @@ $(function() {
         <div class="all-category">
             <div class="title">
                 <h3>
-                    <a _href="http://www.aisy.cn/category.html" html="#">所有商品分类</a>
+                    <a href="#">所有商品分类</a>
                 </h3>
                 <i class="arrow"></i>
             </div>
             <div class="category">
                 <ul class="jspop box">
-                    <li cat_id="1077" class="a1">
+                    {set:$sortIcon=1;}
+                    {foreach:items=Api::run('getCategoryListTop') item=$first}
+                    {set:$sortIcon++;}
+                    {set:$clasdId=$first['id'];}
+                    <li cat_id="{$first['id']}" class="a"icon{$sortIcon}"">
                         <div class="tx">
-                            <a _href="http://www.aisy.cn/cate-1077-0-0-0-0-0-0-0-0.html" html="#">
+                            <a href="{url:/site/pro_list/cat/$first[id]}" target="_blank">
                                 <i></i>
-                                优选特产
+                                {$first['name']}
                                 <span class="arrow"></span>
                             </a>
-
                         </div>
                         <dl class="sub_class" cat_menu_id="1077">
                             <dd>
-                                <a _href="http://www.aisy.cn/cate-1284-0-0-0-0-0-0-0-0.html" html="#" title="绿松石">绿松石</a>
-                                <a _href="http://www.aisy.cn/cate-1303-0-0-0-0-0-0-0-0.html" html="#" title="湖北绿松石">湖北绿松石</a>
-                                <a _href="http://www.aisy.cn/cate-1078-0-0-0-0-0-0-0-0.html" html="#" title="野菌干果">野菌干果</a>
-
+                                {foreach:items=Api::run('getCategoryByParentid',array('#parent_id#',$first['id']),3) item=$second}
+                                <a href="{url:/site/pro_list/cat/$second[id]}" target="_blank" title="{$second['name']}">{$second['name']}</a>
+                                {/foreach}
                             </dd>
                         </dl>
                         <div class="pop">
+                            {foreach:items=Api::run('getCategoryByParentid',array('#parent_id#',$first['id'])) item=$second}
                             <dl>
                                 <dt>
-                                    <a _href="http://www.aisy.cn/cate-1284-0-0-0-0-0-0-0-0.html" html="#">绿松石</a>
-                                </dt>
-                                <dd> <em><a _href="http://www.aisy.cn/cate-1286-0-0-0-0-0-0-0-0.html" html="#">手串/手链</a></em>  <em><a _href="http://www.aisy.cn/cate-1287-0-0-0-0-0-0-0-0.html" html="#">戒指/指环</a></em> 
-                                    <em>
-                                        <a _href="http://www.aisy.cn/cate-1288-0-0-0-0-0-0-0-0.html" html="#">项链/吊坠</a>
-                                    </em>
-                                    <em>
-                                        <a _href="http://www.aisy.cn/cate-1289-0-0-0-0-0-0-0-0.html" html="#">散珠</a>
-                                    </em>
-                                    <em>
-                                        <a _href="http://www.aisy.cn/cate-1290-0-0-0-0-0-0-0-0.html" html="#">耳钉/耳环</a>
-                                    </em>
-                                    <em>
-                                        <a _href="http://www.aisy.cn/cate-1291-0-0-0-0-0-0-0-0.html" html="#">摆件</a>
-                                    </em>
-
-                                </dd>
-                            </dl>
-                            <div class="clr"></div>
-                            <div class="act"></div>
-                            <dl>
-                                <dt>
-                                    <a _href="http://www.aisy.cn/cate-1303-0-0-0-0-0-0-0-0.html" html="#">湖北绿松石</a>
-                                </dt>
-                                <dd></dd>
-                            </dl>
-                            <div class="clr"></div>
-                            <div class="act"></div>
-                            <dl>
-                                <dt>
-                                    <a _href="http://www.aisy.cn/cate-1078-0-0-0-0-0-0-0-0.html" html="#">野菌干果</a>
+                                    <a href="{url:/site/pro_list/cat/$second[id]}" target="_blank">{$second['name']}</a>
                                 </dt>
                                 <dd>
+                                    {foreach:items=Api::run('getCategoryByParentid',array('#parent_id#',$second['id'])) item=$third}
                                     <em>
-                                        <a _href="http://www.aisy.cn/cate-1119-0-0-0-0-0-0-0-0.html" html="#">黑木耳</a>
+                                        <a href="{url:/site/pro_list/cat/$third[id]}" target="_blank">{$third['name']}</a>
                                     </em>
-                                    <em>
-                                        <a _href="http://www.aisy.cn/cate-1120-0-0-0-0-0-0-0-0.html" html="#">野菜/干菜</a>
-                                    </em>
-                                    <em>
-                                        <a _href="http://www.aisy.cn/cate-1266-0-0-0-0-0-0-0-0.html" html="#">香菇/花菇</a>
-                                    </em>
-
+                                    {/foreach}
                                 </dd>
                             </dl>
+                            <!-- 可放置广告 -->
                             <div class="clr"></div>
                             <div class="act"></div>
-                            <dl>
-                                <dt>
-                                    <a _href="http://www.aisy.cn/cate-1079-0-0-0-0-0-0-0-0.html" html="#">粮油副食</a>
-                                </dt>
-                                <dd>
-                                    <em>
-                                        <a _href="http://www.aisy.cn/cate-1121-0-0-0-0-0-0-0-0.html" html="#">魔芋面</a>
-                                    </em>
-                                    <em>
-                                        <a _href="http://www.aisy.cn/cate-1122-0-0-0-0-0-0-0-0.html" html="#">手工榨油</a>
-                                    </em>
-                                    <em>
-                                        <a _href="http://www.aisy.cn/cate-1125-0-0-0-0-0-0-0-0.html" html="#">红薯粉</a>
-                                    </em>
-                                    <em>
-                                        <a _href="http://www.aisy.cn/cate-1126-0-0-0-0-0-0-0-0.html" html="#">豆腐乳</a>
-                                    </em>
-
-                                </dd>
-                            </dl>
-                            <div class="clr"></div>
-                            <div class="act"></div>
-                            <dl>
-                                <dt>
-                                    <a _href="http://www.aisy.cn/cate-1080-0-0-0-0-0-0-0-0.html" html="#">滋补养生</a>
-                                </dt>
-                                <dd>
-                                    <em>
-                                        <a _href="http://www.aisy.cn/cate-1123-0-0-0-0-0-0-0-0.html" html="#">葛粉</a>
-                                    </em>
-                                    <em>
-                                        <a _href="http://www.aisy.cn/cate-1124-0-0-0-0-0-0-0-0.html" html="#">蜂蜜</a>
-                                    </em>
-                                    <em>
-                                        <a _href="http://www.aisy.cn/cate-1265-0-0-0-0-0-0-0-0.html" html="#">茗茶</a>
-                                    </em>
-
-                                </dd>
-                            </dl>
-                            <div class="clr"></div>
-                            <div class="act"></div>
-                            <dl>
-                                <dt>
-                                    <a _href="http://www.aisy.cn/cate-1081-0-0-0-0-0-0-0-0.html" html="#">产地直供</a>
-                                </dt>
-                                <dd>
-                                    <em>
-                                        <a _href="http://www.aisy.cn/cate-1176-0-0-0-0-0-0-0-0.html" html="#">新鲜蔬菜</a>
-                                    </em>
-                                    <em>
-                                        <a _href="http://www.aisy.cn/cate-1177-0-0-0-0-0-0-0-0.html" html="#">美味水果</a>
-                                    </em>
-                                    <em>
-                                        <a _href="http://www.aisy.cn/cate-1228-0-0-0-0-0-0-0-0.html" html="#">水产海鲜</a>
-                                    </em>
-                                    <em>
-                                        <a _href="http://www.aisy.cn/cate-1302-0-0-0-0-0-0-0-0.html" html="#">肉禽蛋奶</a>
-                                    </em>
-
-                                </dd>
-                            </dl>
-                            <div class="clr"></div>
-                            <div class="act"></div>
-                            <dl>
-                                <dt>
-                                    <a _href="http://www.aisy.cn/cate-1213-0-0-0-0-0-0-0-0.html" html="#">优质酒水</a>
-                                </dt>
-                                <dd>
-                                    <em>
-                                        <a _href="http://www.aisy.cn/cate-1214-0-0-0-0-0-0-0-0.html" html="#">白酒</a>
-                                    </em>
-                                    <em>
-                                        <a _href="http://www.aisy.cn/cate-1215-0-0-0-0-0-0-0-0.html" html="#">葡萄酒</a>
-                                    </em>
-                                    <em>
-                                        <a _href="http://www.aisy.cn/cate-1216-0-0-0-0-0-0-0-0.html" html="#">啤酒</a>
-                                    </em>
-                                    <em>
-                                        <a _href="http://www.aisy.cn/cate-1217-0-0-0-0-0-0-0-0.html" html="#">黄酒/养生酒</a>
-                                    </em>
-
-                                </dd>
-                            </dl>
-                            <div class="clr"></div>
-                            <div class="act"></div>
+                            {/foreach}
                         </div>
                     </li>
+                    {/foreach}
                 </ul>
             </div>
         </div>
