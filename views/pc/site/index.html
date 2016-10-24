@@ -750,16 +750,17 @@
         <div class="middle-layout">
             <!-- 根据一级分类输出二级分类列表（最大数量4个二级分类） -->
             <ul class="tabs-nav">
-                {foreach:items=Api::run('getCategoryByParentid',array('#parent_id#',$first['id']),4) item=$second}
+                {foreach:items=Api::run('getCategoryByParentid',array('#parent_id#',$first['id']),4) items=$catList item=$cat}
                 <li class="tabs-selected"> <i class="arrow"></i>
-                    <a href="{url:/site/pro_list/cat/$second[id]}" target="_blank"><h3>{$second['name']}</h3></a>
+                    <a href="{url:/site/pro_list/cat/$cat[id]}" target="_blank"><h3>{$cat['name']}</h3></a>
                 </li>
                 {/foreach}
             </ul>
             <!-- 对应的二级分类（包括所有的子分类）下面的商品（最大数量8个商品） -->
-            <div class="tabs-panel middle-goods-list ">
+            {foreach:items=$catList item=$cat}
+            <div class="tabs-panel middle-goods-list {if:$key > 0}tabs-hide{/if}">
                 <ul>
-                    {foreach:items=Api::run('getCategoryExtendListNewIndex',array('#categroy_id#', goods_class::catChild($first['id'])),8)}
+                    {foreach:items=Api::run('getCategoryExtendListNewIndex',array('#categroy_id#', goods_class::catChild($cat['id'])),8)}
                     <li style="opacity: 0.9;">
                         <dl>
                             <dt class="goods-name">
@@ -781,54 +782,7 @@
                     {/foreach}
                 </ul>
             </div>
-            <div class="tabs-panel middle-goods-list tabs-hide">
-                <ul>
-                    {foreach:items=Api::run('getCategoryExtendListIndex',array('#categroy_id#',$first['id']),8)}
-                    <li style="opacity: 0.9;">
-                        <dl>
-                            <dt class="goods-name">
-                                <a target="_blank" href="{url:/site/products/id/$item[id]}" title="{$item['name']}">
-                                    {$item['name']}
-                                </a>
-                            </dt>
-                            <dd class="goods-thumb">
-                                <a target="_blank" href="{url:/site/products/id/$item[id]}">
-                                    <img src="{url:/pic/thumb/img/$item[img]/w/218/h/218}" alt="{$item['name']}" data-bd-imgshare-binded="1">
-                                </a>
-                            </dd>
-                            <dd class="goods-price">
-                                <em>￥{$item['sell_price']}</em>
-                                <span class="original">￥{$item['sell_price']}</span>
-                            </dd>
-                        </dl>
-                    </li>
-                    {/foreach}
-                </ul>
-            </div>
-            <div class="tabs-panel middle-goods-list tabs-hide">
-                <ul>
-                    {foreach:items=Api::run('getCategoryExtendListIndex',array('#categroy_id#',$first['id']),8)}
-                    <li style="opacity: 0.9;">
-                        <dl>
-                            <dt class="goods-name">
-                                <a target="_blank" href="{url:/site/products/id/$item[id]}" title="{$item['name']}">
-                                    {$item['name']}
-                                </a>
-                            </dt>
-                            <dd class="goods-thumb">
-                                <a target="_blank" href="{url:/site/products/id/$item[id]}">
-                                    <img src="{url:/pic/thumb/img/$item[img]/w/218/h/218}" alt="{$item['name']}" data-bd-imgshare-binded="1">
-                                </a>
-                            </dd>
-                            <dd class="goods-price">
-                                <em>￥{$item['sell_price']}</em>
-                                <span class="original">￥{$item['sell_price']}</span>
-                            </dd>
-                        </dl>
-                    </li>
-                    {/foreach}
-                </ul>
-            </div>
+            {/foreach}
         </div>
         <div class="right-sidebar">
             <div class="title"></div>
