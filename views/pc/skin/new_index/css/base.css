@@ -269,14 +269,26 @@ article, aside, dialog, footer, header, section, footer, nav, figure, menu { dis
 .public-top-layout .topbar { height: 30px;}
 .public-top-layout .user-entry { height: 20px; float: left; padding: 5px 0;}
 .public-top-layout .user-entry a { color: #333333}
-.public-top-layout .seller-login { background-color: #ffc501; display: inline-block; margin-left: 10px; border: 1px solid #ffc501; border-radius: 3px; box-shadow: 2px 2px 0 rgba(204,204,204,0.65);font-size:14px;}
-.public-top-layout .seller-login a { line-height: 14px; color: #000; display: block; height: 14px; padding: 1px 4px;}
-.public-top-layout .seller-login a:hover { text-decoration: none; background-color: #ffc501;}
+.public-top-layout .seller-login {     background-color: #00C2B4;
+    display: inline-block;
+    margin-left: 10px;
+    border-radius: 3px;
+    font-size: 12px;
+    padding: 2px 0;}
+.public-top-layout .seller-login a { line-height: 14px; color: #fff; display: block; height: 14px; padding: 1px 4px;}
 .public-top-layout .seller-login i { font-size: 14px; vertical-align: middle; margin-right: 4px;}
-.public-top-layout .seller-login-r { background-color: #52A0E8; display: inline-block; margin-left: 15px; border: 1px solid #52A0E8; border-radius: 3px; box-shadow: 2px 2px 0px rgba(204, 204, 204, 0.65);font-size:14px;}
+.public-top-layout .seller-login-r { 
+background-color: #4C88E0;
+    display: inline-block;
+    margin-left: 10px;
+    border-radius: 3px;
+    font-size: 12px;
+    padding: 2px 0;
+}
 .public-top-layout .seller-login-r a { line-height: 14px; color: #FFF; display: block; height: 14px; padding: 1px 4px;}
-.public-top-layout .seller-login-r a:hover { text-decoration: none; background-color: #52A0E8;} 
 .public-top-layout .seller-login-r i { font-size: 14px; vertical-align: middle; margin-right: 4px;}
+
+.public-top-layout .seller-login-r a:hover,.public-top-layout .seller-login a:hover {text-decoration: none;}
 
 .public-top-layout .quick-menu { *word-spacing:-1px/*IE6、7*/; text-align: right; width: 345px; height: 30px; float: right;}
 .public-top-layout .quick-menu a { color: #777 !important;}
