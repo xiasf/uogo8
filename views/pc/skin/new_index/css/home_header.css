@@ -89,7 +89,7 @@
 .public-nav-layout .site-menu li a:hover { text-decoration: none;color: #CA3300;}
 .public-nav-layout .site-menu li a.currents { text-shadow: 1px 1px 0 rgba(0,0,0,0.2); background-color: #A40000;}
 /*分类导航菜单*/
-.public-nav-layout .all-category { display: block; width: 210px/*188px*/; height: 44px; float: left; border: solid /*#B22D00*/#a40000; border-width: 0;/*0 1px; */border-right-width:2px; border-left-color:#a40000; background-color: #940E18}
+.public-nav-layout .all-category { display: block; width: 210px/*188px*/; height: 44px; float: left; border: solid /*#B22D00*/#a40000; border-width: 0;/*0 1px; */border-right-width:2px; border-left-color:#a40000; background-color: #3966a9}
 .public-nav-layout .all-category .title { line-height: 16px; height: 24px; padding: 10px;}
 .public-nav-layout .all-category .title h3 a { font-family: \5FAE\8F6F\96C5\9ED1, \9ED1\4F53; font-size: 14px; color: #FFF; float: left; margin-left: 4px;}
 
@@ -154,7 +154,7 @@
 	height: 568px;
 	left: 0px;
 	top: 0;
-	background-color: #D42835;
+	background-color: #4c88e0;
 	/*
 	-webkit-box-shadow: 2px 2px 5px -3px #999999;
 	-moz-box-shadow: 2px 2px 5px -3px #999999;
@@ -172,7 +172,7 @@
 .category ul li .tx{
 	line-height: 35px;
 	height: 35px;
-	background-color: #D42835;
+	background-color: #4c88e0;
 	padding-left: 10px;
 /*	background: url("../images/top_bg.png") no-repeat scroll -150px -10px transparent;*/
 
