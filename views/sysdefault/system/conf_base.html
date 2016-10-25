@@ -115,7 +115,9 @@
 							<tr class='td_c'>
 								<td><input type='text' name='guide_name[]' class='small' value='<%=name%>' pattern='required' alt='请填写导航名' /></td>
 								<td><input type='text' name='guide_link[]' class='middle' value='<%=link%>' pattern='required' alt='请填写URL，如：http://www.itaohz.com' /></td>
-								<td><input name='guide_visi[]' type='checkbox' value='1' <%if(visi==1){%>checked<%}%>> 显示</td>
+								<td>
+                  <input name='guide_visi[<%=order%>]' type='checkbox' value='1' <%if(visi==1){%>checked<%}%>> 显示
+                </td>
 								<td>
 									<img class='operator' src='{skin:images/admin/icon_asc.gif}' alt='向上' title='向上' />
 									<img class='operator' src='{skin:images/admin/icon_desc.gif}' alt='向下' title='向下' />

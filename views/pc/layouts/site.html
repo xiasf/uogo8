@@ -178,8 +178,15 @@
                     <a title="分享到人人网" _href="http://www.aisy.cn/#" href="#" class="bds_tieba" data-cmd="tieba"></a>
                     <a title="分享到微信" _href="http://www.aisy.cn/#" href="#" class="bds_weixin" data-cmd="weixin"></a>
                 </div>
-                <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"32"},"share":{},"image":{"viewList":["qzone","tsina","tqq","tieba","weixin"],"viewText":"分享到：","viewSize":"24"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
-        </script>
+                <script>
+                    window._bd_share_config = {
+                        "common": {"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"32"},
+                        "share": {},
+                        "image": {"viewList":["qzone","tsina","tqq","tieba","weixin"],"viewText":"分享到：","viewSize":"24"},
+                        "selectShare": {"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}
+                    };
+                    with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                </script>
             </div>
             <div class="content-box" id="content-compare">
                 <div class="top">
@@ -376,65 +383,67 @@
     <script type="text/javascript">
         //动画显示边条内容区域
         $(function() {
-          $(function() {
-            $('#activator').click(function() {
-              $('#content-cart').animate({'right': '-250px'});
-              $('#content-compare').animate({'right': '-150px'});
-              $('#ncToolbar').animate({'right': '-60px'}, 300,
-              function() {
-                $('#ncHideBar').animate({'right': '59px'},  300);
-              });
-                  $('div[nctype^="bar"]').hide();
+            $(function() {
+                $('#activator').click(function() {
+                    $('#content-cart').animate({'right': '-250px'});
+                    $('#content-compare').animate({'right': '-150px'});
+                    $('#ncToolbar').animate({'right': '-60px'}, 300,
+                    function() {
+                        $('#ncHideBar').animate({'right': '59px'},  300);
+                    });
+                    $('div[nctype^="bar"]').hide();
+                });
+                $('#ncHideBar').click(function() {
+                    $('#ncHideBar').animate({
+                        'right': '-79px'
+                    },
+                    300,
+                    function() {
+                        $('#content-cart').animate({'right': '-250px'});
+                        $('#content-compare').animate({'right': '-250px'});
+                        $('#ncToolbar').animate({'right': '0'},300);
+                    });
+                });
             });
-            $('#ncHideBar').click(function() {
-              $('#ncHideBar').animate({
-                'right': '-79px'
-              },
-              300,
-              function() {
-                $('#content-cart').animate({'right': '-250px'});
-                $('#content-compare').animate({'right': '-250px'});
-                $('#ncToolbar').animate({'right': '0'},300);
-              });
-            });
-          });
+
             $("#compare").click(function(){
-              if ($("#content-compare").css('right') == '-210px') {
-               loadCompare(false);
-               $('#content-cart').animate({'right': '-210px'});
-                 $("#content-compare").animate({right:'50px'});
-              } else {
-                $(".close").click();
-                $(".chat-list").css("display",'none');
+                if ($("#content-compare").css('right') == '-210px') {
+                    loadCompare(false);
+                    $('#content-cart').animate({'right': '-210px'});
+                    $("#content-compare").animate({right:'50px'});
+                } else {
+                    $(".close").click();
+                    $(".chat-list").css("display",'none');
                 }
-          });
+            });
+
             $("#rtoolbar_cart").click(function(){
                 if ($("#content-cart").css('right') == '-210px') {
-                  $('#content-compare').animate({'right': '-210px'});
-                $("#content-cart").animate({right:'50px'});
-                if (!$("#rtoolbar_cartlist").html()) {
-                  $("#rtoolbar_cartlist").load('index.php?act=cart&op=ajax_load&type=html');
-                }
+                    $('#content-compare').animate({'right': '-210px'});
+                    $("#content-cart").animate({right:'50px'});
+                    if (!$("#rtoolbar_cartlist").html()) {
+                        $("#rtoolbar_cartlist").load('index.php?act=cart&op=ajax_load&type=html');
+                    }
                 } else {
-                  $(".close").click();
-                  $(".chat-list").css("display",'none');
+                    $(".close").click();
+                    $(".chat-list").css("display",'none');
                 }
-          });
-          $(".close").click(function(){
-            $(".content-box").animate({right:'-210px'});
-              });
+            });
 
-          $(".quick-menu dl").hover(function() {
-            $(this).addClass("hover");
-          },
-          function() {
-            $(this).removeClass("hover");
-          });
-          
+            $(".close").click(function(){
+                $(".content-box").animate({right:'-210px'});
+            });
+
+            $(".quick-menu dl").hover(function() {
+                $(this).addClass("hover");
+            },
+            function() {
+                $(this).removeClass("hover");
+            });
             $('a[nctype="a-barqq"]').click(function(){
                 $('div[nctype="barqq"]').toggle(500);
             });
-          $('a[nctype="share"]').click(function(){
+            $('a[nctype="share"]').click(function(){
                 $('div[nctype="sharecon"]').toggle(500);
             });
             // 右侧bar用户信息
@@ -449,7 +458,7 @@
             $('a[nctype="close-barLoginBox"]').click(function(){
                 $('div[nctype="barLoginBox"]').toggle();
             });
-            });
+        });
     </script>
 
     <!-- S PublicHeadLayout -->
@@ -463,7 +472,10 @@
             <div class="site-ad">
                 <div>
                     <a href="#" target="_blank" title="LOGO动态">
-                        <img style="width:192px;height:70px" border="0" src="../skin/new_index/images/05271593267466442.gif" alt="LOGO动态" data-bd-imgshare-binded="1"></a>
+                        <!--
+                        <img style="width:192px;height:70px" border="0" src="../skin/new_index/images/05271593267466442.gif" alt="LOGO动态" data-bd-imgshare-binded="1">
+                        -->
+                    </a>
                 </div>
             </div>
 
@@ -477,7 +489,8 @@
                 <form action="#" method="get" class="search-form" id="top_search_form">
                     <input name="act" id="search_act" value="search" type="hidden">
                     <input name="keyword" id="keyword" type="text" class="input-text" value="" maxlength="60" x-webkit-speech="" lang="zh-CN" onwebkitspeechchange="foo()" placeholder="请输入您要搜索的商品关键字或店铺名称" x-webkit-grammar="builtin:search">
-                    <input type="submit" id="button" value="搜索" class="input-submit"></form>
+                    <input type="submit" id="button" value="搜索" class="input-submit">
+                </form>
                 <div class="keyword">
                     热门搜索：
                     <ul>
@@ -556,7 +569,8 @@
                             </div>
                             <ul>
                                 <li class="no-goods">
-                                    <img class="loading" src="../skin/new_index/images/loading.gif" data-bd-imgshare-binded="1"></li>
+                                    <img class="loading" src="../skin/new_index/images/loading.gif" data-bd-imgshare-binded="1">
+                                </li>
                             </ul>
                         </div>
                     </dd>
@@ -652,14 +666,13 @@
                     <a href="#" class="current">首页</a>
                 </li>
                 <li>
-                    <a target="_blank" _href="http://www.aisy.cn/index.php?act=special&op=special_detail&special_id=18" href="#">黄冈特产</a>
+                    <a href="#" class="current">黄冈特产</a>
                 </li>
+                {foreach:items=Api::run('getGuideList')}
                 <li>
-                    <a target="_blank" _href="http://www.aisy.cn/index.php?act=special&op=special_detail&special_id=13" href="#">时尚茶饮</a>
+                    <a target="_blank" href="{url:$item[link]}">{$item[name]}</a>
                 </li>
-                <li>
-                    <a target="_blank" _href="http://www.aisy.cn/index.php?act=special&op=special_detail&special_id=9" href="#">礼佛.心品</a>
-                </li>
+                {/foreach}
             </ul>
         </div>
     </nav>
@@ -692,12 +705,14 @@
 
     {viewcontent}
 
+    <!--
     <div class="wrapper">
         <div class="mt10">
             <a href="#" target="_blank" title="首页通栏">
                 <img style="width:1200px;height:80px" border="0" src="../skin/new_index/images/04955371714411887.jpg" alt="首页通栏" data-bd-imgshare-binded="1"></a>
         </div>
     </div>
+    -->
 
     <script>
         var obj10 = document.getElementById("J-header");
@@ -884,13 +899,13 @@
             |
             <a target="_blank" href="#">关于我们</a>
         </p>
-        Copyright 2015 爱十堰商城 Inc.,All rights reserved.
+        Copyright 2016 优购商城 Inc.,All rights reserved.
         <br>
         Powered by
-        <span class="vol"> <font class="b">A</font> <font class="o">iay</font>
+        <span class="vol"> <font class="b">uo</font> <font class="o">go8</font>
         </span>
         <img src="../skin/new_index/images/icplogo.jpg" width="24px" data-bd-imgshare-binded="1">
-        鄂ICP08004371
+        鄂ICP备16019103
         <br>
         <img src="../skin/new_index/images/ghs.png" width="24px" data-bd-imgshare-binded="1">
         鄂公网安备 42030302000120号

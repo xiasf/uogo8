@@ -420,6 +420,7 @@ class System extends IController
 			{
 				$guideName = IFilter::act(IReq::get('guide_name'));
 				$guideLink = IFilter::act(IReq::get('guide_link'));
+				$guideVisi = IFilter::act(IReq::get('guide_visi'));
 				$data      = array();
 
 				$guideObj = new IModel('guide');
@@ -432,6 +433,11 @@ class System extends IController
 						{
 							$data[$key]['name'] = $val;
 							$data[$key]['link'] = $guideLink[$key];
+							if(!empty($guideVisi[$key])) {
+								$data[$key]['visi'] = 1;
+							} else {
+								$data[$key]['visi'] = 0;
+							}
 						}
 					}
 				}
@@ -448,6 +454,7 @@ class System extends IController
 							'order' => $order,
 							'name'  => $rs['name'],
 							'link'  => $rs['link'],
+							'visi'  => $rs['visi'],
 						);
 						$guideObj->setData($dataArray);
 						$guideObj->add();
