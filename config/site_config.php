@@ -16,7 +16,7 @@
   'tax' => '10',
   'stockup_time' => '1',
   'goods_no_pre' => 'HZ',
-  'logo' => 'upload/image/2016/02/29/20160229101507688.png',
+  'logo' => 'upload/image/20161025/20161025224230191.jpg',
   'order_finish_time' => '7',
   'order_cancel_time' => '1',
   'commission' => '0',
