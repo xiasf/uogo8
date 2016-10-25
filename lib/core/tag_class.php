@@ -385,7 +385,7 @@ class ITag
 		}
 		else
 		{
-			$attr['skip'] = '"skip" '.trim($str); 
+			$attr['skin'] = '"skin" '.trim($str); 
 		}
 		$tag = '<'.$strtype;
 		while(list($k,$v) = each($attr)){ 
