@@ -455,6 +455,7 @@ class Site extends IController
 	//商品展示
 	function products()
 	{
+		$this->layout = 'site_o';
 		$goods_id = IFilter::act(IReq::get('id'),'int');
 
 		if(!$goods_id)
