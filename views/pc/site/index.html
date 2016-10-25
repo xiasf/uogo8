@@ -721,7 +721,7 @@
         $sortIndex=0;
         $styleList = ['', 'red', 'orange', 'brown', 'green', 'blue', 'pink', 'purple', 'default'];
     }
-    {foreach:items=Api::run('getCategoryListTopIndex') item=$first}
+    {foreach:items=Api::run('getCategoryListTopIndex', 3) item=$first}
     {set:$sortIndex++;}
     {set:$clasdId=$first['id'];}
     <!-- 1F -->
