@@ -56,7 +56,7 @@
                             var menu = $(this).find("div[cat_menu_id='"+cat_id+"']");
                             menu.show();
                             $(this).addClass("hover");
-                            if(menu.attr("hover")>0) return;
+                            if (menu.attr("hover")>0) return;
                             menu.masonry({itemSelector: 'dl'});
                             var menu_height = menu.height();
                             if (menu_height < 60) menu.height(80);
