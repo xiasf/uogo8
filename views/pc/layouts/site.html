@@ -34,13 +34,13 @@
         var SHOP_TEMPLATES_URL = 'http://www.aisy.cn/templates/default';
         */
     </script>
+
     <script src="../skin/new_index/js/jquery.js"></script>
     <script src="../skin/new_index/js/common.js" charset="utf-8"></script>
     <script src="../skin/new_index/js/jquery.ui.js"></script>
     <script src="../skin/new_index/js/jquery.validation.min.js"></script>
     <script src="../skin/new_index/js/jquery.masonry.js"></script>
-    <script src="../skin/new_index/js/dialog.js" id="dialog_js" charset="utf-8"></script>
-    <link href="../skin/new_index/css/dialog.css" rel="stylesheet" type="text/css">
+    <script src="../skin/new_index/js/dialog/dialog.js" id="dialog_js" charset="utf-8"></script>
     <script src="../skin/new_index/js/shop_search.js"></script>
     <script src="../skin/new_index/js/jd_side.js"></script>
     <script src="../skin/new_index/js/taglibs.js"></script>
@@ -108,10 +108,6 @@
     <style>
         .nc-appbar{display:none;}
     </style>
-    <script src="../skin/new_index/js/share.js"></script>
-    <link rel="stylesheet" href="../skin/new_index/css/share_style1_32.css">
-    <link rel="stylesheet" href="../skin/new_index/css/share_popup.css">
-    <link rel="stylesheet" href="../skin/new_index/css/select_share.css">
 </head>
 <body>
 
@@ -131,7 +127,7 @@
         <div class="nc-appbar-tabs" id="appBarTabs">
             <div class="user" nctype="a-barLoginBox">
                 <div class="avatar">
-                    <a _href="http://www.aisy.cn/index.php?act=login&op=index" href="#" class="arrow">
+                    <a href="#" class="arrow">
                         <img src="../skin/new_index/images/default_user_portrait.gif" data-bd-imgshare-binded="1"></a>
                 </div>
                 <p>未登录</p>
@@ -179,6 +175,7 @@
                     <a title="分享到微信" _href="http://www.aisy.cn/#" href="#" class="bds_weixin" data-cmd="weixin"></a>
                 </div>
                 <script>
+                /*
                     window._bd_share_config = {
                         "common": {"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"32"},
                         "share": {},
@@ -186,6 +183,7 @@
                         "selectShare": {"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}
                     };
                     with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                    */
                 </script>
             </div>
             <div class="content-box" id="content-compare">
@@ -216,25 +214,25 @@
 
     <script type="text/javascript">
         //返回顶部
-        backTop=function (btnId){
-          var btn=document.getElementById(btnId);
-          var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-          window.onscroll=set;
-          btn.onclick=function (){
-            btn.style.opacity="0.5";
-            window.onscroll=null;
-            this.timer=setInterval(function(){
+        backTop = function (btnId) {
+            var btn=document.getElementById(btnId);
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            window.onscroll=set;
+            btn.onclick=function (){
+                btn.style.opacity="0.5";
+                window.onscroll=null;
+                this.timer=setInterval(function(){
+                    scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                    scrollTop-=Math.ceil(scrollTop*0.1);
+                    if(scrollTop==0) clearInterval(btn.timer,window.onscroll=set);
+                    if (document.documentElement.scrollTop > 0) document.documentElement.scrollTop=scrollTop;
+                    if (document.body.scrollTop > 0) document.body.scrollTop=scrollTop;
+                },10);
+            };
+            function set(){
                 scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-              scrollTop-=Math.ceil(scrollTop*0.1);
-              if(scrollTop==0) clearInterval(btn.timer,window.onscroll=set);
-              if (document.documentElement.scrollTop > 0) document.documentElement.scrollTop=scrollTop;
-              if (document.body.scrollTop > 0) document.body.scrollTop=scrollTop;
-            },10);
-          };
-          function set(){
-              scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-              btn.style.opacity=scrollTop?'1':"0.5";
-          }
+                btn.style.opacity=scrollTop?'1':"0.5";
+            }
         };
         backTop('gotop');
     </script>
@@ -251,7 +249,7 @@
                 <a href="#" target="_blank">网络电视</a>
             </div>
             <div class="favorite">
-                <a id="favorite_a" _href="http://www.aisy.cn/#this" href="#" onclick="window.external.addFavorite(this.href);return false;" rel="sidebar">
+                <a id="favorite_a" href="{url:/}" onclick="window.external.addFavorite(this.href);return false;" rel="sidebar">
                     <img id="favorite_img" src="../skin/new_index/images/star.png" data-bd-imgshare-binded="1">收藏
                 </a>
             </div>
@@ -260,22 +258,22 @@
                 <a href="#" title="首页" alt="首页"></a>
                 <span>
                     [
-                    <a _href="http://www.aisy.cn/index.php?act=login&op=index" href="#">登录</a>
+                    <a href="#">登录</a>
                     ]
                 </span>
                 <span>
                     [
-                    <a _href="http://www.aisy.cn/index.php?act=login&op=register" href="#">注册</a>
+                    <a href="#">注册</a>
                     ]
                 </span>
                 <span class="seller-login">
-                    <a _href="http://www.aisy.cn/index.php?act=seller_login&op=show_login" href="#" target="_blank" title="登录商家管理中心">
+                    <a href="#" target="_blank" title="登录商家管理中心">
                         <i class="icon-signin"></i>
                         商家管理中心
                     </a>
                 </span>
                 <span class="seller-login-r">
-                    <a _href="http://www.aisy.cn/index.php?act=show_joinin&op=index" href="#" title="商家入驻">
+                    <a href="#" title="商家入驻">
                         <i class="icon-share"></i>
                         商家入驻中心
                     </a>
@@ -663,7 +661,7 @@
             </div>
             <ul class="site-menu">
                 <li>
-                    <a href="#" class="current">首页</a>
+                    <a href="{url:/}" class="current">首页</a>
                 </li>
                 <li>
                     <a href="#" class="current">黄冈特产</a>
@@ -678,31 +676,6 @@
     </nav>
     <!-- E PublicNavLayout -->
 
-    <div class="nch-breadcrumb-layout" style="padding-top:12px"></div>
-
-    <link href="../skin/new_index/css/index.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="../skin/new_index/js/home_index.js" charset="utf-8"></script>
-    <script type="text/javascript" src="../skin/new_index/js/unslider.min.js" charset="utf-8"></script>
-
-    <style type="text/css">
-        .category { display: block !important;}
-        .adtop {
-            width: 210px;
-            height: 60px;
-            z-index: 1;
-            bottom: 0px;
-            overflow: hidden;
-            position: absolute;
-            margin-left: -599px;
-            left: 50%;
-        }
-        .mt10 {
-            margin-top: 10px !important;
-        }
-    </style>
-
-    <div class="clear"></div>
-
     {viewcontent}
 
     <!--
@@ -713,36 +686,6 @@
         </div>
     </div>
     -->
-
-    <script>
-        var obj10 = document.getElementById("J-header");
-        var obj11 = document.getElementById("nav");
-        var tops = getTop(obj10);
-        var isIE6 = /msie 6/i.test(navigator.userAgent);
-        window.onscroll = function(){
-            var bodyScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-            if (bodyScrollTop > tops){
-                obj11.style.position = (isIE6) ? "absolute" : "fixed";
-                obj11.style.top = (isIE6) ? bodyScrollTop + "px" : "200px";
-                $("#nav").stop(true,false).animate({"top":200+"px"},550);
-                obj11.style.display = "block";
-            } else {
-                obj11.style.display = "none";
-            }
-        }
-        function getTop(e){
-            var offset = e.offsetTop;
-            if(e.offsetParent != null) offset += getTop(e.offsetParent);
-            return offset;
-        }
-        $('#nav').onePageNav({
-            currentClass: 'current',
-            changeHash: false,
-            scrollSpeed: 750,
-            scrollThreshold: 0.5,
-            easing: 'swing',
-        });
-    </script>
 
     <div class="fttff29">
         <div class="warp-all236">
@@ -781,41 +724,11 @@
         </div>
     </div>
 
-    <link href="../skin/new_index/css/chat.css" rel="stylesheet" type="text/css">
-    <link href="../skin/new_index/css/home_login(1).css" rel="stylesheet" type="text/css">
-
     <div style="clear: both;"></div>
 
     <div id="web_chat_dialog" style="display: none;float:right;"></div>
 
     <a id="chat_login" href="javascript:void(0)" style="display: none;"></a>
-
-    <script type="text/javascript">
-        var APP_SITE_URL = 'http://www.aisy.cn';
-        var CHAT_SITE_URL = 'http://test.syiptv.com/chat';
-        var SHOP_SITE_URL = 'http://www.aisy.cn';
-        var connect_url = "http://10.10.8.231:8090";
-
-        var layout = "layout/home_layout.php";
-        var act_op = "index_index";
-        var user = {};
-
-        user['u_id'] = "";
-        user['u_name'] = "";
-        user['s_id'] = "";
-        user['s_name'] = "";
-        user['avatar'] = "http://img.aisy.cn/shop/common/default_user_portrait.gif";
-
-        $("#chat_login").nc_login({
-          action:'/index.php?act=login',
-          nchash:'e48b0f69',
-          formhash:'u1zKdzJXHyLq5Ly83gFjl-Zy56FfJAY'
-        });
-    </script>
-
-    <script type="text/javascript" src="../skin/new_index/js/jquEry.charCount.js" charset="utf-8"></script>
-    <script type="text/javascript" src="../skin/new_index/js/jquery.smilies.js" charset="utf-8"></script>
-    <script type="text/javascript" src="../skin/new_index/js/user.js" charset="utf-8"></script>
 
     <div id="faq">
         <div class="wrapper">
@@ -909,21 +822,74 @@
         <br>
         <img src="../skin/new_index/images/ghs.png" width="24px" data-bd-imgshare-binded="1">
         鄂公网安备 42030302000120号
-        <script src="./aisy_files/z_stat.php" language="JavaScript"></script>
-        <script src="./aisy_files/core.php" charset="utf-8" type="text/javascript"></script>
         <a href="#" target="_blank" title="站长统计">站长统计</a>
     </div>
 
     <div style="text-align:center;" class="tools">
     </div>
 
+    <script>
+        var obj10 = document.getElementById("J-header");
+        var obj11 = document.getElementById("nav");
+        var tops = getTop(obj10);
+        var isIE6 = /msie 6/i.test(navigator.userAgent);
+        window.onscroll = function(){
+            var bodyScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            if (bodyScrollTop > tops){
+                obj11.style.position = (isIE6) ? "absolute" : "fixed";
+                obj11.style.top = (isIE6) ? bodyScrollTop + "px" : "200px";
+                $("#nav").stop(true,false).animate({"top":200+"px"},550);
+                obj11.style.display = "block";
+            } else {
+                obj11.style.display = "none";
+            }
+        }
+        function getTop(e){
+            var offset = e.offsetTop;
+            if(e.offsetParent != null) offset += getTop(e.offsetParent);
+            return offset;
+        }
+        $('#nav').onePageNav({
+            currentClass: 'current',
+            changeHash: false,
+            scrollSpeed: 750,
+            scrollThreshold: 0.5,
+            easing: 'swing',
+        });
+    </script>
+
+    <script type="text/javascript">
+        var APP_SITE_URL = 'http://www.aisy.cn';
+        var CHAT_SITE_URL = 'http://test.syiptv.com/chat';
+        var SHOP_SITE_URL = 'http://www.aisy.cn';
+        var connect_url = "http://10.10.8.231:8090";
+
+        var layout = "layout/home_layout.php";
+        var act_op = "index_index";
+        var user = {};
+
+        user['u_id'] = "";
+        user['u_name'] = "";
+        user['s_id'] = "";
+        user['s_name'] = "";
+        user['avatar'] = "http://img.aisy.cn/shop/common/default_user_portrait.gif";
+
+        $("#chat_login").nc_login({
+          action:'/index.php?act=login',
+          nchash:'e48b0f69',
+          formhash:'u1zKdzJXHyLq5Ly83gFjl-Zy56FfJAY'
+        });
+    </script>
+
     <script type="text/javascript" src="../skin/new_index/js/jquery.cookie.js"></script>
-    <link href="../skin/new_index/css/perfect-scrollbar.min.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="../skin/new_index/js/perfect-scrollbar.min.js"></script>
     <script type="text/javascript" src="../skin/new_index/js/jquery.qtip.min.js"></script>
-    <link href="../skin/new_index/css/jquery.qtip.min.css" rel="stylesheet" type="text/css">
 
-    <!-- 对比 -->
+    <link href="../skin/new_index/css/jquery.qtip.min.css" rel="stylesheet" type="text/css">
+    <link href="../skin/new_index/css/perfect-scrollbar.min.css" rel="stylesheet" type="text/css">
+
+    <script type="text/javascript" src="../skin/new_index/js/jquEry.charCount.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../skin/new_index/js/jquery.smilies.js" charset="utf-8"></script>
     <script src="../skin/new_index/js/compare.js"></script>
 
     <script type="text/javascript">

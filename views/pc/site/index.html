@@ -8,6 +8,31 @@
 	seo::set($seo_data);
 }
 
+    <div class="nch-breadcrumb-layout" style="padding-top:12px"></div>
+
+    <link href="../skin/new_index/css/index.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="../skin/new_index/js/home_index.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../skin/new_index/js/unslider.min.js" charset="utf-8"></script>
+
+    <style type="text/css">
+        .category { display: block !important;}
+        .adtop {
+            width: 210px;
+            height: 60px;
+            z-index: 1;
+            bottom: 0px;
+            overflow: hidden;
+            position: absolute;
+            margin-left: -599px;
+            left: 50%;
+        }
+        .mt10 {
+            margin-top: 10px !important;
+        }
+    </style>
+
+    <div class="clear"></div>
+
     <!--S HomeFocusLayout-->
     <div class="home-focus-layout">
         <ul id="fullScreenSlides" class="full-screen-slides">
@@ -377,31 +402,31 @@
     </div>
     -->
 
-<script>
-    $(function() {
-        // if (!hasLogin) {
-        //     $('.picList .icon').html(getAllClassName());
-        //     $("#picListData").html(getAllPicListInfo());
-        // }
-        var _vipPhotoTimer = null;
-        $("#picListData a").live("mouseenter", function(event) {
-            var _this = this;
-            _vipPhotoTimer = setTimeout(function() {
-                $(_this).find('.data').animate({
-                    'bottom': '0px'
-                }, 500);
-            }, 200);
+    <script>
+        $(function() {
+            // if (!hasLogin) {
+            //     $('.picList .icon').html(getAllClassName());
+            //     $("#picListData").html(getAllPicListInfo());
+            // }
+            var _vipPhotoTimer = null;
+            $("#picListData a").live("mouseenter", function(event) {
+                var _this = this;
+                _vipPhotoTimer = setTimeout(function() {
+                    $(_this).find('.data').animate({
+                        'bottom': '0px'
+                    }, 500);
+                }, 200);
 
-        }).live("mouseleave", function(event) {
-            if (_vipPhotoTimer) {
-                clearTimeout(_vipPhotoTimer);
-            }
-            $(this).find('.data').animate({
-                'bottom': '-30px'
-            }, 500);
+            }).live("mouseleave", function(event) {
+                if (_vipPhotoTimer) {
+                    clearTimeout(_vipPhotoTimer);
+                }
+                $(this).find('.data').animate({
+                    'bottom': '-30px'
+                }, 500);
+            });
         });
-    });
-</script>
+    </script>
 
     <!-- 美女店长 -->
     <div class="wrapper mm-shopkeeper">
