@@ -738,7 +738,8 @@
             <div class="left-ads">
                 {foreach:items=Api::run('getadmanagegoodidTwo',array('#goods_cat_id#',$clasdId)) item=$second}
                 <a href="{url:$second['link']}" title="{url:$second['name']}" target="_blank">
-                    <img src="{url:$second['content']}" alt="" data-bd-imgshare-binded="1">
+                    <img src="http://www.itaohz.com/upload/2016/02/26/20160226153927860.jpg" alt="" data-bd-imgshare-binded="1">
+                    <!-- <img src="{url:$second['content']}" alt="" data-bd-imgshare-binded="1"> -->
                 </a>
                 {/foreach}
             </div>
@@ -771,7 +772,8 @@
                             </dt>
                             <dd class="goods-thumb">
                                 <a target="_blank" href="{url:/site/products/id/$item[id]}">
-                                    <img src="{url:/pic/thumb/img/$item[img]/w/218/h/218}" alt="{$item['name']}" data-bd-imgshare-binded="1">
+                                    <img src="../skin/new_index/images/6_04736865558556649_240.jpg" alt="{$item['name']}" data-bd-imgshare-binded="1">
+                                    <!-- <img src="{url:/pic/thumb/img/$item[img]/w/218/h/218}" alt="{$item['name']}" data-bd-imgshare-binded="1"> -->
                                 </a>
                             </dd>
                             <dd class="goods-price">
