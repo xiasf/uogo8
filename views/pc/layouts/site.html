@@ -673,138 +673,203 @@ $(function() {
 {viewcontent}
 
 <div class="wrapper">
-  <div class="mt10"><a href="#" target="_blank" title="首页通栏"><img style="width:1200px;height:80px" border="0" src="../skin/new_index/images/04955371714411887.jpg" alt="首页通栏" data-bd-imgshare-binded="1"></a></div>
+    <div class="mt10">
+        <a href="#" target="_blank" title="首页通栏">
+            <img style="width:1200px;height:80px" border="0" src="../skin/new_index/images/04955371714411887.jpg" alt="首页通栏" data-bd-imgshare-binded="1"></a>
+    </div>
 </div>
-<script>
-var obj10 = document.getElementById("J-header");
-var obj11 = document.getElementById("nav");
-var tops = getTop(obj10);
-var isIE6 = /msie 6/i.test(navigator.userAgent);
-window.onscroll = function(){
-    var bodyScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-    if (bodyScrollTop > tops){
-        obj11.style.position = (isIE6) ? "absolute" : "fixed";
-        obj11.style.top = (isIE6) ? bodyScrollTop + "px" : "200px";
-        $("#nav").stop(true,false).animate({"top":200+"px"},550);
-        obj11.style.display = "block";
-    } else {
-        obj11.style.display = "none";
-    }
-}
-function getTop(e){
-    var offset = e.offsetTop;
-    if(e.offsetParent != null) offset += getTop(e.offsetParent);
-    return offset;
-}
-$('#nav').onePageNav({
-    currentClass: 'current',
-    changeHash: false,
-    scrollSpeed: 750,
-    scrollThreshold: 0.5,
-    easing: 'swing',
-});
-</script> 
- 
 
+<script>
+    var obj10 = document.getElementById("J-header");
+    var obj11 = document.getElementById("nav");
+    var tops = getTop(obj10);
+    var isIE6 = /msie 6/i.test(navigator.userAgent);
+    window.onscroll = function(){
+        var bodyScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        if (bodyScrollTop > tops){
+            obj11.style.position = (isIE6) ? "absolute" : "fixed";
+            obj11.style.top = (isIE6) ? bodyScrollTop + "px" : "200px";
+            $("#nav").stop(true,false).animate({"top":200+"px"},550);
+            obj11.style.display = "block";
+        } else {
+            obj11.style.display = "none";
+        }
+    }
+    function getTop(e){
+        var offset = e.offsetTop;
+        if(e.offsetParent != null) offset += getTop(e.offsetParent);
+        return offset;
+    }
+    $('#nav').onePageNav({
+        currentClass: 'current',
+        changeHash: false,
+        scrollSpeed: 750,
+        scrollThreshold: 0.5,
+        easing: 'swing',
+    });
+</script>
 
 <div class="fttff29">
-  <div class="warp-all236">
-    <div class="mod_agree">
-      <ul class="mod_agree_con">
-        <li class="mod_agree_item mod_agree_item1"> <a href="#"><img src="../skin/new_index/images/goods.png" data-bd-imgshare-binded="1"></a><strong>商品齐全</strong></li>
-        <li class="mod_agree_item mod_agree_item2"> <a href="#"><img src="../skin/new_index/images/price.png" data-bd-imgshare-binded="1"></a><strong>价格实惠</strong> </li>
-        <li class="mod_agree_item mod_agree_item6"> <a href="#"><img src="../skin/new_index/images/tran.png" data-bd-imgshare-binded="1"></a><strong>担保交易</strong> </li>
-        <li class="mod_agree_item mod_agree_item4"> <a href="#"><img src="../skin/new_index/images/pay.png" data-bd-imgshare-binded="1"></a><strong>支付方便</strong> </li>
-        <li class="mod_agree_item mod_agree_item5"> <a href="#"><img src="../skin/new_index/images/cart.png" data-bd-imgshare-binded="1"></a><strong>购物放心</strong> </li>
-        <li class="mod_agree_item mod_agree_item3"> <a href="#"><img src="../skin/new_index/images/ship.png" data-bd-imgshare-binded="1"></a><strong>送货及时</strong> </li>
-      </ul>
+    <div class="warp-all236">
+        <div class="mod_agree">
+            <ul class="mod_agree_con">
+                <li class="mod_agree_item mod_agree_item1">
+                    <a href="#">
+                        <img src="../skin/new_index/images/goods.png" data-bd-imgshare-binded="1"></a> <strong>商品齐全</strong>
+                </li>
+                <li class="mod_agree_item mod_agree_item2">
+                    <a href="#">
+                        <img src="../skin/new_index/images/price.png" data-bd-imgshare-binded="1"></a> <strong>价格实惠</strong>
+                </li>
+                <li class="mod_agree_item mod_agree_item6">
+                    <a href="#">
+                        <img src="../skin/new_index/images/tran.png" data-bd-imgshare-binded="1"></a>
+                    <strong>担保交易</strong>
+                </li>
+                <li class="mod_agree_item mod_agree_item4">
+                    <a href="#">
+                        <img src="../skin/new_index/images/pay.png" data-bd-imgshare-binded="1"></a>
+                    <strong>支付方便</strong>
+                </li>
+                <li class="mod_agree_item mod_agree_item5">
+                    <a href="#">
+                        <img src="../skin/new_index/images/cart.png" data-bd-imgshare-binded="1"></a>
+                    <strong>购物放心</strong>
+                </li>
+                <li class="mod_agree_item mod_agree_item3">
+                    <a href="#">
+                        <img src="../skin/new_index/images/ship.png" data-bd-imgshare-binded="1"></a>
+                    <strong>送货及时</strong>
+                </li>
+            </ul>
+        </div>
     </div>
-  </div>
 </div>
-                    <link href="../skin/new_index/css/chat.css" rel="stylesheet" type="text/css">
-                    <link href="../skin/new_index/css/home_login(1).css" rel="stylesheet" type="text/css">
-                    <div style="clear: both;"></div>
-                    <div id="web_chat_dialog" style="display: none;float:right;">
-                    </div>
-                    <a id="chat_login" href="javascript:void(0)" style="display: none;"></a>
-                    <script type="text/javascript">
-                    var APP_SITE_URL = 'http://www.aisy.cn';
-                    var CHAT_SITE_URL = 'http://test.syiptv.com/chat';
-                    var SHOP_SITE_URL = 'http://www.aisy.cn';
-                    var connect_url = "http://10.10.8.231:8090";
+<link href="../skin/new_index/css/chat.css" rel="stylesheet" type="text/css">
+<link href="../skin/new_index/css/home_login(1).css" rel="stylesheet" type="text/css">
+<div style="clear: both;"></div>
+<div id="web_chat_dialog" style="display: none;float:right;"></div>
+<a id="chat_login" href="javascript:void(0)" style="display: none;"></a>
+<script type="text/javascript">
+var APP_SITE_URL = 'http://www.aisy.cn';
+var CHAT_SITE_URL = 'http://test.syiptv.com/chat';
+var SHOP_SITE_URL = 'http://www.aisy.cn';
+var connect_url = "http://10.10.8.231:8090";
 
-                    var layout = "layout/home_layout.php";
-                    var act_op = "index_index";
-                    var user = {};
+var layout = "layout/home_layout.php";
+var act_op = "index_index";
+var user = {};
 
-                    user['u_id'] = "";
-                    user['u_name'] = "";
-                    user['s_id'] = "";
-                    user['s_name'] = "";
-                    user['avatar'] = "http://img.aisy.cn/shop/common/default_user_portrait.gif";
+user['u_id'] = "";
+user['u_name'] = "";
+user['s_id'] = "";
+user['s_name'] = "";
+user['avatar'] = "http://img.aisy.cn/shop/common/default_user_portrait.gif";
 
-                    $("#chat_login").nc_login({
-                      action:'/index.php?act=login',
-                      nchash:'e48b0f69',
-                      formhash:'u1zKdzJXHyLq5Ly83gFjl-Zy56FfJAY'
-                    });
-                    </script><script type="text/javascript" src="../skin/new_index/js/jquEry.charCount.js" charset="utf-8"></script><script type="text/javascript" src="../skin/new_index/js/jquery.smilies.js" charset="utf-8"></script><script type="text/javascript" src="../skin/new_index/js/user.js" charset="utf-8"></script><div id="faq">
-  <div class="wrapper">
+$("#chat_login").nc_login({
+  action:'/index.php?act=login',
+  nchash:'e48b0f69',
+  formhash:'u1zKdzJXHyLq5Ly83gFjl-Zy56FfJAY'
+});
+</script>
+<script type="text/javascript" src="../skin/new_index/js/jquEry.charCount.js" charset="utf-8"></script>
+<script type="text/javascript" src="../skin/new_index/js/jquery.smilies.js" charset="utf-8"></script>
+<script type="text/javascript" src="../skin/new_index/js/user.js" charset="utf-8"></script>
+<div id="faq">
+    <div class="wrapper">
         <ul>
-                  <li>
-        <dl class="s1">
-          <dt>
-            购物指南          </dt>
-                              <dd><i></i><a href="#" title="购物流程"> 购物流程 </a></dd>
-                    <dd><i></i><a href="#" title="联系客服"> 联系客服 </a></dd>
-                            </dl>
-      </li>
-                        <li>
-        <dl class="s2">
-          <dt>
-            支付方式          </dt>
-                              <dd><i></i><a href="#" title="支付宝支付"> 支付宝支付 </a></dd>
-                    <dd><i></i><a href="#" title="银行卡支付"> 银行卡支付 </a></dd>
-                            </dl>
-      </li>
-                        <li>
-        <dl class="s3">
-          <dt>
-            配送方式          </dt>
-                              <dd><i></i><a href="#" title="配送服务说明"> 配送服务说明 </a></dd>
-                    <dd><i></i><a href="#" title="配送服务收费标准"> 配送服务收费标准 </a></dd>
-                            </dl>
-      </li>
-                        <li>
-        <dl class="s4">
-          <dt>
-            商务合作          </dt>
-                              <dd><i></i><a href="#" title="技术服务"> 技术服务 </a></dd>
-                    <dd><i></i><a href="#" title="广告服务"> 广告服务 </a></dd>
-                            </dl>
-      </li>
-                        <li>
-        <dl class="s5">
-          <dt>
-            商城与你          </dt>
-                              <dd><i></i><a href="#" title="关于我们"> 关于我们 </a></dd>
-                    <dd><i></i><a href="#" title="隐私保护"> 隐私保护 </a></dd>
-                            </dl>
-      </li>
-                </ul>
-      </div>
+            <li>
+                <dl class="s1">
+                    <dt>购物指南</dt>
+                    <dd> <i></i>
+                        <a href="#" title="购物流程">购物流程</a>
+                    </dd>
+                    <dd> <i></i>
+                        <a href="#" title="联系客服">联系客服</a>
+                    </dd>
+                </dl>
+            </li>
+            <li>
+                <dl class="s2">
+                    <dt>支付方式</dt>
+                    <dd>
+                        <i></i>
+                        <a href="#" title="支付宝支付">支付宝支付</a>
+                    </dd>
+                    <dd>
+                        <i></i>
+                        <a href="#" title="银行卡支付">银行卡支付</a>
+                    </dd>
+                </dl>
+            </li>
+            <li>
+                <dl class="s3">
+                    <dt>配送方式</dt>
+                    <dd>
+                        <i></i>
+                        <a href="#" title="配送服务说明">配送服务说明</a>
+                    </dd>
+                    <dd>
+                        <i></i>
+                        <a href="#" title="配送服务收费标准">配送服务收费标准</a>
+                    </dd>
+                </dl>
+            </li>
+            <li>
+                <dl class="s4">
+                    <dt>商务合作</dt>
+                    <dd>
+                        <i></i>
+                        <a href="#" title="技术服务">技术服务</a>
+                    </dd>
+                    <dd>
+                        <i></i>
+                        <a href="#" title="广告服务">广告服务</a>
+                    </dd>
+                </dl>
+            </li>
+            <li>
+                <dl class="s5">
+                    <dt>商城与你</dt>
+                    <dd>
+                        <i></i>
+                        <a href="#" title="关于我们">关于我们</a>
+                    </dd>
+                    <dd>
+                        <i></i>
+                        <a href="#" title="隐私保护">隐私保护</a>
+                    </dd>
+                </dl>
+            </li>
+        </ul>
+    </div>
 </div>
 <div id="footer" class="wrapper">
-  <p><a href="./aisy_files/aisy.html">首页</a>
-                                        | <a href="#">招聘英才</a>
-                | <a target="_blank" href="#">合作及洽谈</a>
-                | <a target="_blank" href="#">联系我们</a>
-                | <a target="_blank" href="#">关于我们</a>
-              </p>
-  Copyright 2015 爱十堰商城 Inc.,All rights reserved.<br>
-  Powered by <span class="vol"><font class="b">A</font><font class="o">iay</font></span><img src="../skin/new_index/images/icplogo.jpg" width="24px" data-bd-imgshare-binded="1">鄂ICP08004371<br>
-  <img src="../skin/new_index/images/ghs.png" width="24px" data-bd-imgshare-binded="1">鄂公网安备 42030302000120号
-  <script src="./aisy_files/z_stat.php" language="JavaScript"></script><script src="./aisy_files/core.php" charset="utf-8" type="text/javascript"></script><a href="#" target="_blank" title="站长统计">站长统计</a> </div>
+    <p>
+        <a href="./aisy_files/aisy.html">首页</a>
+        |
+        <a href="#">招聘英才</a>
+        |
+        <a target="_blank" href="#">合作及洽谈</a>
+        |
+        <a target="_blank" href="#">联系我们</a>
+        |
+        <a target="_blank" href="#">关于我们</a>
+    </p>
+    Copyright 2015 爱十堰商城 Inc.,All rights reserved.
+    <br>
+    Powered by
+    <span class="vol"> <font class="b">A</font> <font class="o">iay</font>
+    </span>
+    <img src="../skin/new_index/images/icplogo.jpg" width="24px" data-bd-imgshare-binded="1">
+    鄂ICP08004371
+    <br>
+    <img src="../skin/new_index/images/ghs.png" width="24px" data-bd-imgshare-binded="1">
+    鄂公网安备 42030302000120号
+    <script src="./aisy_files/z_stat.php" language="JavaScript"></script>
+    <script src="./aisy_files/core.php" charset="utf-8" type="text/javascript"></script>
+    <a href="#" target="_blank" title="站长统计">站长统计</a>
+</div>
 <div style="text-align:center;" class="tools">
 </div>
 <script type="text/javascript" src="../skin/new_index/js/jquery.cookie.js"></script>
@@ -812,7 +877,7 @@ $('#nav').onePageNav({
 <script type="text/javascript" src="../skin/new_index/js/perfect-scrollbar.min.js"></script> 
 <script type="text/javascript" src="../skin/new_index/js/jquery.qtip.min.js"></script>
 <link href="../skin/new_index/css/jquery.qtip.min.css" rel="stylesheet" type="text/css">
-<!-- 对比 --> 
+<!-- 对比 -->
 <script src="../skin/new_index/js/compare.js"></script> 
 <script type="text/javascript">
 $(function(){
