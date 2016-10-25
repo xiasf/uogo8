@@ -724,7 +724,6 @@
     {foreach:items=Api::run('getCategoryListTopIndex') item=$first}
     {set:$sortIndex++;}
     {set:$clasdId=$first['id'];}
-    <img src="../skin/new_index/images/6_04736865558556649_240.jpg">
     <!-- 1F -->
     <div class="home-standard-layout wrapper style-{$styleList[$sortIndex]}" f="{$sortIndex}" name="style-pink" id="style-pink">
         <!-- 一级分类 -->
@@ -773,6 +772,7 @@
                             </dt>
                             <dd class="goods-thumb">
                                 <a target="_blank" href="{url:/site/products/id/$item[id]}">
+                                <img src="../skin/new_index/images/6_04736865558556649_240.jpg">
                                     <img src="../skin/new_index/images/6_04736865558556649_240.jpg" alt="{$item['name']}" data-bd-imgshare-binded="1">
                                     <!-- <img src="{url:/pic/thumb/img/$item[img]/w/218/h/218}" alt="{$item['name']}" data-bd-imgshare-binded="1"> -->
                                 </a>
