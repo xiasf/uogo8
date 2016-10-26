@@ -985,7 +985,6 @@
     }
     {foreach:items=Api::run('getCategoryListTopIndex', 3) item=$first}
     {set:$sortIndex++;}
-    {set:$clasdId=$first['id'];}
     <!-- 1F -->
     <div class="home-standard-layout wrapper style-{$styleList[$sortIndex]}" f="{$sortIndex}" name="style-pink" id="style-pink">
         <!-- 一级分类 -->
@@ -998,7 +997,7 @@
             </div>
             <!-- 根据（一级）分类ID获取【首页栏目大图】 -->
             <div class="left-ads">
-                {foreach:items=Api::run('getadmanagegoodidTwo',array('#goods_cat_id#',$clasdId)) item=$second}
+                {foreach:items=Api::run('getadmanagegoodidTwo',array('#goods_cat_id#',$first['id'])) item=$second}
                 <a href="{url:$second['link']}" title="{url:$second['name']}" target="_blank">
                     <img src="http://www.itaohz.com/upload/2016/02/26/20160226153927860.jpg" alt="" data-bd-imgshare-binded="1">
                     <!-- <img src="{url:$second['content']}" alt="" data-bd-imgshare-binded="1"> -->

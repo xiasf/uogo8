@@ -492,10 +492,9 @@
                     热门搜索：
                     <ul>
                         <li>
-                            <a _href="http://www.aisy.cn/index.php?act=search&op=index&keyword=%E5%AD%9D%E4%BA%B2%E9%9E%8B" href="#">孝亲鞋</a>
-                        </li>
-                        <li>
-                            <a _href="http://www.aisy.cn/index.php?act=search&op=index&keyword=%E7%8E%89%E8%86%B3%E6%88%BF" href="#">玉膳房</a>
+                            {foreach:items=Api::run('getKeywordAllList',5)}
+                            <a href="{url:/site/search_list/word/$keyword}">{echo:urlencode($item['word'])}</a>
+                            {/foreach}
                         </li>
                     </ul>
                 </div>
@@ -619,7 +618,7 @@
                         {foreach:items=Api::run('getCategoryListTop') item=$first}
                         {set:$sortIcon++;}
                         {set:$clasdId=$first['id'];}
-                        <li cat_id="{$first['id']}" class="a"icon{$sortIcon}"">
+                        <li cat_id="{$first['id']}" class="a{$sortIcon}">
                             <div class="tx">
                                 <a href="{url:/site/pro_list/cat/$first[id]}" target="_blank">
                                     <i></i>
