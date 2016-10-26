@@ -1041,3 +1041,65 @@ label {
     height: 23px;
     background: url(http://images6.baihe.com/icon/droparrow.gif) no-repeat right center;
 }
+.selCity {
+    position: relative;
+    float: left;
+    padding-right: 5px;
+}
+.selCity input {
+    cursor: pointer;
+}
+.city_input {
+    width: 167px;
+    _width: 166px;
+    background: #fff url(http://images6.baihe.com/icon/droparrow.gif) no-repeat right center;
+}
+input {
+    height: 24px;
+    padding: 0 7px;
+    font-size: 13px;
+    color: #666;
+    border: 1px solid #ddd;
+}
+.provinceCityAll {
+    z-index: 30;
+}
+.provinceCityAll {
+    width: 306px;
+    position: absolute;
+    background: #FFF;
+    display: none;
+}
+.provinceCityAll .con {
+    height: 120px;
+    border: 1px solid #ddd;
+    padding: 8px 0;
+    zoom: 1;
+}
+.provinceCityAll .hotCityAll {
+    float: left;
+    padding: 0 0 0 4px;
+    height: 120px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.provinceCityAll .provinceAll, .provinceCityAll .cityAll {
+    height: 120px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.provinceCityAll .provinceAll .list li a, .provinceCityAll .provinceAll .list li a:visited, .provinceCityAll .cityAll li a, .provinceCityAll .cityAll li a:visited, .provinceCityAll .hotCityAll li a {
+    display: block;
+    width: 64px;
+    color: #666;
+    white-space: nowrap;
+    word-break: keep-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.provinceCityAll .provinceAll .list li, .provinceCityAll .cityAll .list li, .provinceCityAll .cityAll li {
+    float: left;
+    width: 64px;
+    overflow: hidden;
+    padding: 3px 0 3px 7px;
+}
