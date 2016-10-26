@@ -494,7 +494,7 @@
                         <li>
                             {foreach:items=Api::run('getKeywordAllList',5)}
                             {set:$keyword = urlencode($item['word'])}
-                            <a href="{url:/site/search_list/word/$keyword}">{$keyword}</a>
+                            <a href="{url:/site/search_list/word/$keyword}">{$item['word']}</a>
                             {/foreach}
                         </li>
                     </ul>
