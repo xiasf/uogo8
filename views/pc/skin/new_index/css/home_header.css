@@ -363,7 +363,10 @@ height: 14px;
 margin: 4px 0;
 line-height: 14px;
 padding: 0 8px;
-border-left: 1px solid #ccc;
+border-right: 1px solid #ccc;
+}
+.category ul li .pop dd em:last-child {
+	border: 0;
 }
 .category ul li .pop .act  {
 	height: 80px;
