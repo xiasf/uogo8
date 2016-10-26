@@ -258,7 +258,17 @@ article, aside, dialog, footer, header, section, footer, nav, figure, menu { dis
 .home-standard-layout .middle-goods-list ul { width: 776px; height: 498px; margin: 0  -1px -1px 0; }
 .home-standard-layout .middle-goods-list ul li { width: 193px; height: 248px; float: left; border-style: solid; border-width: 0 1px 1px 0; border-color: transparent #DDD #DDD transparent; overflow: hidden;}
 .home-standard-layout .middle-goods-list dl { width: 160px; margin: 15px auto auto; position: relative; z-index: 1;}
-.home-standard-layout .middle-goods-list dl dt.goods-name { font-family: Tahoma; line-height: 16px; width: 160px; height: 32px; position: absolute; z-index: auto; top: 168px; left: 0; overflow: hidden;}
+.home-standard-layout .middle-goods-list dl dt.goods-name {
+    /* font-family: Tahoma; */
+    line-height: 17px;
+    width: 160px;
+    height: 32px;
+    position: absolute;
+    z-index: auto;
+    top: 168px;
+    left: 0;
+    overflow: hidden;
+}
 .home-standard-layout .middle-goods-list dl dd.goods-thumb { width: 160px; height: 160px; position: absolute; z-index: auto; top: 0; left: 0;}
 .home-standard-layout .middle-goods-list dl dd.goods-thumb a { text-align: center; vertical-align: middle; display: table-cell; *display: block; width: 160px; height: 160px; overflow: hidden; }
 .home-standard-layout .middle-goods-list dl dd.goods-thumb img { max-width: 160px; max-height: 160px; margin-top:expression(160-this.height/2); *margin-top:expression(80-this.height/2);}
