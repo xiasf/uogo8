@@ -1,12 +1,12 @@
-{set:
-	$site_config=new Config('site_config');
-	$seo_data=array();
-	$seo_data['title']=$site_config->name;
-	$seo_data['title'].=$site_config->index_seo_title;
-	$seo_data['keywords']=$site_config->index_seo_keywords;
-	$seo_data['description']=$site_config->index_seo_description;
-	seo::set($seo_data);
-}
+    {set:
+    	$site_config=new Config('site_config');
+    	$seo_data=array();
+    	$seo_data['title']=$site_config->name;
+    	$seo_data['title'].=$site_config->index_seo_title;
+    	$seo_data['keywords']=$site_config->index_seo_keywords;
+    	$seo_data['description']=$site_config->index_seo_description;
+    	seo::set($seo_data);
+    }
 
     <div class="nch-breadcrumb-layout" style="padding-top:12px"></div>
 

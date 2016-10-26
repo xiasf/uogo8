@@ -180,13 +180,14 @@
 	padding-bottom: 7px;
 }
 .category ul li .tx{
-	line-height: 35px;
-	height: 35px;
-	background-color: #4c88e0;
-	padding-left: 10px;
-/*	background: url("../images/top_bg.png") no-repeat scroll -150px -10px transparent;*/
-
-	_background-image: none;
+    line-height: 35px;
+    height: 35px;
+    background-color: #4c88e0;
+    padding-left: 10px;
+    /* background: url("../images/top_bg.png") no-repeat scroll -150px -10px transparent; */
+    _background-image: none;
+    border-top: 1px #3966A9 solid;
+    box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12);
 }
 .category ul li .tx .arrow { background: url("../images/top_bg.png") no-repeat scroll -150px -10px transparent;
 width: 5px;
@@ -219,6 +220,7 @@ position: relative;
 	margin-top: 5px;
 	text-decoration: none;
 }
+/*
 .category ul li.a1 .tx a i {background-image: url(/data/upload/shop/common/a1.png);}
 .category ul li.a2 .tx a i {background-image: url(/data/upload/shop/common/a2.png);}
 .category ul li.a3 .tx a i {background-image: url(/data/upload/shop/common/a3.png);}
@@ -236,6 +238,20 @@ position: relative;
 .category ul li.a6:hover .tx a i {background-image: url(../images/sub_class/06.png);}
 .category ul li.a7:hover .tx a i {background-image: url(../images/sub_class/07.png);}
 .category ul li.a8:hover .tx a i {background-image: url(../images/sub_class/08.png);}
+*/
+
+.category ul li .tx a i {    transition: all 0.2s ease-out; width: 21px; height: 32px; margin-right: 6px;margin-top:2px;  background: url(../../default/images/menuall.png); display: block; overflow: hidden; float: left }
+.category ul li.a1 .tx a i { background-position: 0 3px; }
+.category ul li.a2 .tx a i { background-position: 0 -27px; }
+.category ul li.a3 .tx a i { background-position: 0 -58px; }
+.category ul li.a4 .tx a i { background-position: 0 -88px; }
+.category ul li.a5 .tx a i { background-position: 0 -118px; }
+.category ul li.a6 .tx a i { background-position: -1px -268px; }
+.category ul li.a7 .tx a i { background-position: 0 -208px; }
+.category ul li.a8 .tx a i { background-position: 0 -178px; }
+.category ul li.a9 .tx a i { background-position: 0 -238px; }
+.category ul li.a10 .tx a i { background-position: 0 -148px; }
+.category ul li.a11 .tx a i { background-position: 0 -298px; }
 
 .category ul li dl.sub_class{
 	clear: both;
@@ -357,16 +373,19 @@ border-left: 1px solid #ccc;
 	display: block;
 }
 .category ul li:hover {
-	background-color: #fcfcfc;
+	background-color: #3966A9;
 }
 .category ul li:hover .tx {
-	background-color: #f5f5f5;
+	background-color: #3966A9;
 }
 .category ul li:hover .tx a {
-	color: #333333;
+	color: #fff;
+}
+.category ul li:hover .tx a:hover {
+    color: #fff;
 }
 .category ul li:hover .tx a i {
-	background-position: 0px -25px;
+	background-position-x: -21px;
 }
 .category ul li:hover .pop{
 	display: block;
@@ -381,9 +400,9 @@ border-left: 1px solid #ccc;
 	color: #6e6e6e;
 }
 .category ul li:hover a {
-	color: #666666;
+	/*color: #666666;*/
 }
 .category ul li:hover a:hover{
-	color: #cd0606;
+	/*color: #cd0606;*/
 }
 
