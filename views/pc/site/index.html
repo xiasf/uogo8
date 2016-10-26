@@ -430,6 +430,46 @@
 
     <!-- 美女店长 -->
     <div class="wrapper mm-shopkeeper">
+        <h2 style="z-index:20;">
+            <div class="search">
+                <a href="javascript:;" class="orange" id="searchBtn" onclick="baihe.bhtongji.clickTongJi({'event':'3','spm':'4.1.1.891.2328'});">搜索</a>
+                <ul>
+                    <li id="sex">
+                        <label style="cursor: pointer;">我要找：</label>
+                        <div class="selectWrapper" style="z-index: 3; width: 61px;"><div><span style="width: 30px;">店长</span><a href="javascript:;" class="jqTransformSelectOpen"></a></div><ul style="overflow: hidden; width: 61px; visibility: visible; height: 50px; display: none;"><li><a href="javascript:void(0);" index="0" class="selected">店长</a></li><li><a href="javascript:void(0);" index="1">店铺</a></li></ul><select class="jqTransformHidden">
+                            <option value="0">店长</option>
+                            <option value="1">店铺</option>
+                        </select></div>
+                    </li>
+                    <li id="age">
+                        <label>年龄：</label>
+                        <span id="minage">
+                        <div class="selectWrapper" style="z-index: 2; width: 61px;"><div><span style="width: 30px;">28</span><a href="javascript:;" class="jqTransformSelectOpen"></a></div><ul style="width: 61px; visibility: visible; display: none; overflow-y: auto;"><li><a href="javascript:void(0);" index="0" class="">18</a></li></ul><select class="jqTransformHidden">
+                            <option value="77">77</option>
+                            <option value="98">98</option>
+                        </select></div></span>
+                        <label>至</label>
+                        <span id="maxage">
+                        <div class="selectWrapper" style="z-index: 1; width: 61px;"><div><span style="width: 30px;">39</span><a href="javascript:;" class="jqTransformSelectOpen"></a></div><ul style="width: 61px; visibility: visible; display: none; overflow-y: auto;"><li><a href="javascript:void(0);" index="0" class="">20</a></li></ul><select class="jqTransformHidden">
+                            <option value="20">20</option>
+                        </select></div>
+                    </span>
+                        岁
+                    </li>
+                    <li>
+                        <label>地区：</label>
+                        <div class="selCity" id="">
+                            <input name="" id="district" autocomplete="off" type="text" value="请选择城市名称" class="city_input  inputFocus proCityQueryAll proCitySelAll current2" ov="请选择城市名称" data-val="864211" readonly=""><div class="provinceCityAll" style="top: 24px; left: 0px; display: none;">             <input type="hidden" name="countryVal">             <input type="hidden" name="provinceVal">                <input type="hidden" name="cityVal">              <!--<div class="tabs clearfix">               <ul class="">                 <li><a href="javascript:" class="current" tb="hotCityAll">国家</a></li>               <li><a href="javascript:" tb="provinceAll" id="provinceAll">省份</a></li>                 <li><a href="javascript:" tb="cityAll" id="cityAll">城市</a></li>                 <li><a href="javascript:" tb="countyAll" id="countyAll">区县</a></li>               </ul>             </div>-->           <div class="con">             <div class="hotCityAll invis" style="display: none;">                 <!--<div class="pre"><a></a></div>-->               <div class="list">                    <ul>                      <!--                  <li><a href="javascript:"  class="current">南京</a></li> -->                  </ul>                 </div>                  <!--<div class="next"><a class="can"></a></div>-->                </div>              <div class="provinceAll invis" style="display: block;">               <!--<div class="pre"><a></a></div>-->               <div class="list">                    <ul>                      <!--                  <li><a href="javascript:"  class="current">江西省</a></li> -->                 <li><a style="background: none repeat scroll 0% 0% transparent; border: 0px none;" href="javascript:onclick=viewAllCities('8611', '北京市');" id="8611">北京市</a></li><li><a style="background: none repeat scroll 0% 0% transparent; border: 0px none;" href="javascript:onclick=viewAllCities('8612', '天津市');" id="8612">天津市</a></li><li><a style="background: none repeat scroll 0% 0% transparent; border: 0px none;" href="javascript:onclick=viewAllCities('8613', '河北省');" id="8613">河北省</a></li><li><a style="background: none repeat scroll 0% 0% transparent; border: 0px none;" href="javascript:onclick=viewAllCities('8614', '山西省');" id="8614">山西省</a></li><li><a style="background: none repeat scroll 0% 0% transparent; border: 0px none;" href="javascript:onclick=viewAllCities('8615', '内蒙古自治区');" id="8615">内蒙古自治区</a></li><li><a style="background: none repeat scroll 0% 0% transparent; border: 0px none;" href="javascript:onclick=viewAllCities('8621', '辽宁省');" id="8621">辽宁省</a></li><li><a style="background: none repeat scroll 0% 0% transparent; border: 0px none;" href="javascript:onclick=viewAllCities('8622', '吉林省');" id="8622">吉林省</a></li><li><a style="background: none repeat scroll 0% 0% transparent; border: 0px none;" href="javascript:onclick=viewAllCities('8623', '黑龙江省');" id="8623">黑龙江省</a></li><li><a style="background: none repeat scroll 0% 0% transparent; border: 0px none;" href="javascript:onclick=viewAllCities('8631', '上海市');" id="8631">上海市</a></li><li><a style="background: none repeat scroll 0% 0% transparent; border: 0px none;" href="javascript:onclick=viewAllCities('8632', '江苏省');" id="8632">江苏省</a></li><li><a style="background: none repeat scroll 0% 0% transparent; border: 0px none;" href="javascript:onclick=viewAllCities('8633', '浙江省');" id="8633">浙江省</a></li><li><a style="background: none repeat scroll 0% 0% transparent; border: 0px none;" href="javascript:onclick=viewAllCities('8634', '安徽省');" id="8634">安徽省</a></li><li><a style="background: none repeat scroll 0% 0% transparent; border: 0px none;" href="javascript:onclick=viewAllCities('8635', '福建省');" id="8635">福建省</a></li><li><a style="background: none repeat scroll 0% 0% transparent; border: 0px none;" href="javascript:onclick=viewAllCities('8636', '江西省');" id="8636">江西省</a></li><li><a style="background: none repeat scroll 0% 0% transparent; border: 0px none;" href="javascript:onclick=viewAllCities('8637', '山东省');" id="8637">山东省</a></li><li><a style="background: none repeat scroll 0% 0% transparent; border: 0px none;" href="javascript:onclick=viewAllCities('8641', '河南省');" id="8641">河南省</a></li><li><a style="background: none repeat scroll 0% 0% transparent; border: 0px none;" href="javascript:onclick=viewAllCities('8642', '湖北省');" id="8642" class="current">湖北省</a></li><li><a style="background: none repeat scroll 0% 0% transparent; border: 0px none;" href="javascript:onclick=viewAllCities('8643', '湖南省');" id="8643">湖南省</a></li><li><a style="background: none repeat scroll 0% 0% transparent; border: 0px none;" href="javascript:onclick=viewAllCities('8644', '广东省');" id="8644">广东省</a></li><li><a style="background: none repeat scroll 0% 0% transparent; border: 0px none;" href="javascript:onclick=viewAllCities('8645', '广西壮族自治区');" id="8645">广西壮族自治区</a></li><li><a style="background: none repeat scroll 0% 0% transparent; border: 0px none;" href="javascript:onclick=viewAllCities('8646', '海南省');" id="8646">海南省</a></li><li><a style="background: none repeat scroll 0% 0% transparent; border: 0px none;" href="javascript:onclick=viewAllCities('8650', '重庆市');" id="8650">重庆市</a></li><li><a style="background: none repeat scroll 0% 0% transparent; border: 0px none;" href="javascript:onclick=viewAllCities('8651', '四川省');" id="8651">四川省</a></li><li><a style="background: none repeat scroll 0% 0% transparent; border: 0px none;" href="javascript:onclick=viewAllCities('8652', '贵州省');" id="8652">贵州省</a></li><li><a style="background: none repeat scroll 0% 0% transparent; border: 0px none;" href="javascript:onclick=viewAllCities('8653', '云南省');" id="8653">云南省</a></li><li><a style="background: none repeat scroll 0% 0% transparent; border: 0px none;" href="javascript:onclick=viewAllCities('8654', '西藏自治区');" id="8654">西藏自治区</a></li><li><a style="background: none repeat scroll 0% 0% transparent; border: 0px none;" href="javascript:onclick=viewAllCities('8661', '陕西省');" id="8661">陕西省</a></li><li><a style="background: none repeat scroll 0% 0% transparent; border: 0px none;" href="javascript:onclick=viewAllCities('8662', '甘肃省');" id="8662">甘肃省</a></li><li><a style="background: none repeat scroll 0% 0% transparent; border: 0px none;" href="javascript:onclick=viewAllCities('8663', '青海省');" id="8663">青海省</a></li><li><a style="background: none repeat scroll 0% 0% transparent; border: 0px none;" href="javascript:onclick=viewAllCities('8664', '宁夏回族自治区');" id="8664">宁夏回族自治区</a></li><li><a style="background: none repeat scroll 0% 0% transparent; border: 0px none;" href="javascript:onclick=viewAllCities('8665', '新疆维吾尔自治区');" id="8665">新疆维吾尔自治区</a></li><li><a style="background: none repeat scroll 0% 0% transparent; border: 0px none;" href="javascript:onclick=viewAllCities('8671', '台湾省');" id="8671">台湾省</a></li><li><a style="background: none repeat scroll 0% 0% transparent; border: 0px none;" href="javascript:onclick=viewAllCities('8681', '香港特别行政区');" id="8681">香港特别行政区</a></li><li><a style="background: none repeat scroll 0% 0% transparent; border: 0px none;" href="javascript:onclick=viewAllCities('8682', '澳门特别行政区');" id="8682">澳门特别行政区</a></li><li><a style="background: none repeat scroll 0% 0% transparent; border: 0px none;" href="javascript:onclick=viewAllCities('8683', '钓鱼岛');" id="8683">钓鱼岛</a></li><li><a style="background: none repeat scroll 0% 0% transparent; border: 0px none;" href="javascript:onclick=viewAllCities('-1', '其他');" id="-1">其他</a></li></ul>                 </div>                  <!--<div class="next"><a class="can"></a></div>-->                </div>              <div class="cityAll invis" style="display: none;">                <!--<div class="pre"><a></a></div>-->               <div class="list">                    <ul>                      <!--                  <li><a href="javascript:"  class="current">南京</a></li> -->                  </ul>                 </div>                  <!--<div class="next"><a class="can"></a></div>-->                </div>              <!--<div class="cityAll invis">               <div class="pre"><a></a></div>                  <div class="list">                    <ul>                    </ul>                 </div>                  <div class="next"><a class="can"></a></div>               </div>-->             </div>            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="checkboxWrapper"><a href="javascript:void(0);" class="checkbox checkboxChecked"></a><input name="" type="checkbox" id="photo" class="jqTransformHidden"></span>
+                        <label style="cursor: pointer;">有照片</label>
+                    </li>
+                </ul>
+            </div>
+            人气店主
+        </h2>
         <div class="picList">
             <div class="icon">
                 <a href="javascript:;" onclick="baihe.bhtongji.tongji({'event':'3','spm':'4.1.1.892.2329'});" class="icon01" sexattr="0">女强人</a>
@@ -531,118 +571,6 @@
                             </div>
                         </a>
                     </dd>
-                </dl>
-                <dl>
-                    <dd>
-                        <a href="javascript:void(0)" target="_blank">
-                            <img src="http://images8.baihe.com/member/highQuality/115086940.jpg" alt="">            
-                            <div class="data" style="bottom: -30px;">
-                                <div class="back"></div>
-                                <p>
-                                    <span>22岁&nbsp;苗条</span>
-                                    木美
-                                </p>
-                            </div>
-                        </a>
-                        <a href="javascript:void(0)" target="_blank">
-                            <img src="http://images8.baihe.com/member/highQuality/117599758.jpg" alt="">            
-                            <div class="data">
-                                <div class="back"></div>
-                                <p>
-                                    <span>23岁&nbsp; 本</span>
-                                    妮妮
-                                </p>
-                            </div>
-                        </a>
-                        <a href="javascript:void(0)" target="_blank">
-                            <img src="http://images8.baihe.com/member/highQuality/76884790.jpg" alt="">            
-                            <div class="data" style="bottom: -30px;">
-                                <div class="back"></div>
-                                <p>
-                                    <span>26岁&nbsp;匀称</span>
-                                    敲痛我.
-                                </p>
-                            </div>
-                        </a>
-                        <a href="javascript:void(0)" target="_blank">
-                            <img src="http://images8.baihe.com/member/highQuality/66183939.jpg" alt="">            
-                            <div class="data" style="bottom: -30px;">
-                                <div class="back"></div>
-                                <p>
-                                    <span>28岁&nbsp;匀称</span>
-                                    晶晶
-                                </p>
-                            </div>
-                        </a>
-                    </dd>
-                    <dt>
-                        <a href="javascript:void(0)" target="_blank">
-                            <img src="http://images8.baihe.com/member/highQuality/103774630.jpg" alt="">            
-                            <div class="data" style="bottom: -30px;">
-                                <div class="back"></div>
-                                <p>
-                                    <span>28岁&nbsp;匀称</span>
-                                    熊熊
-                                </p>
-                            </div>
-                        </a>
-                    </dt>
-                </dl>
-                <dl>
-                    <dd>
-                        <a href="javascript:void(0)" target="_blank">
-                            <img src="http://images8.baihe.com/member/highQuality/115220010.jpg" alt="">            
-                            <div class="data" style="bottom: -30px;">
-                                <div class="back"></div>
-                                <p>
-                                    <span>23岁&nbsp;高挑</span>
-                                    Tam.
-                                </p>
-                            </div>
-                        </a>
-                        <a href="javascript:void(0)" target="_blank">
-                            <img src="http://images8.baihe.com/member/highQuality/105594383.jpg" alt="">            
-                            <div class="data" style="bottom: -30px;">
-                                <div class="back"></div>
-                                <p>
-                                    <span>25岁&nbsp;苗条</span>
-                                    默默
-                                </p>
-                            </div>
-                        </a>
-                        <a href="javascript:void(0)" target="_blank">
-                            <img src="http://images8.baihe.com/member/highQuality/117437371.jpg" alt="">            
-                            <div class="data">
-                                <div class="back"></div>
-                                <p>
-                                    <span>22岁&nbsp;匀称</span>
-                                    Cc
-                                </p>
-                            </div>
-                        </a>
-                        <a href="javascript:void(0)" target="_blank">
-                            <img src="http://images8.baihe.com/member/highQuality/64671280.jpg" alt="">            
-                            <div class="data">
-                                <div class="back"></div>
-                                <p>
-                                    <span>28岁&nbsp;高挑</span>
-                                    山楂丹
-                                </p>
-                            </div>
-                        </a>
-                    </dd>
-                    <dt>
-                        <a href="javascript:void(0)" target="_blank">
-                            <img src="http://images8.baihe.com/member/highQuality/116943626.jpg" alt="">            
-                            <div class="data" style="bottom: -30px;">
-                                <div class="back"></div>
-                                <p>
-                                    <span>22岁&nbsp;苗条</span>
-                                    米多
-                                </p>
-                            </div>
-                        </a>
-                    </dt>
                 </dl>
             </div>
         </div>

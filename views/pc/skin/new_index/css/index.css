@@ -780,7 +780,7 @@ opacity: 0.5;
 .mm-shopkeeper .picList {
     position: relative;
     width: 1004px;
-    height: 500px;
+    /*height: 500px;*/
     margin-bottom: 34px;
     overflow: hidden;
     zoom: 1;
@@ -930,4 +930,114 @@ opacity: 0.5;
     -moz-transform: scale(1.2);
     -ms-transform: scale(1.2);
     transform: scale(1.2);
+}
+
+.mm-shopkeeper h2 {
+    position: relative;
+    height: 33px;
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #dddddd;
+    zoom: 1;
+}
+.search {
+    float: right;
+    width: 880px;
+    height: 25px;
+    font-size: 13px;
+    color: #bdbdbd;
+    line-height: 25px;
+}
+.search .orange {
+    float: right;
+    width: 80px;
+}
+.orange {
+    display: block;
+    height: 25px;
+    font: 13px/24px "Microsoft Yahei";
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    background: #ff7f00;
+    overflow: hidden;
+    zoom: 1;
+}
+.search ul {
+    position: relative;
+    z-index: 99;
+    float: right;
+}
+.search ul li {
+    position: relative;
+    z-index: 80;
+    float: left;
+    height: 25px;
+    padding-right: 10px;
+}
+label {
+    float: left;
+    line-height: 24px;
+    color: #666;
+    padding: 0 5px;
+}
+.selectWrapper {
+    position: relative;
+    float: left;
+    height: 24px;
+    margin-right: 5px;
+    border: 1px solid #ddd;
+    background: #fff;
+}
+.selectWrapper ul {
+    position: absolute;
+    top: 24px;
+    left: -1px;
+    width: 29px;
+    border: 1px solid #ddd;
+    display: none;
+    margin: 0px;
+    padding: 0px;
+    height: 250px;
+    overflow: auto;
+    background: #fff;
+    overflow-y: auto;
+    z-index: 10;
+}
+.jqTransformHidden {
+    display: none;
+}
+.selectWrapper ul li {
+    line-height: 24px;
+}
+.selectWrapper ul a {
+    display: block;
+    padding: 0 0 0 5px;
+    text-decoration: none;
+    color: #666;
+    background-color: #FFF;
+}
+.selectWrapper div span {
+    float: none;
+    position: absolute;
+    white-space: nowrap;
+    word-break: keep-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left: 5px;
+    line-height: 24px;
+    color: #666;
+    overflow: hidden;
+    cursor: pointer;
+    /* border: 1px solid #CCCCCC; */
+    /* border-right: none; */
+}
+.selectWrapper a.jqTransformSelectOpen {
+    display: block;
+    position: absolute;
+    right: 0px;
+    width: 31px;
+    height: 23px;
+    background: url(http://images6.baihe.com/icon/droparrow.gif) no-repeat right center;
 }
