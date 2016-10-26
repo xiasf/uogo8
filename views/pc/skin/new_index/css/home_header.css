@@ -103,7 +103,7 @@
 .public-nav-layout .all-category .title { line-height: 21px; height: 24px; padding: 10px;    box-shadow: 0 0px 4px rgba(0,0,0,1);}
 .public-nav-layout .all-category .title h3 a { font-family: \5FAE\8F6F\96C5\9ED1, \9ED1\4F53; font-size: 14px; color: #FFF; float: left; margin-left: 4px;}
 
-.public-nav-layout .all-category .title i { font-size: 0px; line-height: 0; width: 0px; height: 0px; float: right; margin: 10px 4px 0 0; border-width: 5px; border-color: #FFF transparent transparent transparent; border-style: solid dashed dashed dashed;}
+.public-nav-layout .all-category .title i { font-size: 0px; line-height: 0; width: 0px; height: 0px; float: right; margin: 10px 12px 0 0; border-width: 5px; border-color: #FFF transparent transparent transparent; border-style: solid dashed dashed dashed;}
  
 .public-nav-layout .all-category .category { display:none; /*filter:progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr='#19000000', endColorstr='#19000000'); background:rgba(0,0,0,0.1) #358000; width: 190px; height:480px;*/}
 .public-nav-layout .all-category:hover .category { display:block;}

@@ -493,7 +493,8 @@
                     <ul>
                         <li>
                             {foreach:items=Api::run('getKeywordAllList',5)}
-                            <a href="{url:/site/search_list/word/$keyword}">{echo:urlencode($item['word'])}</a>
+                            {set:$keyword = urlencode($item['word'])}
+                            <a href="{url:/site/search_list/word/$keyword}">{$keyword}</a>
                             {/foreach}
                         </li>
                     </ul>
