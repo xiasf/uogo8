@@ -491,12 +491,10 @@
                 <div class="keyword">
                     热门搜索：
                     <ul>
-                        <li>
-                            {foreach:items=Api::run('getKeywordAllList',5)}
-                            {set:$keyword = urlencode($item['word'])}
-                            <a href="{url:/site/search_list/word/$keyword}">{$item['word']}</a>
-                            {/foreach}
-                        </li>
+                        {foreach:items=Api::run('getKeywordAllList',5)}
+                        {set:$keyword = urlencode($item['word'])}
+                        <li><a href="{url:/site/search_list/word/$keyword}">{$item['word']}</a></li>
+                        {/foreach}
                     </ul>
                 </div>
             </div>
