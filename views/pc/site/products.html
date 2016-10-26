@@ -30,7 +30,7 @@
             <!--商品价格-->
             <div class="bg_price_img">
           <div class="price_list" id="show_goods_price"> 市场价：<s id="data_marketPrice">{if:$minMarketPrice != $maxMarketPrice}￥{$minMarketPrice} - ￥{$maxMarketPrice}{else:}￥{$market_price}{/if}</s><br>
-                <b class="b1" id="priceType">淘黄州价</b> <em id='priceLi'></em></div>
+                <b class="b1" id="priceType">优购价</b> <em id='priceLi'></em></div>
         </div>
             
             <!--商品价格模板--> 
@@ -74,7 +74,7 @@
           <div class="htr_line"></div>
           {if:$store_nums <= 0}
           <div class="buy_out">
-                <p>淘黄州提示：该商品暂时未上架，无法在线购买，敬请期待。。。</p>
+                <p>优购提示：该商品暂时未上架，无法在线购买，敬请期待。。。</p>
                 <a href="{url:/simple/arrival/goods_id/$id}" class="btn_msg">上架通知我</a> </div>
           {else:}
           {if:$spec_array}

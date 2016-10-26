@@ -168,7 +168,15 @@ ul.auto_list li:hover { background-color: #fef0e5 }
 .header_nav li .box h4 { background-color: #f8f8f8; padding: 0 10px }
 .header_nav li .box h4 a { color: #333; font-size: 12px; font-weight: bold; }
 /*header--index ---position*/
-.header_nav .mall_index_shop { position: absolute; height: 400px; left: 0; top: 43px; background: url(../images/bg_banner_left.jpg) no-repeat; width: 220px; text-align: left;}
+.header_nav .mall_index_shop { 
+    position: absolute;
+    /* height: 427px; */
+    left: 0;
+    top: 43px;
+    background: url(../images/bg_banner_left.jpg) repeat;
+    width: 220px;
+    text-align: left;
+}
 .header_nav .mall_index_shop li { width: 200px; text-align: left; margin-right: 35px; line-height: 20px;padding: 10px 0 10px 20px;border-top:dotted 1px #666;}
 .header_nav .mall_index_shop li a { display: inline-block; vertical-align: middle; font-size: 14px; font-weight: normal; }
 .header_nav .mall_index_shop li a:hover { text-decoration: underline; }
