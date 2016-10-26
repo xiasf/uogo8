@@ -1103,3 +1103,11 @@ input {
     overflow: hidden;
     padding: 3px 0 3px 7px;
 }
+.mm-shopkeeper .picList {
+	float: left;
+}
+.mm-shopkeeper .right-sidebar {
+    width: 196px;
+    float: right;
+    overflow: hidden;
+}
