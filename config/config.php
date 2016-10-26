@@ -7,7 +7,7 @@
   'DB' => 
   array (
     'type' => 'mysqli',
-    'tablePre' => 'itaohz_',
+    'tablePre' => 'uogo8_',
     'read' => 
     array (
       0 => 
