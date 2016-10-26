@@ -11,7 +11,7 @@
  */
 class Site extends IController
 {
-    public $layout='site';
+    public $layout='site_o';
 
 	function init()
 	{
@@ -21,7 +21,7 @@ class Site extends IController
 
 	function index()
 	{
-
+		$this->layout = 'site';
 		$siteConfigObj = new Config("site_config");
 		$site_config   = $siteConfigObj->getInfo();
 		$index_slide = isset($site_config['index_slide'])? unserialize($site_config['index_slide']) :array();
@@ -157,6 +157,7 @@ class Site extends IController
 	//[列表页]商品
 	function pro_list()
 	{
+		$this->layout = 'site_o';
 		$this->catId = IFilter::act(IReq::get('cat'),'int');//分类id
 		if($this->catId > 0)
 		{
