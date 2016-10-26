@@ -74,7 +74,7 @@
 .head-user-menu dl dd .incart-goods dd.handle {  width: 32px; top: 22px; right: 10px;}
 .head-user-menu dl dd .checkout { background-color: #F0F0F0; text-align: right; padding: 8px; overflow: hidden;}
 .head-user-menu dl dd .checkout .total-price { line-height: 20px; display: block;}
-.head-user-menu dl dd .checkout .total-price i { font-weight: 600; color: #C00; margin: 0 4px;}
+.head-user-menu dl dd .checkout .total-price i { font-weight: 600; color: #4C88E0; margin: 0 4px;}
 .head-user-menu dl dd .checkout .total-price em { font-family: Verdana, Geneva, sans-serif; font-size: 18px; font-weight: 600; color: #C00;}
 .head-user-menu dl dd .checkout .btn-cart { float: right; clear: both; line-height: 20px; color: #FFF; background-color: #4c88e0; padding: 4px 8px; margin-top: 4px; border-radius: 4px;}
 .head-user-menu dl div.addcart-goods-num { font: bold 11px/14px Verdana; color: #FFF; background: #F00; text-align: center; display: inline-block; height: 16px; min-width: 16px; max-width: auto!important; border: none 0; border-radius: 8px; position: absolute; z-index: 3; top: -4px; left: 20px;}
@@ -321,9 +321,13 @@ white-space: nowrap;
 }
 
 .category ul li .pop dl{
-	padding-top: 6px;
-	padding-bottom: 6px;
-	color: #666666;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    color: #666666;
+    border-top: 1px #E8E8E8 dashed;
+}
+.category ul li .pop dl:first-child {
+	border: 0;
 }
 
 .category ul li .pop dt a{
@@ -346,9 +350,9 @@ white-space: nowrap;
 }
 
 .category ul li .pop dt {
-	width: 95px;
-	padding-left: 0px;
-	padding-top: 1px;
+    width: 150px;
+    padding-left: 0px;
+    padding-top: 1px;
 }
 .category ul li .pop dd {
 	overflow: hidden;
