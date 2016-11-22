@@ -1,0 +1,13 @@
+<div id="head_nav">
+  <div class="head_nav area">
+    <div class="l" id="head_nav_list"> <a href="/" class="on"> 首页 </a> {foreach:items=Api::run('getGuideList')} <a href="{url:$item[link]}">{$item['name']}</a> {/foreach} <span class="n"></span> </div>
+    <!--<div class="daiyanren_link"> <a target="_blank" class="daiyanren" href="#"> <img class="r_img" width="68" height="48" src="skin/res/v3/toolbar_xiena.png"> </a> </div>-->
+    <div class="r_con">
+      <div  class="dropdown sign_panel" id="signinid" style="background-image: url(&quot;http://z3.tuanimg.com/imagev2/site/126x34.31dcb164756e442506db73bd7457c8f7.gif&quot;); background-size: 100% 100%;">
+        <div class="dropdown-menu">
+          <div class="signin-panel unlogin"> <img class="unloginpic" src="http://z2.tuanimg.com/imagev2/site/500x360.02453a77a6924241b3302ad0156c5ef1.500x360.jpg"> </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

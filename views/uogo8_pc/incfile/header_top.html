@@ -1,0 +1,30 @@
+{set:
+	$myCartObj  = new Cart();
+	$myCartInfo = $myCartObj->getMyCart();
+}
+
+<div class="toolbar">
+  <div id="toolbar" class="clear">
+    <div class="tbblock"> <a href="#" class="conftractKf" target="_blank">帮助中心</a><b class="toolbar_sepera_line"></b> <a class="need_margin_left" href="#" target="_blank">卖家中心</a> </div>
+    <div class="tbblock"> <em id="toolbarlogin"><a target="_blank" class="qq" href="#">QQ登录</a><b class="toolbar_sepera_line"></b><a class="sign_login" href="#">登录</a> <a class="sign_login" target="_blank" href="#">免费注册</a><b class="toolbar_sepera_line"></b><span></span><a target="_blank" href="#">我的订单</a><b class="toolbar_sepera_line"></b></em> <em id="toolbarmsg"></em> <em id="toolbarcart"><span class="cart"><a class="need_margin_left" target="_blank" href="{url:/panel/cart}"><!--<i><img src="./【折800官网】精选商品折扣,1折特卖,天天9.9包邮在折800网!_files/cart_icon.png" width="20" height="20"></i>-->购物车<b class="count">{$myCartInfo['count']}</b></a></span><b class="toolbar_sepera_line"></b></em> </div>
+    <div class="tbblock"> <a class="need_margin_right" href="#" target="_blank">黄冈广电旗下网站</a>
+      <div class="phone-qrcode-down"> <span class="top_qrcode"> <a target="_blank" href="#"><b class="toolbar_sepera_line"></b><i class="phone-qrcode-icon"> <img width="13" height="18" src="skin/res/v3/mobile_icon.png"> </i>手机版<b class="toolbar_sepera_line"></b></a> <em></em> </span>
+        <div class="dropdown-menu"> <a target="_blank" href="#"></a> </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="header">
+  <div class="area">
+    <div class="l"> <a href="/"> <span class="l_img"><img width="198" height="45" src="{if:$this->config["logo"]}{url:$this->config["logo"]}{else:}skin/res/deflogo.jpg{/if}" border="0"> </span> </a> <br>
+    </div>
+    <div class="search">
+    {set:$word = IReq::get('word') ? IFilter::act(IReq::get('word'),'text') : '礼物'}
+      <form target="_self" action="{url:/mall/search_list}" method="get">
+        <input type="text" name="keyword" class="txt" value="{$word}" title="" autocomplete="off" data-keyword="手套">
+        <input type="submit" value="搜索" class="smt">
+      </form>
+      <!--<span class="showkw"></span>--></div>
+    <div class="links"> <a href="#" class="head_three_icon"> <img src="../skin/res/v3/toolbar_kuan.jpg" alt="" class="widescreen" width="402" height="63"></a> </div>
+  </div>
+</div>

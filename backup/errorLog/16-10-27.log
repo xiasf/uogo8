@@ -1,0 +1,346 @@
+<ERROR_BLOCK>
+excepInfo: SELECT * FROM uogo8admin WHERE admin_name='xiak' and is_del = 0 limit 1
+ -- Table 'uogo8.uogo8admin' doesn't exist
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-10-27 02:25:07
+#0 IWEB_PATH/lib/web/model/model_class.php(188): IDB->query(SELECT * FROM uogo8admin WHERE admin_name='xiak' and is_del = 0 limit 1)
+#1 IWEB_PATH/lib/web/model/model_class.php(134): IModel->query(admin_name='xiak' and is_del = 0,*,,,1)
+#2 IWEB_PATH/classes/checkrights.php(347): IModel->getObj(admin_name='xiak' and is_del = 0)
+#3 IWEB_PATH/classes/checkrights.php(58): CheckRights::isValidAdmin(xiak,e10adc3949ba59abbe56e057f20f883e)
+#4 IWEB_PATH/classes/checkrights.php(218): CheckRights::getAdmin()
+#5 IWEB_PATH/classes/checkrights.php(146): CheckRights::checkAdminRights()
+#6 : CheckRights::onCreateAction()
+#7 IWEB_PATH/lib/core/interceptor_class.php(102): call_user_func()
+#8 IWEB_PATH/lib/web/controller/controller_class.php(122): IInterceptor::run(onCreateAction)
+#9 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(db_bak)
+#10 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#11 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: SELECT * FROM uogo8_admin WHERE admin_name='xiak' and is_del = 0 limit 1
+ -- Table 'uogo8.uogo8_admin' doesn't exist
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-10-27 02:25:36
+#0 IWEB_PATH/lib/web/model/model_class.php(188): IDB->query(SELECT * FROM uogo8_admin WHERE admin_name='xiak' and is_del = 0 limit 1)
+#1 IWEB_PATH/lib/web/model/model_class.php(134): IModel->query(admin_name='xiak' and is_del = 0,*,,,1)
+#2 IWEB_PATH/classes/checkrights.php(347): IModel->getObj(admin_name='xiak' and is_del = 0)
+#3 IWEB_PATH/classes/checkrights.php(58): CheckRights::isValidAdmin(xiak,e10adc3949ba59abbe56e057f20f883e)
+#4 IWEB_PATH/classes/checkrights.php(218): CheckRights::getAdmin()
+#5 IWEB_PATH/classes/checkrights.php(146): CheckRights::checkAdminRights()
+#6 : CheckRights::onCreateAction()
+#7 IWEB_PATH/lib/core/interceptor_class.php(102): call_user_func()
+#8 IWEB_PATH/lib/web/controller/controller_class.php(122): IInterceptor::run(onCreateAction)
+#9 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(db_bak)
+#10 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#11 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: SELECT * FROM uogo8_user as u,uogo8_member as m WHERE (u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id limit 1
+ -- Table 'uogo8.uogo8_user' doesn't exist
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-10-27 02:27:06
+#0 IWEB_PATH/lib/web/model/model_class.php(188): IDB->query(SELECT * FROM uogo8_user as u,uogo8_member as m WHERE (u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id limit 1)
+#1 IWEB_PATH/lib/web/model/model_class.php(134): IModel->query((u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id,*,,,1)
+#2 IWEB_PATH/classes/checkrights.php(303): IModel->getObj((u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id)
+#3 IWEB_PATH/classes/checkrights.php(108): CheckRights::isValidUser()
+#4 IWEB_PATH/classes/checkrights.php(158): CheckRights::getUser()
+#5 IWEB_PATH/controllers/site.php(18): CheckRights::checkUserRights()
+#6 IWEB_PATH/lib/web/controller/controller_class.php(107): Site->init()
+#7 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run()
+#8 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#9 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: SELECT * FROM uogo8_user as u,uogo8_member as m WHERE (u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id limit 1
+ -- Table 'uogo8.uogo8_user' doesn't exist
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-10-27 02:29:30
+#0 IWEB_PATH/lib/web/model/model_class.php(188): IDB->query(SELECT * FROM uogo8_user as u,uogo8_member as m WHERE (u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id limit 1)
+#1 IWEB_PATH/lib/web/model/model_class.php(134): IModel->query((u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id,*,,,1)
+#2 IWEB_PATH/classes/checkrights.php(303): IModel->getObj((u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id)
+#3 IWEB_PATH/classes/checkrights.php(108): CheckRights::isValidUser()
+#4 IWEB_PATH/classes/checkrights.php(158): CheckRights::getUser()
+#5 IWEB_PATH/controllers/site.php(18): CheckRights::checkUserRights()
+#6 IWEB_PATH/lib/web/controller/controller_class.php(107): Site->init()
+#7 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(pro_list)
+#8 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#9 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: SELECT * FROM uogo8_user as u,uogo8_member as m WHERE (u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id limit 1
+ -- Table 'uogo8.uogo8_user' doesn't exist
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-10-27 02:29:37
+#0 IWEB_PATH/lib/web/model/model_class.php(188): IDB->query(SELECT * FROM uogo8_user as u,uogo8_member as m WHERE (u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id limit 1)
+#1 IWEB_PATH/lib/web/model/model_class.php(134): IModel->query((u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id,*,,,1)
+#2 IWEB_PATH/classes/checkrights.php(303): IModel->getObj((u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id)
+#3 IWEB_PATH/classes/checkrights.php(108): CheckRights::isValidUser()
+#4 IWEB_PATH/classes/checkrights.php(158): CheckRights::getUser()
+#5 IWEB_PATH/controllers/site.php(18): CheckRights::checkUserRights()
+#6 IWEB_PATH/lib/web/controller/controller_class.php(107): Site->init()
+#7 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#8 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#9 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: SELECT * FROM uogo8_user as u,uogo8_member as m WHERE (u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id limit 1
+ -- Table 'uogo8.uogo8_user' doesn't exist
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-10-27 02:29:45
+#0 IWEB_PATH/lib/web/model/model_class.php(188): IDB->query(SELECT * FROM uogo8_user as u,uogo8_member as m WHERE (u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id limit 1)
+#1 IWEB_PATH/lib/web/model/model_class.php(134): IModel->query((u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id,*,,,1)
+#2 IWEB_PATH/classes/checkrights.php(303): IModel->getObj((u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id)
+#3 IWEB_PATH/classes/checkrights.php(108): CheckRights::isValidUser()
+#4 IWEB_PATH/classes/checkrights.php(158): CheckRights::getUser()
+#5 IWEB_PATH/controllers/site.php(18): CheckRights::checkUserRights()
+#6 IWEB_PATH/lib/web/controller/controller_class.php(107): Site->init()
+#7 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(pro_list)
+#8 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#9 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: SELECT * FROM uogo8_user as u,uogo8_member as m WHERE (u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id limit 1
+ -- Table 'uogo8.uogo8_user' doesn't exist
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-10-27 02:29:54
+#0 IWEB_PATH/lib/web/model/model_class.php(188): IDB->query(SELECT * FROM uogo8_user as u,uogo8_member as m WHERE (u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id limit 1)
+#1 IWEB_PATH/lib/web/model/model_class.php(134): IModel->query((u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id,*,,,1)
+#2 IWEB_PATH/classes/checkrights.php(303): IModel->getObj((u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id)
+#3 IWEB_PATH/classes/checkrights.php(108): CheckRights::isValidUser()
+#4 IWEB_PATH/classes/checkrights.php(158): CheckRights::getUser()
+#5 IWEB_PATH/controllers/site.php(18): CheckRights::checkUserRights()
+#6 IWEB_PATH/lib/web/controller/controller_class.php(107): Site->init()
+#7 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#8 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#9 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: SELECT * FROM uogo8_user as u,uogo8_member as m WHERE (u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id limit 1
+ -- Table 'uogo8.uogo8_user' doesn't exist
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-10-27 02:30:03
+#0 IWEB_PATH/lib/web/model/model_class.php(188): IDB->query(SELECT * FROM uogo8_user as u,uogo8_member as m WHERE (u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id limit 1)
+#1 IWEB_PATH/lib/web/model/model_class.php(134): IModel->query((u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id,*,,,1)
+#2 IWEB_PATH/classes/checkrights.php(303): IModel->getObj((u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id)
+#3 IWEB_PATH/classes/checkrights.php(108): CheckRights::isValidUser()
+#4 IWEB_PATH/classes/checkrights.php(158): CheckRights::getUser()
+#5 IWEB_PATH/controllers/site.php(18): CheckRights::checkUserRights()
+#6 IWEB_PATH/lib/web/controller/controller_class.php(107): Site->init()
+#7 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(pro_list)
+#8 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#9 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: SELECT * FROM uogo8_user as u,uogo8_member as m WHERE (u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id limit 1
+ -- Table 'uogo8.uogo8_user' doesn't exist
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-10-27 02:30:12
+#0 IWEB_PATH/lib/web/model/model_class.php(188): IDB->query(SELECT * FROM uogo8_user as u,uogo8_member as m WHERE (u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id limit 1)
+#1 IWEB_PATH/lib/web/model/model_class.php(134): IModel->query((u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id,*,,,1)
+#2 IWEB_PATH/classes/checkrights.php(303): IModel->getObj((u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id)
+#3 IWEB_PATH/classes/checkrights.php(108): CheckRights::isValidUser()
+#4 IWEB_PATH/classes/checkrights.php(158): CheckRights::getUser()
+#5 IWEB_PATH/controllers/site.php(18): CheckRights::checkUserRights()
+#6 IWEB_PATH/lib/web/controller/controller_class.php(107): Site->init()
+#7 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#8 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#9 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: SELECT * FROM uogo8_user as u,uogo8_member as m WHERE (u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id limit 1
+ -- Table 'uogo8.uogo8_user' doesn't exist
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-10-27 02:30:21
+#0 IWEB_PATH/lib/web/model/model_class.php(188): IDB->query(SELECT * FROM uogo8_user as u,uogo8_member as m WHERE (u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id limit 1)
+#1 IWEB_PATH/lib/web/model/model_class.php(134): IModel->query((u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id,*,,,1)
+#2 IWEB_PATH/classes/checkrights.php(303): IModel->getObj((u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id)
+#3 IWEB_PATH/classes/checkrights.php(108): CheckRights::isValidUser()
+#4 IWEB_PATH/classes/checkrights.php(158): CheckRights::getUser()
+#5 IWEB_PATH/controllers/site.php(18): CheckRights::checkUserRights()
+#6 IWEB_PATH/lib/web/controller/controller_class.php(107): Site->init()
+#7 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#8 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#9 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: SELECT * FROM uogo8_user as u,uogo8_member as m WHERE (u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id limit 1
+ -- Table 'uogo8.uogo8_user' doesn't exist
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-10-27 02:30:29
+#0 IWEB_PATH/lib/web/model/model_class.php(188): IDB->query(SELECT * FROM uogo8_user as u,uogo8_member as m WHERE (u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id limit 1)
+#1 IWEB_PATH/lib/web/model/model_class.php(134): IModel->query((u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id,*,,,1)
+#2 IWEB_PATH/classes/checkrights.php(303): IModel->getObj((u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id)
+#3 IWEB_PATH/classes/checkrights.php(108): CheckRights::isValidUser()
+#4 IWEB_PATH/classes/checkrights.php(158): CheckRights::getUser()
+#5 IWEB_PATH/controllers/site.php(18): CheckRights::checkUserRights()
+#6 IWEB_PATH/lib/web/controller/controller_class.php(107): Site->init()
+#7 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(pro_list)
+#8 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#9 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: SELECT * FROM uogo8_user as u,uogo8_member as m WHERE (u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id limit 1
+ -- Table 'uogo8.uogo8_user' doesn't exist
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-10-27 02:30:38
+#0 IWEB_PATH/lib/web/model/model_class.php(188): IDB->query(SELECT * FROM uogo8_user as u,uogo8_member as m WHERE (u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id limit 1)
+#1 IWEB_PATH/lib/web/model/model_class.php(134): IModel->query((u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id,*,,,1)
+#2 IWEB_PATH/classes/checkrights.php(303): IModel->getObj((u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id)
+#3 IWEB_PATH/classes/checkrights.php(108): CheckRights::isValidUser()
+#4 IWEB_PATH/classes/checkrights.php(158): CheckRights::getUser()
+#5 IWEB_PATH/controllers/site.php(18): CheckRights::checkUserRights()
+#6 IWEB_PATH/lib/web/controller/controller_class.php(107): Site->init()
+#7 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#8 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#9 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: SELECT * FROM uogo8_user as u,uogo8_member as m WHERE (u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id limit 1
+ -- Table 'uogo8.uogo8_user' doesn't exist
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-10-27 02:30:47
+#0 IWEB_PATH/lib/web/model/model_class.php(188): IDB->query(SELECT * FROM uogo8_user as u,uogo8_member as m WHERE (u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id limit 1)
+#1 IWEB_PATH/lib/web/model/model_class.php(134): IModel->query((u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id,*,,,1)
+#2 IWEB_PATH/classes/checkrights.php(303): IModel->getObj((u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id)
+#3 IWEB_PATH/classes/checkrights.php(108): CheckRights::isValidUser()
+#4 IWEB_PATH/classes/checkrights.php(158): CheckRights::getUser()
+#5 IWEB_PATH/controllers/site.php(18): CheckRights::checkUserRights()
+#6 IWEB_PATH/lib/web/controller/controller_class.php(107): Site->init()
+#7 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#8 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#9 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: SELECT * FROM uogo8_user as u,uogo8_member as m WHERE (u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id limit 1
+ -- Table 'uogo8.uogo8_user' doesn't exist
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-10-27 02:31:49
+#0 IWEB_PATH/lib/web/model/model_class.php(188): IDB->query(SELECT * FROM uogo8_user as u,uogo8_member as m WHERE (u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id limit 1)
+#1 IWEB_PATH/lib/web/model/model_class.php(134): IModel->query((u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id,*,,,1)
+#2 IWEB_PATH/classes/checkrights.php(303): IModel->getObj((u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id)
+#3 IWEB_PATH/classes/checkrights.php(108): CheckRights::isValidUser()
+#4 IWEB_PATH/classes/checkrights.php(158): CheckRights::getUser()
+#5 IWEB_PATH/controllers/site.php(18): CheckRights::checkUserRights()
+#6 IWEB_PATH/lib/web/controller/controller_class.php(107): Site->init()
+#7 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(pro_list)
+#8 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#9 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: SELECT * FROM uogo8_user as u,uogo8_member as m WHERE (u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id limit 1
+ -- Table 'uogo8.uogo8_user' doesn't exist
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-10-27 02:35:35
+#0 IWEB_PATH/lib/web/model/model_class.php(188): IDB->query(SELECT * FROM uogo8_user as u,uogo8_member as m WHERE (u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id limit 1)
+#1 IWEB_PATH/lib/web/model/model_class.php(134): IModel->query((u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id,*,,,1)
+#2 IWEB_PATH/classes/checkrights.php(303): IModel->getObj((u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id)
+#3 IWEB_PATH/classes/checkrights.php(108): CheckRights::isValidUser()
+#4 IWEB_PATH/classes/checkrights.php(158): CheckRights::getUser()
+#5 IWEB_PATH/controllers/site.php(18): CheckRights::checkUserRights()
+#6 IWEB_PATH/lib/web/controller/controller_class.php(107): Site->init()
+#7 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(pro_list)
+#8 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#9 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: SELECT * FROM uogo8_user as u,uogo8_member as m WHERE (u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id limit 1
+ -- Table 'uogo8.uogo8_user' doesn't exist
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-10-27 02:37:52
+#0 IWEB_PATH/lib/web/model/model_class.php(188): IDB->query(SELECT * FROM uogo8_user as u,uogo8_member as m WHERE (u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id limit 1)
+#1 IWEB_PATH/lib/web/model/model_class.php(134): IModel->query((u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id,*,,,1)
+#2 IWEB_PATH/classes/checkrights.php(303): IModel->getObj((u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id)
+#3 IWEB_PATH/classes/checkrights.php(108): CheckRights::isValidUser()
+#4 IWEB_PATH/classes/checkrights.php(158): CheckRights::getUser()
+#5 IWEB_PATH/controllers/site.php(18): CheckRights::checkUserRights()
+#6 IWEB_PATH/lib/web/controller/controller_class.php(107): Site->init()
+#7 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(pro_list)
+#8 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#9 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: SELECT * FROM uogo8_user as u,uogo8_member as m WHERE (u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id limit 1
+ -- Table 'uogo8.uogo8_user' doesn't exist
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-10-27 02:38:07
+#0 IWEB_PATH/lib/web/model/model_class.php(188): IDB->query(SELECT * FROM uogo8_user as u,uogo8_member as m WHERE (u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id limit 1)
+#1 IWEB_PATH/lib/web/model/model_class.php(134): IModel->query((u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id,*,,,1)
+#2 IWEB_PATH/classes/checkrights.php(303): IModel->getObj((u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id)
+#3 IWEB_PATH/classes/checkrights.php(108): CheckRights::isValidUser()
+#4 IWEB_PATH/classes/checkrights.php(158): CheckRights::getUser()
+#5 IWEB_PATH/controllers/site.php(18): CheckRights::checkUserRights()
+#6 IWEB_PATH/lib/web/controller/controller_class.php(107): Site->init()
+#7 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(pro_list)
+#8 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#9 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: SELECT * FROM uogo8_user as u,uogo8_member as m WHERE (u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id limit 1
+ -- Table 'uogo8.uogo8_user' doesn't exist
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-10-27 02:38:23
+#0 IWEB_PATH/lib/web/model/model_class.php(188): IDB->query(SELECT * FROM uogo8_user as u,uogo8_member as m WHERE (u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id limit 1)
+#1 IWEB_PATH/lib/web/model/model_class.php(134): IModel->query((u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id,*,,,1)
+#2 IWEB_PATH/classes/checkrights.php(303): IModel->getObj((u.username = '' or u.email = '' or m.mobile='') and m.status = 1 and u.id = m.user_id)
+#3 IWEB_PATH/classes/checkrights.php(108): CheckRights::isValidUser()
+#4 IWEB_PATH/classes/checkrights.php(158): CheckRights::getUser()
+#5 IWEB_PATH/controllers/site.php(18): CheckRights::checkUserRights()
+#6 IWEB_PATH/lib/web/controller/controller_class.php(107): Site->init()
+#7 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(pro_list)
+#8 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#9 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+

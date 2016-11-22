@@ -624,7 +624,7 @@ class Goods extends IController
 		$title = IFilter::act(IReq::get('title'));
 		$keywords = IFilter::act(IReq::get('keywords'));
 		$descript = IFilter::act(IReq::get('descript'));
-		$channel_id = IFilter::act(IReq::get('channel_id'));
+
 
 		if(!$name)
 		{
@@ -640,7 +640,6 @@ class Goods extends IController
 			'indexvisibility' => $indexvisibility,
 			'keywords'  => $keywords,
 			'descript'  => $descript,
-			'channel_id'  => $channel_id,
 			'title'     => $title
 		);
 		$tb_category->setData($category_info);

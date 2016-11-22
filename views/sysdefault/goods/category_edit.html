@@ -18,21 +18,6 @@
 						<input class="normal" name="name" type="text" value="" pattern="required" alt="分类名称不能为空" /><label>* 必选项</label>
 					</td>
 				</tr>
-
-				<tr>
-					<th>分类频道</th>
-					<td>
-						<select name='channel_id'>
-							<option value="0">无频道</option>
-						{query:name=channel order=sort desc item=$channel}
-			                <option value="{$channel['id']}">{$channel['name']}</option>
-			            {/query}
-						</select>
-						<label>* 此分类的所属的频道ID</label>
-					</td>
-				</tr>
-
-
 				<tr>
 					<th>上级分类：</th>
 					<td>

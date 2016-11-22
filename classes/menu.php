@@ -38,7 +38,7 @@ class Menu
 
     //菜单的配制数据
 	private static $menu = array(
-		'商品'=>array(
+		'商城'=>array(
 			'商品管理'=>array(
 				'/goods/goods_list' => '商品列表',
 				'/goods/goods_edit' => '商品添加',
@@ -131,7 +131,7 @@ class Menu
         	),
 		),
 
-		'活动'=>array(
+		'促销'=>array(
         	'促销活动' => array(
         		'/market/pro_rule_list' => '促销活动列表'
         	),
@@ -140,16 +140,20 @@ class Menu
         		'/market/regiment_list'  => '团购',
 				'/market/sale_list'      => '特价',
         	),
+		),
+		'积分'=>array(
+        	'积分商城'=>array(
+        		'/bg_pointmall/pointmall_list'       => '活动列表',
+        		'/bg_pointmall/pointmall_cat_list'       => '活动分类',
+        		'/bg_pointmall/pointmall_signup_list'	=> '参与情况',
+        	),
+		),
+		'礼券'=>array(
         	'代金券管理'=>array(
         		'/market/ticket_list'       => '代金券列表',
         	),
-        	'活动管理'=>array(
-        		'/activity/activity_list'       => '活动列表',
-        		'/activity/activity_cat_list'       => '活动分类',
-        		'/activity/activity_signup_list'	=> '参与情况',
-        	),
 		),
-
+		
 		'统计'=>array(
 			'基础数据统计'=>array(
       			'/market/user_reg' 	   => '用户注册统计',

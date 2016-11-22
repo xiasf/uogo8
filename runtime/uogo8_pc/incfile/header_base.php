@@ -1,0 +1,4 @@
+<?php 
+    $myCartObj  = new Cart();
+    $myCartInfo = $myCartObj->getMyCart();    
+?><!DOCTYPE html><html><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=Edge"><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta name="renderer" content="webkit"><link type="image/x-icon"  href="<?php echo IUrl::getHost().$this->getWebViewPath()."skin/res/favicon.ico?125465";?>" rel="icon"><meta property="qc:admins" content="352014713170263757" /><link href="<?php echo IUrl::getHost().$this->getWebViewPath()."skin/res/global.css";?>" media="screen"  rel="stylesheet"  type="text/css"><script src="<?php echo IUrl::getHost().$this->getWebViewPath()."skin/js/jquery/jquery-3.1.1.min.js?20161121";?>"></script>

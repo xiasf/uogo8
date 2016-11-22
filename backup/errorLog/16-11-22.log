@@ -1,0 +1,1240 @@
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 AND go.id is not null   order by sort asc,id desc limit 10
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 02:25:25
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 AND go.id is not null   order by sort asc,id desc limit 10)
+#1 IWEB_PATH/classes/api.php(147): IQuery->find()
+#2 IWEB_PATH/classes/api.php(52): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/mall/products.php(31): Api::run(getCommendList)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/mall/products)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/mall/products)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/mall.php(542): IController->redirect(products)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Mall->products()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 AND go.id is not null   order by sort asc,id desc limit 10
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 02:28:26
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 AND go.id is not null   order by sort asc,id desc limit 10)
+#1 IWEB_PATH/classes/api.php(147): IQuery->find()
+#2 IWEB_PATH/classes/api.php(52): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/mall/products.php(31): Api::run(getCommendList)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/mall/products)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/mall/products)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/mall.php(542): IController->redirect(products)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Mall->products()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #comid# and go.is_del = #comid# AND go.id is not null   order by sort asc,id desc limit 10
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 02:39:01
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #comid# and go.is_del = #comid# AND go.id is not null   order by sort asc,id desc limit 10)
+#1 IWEB_PATH/classes/api.php(293): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/site/index.php(4): Api::run(getCommendNew)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/site/index.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/site/index.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/site/index)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/site/index)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/site.php(26): IController->redirect(index)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Site->index()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run()
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = #com_id# AND go.id is not null   order by sort asc,id desc limit 10
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 02:39:44
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = #com_id# AND go.id is not null   order by sort asc,id desc limit 10)
+#1 IWEB_PATH/classes/api.php(293): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/mall/products.php(31): Api::run(getCommendList)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/mall/products)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/mall/products)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/mall.php(542): IController->redirect(products)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Mall->products()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = #com_id# AND go.id is not null   order by sort asc,id desc limit 10
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 02:49:56
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = #com_id# AND go.id is not null   order by sort asc,id desc limit 10)
+#1 IWEB_PATH/classes/api.php(293): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/mall/products.php(31): Api::run(getCommendList)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/mall/products)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/mall/products)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/mall.php(542): IController->redirect(products)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Mall->products()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = Array AND go.id is not null   order by sort asc,id desc limit 10
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 02:52:22
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = Array AND go.id is not null   order by sort asc,id desc limit 10)
+#1 IWEB_PATH/classes/api.php(293): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/mall/products.php(31): Api::run(getCommendList)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/mall/products)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/mall/products)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/mall.php(542): IController->redirect(products)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Mall->products()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = #com_id# AND go.id is not null   order by sort asc,id desc limit 10
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 02:54:44
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = #com_id# AND go.id is not null   order by sort asc,id desc limit 10)
+#1 IWEB_PATH/classes/api.php(293): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/mall/products.php(31): Api::run(getCommendList)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/mall/products)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/mall/products)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/mall.php(542): IController->redirect(products)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Mall->products()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = #com_id# AND go.id is not null   order by sort asc,id desc limit 10
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 02:55:15
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = #com_id# AND go.id is not null   order by sort asc,id desc limit 10)
+#1 IWEB_PATH/classes/api.php(294): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/mall/products.php(31): Api::run(getCommendList)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/mall/products)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/mall/products)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/mall.php(542): IController->redirect(products)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Mall->products()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = #com_id# AND go.id is not null   order by sort asc,id desc limit 10
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 03:00:13
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = #com_id# AND go.id is not null   order by sort asc,id desc limit 10)
+#1 IWEB_PATH/classes/api.php(294): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/mall/products.php(31): Api::run(getCommendList)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/mall/products)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/mall/products)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/mall.php(542): IController->redirect(products)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Mall->products()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = #com_id# AND go.id is not null   order by sort asc,id desc limit 10
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 03:00:29
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = #com_id# AND go.id is not null   order by sort asc,id desc limit 10)
+#1 IWEB_PATH/classes/api.php(294): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/mall/products.php(31): Api::run(getCommendList)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/mall/products)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/mall/products)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/mall.php(542): IController->redirect(products)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Mall->products()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = #com_id#|3 AND go.id is not null   order by sort asc,id desc limit 10
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 03:08:52
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = #com_id#|3 AND go.id is not null   order by sort asc,id desc limit 10)
+#1 IWEB_PATH/classes/api.php(294): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/mall/products.php(31): Api::run(getCommendList)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/mall/products)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/mall/products)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/mall.php(542): IController->redirect(products)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Mall->products()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 AND go.id is not null   order by sort asc,id desc limit 10
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 03:09:51
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 AND go.id is not null   order by sort asc,id desc limit 10)
+#1 IWEB_PATH/classes/api.php(294): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/mall/products.php(31): Api::run(getCommendList)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/mall/products)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/mall/products)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/mall.php(542): IController->redirect(products)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Mall->products()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 AND go.id is not null   order by sort asc,id desc limit 10
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 03:13:22
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 AND go.id is not null   order by sort asc,id desc limit 10)
+#1 IWEB_PATH/classes/api.php(294): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/mall/products.php(31): Api::run(getCommendList)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/mall/products)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/mall/products)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/mall.php(542): IController->redirect(products)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Mall->products()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 AND go.id is not null   order by sort asc,id desc limit 10
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 03:16:33
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 AND go.id is not null   order by sort asc,id desc limit 10)
+#1 IWEB_PATH/classes/api.php(294): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/mall/products.php(31): Api::run(getCommendList)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/mall/products)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/mall/products)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/mall.php(542): IController->redirect(products)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Mall->products()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 AND go.id is not null   order by sort asc,id desc limit 10
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 03:18:13
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 AND go.id is not null   order by sort asc,id desc limit 10)
+#1 IWEB_PATH/classes/api.php(294): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/mall/products.php(31): Api::run(getCommendList)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/mall/products)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/mall/products)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/mall.php(542): IController->redirect(products)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Mall->products()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 AND go.id is not null   order by sort asc,id desc limit 10
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 03:18:34
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 AND go.id is not null   order by sort asc,id desc limit 10)
+#1 IWEB_PATH/classes/api.php(294): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/mall/products.php(31): Api::run(getCommendList)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/mall/products)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/mall/products)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/mall.php(542): IController->redirect(products)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Mall->products()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 AND go.id is not null   order by sort asc,id desc limit 10
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 03:19:05
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 AND go.id is not null   order by sort asc,id desc limit 10)
+#1 IWEB_PATH/classes/api.php(294): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/mall/products.php(31): Api::run(getCommendList)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/mall/products)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/mall/products)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/mall.php(542): IController->redirect(products)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Mall->products()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 AND go.id is not null   order by sort asc,id desc limit 10
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 03:20:40
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 AND go.id is not null   order by sort asc,id desc limit 10)
+#1 IWEB_PATH/classes/api.php(294): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/mall/products.php(31): Api::run(getCommendList)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/mall/products)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/mall/products)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/mall.php(542): IController->redirect(products)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Mall->products()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = 4 and go.is_del = 0 and go.seller_id = #shop_id# and go.id is not null   order by sort asc,id desc limit 4
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 03:48:52
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = 4 and go.is_del = 0 and go.seller_id = #shop_id# and go.id is not null   order by sort asc,id desc limit 4)
+#1 IWEB_PATH/classes/api.php(302): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/mall/products.php(31): Api::run(getCommendList)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/mall/products)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/mall/products)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/mall.php(542): IController->redirect(products)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Mall->products()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = 4 and go.is_del = 0 and go.seller_id = #shop_id# and go.id is not null   order by sort asc,id desc limit 4
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 04:00:36
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = 4 and go.is_del = 0 and go.seller_id = #shop_id# and go.id is not null   order by sort asc,id desc limit 4)
+#1 IWEB_PATH/classes/api.php(302): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/mall/products.php(31): Api::run(getCommendList)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/mall/products)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/mall/products)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/mall.php(542): IController->redirect(products)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Mall->products()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 and go.seller_id = #shop_id# and go.id is not null   order by #shop_id# limit 7
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 04:04:26
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 and go.seller_id = #shop_id# and go.id is not null   order by #shop_id# limit 7)
+#1 IWEB_PATH/classes/api.php(302): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/mall/products.php(31): Api::run(getCommendList,4)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/mall/products)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/mall/products)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/mall.php(542): IController->redirect(products)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Mall->products()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 and go.seller_id = #shop_id# and go.id is not null   order by #shop_id# limit 7
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 04:04:46
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 and go.seller_id = #shop_id# and go.id is not null   order by #shop_id# limit 7)
+#1 IWEB_PATH/classes/api.php(302): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/mall/products.php(31): Api::run(getCommendList,4)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/mall/products)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/mall/products)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/mall.php(542): IController->redirect(products)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Mall->products()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 and go.seller_id = #shop_id# and go.id is not null   order by #shop_id# limit 4
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 04:09:15
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 and go.seller_id = #shop_id# and go.id is not null   order by #shop_id# limit 4)
+#1 IWEB_PATH/classes/api.php(307): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/mall/products.php(31): Api::run(getCommendList,4)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/mall/products)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/mall/products)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/mall.php(542): IController->redirect(products)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Mall->products()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 and go.seller_id = #shop_id# and go.id is not null   order by 7 limit 4
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 04:12:56
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 and go.seller_id = #shop_id# and go.id is not null   order by 7 limit 4)
+#1 IWEB_PATH/classes/api.php(306): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/mall/products.php(31): Api::run(getCommendList,4)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/mall/products)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/mall/products)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/mall.php(542): IController->redirect(products)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Mall->products()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 and go.seller_id = #shop_id# and go.id is not null   order by 7 limit 4
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 04:14:29
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 and go.seller_id = #shop_id# and go.id is not null   order by 7 limit 4)
+#1 IWEB_PATH/classes/api.php(308): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/mall/products.php(31): Api::run(getCommendList,4)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/mall/products)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/mall/products)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/mall.php(542): IController->redirect(products)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Mall->products()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id    order by 7 limit 4
+ -- Unknown column '7' in 'order clause'
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 04:16:49
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id    order by 7 limit 4)
+#1 IWEB_PATH/classes/api.php(315): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/mall/products.php(31): Api::run(getCommendList,4)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/mall/products)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/mall/products)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/mall.php(542): IController->redirect(products)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Mall->products()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 and go.seller_id = #shop_id# and go.id is not null   order by  limit 10
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 04:17:24
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 and go.seller_id = #shop_id# and go.id is not null   order by  limit 10)
+#1 IWEB_PATH/classes/api.php(267): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/mall/products.php(31): Api::run(getCommendList)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/mall/products)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/mall/products)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/mall.php(542): IController->redirect(products)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Mall->products()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 and go.seller_id = #shop_id# and go.id is not null   order by  limit 10
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 04:19:20
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 and go.seller_id = #shop_id# and go.id is not null   order by  limit 10)
+#1 IWEB_PATH/classes/api.php(271): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/mall/products.php(31): Api::run(getCommendList)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/mall/products)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/mall/products)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/mall.php(542): IController->redirect(products)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Mall->products()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 and go.seller_id = #shop_id# and go.id is not null   order by  limit 10
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 04:20:30
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 and go.seller_id = #shop_id# and go.id is not null   order by  limit 10)
+#1 IWEB_PATH/classes/api.php(272): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/mall/products.php(31): Api::run(getCommendList)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/mall/products)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/mall/products)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/mall.php(542): IController->redirect(products)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Mall->products()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 and go.seller_id = #shop_id# and go.id is not null   order by  limit 10
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 04:21:02
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 and go.seller_id = #shop_id# and go.id is not null   order by  limit 10)
+#1 IWEB_PATH/classes/api.php(272): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/mall/products.php(31): Api::run(getCommendList)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/mall/products)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/mall/products)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/mall.php(542): IController->redirect(products)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Mall->products()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 and go.seller_id = #shop_id# and go.id is not null   order by sort asc,id desc limit 4
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 04:21:46
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 and go.seller_id = #shop_id# and go.id is not null   order by sort asc,id desc limit 4)
+#1 IWEB_PATH/classes/api.php(274): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/mall/products.php(31): Api::run(getCommendList,4)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/mall/products)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/mall/products)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/mall.php(542): IController->redirect(products)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Mall->products()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 and go.seller_id = #shop_id# and go.id is not null   order by  limit 10
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 04:22:15
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 and go.seller_id = #shop_id# and go.id is not null   order by  limit 10)
+#1 IWEB_PATH/classes/api.php(274): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/mall/products.php(31): Api::run(getCommendList)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/mall/products)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/mall/products)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/mall.php(542): IController->redirect(products)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Mall->products()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 and go.seller_id = #shop_id# and go.id is not null   order by  limit 10
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 04:23:04
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 and go.seller_id = #shop_id# and go.id is not null   order by  limit 10)
+#1 IWEB_PATH/classes/api.php(275): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/mall/products.php(31): Api::run(getCommendList)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/mall/products)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/mall/products)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/mall.php(542): IController->redirect(products)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Mall->products()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 and go.seller_id = #shop_id# and go.id is not null   order by  limit 10
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 04:23:44
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 and go.seller_id = #shop_id# and go.id is not null   order by  limit 10)
+#1 IWEB_PATH/classes/api.php(275): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/mall/products.php(31): Api::run(getCommendList)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/mall/products)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/mall/products)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/mall.php(542): IController->redirect(products)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Mall->products()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 and go.seller_id = #shop_id# and go.id is not null   order by  limit 10
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 04:24:24
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 and go.seller_id = #shop_id# and go.id is not null   order by  limit 10)
+#1 IWEB_PATH/classes/api.php(275): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/mall/products.php(31): Api::run(getCommendList)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/mall/products)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/mall/products)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/mall.php(542): IController->redirect(products)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Mall->products()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 and go.seller_id = #shop_id# and go.id is not null   order by  limit 10
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 04:24:33
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 and go.seller_id = #shop_id# and go.id is not null   order by  limit 10)
+#1 IWEB_PATH/classes/api.php(275): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/mall/products.php(31): Api::run(getCommendList)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/mall/products)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/mall/products)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/mall.php(542): IController->redirect(products)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Mall->products()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 and go.seller_id = #shop_id# and go.id is not null   order by  limit 10
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 04:25:20
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 and go.seller_id = #shop_id# and go.id is not null   order by  limit 10)
+#1 IWEB_PATH/classes/api.php(275): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/mall/products.php(31): Api::run(getCommendList)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/mall/products)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/mall/products)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/mall.php(542): IController->redirect(products)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Mall->products()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #comid# and go.is_del = 0 AND go.id is not null   order by  limit 10
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 04:34:33
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #comid# and go.is_del = 0 AND go.id is not null   order by  limit 10)
+#1 IWEB_PATH/classes/api.php(273): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/site/index.php(4): Api::run(getCommendNew)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/site/index.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/site/index.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/site/index)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/site/index)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/site.php(26): IController->redirect(index)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Site->index()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run()
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 and go.seller_id = #shop_id# and go.id is not null   order by  limit 10
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 04:34:37
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 and go.seller_id = #shop_id# and go.id is not null   order by  limit 10)
+#1 IWEB_PATH/classes/api.php(273): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/mall/products.php(31): Api::run(getCommendList)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/mall/products)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/mall/products)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/mall.php(542): IController->redirect(products)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Mall->products()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 and go.seller_id = #shop_id# and go.id is not null   order by  limit 10
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 04:34:53
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 and go.seller_id = #shop_id# and go.id is not null   order by  limit 10)
+#1 IWEB_PATH/classes/api.php(273): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/mall/products.php(31): Api::run(getCommendList)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/mall/products)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/mall/products)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/mall.php(542): IController->redirect(products)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Mall->products()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 and go.seller_id = #shop_id# and go.id is not null   order by  limit 10
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 04:35:42
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 and go.seller_id = #shop_id# and go.id is not null   order by  limit 10)
+#1 IWEB_PATH/classes/api.php(273): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/mall/products.php(31): Api::run(getCommendList)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/mall/products)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/mall/products)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/mall.php(542): IController->redirect(products)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Mall->products()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 and go.seller_id = #shop_id# and go.id is not null   order by  limit 10
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 04:35:55
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 and go.seller_id = #shop_id# and go.id is not null   order by  limit 10)
+#1 IWEB_PATH/classes/api.php(273): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/mall/products.php(31): Api::run(getCommendList)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/mall/products)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/mall/products)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/mall.php(542): IController->redirect(products)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Mall->products()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id =  and go.is_del = 0 and go.seller_id = 4 and go.id is not null   order by sort asc,id desc limit 4
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'and go.is_del = 0 and go.seller_id = 4 and go.id is not null   order by sort asc' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 04:36:17
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id =  and go.is_del = 0 and go.seller_id = 4 and go.id is not null   order by sort asc,id desc limit 4)
+#1 IWEB_PATH/classes/api.php(273): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/mall/products.php(31): Api::run(getCommendList,4)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/mall/products)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/mall/products)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/mall.php(542): IController->redirect(products)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Mall->products()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id =  and go.is_del = 0 and go.seller_id = 4 and go.id is not null   order by sort asc,id desc limit 4
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'and go.is_del = 0 and go.seller_id = 4 and go.id is not null   order by sort asc' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 04:36:36
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id =  and go.is_del = 0 and go.seller_id = 4 and go.id is not null   order by sort asc,id desc limit 4)
+#1 IWEB_PATH/classes/api.php(273): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/mall/products.php(31): Api::run(getCommendList,4)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/mall/products)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/mall/products)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/mall.php(542): IController->redirect(products)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Mall->products()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 and go.seller_id = #shop_id# and go.id is not null   order by  limit 10
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 04:37:09
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 and go.seller_id = #shop_id# and go.id is not null   order by  limit 10)
+#1 IWEB_PATH/classes/api.php(273): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/mall/products.php(31): Api::run(getCommendList)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/mall/products)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/mall/products)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/mall.php(542): IController->redirect(products)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Mall->products()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 and go.seller_id = #shop_id# and go.id is not null   order by  limit 10
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 04:37:39
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #com_id# and go.is_del = 0 and go.seller_id = #shop_id# and go.id is not null   order by  limit 10)
+#1 IWEB_PATH/classes/api.php(274): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/mall/products.php(31): Api::run(getCommendList)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/mall/products.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/mall/products)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/mall/products)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/mall.php(542): IController->redirect(products)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Mall->products()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(products)
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: UPDATE uogo8_category SET `name` = '卫浴' , `parent_id` = '524' , `sort` = '0' , `visibility` = '1' , `indexvisibility` = '1' , `keywords` = '' , `descript` = '' , `channel_id` = '0' , `title` = '' WHERE id=653
+ -- Unknown column 'channel_id' in 'field list'
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 98
+excepCode: 1000
+excepTime: 2016-11-22 05:07:09
+#0 IWEB_PATH/lib/web/model/model_class.php(91): IDB->query(UPDATE uogo8_category SET `name` = '卫浴' , `parent_id` = '524' , `sort` = '0' , `visibility` = '1' , `indexvisibility` = '1' , `keywords` = '' , `descript` = '' , `channel_id` = '0' , `title` = '' WHERE id=653)
+#1 IWEB_PATH/controllers/goods.php(650): IModel->update(id=653)
+#2 IWEB_PATH/lib/web/action/inline_action.php(20): Goods->category_save()
+#3 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#4 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run(category_save)
+#5 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#6 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #comid# and go.is_del = 0 AND go.id is not null   order by  limit 10
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 05:38:04
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #comid# and go.is_del = 0 AND go.id is not null   order by  limit 10)
+#1 IWEB_PATH/classes/api.php(271): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/site/index.php(4): Api::run(getCommendNew)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/site/index.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/site/index.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/site/index)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/site/index)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/site.php(26): IController->redirect(index)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Site->index()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run()
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #comid# and go.is_del = 0 AND go.id is not null   order by  limit 10
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 06:56:02
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #comid# and go.is_del = 0 AND go.id is not null   order by  limit 10)
+#1 IWEB_PATH/classes/api.php(271): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/site/index.php(4): Api::run(getCommendNew)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/site/index.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/site/index.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/site/index)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/site/index)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/site.php(26): IController->redirect(index)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Site->index()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run()
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #comid# and go.is_del = 0 AND go.id is not null   order by  limit 10
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 08:15:36
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #comid# and go.is_del = 0 AND go.id is not null   order by  limit 10)
+#1 IWEB_PATH/classes/api.php(271): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/site/index.php(4): Api::run(getCommendNew)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/site/index.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/site/index.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/site/index)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/site/index)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/site.php(26): IController->redirect(index)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Site->index()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run()
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #comid# and go.is_del = 0 AND go.id is not null   order by  limit 10
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 10:32:15
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #comid# and go.is_del = 0 AND go.id is not null   order by  limit 10)
+#1 IWEB_PATH/classes/api.php(271): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/site/index.php(4): Api::run(getCommendNew)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/site/index.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/site/index.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/site/index)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/site/index)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/site.php(26): IController->redirect(index)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Site->index()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run()
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #comid# and go.is_del = 0 AND go.id is not null   order by  limit 10
+ -- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+excepFile: IWEB_PATH/lib/db/db_class.php
+excepLine: 69
+excepCode: 1000
+excepTime: 2016-11-22 17:51:24
+#0 IWEB_PATH/lib/core/query_class.php(176): IDB->query(select  go.img,go.sell_price,go.name,go.id,go.market_price from uogo8_commend_goods as co left join uogo8_goods  as go on co.goods_id = go.id where co.commend_id = #comid# and go.is_del = 0 AND go.id is not null   order by  limit 10)
+#1 IWEB_PATH/classes/api.php(271): IQuery->find()
+#2 IWEB_PATH/classes/api.php(103): Api::query()
+#3 IWEB_PATH/runtime/uogo8_pc/site/index.php(4): Api::run(getCommendNew)
+#4 IWEB_PATH/lib/web/controller/controllerbase_class.php(119): require(IWEB_PATH/runtime/uogo8_pc/site/index.php)
+#5 IWEB_PATH/lib/web/controller/controllerbase_class.php(86): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8_pc/site/index.php)
+#6 IWEB_PATH/lib/web/controller/controller_class.php(367): IControllerBase->renderView(IWEB_PATH/views/uogo8_pc/site/index)
+#7 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8_pc/site/index)
+#8 IWEB_PATH/lib/web/controller/controller_class.php(757): IViewAction->run()
+#9 IWEB_PATH/controllers/site.php(26): IController->redirect(index)
+#10 IWEB_PATH/lib/web/action/inline_action.php(20): Site->index()
+#11 IWEB_PATH/lib/web/controller/controller_class.php(247): IInlineAction->run()
+#12 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run()
+#13 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#14 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+

@@ -70,8 +70,7 @@ class IControllerBase extends IObject
 					//标签编译
 					$inputContent = $this->tagResolve($viewContent);
 					
-					//在电脑端屏蔽IE7以下浏览器
-					IClient::getDevice()=="pc" && $inputContent = '<!--[if lt IE 8]><script type="text/javascript">window.document.location.href = "/browser.html";</script><![endif]-->' . $inputContent;
+				
 
 					//创建文件
 					$fileObj  = new IFile($runtimeFile,'w+');

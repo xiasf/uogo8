@@ -46,12 +46,16 @@
 	'dshop' => 'decorat/index',
     'u' => 'ucenter/index',
     '/' => 'site/index',
+	'error.html' => 'site/error',
+	
+	'itemlist-<cat:\\d+>.html' => 'mall/products_list',
+    'item-<id:\\w+>.html' => 'mall/products',
+	
+	
 	'activity-<id:\\d+>.html' =>'site/activity/',
     'story-<id:\\d+>.html' => 'site/article_story',
     'shop-<id:\\d+>.html' => 'site/home',
     'article.html' => 'site/article',
-    'list-<cat:\\d+>.html' => 'site/pro_list',
-    'item-<id:\\w+>.html' => 'site/products',
     'tuan.html' => 'site/groupon',
     'tuan-<id:\\w+>-<active_id:\\w+>.html' => 'site/products_tuan',
     'tuan-list.html' => 'site/groupon_list',
@@ -66,7 +70,7 @@
     'cart-3.html' => 'simple/cart3',
     'notice.html' => 'site/notice',
     'search.html' => 'site/search_list',
-    'error.html' => 'site/error',
+    
     'notice-<id:\\d+>.html' => 'site/notice_detail',
     'pic-show.html' => 'site/pic_show',
   ),
@@ -75,13 +79,13 @@
     'pc' => 
     array (
       'sysdefault' => 'default',
-      'pc' => 'default',
+      'uogo8_pc' => 'default',
       'sysseller' => 'default',
     ),
     'mobile' => 
     array (
-      'mobile' => 'default',
-      'sysseller' => 'default',
+      'uogo8_mobile' => 'default',
+      'mobilesysseller' => 'default',
     ),
   ),
   'timezone' => 'Etc/GMT-8',
@@ -89,7 +93,7 @@
   'dbbackup' => 'backup/database',
   'safe' => 'session',
   'lang' => 'zh_sc',
-  'debug' => 1,     
+  'debug' => true,     
   'configExt' => 
   array (
     'site_config' => 'config/site_config.php',

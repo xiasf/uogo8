@@ -1,0 +1,60 @@
+<ERROR_BLOCK>
+excepInfo: 模板标签 【include】或【file】 参数路径不规范
+excepFile: IWEB_PATH/lib/core/tag_class.php
+excepLine: 296
+excepCode: 0
+excepTime: 2016-11-19 22:43:57
+#0 IWEB_PATH/runtime/uogo8/site/index.php(8): ITag::createRuntime(layouts/file/header.html)
+#1 IWEB_PATH/lib/web/controller/controllerbase_class.php(120): require(IWEB_PATH/runtime/uogo8/site/index.php)
+#2 IWEB_PATH/lib/web/controller/controllerbase_class.php(87): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8/site/index.php)
+#3 IWEB_PATH/lib/web/controller/controller_class.php(183): IControllerBase->renderView(IWEB_PATH/views/uogo8/site/index)
+#4 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8/site/index)
+#5 IWEB_PATH/lib/web/controller/controller_class.php(378): IViewAction->run()
+#6 IWEB_PATH/controllers/site.php(26): IController->redirect(index)
+#7 IWEB_PATH/lib/web/action/inline_action.php(20): Site->index()
+#8 IWEB_PATH/lib/web/controller/controller_class.php(123): IInlineAction->run()
+#9 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run()
+#10 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#11 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: 模板标签 【include】或【file】 参数路径不规范
+excepFile: IWEB_PATH/lib/core/tag_class.php
+excepLine: 296
+excepCode: 0
+excepTime: 2016-11-19 22:44:40
+#0 IWEB_PATH/runtime/uogo8/site/index.php(8): ITag::createRuntime(layouts/file/header.html)
+#1 IWEB_PATH/lib/web/controller/controllerbase_class.php(120): require(IWEB_PATH/runtime/uogo8/site/index.php)
+#2 IWEB_PATH/lib/web/controller/controllerbase_class.php(87): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8/site/index.php)
+#3 IWEB_PATH/lib/web/controller/controller_class.php(183): IControllerBase->renderView(IWEB_PATH/views/uogo8/site/index)
+#4 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8/site/index)
+#5 IWEB_PATH/lib/web/controller/controller_class.php(378): IViewAction->run()
+#6 IWEB_PATH/controllers/site.php(26): IController->redirect(index)
+#7 IWEB_PATH/lib/web/action/inline_action.php(20): Site->index()
+#8 IWEB_PATH/lib/web/controller/controller_class.php(123): IInlineAction->run()
+#9 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run()
+#10 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#11 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+
+<ERROR_BLOCK>
+excepInfo: 模板标签 【include】或【file】 路径 incfile/header.html 不存在
+excepFile: IWEB_PATH/lib/core/tag_class.php
+excepLine: 323
+excepCode: 0
+excepTime: 2016-11-19 22:48:15
+#0 IWEB_PATH/runtime/uogo8/site/index.php(8): ITag::createRuntime(incfile/header.html)
+#1 IWEB_PATH/lib/web/controller/controllerbase_class.php(120): require(IWEB_PATH/runtime/uogo8/site/index.php)
+#2 IWEB_PATH/lib/web/controller/controllerbase_class.php(87): IControllerBase->requireFile(IWEB_PATH/runtime/uogo8/site/index.php)
+#3 IWEB_PATH/lib/web/controller/controller_class.php(183): IControllerBase->renderView(IWEB_PATH/views/uogo8/site/index)
+#4 IWEB_PATH/lib/web/action/view_action.php(29): IController->render(IWEB_PATH/views/uogo8/site/index)
+#5 IWEB_PATH/lib/web/controller/controller_class.php(378): IViewAction->run()
+#6 IWEB_PATH/controllers/site.php(26): IController->redirect(index)
+#7 IWEB_PATH/lib/web/action/inline_action.php(20): Site->index()
+#8 IWEB_PATH/lib/web/controller/controller_class.php(123): IInlineAction->run()
+#9 IWEB_PATH/lib/core/webapplication_class.php(73): IController->run()
+#10 IWEB_PATH/lib/core/application_class.php(86): IWebApplication->execRequest()
+#11 IWEB_PATH/index.php(5): IApplication->run()
+</ERROR_BLOCK>
+

@@ -1,17 +1,13 @@
 <?php
 /**
  * @file site.php
- * @brief
- * @note
+ * @brief 
+ * @note  网站首页控制器
  */
-/**
- * @brief Site
- * @class Site
- * @note
- */
+
 class Site extends IController
 {
-    public $layout='site_o';
+    public $layout='site';
 
 	function init()
 	{
@@ -30,87 +26,6 @@ class Site extends IController
 		$this->redirect('index');
 	}
 
-
-	//[首页]商品搜索
-	function search_list()
-	{
-		$this->word = IFilter::act(IReq::get('word'),'text');
-		$cat_id     = IFilter::act(IReq::get('cat'),'int');
-
-		if(preg_match("|^[\w\x7f\s*-\xff*]+$|",$this->word))
-		{
-			//搜索关键字
-			$tb_sear     = new IModel('search');
-			$search_info = $tb_sear->getObj('keyword = "'.$this->word.'"','id');
-
-			//如果是第一页，相应关键词的被搜索数量才加1
-			if($search_info && intval(IReq::get('page')) < 2 )
-			{
-				//禁止刷新+1
-				$allow_sep = "30";
-				$flag = false;
-				$time = ICookie::get('step');
-				if(isset($time))
-				{
-					if (time() - $time > $allow_sep)
-					{
-						ICookie::set('step',time());
-						$flag = true;
-					}
-				}
-				else
-				{
-					ICookie::set('step',time());
-					$flag = true;
-				}
-				if($flag)
-				{
-					$tb_sear->setData(array('num'=>'num + 1'));
-					$tb_sear->update('id='.$search_info['id'],'num');
-				}
-			}
-			elseif( !$search_info )
-			{
-				//如果数据库中没有这个词的信息，则新添
-				$tb_sear->setData(array('keyword'=>$this->word,'num'=>1));
-				$tb_sear->add();
-			}
-		}
-		else
-		{
-			IError::show(403,'请输入正确的查询关键词');
-		}
-		$this->cat_id = $cat_id;
-		$this->redirect('search_list');
-	}
-
-	//[site,ucenter头部分]自动完成
-	function autoComplete()
-	{
-		$word = IFilter::act(IReq::get('word'));
-		$isError = true;
-		$data    = array();
-
-		if($word != '' && $word != '%' && $word != '_')
-		{
-			$wordObj  = new IModel('keyword');
-			$wordList = $wordObj->query('word like "'.$word.'%" and word != "'.$word.'"','word, goods_nums','','',10);
-
-			if(!empty($wordList))
-			{
-				$isError = false;
-				$data = $wordList;
-			}
-		}
-
-		//json数据
-		$result = array(
-			'isError' => $isError,
-			'data'    => $data,
-		);
-
-		echo JSON::encode($result);
-	}
 
 	//[首页]邮箱订阅
 	function email_registry()
@@ -157,7 +72,6 @@ class Site extends IController
 	//[列表页]商品
 	function pro_list()
 	{
-		$this->layout = 'site_o';
 		$this->catId = IFilter::act(IReq::get('cat'),'int');//分类id
 		if($this->catId > 0)
 		{
@@ -456,7 +370,6 @@ class Site extends IController
 	//商品展示
 	function products()
 	{
-		$this->layout = 'site_o';
 		$goods_id = IFilter::act(IReq::get('id'),'int');
 
 		if(!$goods_id)

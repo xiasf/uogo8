@@ -1,0 +1,13 @@
+{file:incfile/header_base}
+<title>{echo:$this->config["seo_title"].$this->config["name"]}</title>
+<meta name='keywords' content='{echo:$this->config[seo_keys]}'>
+<meta name='description' content='{echo:$this->config[seo_desc]}'>
+<link href="skin/res/mall.css" media="screen" rel="stylesheet" type="text/css">
+</head><body>
+{file:incfile/header_top}
+{file:incfile/header_nav} 
+<!--内容开始--> 
+{viewcontent}
+{file:incfile/footer}
+</body>
+</html>

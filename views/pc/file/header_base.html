@@ -1,22 +1,28 @@
 {set:$callback   = IReq::get('callback') ? urlencode(IFilter::act(IReq::get('callback'),'url')) : '';
 
+
+
 $controller = IUrl::getInfo("controller");
+
 	$act = $this->getId();
-}
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>{echo:$this->config['title'].$this->config['seo_title']}</title>
-<meta name='keywords' content='{echo:$this->config[keys].$this->config[seo_keys]}'>
-<meta name='description' content='{echo:$this->config[desc].$this->config[seo_desc]}'>
-<link type="image/x-icon" href="/favicon.ico#://" rel="icon">
-<meta name="renderer" content="webkit">
-<meta name="apple-mobile-web-app-capable" content="yes">  
-<meta name="mobile-web-app-capable" content="yes">  
-<meta property="qc:admins" content="352014713170263757" />
-<script type='text/javascript' src="skin/js/jquery.min.js"></script>
-<script type='text/javascript' src="skin/js/packet/global.js"></script>
-</head>
+
+} 
+
+	<!DOCTYPE html>
+
+	<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>{echo:$this->config['title'].$this->config['seo_title']}</title>
+    <meta name='keywords' content='{echo:$this->config[keys].$this->config[seo_keys]}'>
+    <meta name='description' content='{echo:$this->config[desc].$this->config[seo_desc]}'>
+    <link type="image/x-icon" href="/favicon.ico#://" rel="icon">
+    <meta name="renderer" content="webkit">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta property="qc:admins" content="352014713170263757" />
+    <script type='text/javascript' src="skin/js/jquery.min.js"></script> 
+    <script type='text/javascript' src="skin/js/packet/global.js"></script>
+    </head>
